@@ -513,6 +513,7 @@ ITEMS.forEach(it => {
   const t = document.createElement('span'); t.className = 'title'; t.textContent = it.t;
   const f = document.createElement('span'); f.className = 'field'; f.textContent = it.f;
   cap.append(t, f);
+  fig.dataset.v = it.v;
   fig.append(card, cap);
   fig.classList.add('rv');
   target.append(fig);
