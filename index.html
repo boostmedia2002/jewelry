@@ -586,6 +586,7 @@ let lbReturn = null, lbToken = 0;
 const videoCache = {};
 function videoURL(src){
   if (!src || src.indexOf('data:') === 0) return Promise.resolve(src);
+  if (/github\.io$/.test(location.hostname)) return Promise.resolve(src);
   if (!videoCache[src]) {
     videoCache[src] = fetch(src).then(r => { if (!r.ok) throw new Error('load'); return r.blob(); })
       .then(b => URL.createObjectURL(new Blob([b], {type:'video/mp4'})))
