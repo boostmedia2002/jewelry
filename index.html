@@ -389,6 +389,12 @@ html,body{overflow-x:clip}
 /* computer only: smaller video squares (4 per row); phone stays as is */
 @media (min-width:641px){.inspo .grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (min-width:1100px){.inspo .grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+/* empty categories: hidden for visitors; the owner sees a drop area */
+.cat-empty{display:none!important}
+.can-reorder .cat-title.cat-empty{display:block!important}
+.can-reorder .grid.cat-empty{display:block!important;min-height:120px;border:2px dashed rgba(255,255,255,.3);border-radius:10px}
+.can-reorder .grid.cat-empty::before{content:"גרור לכאן סרטון";display:block;padding:48px 16px;text-align:center;color:rgba(255,255,255,.55);font-size:15px;font-weight:600}
+.can-reorder .grid.cat-empty.drop-end{border-color:#e8c98a}
 /* running number on each gallery video */
 .card-num{position:absolute;top:10px;right:10px;z-index:2;min-width:30px;height:30px;padding:0 8px;box-sizing:border-box;border-radius:999px;background:rgba(0,0,0,.62);color:#fff;font:700 14px/30px var(--body);text-align:center;pointer-events:none;font-variant-numeric:tabular-nums}
 @media (max-width:640px){.card-num{top:6px;right:6px;min-width:22px;height:22px;padding:0 6px;font-size:11px;line-height:22px}}
@@ -429,6 +435,10 @@ html,body{overflow-x:clip}
     <div class="grid" id="inspo2" data-cat="gimmick"></div>
     <h3 class="cat-title cat-next">סרטוני תצוגה פשוטה</h3>
     <div class="grid" id="inspo3" data-cat="simple"></div>
+    <h3 class="cat-title cat-next">פרסומות עם רעיון מקורי</h3>
+    <div class="grid" id="inspo4" data-cat="original"></div>
+    <h3 class="cat-title cat-next">דוגמניות</h3>
+    <div class="grid" id="inspo5" data-cat="modelsgal"></div>
   </section>
   <section class="services" id="services" aria-labelledby="servicesTitle">
     <h2 id="servicesTitle">מהרעיון ועד לפרסומת.</h2>
@@ -506,7 +516,7 @@ lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.co
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 var cardNum = {};
 ITEMS.forEach(it => {
-  const target = document.getElementById(it.sec === 'w' ? 'grid' : (it.c === 'gimmick' ? 'inspo2' : it.c === 'simple' ? 'inspo3' : 'inspo')); if (!target) return;
+  const target = it.sec === 'w' ? document.getElementById('grid') : (document.querySelector('.inspo .grid[data-cat="' + (it.c || 'models') + '"]') || document.getElementById('inspo')); if (!target) return;
   const fig = document.createElement('figure');
   const card = document.createElement('button'); card.type = 'button'; card.className = 'card';
   card.setAttribute('aria-label', 'צפייה: ' + it.t);
@@ -605,5 +615,9 @@ function fit(){bg.style.height=Math.round(sec.getBoundingClientRect().top+window
 fit();window.addEventListener('load',fit);window.addEventListener('resize',fit);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 if(window.ResizeObserver)new ResizeObserver(fit).observe(document.querySelector('.wrap'));})();
+</script>
+<script>
+/* hide categories that have no videos */
+(function(){ document.querySelectorAll('.inspo .grid[data-cat]').forEach(function(g){ var e=!g.querySelector('figure'); g.classList.toggle('cat-empty',e); var h=g.previousElementSibling; while(h&&!h.classList.contains('cat-title')) h=h.previousElementSibling; if(h) h.classList.toggle('cat-empty',e); }); })();
 </script>
 </body></html>
