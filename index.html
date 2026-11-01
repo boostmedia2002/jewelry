@@ -387,7 +387,8 @@ html,body{overflow-x:clip}
 /* second category heading spacing */
 .cat-next{margin-top:clamp(40px,5vw,72px)}
 /* computer only: smaller video squares (4 per row); phone stays as is */
-@media (min-width:961px){.inspo .grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:641px){.inspo .grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:1100px){.inspo .grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
 /* running number on each gallery video */
 .card-num{position:absolute;top:10px;right:10px;z-index:2;min-width:30px;height:30px;padding:0 8px;box-sizing:border-box;border-radius:999px;background:rgba(0,0,0,.62);color:#fff;font:700 14px/30px var(--body);text-align:center;pointer-events:none;font-variant-numeric:tabular-nums}
 @media (max-width:640px){.card-num{top:6px;right:6px;min-width:22px;height:22px;padding:0 6px;font-size:11px;line-height:22px}}
