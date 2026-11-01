@@ -382,6 +382,8 @@ figcaption{gap:4px;padding-inline-end:4px}
 .inspo{box-shadow:0 0 0 100vmax #171717;clip-path:inset(0 -100vmax);border-radius:0}
 .wrap{overflow-x:visible}
 html,body{overflow-x:clip}
+/* category heading inside the jewelry gallery */
+.cat-title{margin:0 0 clamp(16px,2vw,24px);font-family:var(--display);font-weight:400;font-size:clamp(22px,2.4vw,32px);line-height:1.2;color:#fff}
 /* running number on each gallery video */
 .card-num{position:absolute;top:10px;right:10px;z-index:2;min-width:30px;height:30px;padding:0 8px;box-sizing:border-box;border-radius:999px;background:rgba(0,0,0,.62);color:#fff;font:700 14px/30px var(--body);text-align:center;pointer-events:none;font-variant-numeric:tabular-nums}
 @media (max-width:640px){.card-num{top:6px;right:6px;min-width:22px;height:22px;padding:0 6px;font-size:11px;line-height:22px}}
@@ -416,6 +418,7 @@ html,body{overflow-x:clip}
       <div class="eyebrow">REFERENCES</div>
       <h2>תכשיטים</h2>
     </header>
+    <h3 class="cat-title">סרטוני דוגמניות</h3>
     <div class="grid" id="inspo"></div>
   </section>
   <section class="services" id="services" aria-labelledby="servicesTitle">
