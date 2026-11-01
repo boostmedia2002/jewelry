@@ -389,6 +389,8 @@ html,body{overflow-x:clip}
 /* computer only: smaller video squares (4 per row); phone stays as is */
 @media (min-width:641px){.inspo .grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (min-width:1100px){.inspo .grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+/* category headings: emphasized */
+.inspo .cat-title{font-weight:700;font-size:clamp(26px,2.9vw,38px);letter-spacing:.01em;border-bottom:3px solid #e8c98a}
 /* empty categories: hidden for visitors; the owner sees a drop area */
 .cat-empty{display:none!important}
 .can-reorder .cat-title.cat-empty{display:block!important}
