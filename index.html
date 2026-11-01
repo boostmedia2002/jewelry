@@ -812,4 +812,42 @@ if(window.ResizeObserver)new ResizeObserver(fit).observe(document.querySelector(
   if(window.MutationObserver){ var t; var mo=new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){ addButtons(); buildTabs(); render(); },150); }); grids.forEach(function(g){ mo.observe(g,{childList:true}); }); }
 })();
 </script>
+<style>
+/* ===== Protection: watermark + no download ===== */
+.wm{position:absolute;inset:0;pointer-events:none;z-index:3;border-radius:inherit;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='170'><text x='120' y='92' text-anchor='middle' transform='rotate(-24 120 85)' font-family='Arial,Helvetica,sans-serif' font-size='19' font-weight='700' letter-spacing='3' fill='rgba(255,255,255,0.30)' stroke='rgba(0,0,0,0.18)' stroke-width='0.8' paint-order='stroke'>BOOST MEDIA</text></svg>");background-repeat:repeat;background-size:240px 170px}
+.wm-box{position:relative;display:inline-flex;height:100%;max-width:100%;border-radius:10px;overflow:hidden}
+.wm-box.img{display:inline-block;height:auto;max-height:none;line-height:0}.wm-box.img img{max-width:min(100%,92vw);max-height:calc(100vh - 96px)}
+.hero-frame,.card{position:relative}.card .wm,.hc-side .wm{background-size:120px 85px;background-position:center}
+img,video{-webkit-user-drag:none;-webkit-touch-callout:none;user-select:none}
+.inspo .card,.hero-frame,.lb-stage,.lbi{-webkit-user-select:none;user-select:none}
+html.shield video,html.shield .card img,html.shield .lbi img,html.shield .hc-side img{filter:blur(28px) brightness(.6)}
+</style>
+<script>
+(function(){
+  function addWm(el){ if(!el||el.querySelector(':scope > .wm')) return; var d=document.createElement('span'); d.className='wm'; d.setAttribute('aria-hidden','true'); el.appendChild(d); }
+  function wrap(media, cls){ if(!media||media.parentNode.classList.contains('wm-box')) return; var b=document.createElement('span'); b.className='wm-box'+(cls?' '+cls:''); media.parentNode.insertBefore(b,media); b.appendChild(media); addWm(b); }
+  function apply(){
+    wrap(document.querySelector('.lb-stage video'));
+    wrap(document.querySelector('.lbi > img'),'img');
+    addWm(document.getElementById('heroFrame'));
+    document.querySelectorAll('.inspo .card, .hc-side').forEach(addWm);
+    document.querySelectorAll('video').forEach(function(v){ v.setAttribute('controlsList','nodownload noplaybackrate noremoteplayback'); v.disablePictureInPicture=true; v.setAttribute('disablePictureInPicture',''); v.setAttribute('disableRemotePlayback',''); });
+  }
+  apply(); setTimeout(apply,500); setTimeout(apply,2000);
+  if(window.MutationObserver){ var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(apply,120); }).observe(document.body,{childList:true,subtree:true}); }
+  function media(t){ return t&&t.closest&&t.closest('video,img,.card,.hero-frame,.lb-stage,.lbi,.hc-side'); }
+  document.addEventListener('contextmenu',function(e){ if(media(e.target)) e.preventDefault(); },true);
+  document.addEventListener('dragstart',function(e){ if(media(e.target)) e.preventDefault(); },true);
+  document.addEventListener('keydown',function(e){ var k=(e.key||'').toLowerCase(); if((e.ctrlKey||e.metaKey)&&k==='s') e.preventDefault(); },true);
+  /* screenshot deterrent: hide media briefly on screenshot keys, and when the page loses focus (desktop, own window only) */
+  var root=document.documentElement, st;
+  function shield(ms){ root.classList.add('shield'); clearTimeout(st); if(ms) st=setTimeout(function(){ root.classList.remove('shield'); },ms); }
+  document.addEventListener('keydown',function(e){ if(e.key==='PrintScreen'||(e.metaKey&&e.shiftKey)) shield(1500); },true);
+  document.addEventListener('keyup',function(e){ if(e.key==='PrintScreen') shield(1500); },true);
+  var standalone=false; try{ standalone=(window.self===window.parent); }catch(_){}
+  var fine=window.matchMedia&&matchMedia('(pointer:fine)').matches;
+  if(standalone&&fine){ window.addEventListener('blur',function(){ shield(0); }); window.addEventListener('focus',function(){ root.classList.remove('shield'); }); }
+  document.addEventListener('visibilitychange',function(){ if(document.hidden) document.querySelectorAll('.lb-stage video').forEach(function(v){ try{v.pause();}catch(_){} }); });
+})();
+</script>
 </body></html>
