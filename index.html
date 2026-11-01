@@ -1,4 +1,12 @@
-<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><title>תיק עבודות – תכשיטים</title><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><title>תיק עבודות – תכשיטים</title><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><meta property="og:type" content="website">
+<meta property="og:title" content="תיק עבודות – סרטוני פרסום לתכשיטים">
+<meta property="og:description" content="יוצרים תוכן שהופך מוצרים למותגים. בוחרים דוגמאות ושולחים בוואטסאפ.">
+<meta property="og:image" content="https://boostmedia2002.github.io/jewelry/images/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="https://boostmedia2002.github.io/jewelry/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="יוצרים תוכן שהופך מוצרים למותגים. סרטוני פרסום, קמפיינים ותוכן ויזואלי לעסקים.">
+</head><body>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Assistant:wght@400;600;700&display=swap">
 <style>
 /* Studio look: warm off-white page, dark ink text, one quiet champagne accent; RTL; video grid 4/3/3 columns */
@@ -406,6 +414,32 @@ html,body{overflow-x:clip}
 .cat-links a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .inspo .cat-title{scroll-margin-top:24px}
 @media (max-width:640px){.cat-links{gap:6px;margin-top:14px}.cat-links a{min-height:32px;padding:0 11px;font-size:13px}}
+/* ===== Sales layer: category tabs + descriptions, pick-to-order, how it works ===== */
+.cat-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 clamp(20px,2.6vw,32px)}
+.cat-tabs button{appearance:none;cursor:pointer;min-height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font:600 14px var(--body);transition:background-color .25s,color .25s,border-color .25s}
+.cat-tabs button[aria-pressed="true"]{background:#e8c98a;border-color:#e8c98a;color:#0d0c0b}
+@media (hover:hover){.cat-tabs button:hover{border-color:#e8c98a}}
+.cat-desc{margin:-8px 0 clamp(16px,2vw,24px);color:rgba(255,255,255,.72);font-size:clamp(14px,1.1vw,16px);font-weight:600;line-height:1.6}
+.cat-hide{display:none!important}
+.pick-btn{appearance:none;cursor:pointer;align-self:flex-start;margin-top:6px;display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 12px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;font:700 13px var(--body);transition:background-color .2s,color .2s,border-color .2s}
+.pick-btn .pk{font-size:15px;line-height:1}
+.pick-btn[aria-pressed="true"]{background:#e8c98a;border-color:#e8c98a;color:#0d0c0b}
+@media (hover:hover){.pick-btn:hover{border-color:#e8c98a}}
+figure.picked .card{outline:3px solid #e8c98a;outline-offset:3px}
+.pick-bar{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom,0px));transform:translate(-50%,140%);z-index:900;display:flex;align-items:center;gap:10px;flex-wrap:nowrap;white-space:nowrap;justify-content:center;max-width:calc(100% - 24px);box-sizing:border-box;padding:10px 12px;border-radius:16px;background:#0d0c0b;color:#fff;box-shadow:0 18px 40px rgba(0,0,0,.45);border:1px solid rgba(232,201,138,.5);transition:transform .35s var(--ease);direction:rtl}
+.pick-bar.show{transform:translate(-50%,0)}
+.pick-bar .pb-txt{font-weight:700;font-size:15px;padding-inline:6px}
+.pick-bar .pb-send{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;background:linear-gradient(135deg,#8a7146 0%,#c4a978 48%,#8f774b 100%);color:#fff;font:700 15px var(--body);text-decoration:none;border:0;cursor:pointer}
+.pick-bar .pb-clear{appearance:none;cursor:pointer;min-height:44px;padding:0 12px;border:0;background:transparent;color:rgba(255,255,255,.7);font:600 14px var(--body);text-decoration:underline;text-underline-offset:3px}
+.how{margin-top:var(--sec-gap)}
+.how h2{order:0;font-family:var(--display);font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.1;margin:0 0 clamp(28px,3.5vw,44px);padding-bottom:clamp(16px,2vw,22px);border-bottom:1px solid var(--line)}
+.how-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.how-steps li{display:flex;flex-direction:column;gap:8px;padding:26px 24px 28px;border:1px solid var(--line);border-radius:var(--r-md);background:#efe4d1}
+.how-steps .st{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#0d0c0b;color:#e8c98a;font:700 17px var(--body)}
+.how-steps h3{margin:6px 0 0;font-size:20px;font-weight:700;line-height:1.3}
+.how-steps p{margin:0;font-size:16px;font-weight:600;line-height:1.65;color:var(--ink-soft)}
+@media (max-width:760px){.how-steps{grid-template-columns:1fr;gap:12px}.how-steps li{padding:20px 18px 22px}}
+@media (max-width:640px){.cat-tabs{gap:6px}.cat-tabs button{min-height:34px;padding:0 12px;font-size:13px}.pick-btn{min-height:30px;padding:0 9px;font-size:11px;gap:4px}.pick-btn .pk{font-size:13px}.pick-bar .pb-txt{font-size:14px}.pick-bar .pb-send{min-height:42px;padding:0 14px;font-size:14px}}
 /* running number on each gallery video */
 .card-num{position:absolute;top:10px;right:10px;z-index:2;min-width:30px;height:30px;padding:0 8px;box-sizing:border-box;border-radius:999px;background:rgba(0,0,0,.62);color:#fff;font:700 14px/30px var(--body);text-align:center;pointer-events:none;font-variant-numeric:tabular-nums}
 @media (max-width:640px){.card-num{top:6px;right:6px;min-width:22px;height:22px;padding:0 6px;font-size:11px;line-height:22px}}
@@ -450,6 +484,14 @@ html,body{overflow-x:clip}
     <div class="grid" id="inspo4" data-cat="original"></div>
     <h3 class="cat-title cat-next">דוגמניות</h3>
     <div class="grid" id="inspo5" data-cat="modelsgal"></div>
+  </section>
+  <section class="how" id="how" aria-labelledby="howTitle">
+    <h2 id="howTitle">איך זה עובד</h2>
+    <ol class="how-steps">
+      <li><span class="st">1</span><h3>בוחרים דוגמאות</h3><p>מסמנים "אני רוצה כזה" על הסרטונים שאהבתם, מכל הקטגוריות.</p></li>
+      <li><span class="st">2</span><h3>שולחים לי</h3><p>הבחירה נשלחת אליי בוואטסאפ בלחיצה אחת, ואתם מצרפים תמונות של המוצר.</p></li>
+      <li><span class="st">3</span><h3>מקבלים סרטונים</h3><p>אני מייצר את הסרטונים בהתאמה למוצר ולמותג שלכם, ושולח אותם מוכנים לפרסום.</p></li>
+    </ol>
   </section>
   <section class="services" id="services" aria-labelledby="servicesTitle">
     <h2 id="servicesTitle">מהרעיון ועד לפרסומת.</h2>
@@ -651,6 +693,72 @@ if(window.ResizeObserver)new ResizeObserver(fit).observe(document.querySelector(
   }
   build();
   if(window.MutationObserver){ var t; var mo=new MutationObserver(function(){ clearTimeout(t); t=setTimeout(build,200); }); document.querySelectorAll('.inspo .grid[data-cat]').forEach(function(g){ mo.observe(g,{childList:true}); }); }
+})();
+</script>
+<script>
+/* Sales layer: category tabs with descriptions, pick videos -> WhatsApp order */
+(function(){
+  var DESC={models:'התכשיט על דוגמנית: הלקוחה רואה איך הוא נראה באמת.',gimmick:'אפקט שעוצר את הגלילה. מתאים במיוחד לאינסטגרם ולטיקטוק.',simple:'המוצר במרכז, נקי ואלגנטי. מתאים לחנות, לקטלוג ולסטורי.',original:'קונספט ותסריט שנבנים במיוחד בשביל המותג שלכם.',modelsgal:'בוחרים את הדוגמנית שתופיע בסרטונים שלכם.'};
+  var sec=document.querySelector('.inspo'); if(!sec) return;
+  var grids=Array.prototype.slice.call(sec.querySelectorAll('.grid[data-cat]'));
+  function headOf(g){ var h=g.previousElementSibling; while(h&&!h.classList.contains('cat-title')) h=h.previousElementSibling; return h; }
+  grids.forEach(function(g){ var h=headOf(g); if(!h||!DESC[g.dataset.cat]) return; var d=document.createElement('p'); d.className='cat-desc'; d.textContent=DESC[g.dataset.cat]; d.dataset.for=g.dataset.cat; h.insertAdjacentElement('afterend',d); g._desc=d; g._head=h; });
+  /* tabs */
+  var tabs=document.createElement('div'); tabs.className='cat-tabs'; tabs.setAttribute('role','toolbar'); tabs.setAttribute('aria-label','סינון לפי קטגוריה');
+  var first=headOf(grids[0]); (first||grids[0]).insertAdjacentElement('beforebegin',tabs);
+  var active='all';
+  function visible(g){ return !!g.querySelector('figure'); }
+  function apply(){
+    grids.forEach(function(g){ var hide=(active!=='all'&&g.dataset.cat!==active); [g,g._head,g._desc].forEach(function(el){ if(el) el.classList.toggle('cat-hide',hide); }); });
+    Array.prototype.forEach.call(tabs.children,function(b){ b.setAttribute('aria-pressed',b.dataset.cat===active?'true':'false'); });
+  }
+  function buildTabs(){
+    tabs.innerHTML='';
+    var all=document.createElement('button'); all.type='button'; all.dataset.cat='all'; all.textContent='הכל'; tabs.appendChild(all);
+    grids.forEach(function(g){ var h=g._head||headOf(g); if(!h||(!visible(g)&&!sec.classList.contains('can-reorder'))) return; var b=document.createElement('button'); b.type='button'; b.dataset.cat=g.dataset.cat; b.textContent=h.textContent; tabs.appendChild(b); });
+    if(active!=='all'&&!tabs.querySelector('[data-cat="'+active+'"]')) active='all';
+    apply();
+  }
+  tabs.addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b) return; active=b.dataset.cat; apply(); });
+  window.__setCat=function(c){ active=c||'all'; apply(); };
+  buildTabs();
+  /* hero shortcut buttons: show only that category */
+  var links=document.querySelector('.cat-links');
+  if(links) links.addEventListener('click',function(e){ var a=e.target.closest('a'); if(!a) return; var id=(a.getAttribute('href')||'').replace('#cat-',''); if(id) { active=id; apply(); } },true);
+  /* pick to order */
+  var KEY='picks-v1', picks=[];
+  try{ picks=JSON.parse(localStorage.getItem(KEY)||'[]')||[]; }catch(e){ picks=[]; }
+  var bar=document.createElement('div'); bar.className='pick-bar'; bar.setAttribute('role','region'); bar.setAttribute('aria-label','הבחירה שלך');
+  bar.innerHTML='<span class="pb-txt"></span><a class="pb-send" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5z"/></svg><span>שליחה בוואטסאפ</span></a><button type="button" class="pb-clear">ניקוי</button>';
+  document.body.appendChild(bar);
+  function figByV(v){ return sec.querySelector('.grid[data-cat] > figure[data-v="'+(window.CSS&&CSS.escape?CSS.escape(v):v)+'"]'); }
+  function save(){ try{ localStorage.setItem(KEY,JSON.stringify(picks)); }catch(e){} }
+  function waNum(){ try{ return String(WHATSAPP_NUMBER||'').replace(/\D/g,''); }catch(e){ return ''; } }
+  function render(){
+    var figs=sec.querySelectorAll('.grid[data-cat] > figure');
+    Array.prototype.forEach.call(figs,function(f){ var on=picks.indexOf(f.dataset.v)>-1; f.classList.toggle('picked',on); var b=f.querySelector('.pick-btn'); if(b){ b.setAttribute('aria-pressed',on?'true':'false'); b.querySelector('.pl').textContent=on?'נבחר':(f.closest('[data-cat="modelsgal"]')?'אני רוצה אותה':'אני רוצה כזה'); b.querySelector('.pk').textContent=on?'✓':'+'; } });
+    picks=picks.filter(function(v){ return !!figByV(v); });
+    var n=picks.length;
+    bar.classList.toggle('show',n>0);
+    bar.querySelector('.pb-txt').textContent=n===1?'בחרת סרטון אחד':'בחרת '+n+' פריטים';
+    var vids=[],models=[];
+    picks.forEach(function(v){ var f=figByV(v); if(!f) return; var num=(f.querySelector('.card-num')||{}).textContent||''; var t=(f.querySelector('.title')||{}).textContent||''; if(v.indexOf('model:')===0) models.push(t+' (#'+num+')'); else vids.push('#'+num+' '+t); });
+    var msg='היי, ראיתי את תיק העבודות ואני רוצה סרטונים כמו:';
+    if(vids.length) msg+='\n'+vids.join('\n');
+    if(models.length) msg+=(vids.length?'\n\n':'\n')+'דוגמנית: '+models.join(', ');
+    bar.querySelector('.pb-send').href='https://wa.me/'+waNum()+'?text='+encodeURIComponent(msg);
+  }
+  function addButtons(){
+    Array.prototype.forEach.call(sec.querySelectorAll('.grid[data-cat] > figure'),function(f){
+      if(f.querySelector('.pick-btn')) return; var cap=f.querySelector('figcaption'); if(!cap) return;
+      var b=document.createElement('button'); b.type='button'; b.className='pick-btn'; b.innerHTML='<span class="pk">+</span><span class="pl"></span>';
+      b.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); var v=f.dataset.v,i=picks.indexOf(v); if(i>-1) picks.splice(i,1); else picks.push(v); save(); render(); });
+      cap.appendChild(b);
+    });
+  }
+  bar.querySelector('.pb-clear').addEventListener('click',function(){ picks=[]; save(); render(); });
+  addButtons(); render();
+  if(window.MutationObserver){ var t; var mo=new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){ addButtons(); buildTabs(); render(); },150); }); grids.forEach(function(g){ mo.observe(g,{childList:true}); }); }
 })();
 </script>
 </body></html>
