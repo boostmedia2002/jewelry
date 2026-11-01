@@ -382,6 +382,9 @@ figcaption{gap:4px;padding-inline-end:4px}
 .inspo{box-shadow:0 0 0 100vmax #171717;clip-path:inset(0 -100vmax);border-radius:0}
 .wrap{overflow-x:visible}
 html,body{overflow-x:clip}
+/* running number on each gallery video */
+.card-num{position:absolute;top:10px;right:10px;z-index:2;min-width:30px;height:30px;padding:0 8px;box-sizing:border-box;border-radius:999px;background:rgba(0,0,0,.62);color:#fff;font:700 14px/30px var(--body);text-align:center;pointer-events:none;font-variant-numeric:tabular-nums}
+@media (max-width:640px){.card-num{top:6px;right:6px;min-width:22px;height:22px;padding:0 6px;font-size:11px;line-height:22px}}
 </style>
 
 <div class="bgimg" aria-hidden="true"></div>
@@ -489,6 +492,7 @@ lbVideo.addEventListener('ended', closeLightbox);
 lb.querySelector('.lb-close').addEventListener('click', closeLightbox);
 lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('lb-stage')) closeLightbox(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+var cardNum = {};
 ITEMS.forEach(it => {
   const target = document.getElementById(it.sec === 'w' ? 'grid' : 'inspo'); if (!target) return;
   const fig = document.createElement('figure');
@@ -497,7 +501,9 @@ ITEMS.forEach(it => {
   const img = document.createElement('img'); img.src = it.p; img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
   const play = document.createElement('span'); play.className = 'play';
   play.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></svg>';
-  card.append(img, play);
+  cardNum[it.sec] = (cardNum[it.sec] || 0) + 1;
+  const num = document.createElement('span'); num.className = 'card-num'; num.textContent = cardNum[it.sec];
+  card.append(img, play, num);
   card.addEventListener('click', () => openLightbox(it, card));
   const cap = document.createElement('figcaption');
   if (it.b && it.sec === 'w') { const b = document.createElement('span'); b.className = 'brand'; b.textContent = it.b; cap.append(b); }
