@@ -440,6 +440,34 @@ figure.picked .card{outline:3px solid #e8c98a;outline-offset:3px}
 .how-steps p{margin:0;font-size:16px;font-weight:600;line-height:1.65;color:var(--ink-soft)}
 @media (max-width:760px){.how-steps{grid-template-columns:1fr;gap:12px}.how-steps li{padding:20px 18px 22px}}
 @media (max-width:640px){.cat-tabs{gap:6px}.cat-tabs button{min-height:34px;padding:0 12px;font-size:13px}.pick-btn{min-height:30px;padding:0 9px;font-size:11px;gap:4px}.pick-btn .pk{font-size:13px}.pick-bar .pb-txt{font-size:14px}.pick-bar .pb-send{min-height:42px;padding:0 14px;font-size:14px}}
+/* ===== Pricing, includes, FAQ ===== */
+.pricing,.faq{margin-top:var(--sec-gap)}
+.pricing h2,.faq h2{font-family:var(--display);font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.1;margin:0 0 clamp(28px,3.5vw,44px);padding-bottom:clamp(16px,2vw,22px);border-bottom:1px solid var(--line)}
+.plans{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;gap:6px;padding:28px 24px;border:1px solid var(--line);border-radius:var(--r-md);background:#efe4d1}
+.plan h3{margin:0;font-size:20px;font-weight:700}
+.plan .price{font-size:clamp(38px,4vw,48px);font-weight:800;line-height:1.1;margin:6px 0 0}
+.plan .price small{font-size:.45em;font-weight:700}
+.plan .per{margin:0;font-size:15px;font-weight:600;color:var(--ink-soft)}
+.plan .plan-cta{margin-top:auto;padding-top:18px}
+.plan .plan-cta a{display:flex;justify-content:center;align-items:center;min-height:46px;border-radius:999px;background:#0d0c0b;color:#fff;font-weight:700;font-size:15px;text-decoration:none}
+.plan.best{background:#0d0c0b;color:#fff;border-color:#e8c98a}
+.plan.best .per{color:rgba(255,255,255,.75)}
+.plan.best .plan-cta a{background:linear-gradient(135deg,#8a7146 0%,#c4a978 48%,#8f774b 100%)}
+.plan .tag{position:absolute;top:-13px;right:20px;padding:4px 12px;border-radius:999px;background:#e8c98a;color:#0d0c0b;font-size:13px;font-weight:800}
+.incl{margin:clamp(24px,3vw,36px) 0 0;padding:24px;border:1px solid var(--line);border-radius:var(--r-md)}
+.incl h3{margin:0 0 14px;font-size:19px;font-weight:700}
+.incl ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 20px}
+.incl li{font-size:16px;font-weight:600;line-height:1.5;display:flex;gap:8px}
+.incl li::before{content:"✓";color:#8a7146;font-weight:800}
+.faq-list{display:grid;gap:10px}
+.faq details{border:1px solid var(--line);border-radius:var(--r-md);padding:0 20px;background:#efe4d1}
+.faq summary{cursor:pointer;list-style:none;padding:18px 0;font-size:17px;font-weight:700;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:22px;line-height:1;color:#8a7146}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:0 0 18px;font-size:16px;font-weight:600;line-height:1.65;color:var(--ink-soft)}
+@media (max-width:760px){.plans{grid-template-columns:1fr;gap:22px}.incl ul{grid-template-columns:1fr}}
 /* running number on each gallery video */
 .card-num{position:absolute;top:10px;right:10px;z-index:2;min-width:30px;height:30px;padding:0 8px;box-sizing:border-box;border-radius:999px;background:rgba(0,0,0,.62);color:#fff;font:700 14px/30px var(--body);text-align:center;pointer-events:none;font-variant-numeric:tabular-nums}
 @media (max-width:640px){.card-num{top:6px;right:6px;min-width:22px;height:22px;padding:0 6px;font-size:11px;line-height:22px}}
@@ -490,7 +518,7 @@ figure.picked .card{outline:3px solid #e8c98a;outline-offset:3px}
     <ol class="how-steps">
       <li><span class="st">1</span><h3>בוחרים דוגמאות</h3><p>מסמנים "אני רוצה כזה" על הסרטונים שאהבתם, מכל הקטגוריות.</p></li>
       <li><span class="st">2</span><h3>שולחים לי</h3><p>הבחירה נשלחת אליי בוואטסאפ בלחיצה אחת, ואתם מצרפים תמונות של המוצר.</p></li>
-      <li><span class="st">3</span><h3>מקבלים סרטונים</h3><p>אני מייצר את הסרטונים בהתאמה למוצר ולמותג שלכם, ושולח אותם מוכנים לפרסום.</p></li>
+      <li><span class="st">3</span><h3>מקבלים סרטונים</h3><p>תוך 2 ימי עסקים אתם מקבלים סרטונים מותאמים למוצר ולמותג שלכם, מוכנים לפרסום.</p></li>
     </ol>
   </section>
   <section class="services" id="services" aria-labelledby="servicesTitle">
@@ -502,6 +530,28 @@ figure.picked .card{outline:3px solid #e8c98a;outline-offset:3px}
       <li class="svc"><span class="svc-num">04</span><h3>סרטונים אנכיים לרשתות חברתיות</h3><p>תוכן שנבנה מראש למסך הטלפון — לאינסטגרם, לטיקטוק ולשורטס, עם פתיחה שתופסת את העין.</p></li>
       <li class="svc"><span class="svc-num">05</span><h3>קמפיינים ויזואליים למותגים</h3><p>סדרת תכנים בשפה ויזואלית אחידה, שמחברת בין כל הסרטונים והתמונות של המותג.</p></li>
     </ol>
+  </section>
+  <section class="pricing" id="pricing" aria-labelledby="pricingTitle">
+    <h2 id="pricingTitle">מחירים</h2>
+    <ul class="plans">
+      <li class="plan"><h3>סרטון אחד</h3><p class="price">200 <small>₪</small></p><p class="per">מוכן תוך 2 ימי עסקים</p><div class="plan-cta"><a href="https://wa.me/972539507416?text=%D7%94%D7%99%D7%99%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%AA%D7%99%D7%A7%20%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%95%D7%AA%20%D7%95%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F/%D7%AA%20%D7%91%D7%97%D7%91%D7%99%D7%9C%D7%94%20%D7%A9%D7%9C%20%D7%A1%D7%A8%D7%98%D7%95%D7%9F%20%D7%90%D7%97%D7%93%20%28200%20%E2%82%AA%29" target="_blank" rel="noopener">להזמנה בוואטסאפ</a></div></li>
+      <li class="plan"><h3>2 סרטונים</h3><p class="price">300 <small>₪</small></p><p class="per">150 ₪ לסרטון</p><div class="plan-cta"><a href="https://wa.me/972539507416?text=%D7%94%D7%99%D7%99%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%AA%D7%99%D7%A7%20%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%95%D7%AA%20%D7%95%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F/%D7%AA%20%D7%91%D7%97%D7%91%D7%99%D7%9C%D7%94%20%D7%A9%D7%9C%202%20%D7%A1%D7%A8%D7%98%D7%95%D7%A0%D7%99%D7%9D%20%28300%20%E2%82%AA%29" target="_blank" rel="noopener">להזמנה בוואטסאפ</a></div></li>
+      <li class="plan best"><span class="tag">הכי משתלם</span><h3>4 סרטונים</h3><p class="price">500 <small>₪</small></p><p class="per">125 ₪ לסרטון</p><div class="plan-cta"><a href="https://wa.me/972539507416?text=%D7%94%D7%99%D7%99%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%AA%D7%99%D7%A7%20%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%95%D7%AA%20%D7%95%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F/%D7%AA%20%D7%91%D7%97%D7%91%D7%99%D7%9C%D7%94%20%D7%A9%D7%9C%204%20%D7%A1%D7%A8%D7%98%D7%95%D7%A0%D7%99%D7%9D%20%28500%20%E2%82%AA%29" target="_blank" rel="noopener">להזמנה בוואטסאפ</a></div></li>
+    </ul>
+    <div class="incl"><h3>כל סרטון כולל</h3><ul>
+      <li>3 פורמטים לכל סרטון</li><li>כתוביות</li><li>מוזיקה</li>
+      <li>הלוגו שלכם בסוף הסרטון</li><li>דוגמנית קבועה למותג</li><li>עד 2 תיקונים קטנים</li>
+    </ul></div>
+  </section>
+  <section class="faq" id="faq" aria-labelledby="faqTitle">
+    <h2 id="faqTitle">שאלות נפוצות</h2>
+    <div class="faq-list">
+      <details><summary>תוך כמה זמן מקבלים את הסרטון?</summary><p>תוך 2 ימי עסקים מרגע שקיבלתי את התמונות של המוצר.</p></details>
+      <details><summary>כמה תיקונים אפשר לבקש?</summary><p>עד 2 תיקונים קטנים לכל סרטון, כל עוד הם לא משנים את הקונספט הכללי.</p></details>
+      <details><summary>מה מקבלים בכל סרטון?</summary><p>3 פורמטים של הסרטון, כתוביות, מוזיקה והלוגו שלכם בסוף.</p></details>
+      <details><summary>אפשר שאותה דוגמנית תופיע בכל הסרטונים שלי?</summary><p>כן. בוחרים דוגמנית אחת, והיא תופיע בכל הסרטונים של המותג.</p></details>
+      <details><summary>מה צריך לשלוח כדי להתחיל?</summary><p>תמונות של המוצר, הלוגו שלכם ומספרי הדוגמאות שבחרתם מהאתר.</p></details>
+    </div>
   </section>
   <section class="contact" id="contact" aria-labelledby="contactTitle">
     <h2 id="contactTitle">יש לכם מוצר שצריך לבלוט?</h2>
