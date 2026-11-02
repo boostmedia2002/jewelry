@@ -511,7 +511,7 @@ figure.picked .card{outline:3px solid #e8c98a;outline-offset:3px}
 .finder .fd-tip{margin:0 0 12px;font-size:14px;font-weight:600;color:var(--on-dark-soft)}
 .finder input[type=search]{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.25);color:#fff;font:600 15px var(--body)}
 .finder input[type=search]::placeholder{color:rgba(255,255,255,.55)}
-.fd-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;margin-top:14px}
+.fd-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 20px;margin-top:14px}
 .fd-g .lbl{display:block;margin:0 0 6px;font-size:13px;font-weight:700;color:#e8c98a}
 .fd-g .chips{display:flex;flex-wrap:wrap;gap:6px}
 .fd-g button{appearance:none;cursor:pointer;min-height:34px;padding:0 12px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;font:600 13.5px var(--body)}
@@ -1099,34 +1099,32 @@ html.shield video,html.shield .card img,html.shield .lbi img,html.shield .hc-sid
 (function(){
   var sec = document.querySelector('.inspo'); if (!sec) return;
   var T = {
-    '01':['דוגמנית','ים וקיץ','שרשרת','סטורי','מודעה'],
-    '02':['תצוגת מוצר','ים וקיץ','צמיד רגל','סטורי','מודעה'],
-    '03':['מושך את העין','עיר ושלט חוצות','ים וקיץ','השקה'],
-    '04':['תצוגת מוצר','ים וקיץ','שרשרת'],
-    '05':['תצוגת מוצר','סטודיו','טבעת','יוקרתי','סטורי','מודעה'],
-    '06':['מושך את העין','עיר ושלט חוצות','השקה','סטורי','מודעה'],
-    '07':['מושך את העין','השקה','סטורי'],
-    '08':['מושך את העין','יוקרתי','סטודיו','סטורי'],
-    '09':['דוגמנית','שרשרת','צמיד','סטורי','מודעה'],
-    '10':['מושך את העין','עיר ושלט חוצות','טבעת'],
-    '11':['מושך את העין','יוקרתי','טבעת','השקה','סטורי','מודעה'],
-    '12':['תצוגת מוצר','ים וקיץ','סטורי','מודעה'],
-    '13':['דוגמנית','ים וקיץ','שרשרת','טבעת','סטורי','מודעה'],
-    '14':['תצוגת מוצר','יאכטה','ים וקיץ'],
-    '15':['דוגמנית','טבעת','שרשרת','יוקרתי','סטורי','מודעה'],
-    '16':['דוגמנית','טבעת','עגילים','ים וקיץ','סטורי']
+    '01':['דוגמנית מציגה','למכור','סטורי','מודעה'],
+    '02':['תצוגת מוצר נקייה','להציג את המוצר','למכור','סטורי','מודעה','אתר'],
+    '03':['אפקט / גימיק','שלט חוצות','ויראלי','השקה'],
+    '04':['תצוגת מוצר נקייה','להציג את המוצר','אתר'],
+    '05':['תצוגת מוצר נקייה','להציג את המוצר','יוקרתי','למכור','סטורי','מודעה','אתר'],
+    '06':['אפקט / גימיק','שלט חוצות','ויראלי','השקה','למכור','סטורי','מודעה'],
+    '07':['אפקט / גימיק','ויראלי','השקה','סטורי'],
+    '08':['אפקט / גימיק','ויראלי','יוקרתי','סטורי'],
+    '09':['דוגמנית מציגה','להציג את המוצר','למכור','סטורי','מודעה','אתר'],
+    '10':['אפקט / גימיק','ויראלי'],
+    '11':['אפקט / גימיק','ויראלי','יוקרתי','השקה','למכור','סטורי','מודעה'],
+    '12':['תצוגת מוצר נקייה','למכור','סטורי','מודעה','אתר'],
+    '13':['דוגמנית מציגה','להציג את המוצר','למכור','סטורי','מודעה'],
+    '14':['תצוגת מוצר נקייה','אתר'],
+    '15':['דוגמנית מציגה','להציג את המוצר','יוקרתי','למכור','סטורי','מודעה','אתר'],
+    '16':['דוגמנית מציגה','סטורי']
   };
   var GROUPS = [
-    {k:'need', lbl:'מה אתם צריכים?', opts:['מושך את העין','תצוגת מוצר','דוגמנית','יוקרתי','השקה']},
-    {k:'where', lbl:'איפה תפרסמו?', opts:['ריל / טיקטוק','סטורי','מודעה ממומנת']},
-    {k:'prod', lbl:'איזה תכשיט?', opts:['טבעת','שרשרת','עגילים','צמיד','צמיד רגל']},
-    {k:'place', lbl:'אווירה ומקום', opts:['ים וקיץ','יאכטה','עיר ושלט חוצות','סטודיו']}
+    {k:'type', lbl:'איזה סוג סרטון?', opts:['אפקט / גימיק','דוגמנית מציגה','תצוגת מוצר נקייה','שלט חוצות']},
+    {k:'where', lbl:'איפה תפרסמו?', opts:['ריל / טיקטוק','סטורי','מודעה ממומנת','אתר / חנות']},
+    {k:'expect', lbl:'מה אתם מצפים מהסרטון?', opts:['שיתפוצץ בריל','להציג את המוצר בבירור','למכור','להשיק קולקציה','מראה יוקרתי']}
   ];
-  /* platform choices map to tags: every video is vertical, so reels/TikTok fit all; stories = up to 15s; paid ad = short and strong */
-  var ALIAS = {'ריל / טיקטוק':null, 'סטורי':'סטורי', 'מודעה ממומנת':'מודעה'};
+  var ALIAS = {'ריל / טיקטוק':null, 'סטורי':'סטורי', 'מודעה ממומנת':'מודעה', 'אתר / חנות':'אתר', 'שיתפוצץ בריל':'ויראלי', 'להציג את המוצר בבירור':'להציג את המוצר', 'להשיק קולקציה':'השקה', 'מראה יוקרתי':'יוקרתי'};
   var sel = {}, q = '';
   var box = document.createElement('div'); box.className = 'finder'; box.setAttribute('role','search');
-  box.innerHTML = '<h3>מחפשים סרטון לצורך מסוים?</h3><p class="fd-tip">בחרו מה חשוב לכם, ונראה רק את הסרטונים שהכי מתאימים.</p><input type="search" placeholder="חיפוש: למשל ים, טבעת, זהב, שלט..." aria-label="חיפוש סרטונים"><div class="fd-groups"></div><div class="fd-bar" hidden><span class="cnt"></span><span class="note"></span><button type="button">ניקוי החיפוש</button></div>';
+  box.innerHTML = '<h3>איזה סרטון אתם מחפשים?</h3><p class="fd-tip">בחרו סוג סרטון, איפה תפרסמו ומה אתם מצפים ממנו, ונראה רק את מה שהכי מתאים.</p><input type="search" placeholder="חיפוש חופשי: למשל ים, זהב, שלט, טבעת..." aria-label="חיפוש סרטונים"><div class="fd-groups"></div><div class="fd-bar" hidden><span class="cnt"></span><span class="note"></span><button type="button">ניקוי החיפוש</button></div>';
   var grpWrap = box.querySelector('.fd-groups'), bar = box.querySelector('.fd-bar'), input = box.querySelector('input');
   GROUPS.forEach(function(g){
     var d = document.createElement('div'); d.className = 'fd-g'; var l = document.createElement('span'); l.className = 'lbl'; l.textContent = g.lbl; d.appendChild(l);
@@ -1147,7 +1145,7 @@ html.shield video,html.shield .card img,html.shield .lbi img,html.shield .hc-sid
   function figs(){ return Array.prototype.slice.call(sec.querySelectorAll('.grid[data-cat] > figure')); }
   function info(fig){ var m = /work-(\d+)\.mp4/.exec(fig.dataset.v || ''); return m ? {id:m[1], tags:T[m[1]] || [], text:((fig.querySelector('.title') || {}).textContent || '') + ' ' + ((fig.querySelector('.field') || {}).textContent || '')} : null; }
   function apply(){
-    var groups = GROUPS.map(function(g){ return (sel[g.k] || []).map(function(o){ return g.k === 'where' ? ALIAS[o] : o; }).filter(function(o){ return o !== null; }); }).filter(function(a){ return a.length; });
+    var groups = GROUPS.map(function(g){ return (sel[g.k] || []).map(function(o){ return (o in ALIAS) ? ALIAS[o] : o; }).filter(function(o){ return o !== null; }); }).filter(function(a){ return a.length; });
     var active = groups.length || q.length > 0 || (sel.where || []).length;
     var list = figs(), scored = [];
     list.forEach(function(fig){ var it = info(fig);
