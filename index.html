@@ -502,6 +502,7 @@ figure.picked .card{outline:3px solid #e8c98a;outline-offset:3px}
 .ib-step .opt{font-weight:600;font-size:13px;color:var(--ink-soft)}
 .ib-sub{margin-top:12px}
 .ib-note-t{margin-top:10px;background:none;border:0;padding:0;color:#8a7146;font:700 13px var(--body);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.ib-sim{margin:0 0 16px;display:flex;flex-wrap:wrap;gap:6px}.ib-sim-h{width:100%;margin:0;color:#c4c0b8;font-size:13px;font-weight:700}.ib-sim button{appearance:none;cursor:pointer;border:1px solid rgba(232,201,138,.5);background:transparent;color:#e8c98a;border-radius:999px;padding:5px 11px;font:600 13px var(--body)}
 .ib-out ol li em{font-style:normal;color:#e8c98a}
 @media (max-width:860px){.ib{grid-template-columns:1fr}.ib-out{position:static}}
 /* running number on each gallery video */
@@ -1058,6 +1059,29 @@ html.shield video,html.shield .card img,html.shield .lbi img,html.shield .hc-sid
     add('הערות', f('extra'));
     return L;
   }
+
+  /* similar videos from the portfolio, matched to the client's choices */
+  var MAP = {
+    place:{'חוף ים':['01','13','04','02','12'],'יאכטה':['14'],'שלט חוצות ענק':['06','03'],'סטודיו נקי':['05','15'],'ערב / מסיבה':['11'],'רחוב בעיר':['06','10']},
+    product:{'צמיד רגל':['02'],'טבעת':['05','15','11'],'שרשרת':['13','04','09'],'עגילים':['16'],'צמיד':['09']},
+    hook:{'אפקט מפתיע':['07','08','11'],'תקריב חזק לתכשיט':['05','08'],'שאלה על המסך':['10'],'מבט ישיר למצלמה':['15','16']},
+    cam:{'תקריבי מאקרו':['05','08'],'מצלמה שמסתובבת סביב':['05'],'הילוך איטי':['13','04']},
+    who:{'דוגמנית':['15','16','09','01','13']},
+    look:{'בגד ים':['12']},
+    mood:{'קיצי':['01','12','14','02'],'יוקרתי ושקט':['05','15','08']}
+  };
+  var WORDS = [[/ים|חוף|גלים/,['13','04','02','01']],[/יאכט/,['14']],[/שלט|בילבורד|לונדון/,['06','03']],[/קיץ/,['01','12','14']],[/זהב|נוזל/,['08']],[/נופל|נפילה|עפים/,['07']],[/סיבוב|360|מסתובב/,['05']],[/משקפ/,['16']],[/במה|קופס/,['11']],[/עיתון/,['10']]];
+  function similar(){
+    var score = {};
+    function bump(list, w){ (list || []).forEach(function(n){ score[n] = (score[n] || 0) + w; }); }
+    Object.keys(MAP).forEach(function(k){ (st.c[k] || []).forEach(function(v){ bump(MAP[k][v], k === 'place' || k === 'hook' ? 2 : 1); }); });
+    var txt = [f('ideaArea'), f('placeIn'), f('hookIn'), f('sc1'), f('sc2'), f('sc3'), f('sc4')].join(' ');
+    WORDS.forEach(function(w){ if (w[0].test(txt)) bump(w[1], 2); });
+    return Object.keys(score).sort(function(a, b){ return score[b] - score[a]; }).slice(0, 3).map(function(n){
+      var fig = document.querySelector('.inspo figure[data-v="videos/work-' + n + '.mp4"]'); if (!fig) return null;
+      return {fig:fig, num:(fig.querySelector('.card-num') || {}).textContent || '', title:(fig.querySelector('.title') || {}).textContent || ''};
+    }).filter(Boolean);
+  }
   var sum = document.getElementById('ibSummary'), send = document.getElementById('ibSend'), mail = document.getElementById('ibMail');
   function wa(){ try { return String(WHATSAPP_NUMBER || '').replace(/\D/g, '') || '972539507416'; } catch(e){ return '972539507416'; } }
   function render(){
@@ -1065,11 +1089,13 @@ html.shield video,html.shield .card img,html.shield .lbi img,html.shield .hc-sid
     var L = lines(); sum.innerHTML = '';
     if (!L.length) sum.appendChild(el('p', 'empty', st.mode === 'quick' ? 'כתבו את הרעיון, והוא יופיע כאן.' : 'בחרו בשלבים, והתסריט ייבנה כאן.'));
     else { var ol = el('ol'); L.forEach(function(x){ var li = el('li'); li.appendChild(el('span', null, x[0] + ': ')); if (x[1]) li.appendChild(document.createTextNode(x[1])); if (x[2]) li.appendChild(el('em', null, (x[1] ? ' · ' : '') + 'הערה: ' + x[2])); ol.appendChild(li); }); sum.appendChild(ol); }
+    var sim = similar();
+    if (sim.length) { var sw = el('div', 'ib-sim'); sw.appendChild(el('p', 'ib-sim-h', 'סרטונים דומים מתיק העבודות:')); sim.forEach(function(x){ var b = el('button', null, '#' + x.num + ' ' + x.title); b.type = 'button'; b.addEventListener('click', function(){ var cd = x.fig.querySelector('.card'); if (cd) cd.click(); }); sw.appendChild(b); }); sum.appendChild(sw); }
     var ok = st.mode === 'quick' ? f('ideaArea').length > 3 : L.length >= 2;
     send.setAttribute('aria-disabled', ok ? 'false' : 'true');
     var nm = f('meIn');
     var head = st.mode === 'quick' ? 'היי, יש לי רעיון לפרסומת' : 'היי, בניתי באתר תסריט לפרסומת';
-    var msg = head + (nm ? ' (' + nm + ')' : '') + ':\n' + L.map(function(x){ return '• ' + x[0] + ': ' + [x[1], x[2] ? 'הערה: ' + x[2] : ''].filter(Boolean).join(' · '); }).join('\n');
+    var msg = head + (nm ? ' (' + nm + ')' : '') + ':\n' + L.map(function(x){ return '• ' + x[0] + ': ' + [x[1], x[2] ? 'הערה: ' + x[2] : ''].filter(Boolean).join(' · '); }).join('\n') + (sim.length ? '\n\nסרטונים דומים מתיק העבודות: ' + sim.map(function(x){ return '#' + x.num + ' ' + x.title; }).join(', ') : '');
     send.href = 'https://wa.me/' + wa() + '?text=' + encodeURIComponent(msg);
     mail.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=boostmedia2002@gmail.com&su=' + encodeURIComponent('רעיון לפרסומת' + (nm ? ' – ' + nm : '')) + '&body=' + encodeURIComponent(msg);
   }
