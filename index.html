@@ -775,7 +775,7 @@ var WHATSAPP_MESSAGE = 'היי אני רוצה ליצור סרטון AI';
   function gShow(){ lbiImg.src=gal[gi]; gHint.textContent = gi===0 ? 'החליקו ימינה לסיבוב 360°' : 'סיבוב 360° · '+((gi-1)*45)+'°'; }
   function gGo(d){ if(!gal) return; gi=(gi+d+gal.length)%gal.length; gShow(); }
   function lbiGal(src,alt){
-    var isAlma = alt==='עלמה' || /hero-left/.test(src||'');
+    var isAlma = alt==='עלמה';
     gal = isAlma ? [src].concat(A360) : null; gi=0; lbi.classList.toggle('gal',!!gal);
     if(gal){ gHint.textContent='החליקו ימינה לסיבוב 360°'; A360.forEach(function(u){var p=new Image(); p.src=u;}); }
   }
