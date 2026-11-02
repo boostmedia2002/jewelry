@@ -502,9 +502,25 @@ figure.picked .card{outline:3px solid #e8c98a;outline-offset:3px}
 .ib-step .opt{font-weight:600;font-size:13px;color:var(--ink-soft)}
 .ib-sub{margin-top:12px}
 .ib-note-t{margin-top:10px;background:none;border:0;padding:0;color:#8a7146;font:700 13px var(--body);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
-.ib-sim{margin:0 0 16px;display:flex;flex-wrap:wrap;gap:6px}.ib-sim-h{width:100%;margin:0;color:#c4c0b8;font-size:13px;font-weight:700}.ib-sim button{appearance:none;cursor:pointer;border:1px solid rgba(232,201,138,.5);background:transparent;color:#e8c98a;border-radius:999px;padding:5px 11px;font:600 13px var(--body)}
 .ib-out ol li em{font-style:normal;color:#e8c98a}
 @media (max-width:860px){.ib{grid-template-columns:1fr}.ib-out{position:static}}
+
+/* ===== Video finder: search + need-based filters above the gallery ===== */
+.finder{margin:0 0 clamp(20px,2.6vw,30px);padding:18px;border:1px solid rgba(255,255,255,.18);border-radius:var(--r-md);background:rgba(255,255,255,.04)}
+.finder h3{margin:0 0 4px;font-size:18px;font-weight:700;color:#fff}
+.finder .fd-tip{margin:0 0 12px;font-size:14px;font-weight:600;color:var(--on-dark-soft)}
+.finder input[type=search]{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.25);color:#fff;font:600 15px var(--body)}
+.finder input[type=search]::placeholder{color:rgba(255,255,255,.55)}
+.fd-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;margin-top:14px}
+.fd-g .lbl{display:block;margin:0 0 6px;font-size:13px;font-weight:700;color:#e8c98a}
+.fd-g .chips{display:flex;flex-wrap:wrap;gap:6px}
+.fd-g button{appearance:none;cursor:pointer;min-height:34px;padding:0 12px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;font:600 13.5px var(--body)}
+.fd-g button[aria-pressed="true"]{background:#e8c98a;border-color:#e8c98a;color:#0d0c0b}
+.fd-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px;font-size:14px;font-weight:700;color:#fff}
+.fd-bar .note{font-weight:600;color:var(--on-dark-soft)}
+.fd-bar button{appearance:none;background:none;border:0;color:#e8c98a;font:700 14px var(--body);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.flt-hide{display:none!important}
+@media (max-width:640px){.fd-groups{grid-template-columns:1fr}.finder{padding:14px}}
 /* running number on each gallery video */
 .card-num{position:absolute;top:10px;right:10px;z-index:2;min-width:30px;height:30px;padding:0 8px;box-sizing:border-box;border-radius:999px;background:rgba(0,0,0,.62);color:#fff;font:700 14px/30px var(--body);text-align:center;pointer-events:none;font-variant-numeric:tabular-nums}
 @media (max-width:640px){.card-num{top:6px;right:6px;min-width:22px;height:22px;padding:0 6px;font-size:11px;line-height:22px}}
@@ -1059,29 +1075,6 @@ html.shield video,html.shield .card img,html.shield .lbi img,html.shield .hc-sid
     add('הערות', f('extra'));
     return L;
   }
-
-  /* similar videos from the portfolio, matched to the client's choices */
-  var MAP = {
-    place:{'חוף ים':['01','13','04','02','12'],'יאכטה':['14'],'שלט חוצות ענק':['06','03'],'סטודיו נקי':['05','15'],'ערב / מסיבה':['11'],'רחוב בעיר':['06','10']},
-    product:{'צמיד רגל':['02'],'טבעת':['05','15','11'],'שרשרת':['13','04','09'],'עגילים':['16'],'צמיד':['09']},
-    hook:{'אפקט מפתיע':['07','08','11'],'תקריב חזק לתכשיט':['05','08'],'שאלה על המסך':['10'],'מבט ישיר למצלמה':['15','16']},
-    cam:{'תקריבי מאקרו':['05','08'],'מצלמה שמסתובבת סביב':['05'],'הילוך איטי':['13','04']},
-    who:{'דוגמנית':['15','16','09','01','13']},
-    look:{'בגד ים':['12']},
-    mood:{'קיצי':['01','12','14','02'],'יוקרתי ושקט':['05','15','08']}
-  };
-  var WORDS = [[/ים|חוף|גלים/,['13','04','02','01']],[/יאכט/,['14']],[/שלט|בילבורד|לונדון/,['06','03']],[/קיץ/,['01','12','14']],[/זהב|נוזל/,['08']],[/נופל|נפילה|עפים/,['07']],[/סיבוב|360|מסתובב/,['05']],[/משקפ/,['16']],[/במה|קופס/,['11']],[/עיתון/,['10']]];
-  function similar(){
-    var score = {};
-    function bump(list, w){ (list || []).forEach(function(n){ score[n] = (score[n] || 0) + w; }); }
-    Object.keys(MAP).forEach(function(k){ (st.c[k] || []).forEach(function(v){ bump(MAP[k][v], k === 'place' || k === 'hook' ? 2 : 1); }); });
-    var txt = [f('ideaArea'), f('placeIn'), f('hookIn'), f('sc1'), f('sc2'), f('sc3'), f('sc4')].join(' ');
-    WORDS.forEach(function(w){ if (w[0].test(txt)) bump(w[1], 2); });
-    return Object.keys(score).sort(function(a, b){ return score[b] - score[a]; }).slice(0, 3).map(function(n){
-      var fig = document.querySelector('.inspo figure[data-v="videos/work-' + n + '.mp4"]'); if (!fig) return null;
-      return {fig:fig, num:(fig.querySelector('.card-num') || {}).textContent || '', title:(fig.querySelector('.title') || {}).textContent || ''};
-    }).filter(Boolean);
-  }
   var sum = document.getElementById('ibSummary'), send = document.getElementById('ibSend'), mail = document.getElementById('ibMail');
   function wa(){ try { return String(WHATSAPP_NUMBER || '').replace(/\D/g, '') || '972539507416'; } catch(e){ return '972539507416'; } }
   function render(){
@@ -1089,18 +1082,99 @@ html.shield video,html.shield .card img,html.shield .lbi img,html.shield .hc-sid
     var L = lines(); sum.innerHTML = '';
     if (!L.length) sum.appendChild(el('p', 'empty', st.mode === 'quick' ? 'כתבו את הרעיון, והוא יופיע כאן.' : 'בחרו בשלבים, והתסריט ייבנה כאן.'));
     else { var ol = el('ol'); L.forEach(function(x){ var li = el('li'); li.appendChild(el('span', null, x[0] + ': ')); if (x[1]) li.appendChild(document.createTextNode(x[1])); if (x[2]) li.appendChild(el('em', null, (x[1] ? ' · ' : '') + 'הערה: ' + x[2])); ol.appendChild(li); }); sum.appendChild(ol); }
-    var sim = similar();
-    if (sim.length) { var sw = el('div', 'ib-sim'); sw.appendChild(el('p', 'ib-sim-h', 'סרטונים דומים מתיק העבודות:')); sim.forEach(function(x){ var b = el('button', null, '#' + x.num + ' ' + x.title); b.type = 'button'; b.addEventListener('click', function(){ var cd = x.fig.querySelector('.card'); if (cd) cd.click(); }); sw.appendChild(b); }); sum.appendChild(sw); }
     var ok = st.mode === 'quick' ? f('ideaArea').length > 3 : L.length >= 2;
     send.setAttribute('aria-disabled', ok ? 'false' : 'true');
     var nm = f('meIn');
     var head = st.mode === 'quick' ? 'היי, יש לי רעיון לפרסומת' : 'היי, בניתי באתר תסריט לפרסומת';
-    var msg = head + (nm ? ' (' + nm + ')' : '') + ':\n' + L.map(function(x){ return '• ' + x[0] + ': ' + [x[1], x[2] ? 'הערה: ' + x[2] : ''].filter(Boolean).join(' · '); }).join('\n') + (sim.length ? '\n\nסרטונים דומים מתיק העבודות: ' + sim.map(function(x){ return '#' + x.num + ' ' + x.title; }).join(', ') : '');
+    var msg = head + (nm ? ' (' + nm + ')' : '') + ':\n' + L.map(function(x){ return '• ' + x[0] + ': ' + [x[1], x[2] ? 'הערה: ' + x[2] : ''].filter(Boolean).join(' · '); }).join('\n');
     send.href = 'https://wa.me/' + wa() + '?text=' + encodeURIComponent(msg);
     mail.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=boostmedia2002@gmail.com&su=' + encodeURIComponent('רעיון לפרסומת' + (nm ? ' – ' + nm : '')) + '&body=' + encodeURIComponent(msg);
   }
   document.getElementById('ibReset').addEventListener('click', function(){ var m = st.mode; st = {mode:m, c:{}, f:{}, n:{}}; build(); });
   build();
+})();
+</script>
+<script>
+/* Video finder: search box + filters by need; shows the best-matching portfolio videos */
+(function(){
+  var sec = document.querySelector('.inspo'); if (!sec) return;
+  var T = {
+    '01':['דוגמנית','ים וקיץ','שרשרת','סטורי','מודעה'],
+    '02':['תצוגת מוצר','ים וקיץ','צמיד רגל','סטורי','מודעה'],
+    '03':['מושך את העין','עיר ושלט חוצות','ים וקיץ','השקה'],
+    '04':['תצוגת מוצר','ים וקיץ','שרשרת'],
+    '05':['תצוגת מוצר','סטודיו','טבעת','יוקרתי','סטורי','מודעה'],
+    '06':['מושך את העין','עיר ושלט חוצות','השקה','סטורי','מודעה'],
+    '07':['מושך את העין','השקה','סטורי'],
+    '08':['מושך את העין','יוקרתי','סטודיו','סטורי'],
+    '09':['דוגמנית','שרשרת','צמיד','סטורי','מודעה'],
+    '10':['מושך את העין','עיר ושלט חוצות','טבעת'],
+    '11':['מושך את העין','יוקרתי','טבעת','השקה','סטורי','מודעה'],
+    '12':['תצוגת מוצר','ים וקיץ','סטורי','מודעה'],
+    '13':['דוגמנית','ים וקיץ','שרשרת','טבעת','סטורי','מודעה'],
+    '14':['תצוגת מוצר','יאכטה','ים וקיץ'],
+    '15':['דוגמנית','טבעת','שרשרת','יוקרתי','סטורי','מודעה'],
+    '16':['דוגמנית','טבעת','עגילים','ים וקיץ','סטורי']
+  };
+  var GROUPS = [
+    {k:'need', lbl:'מה אתם צריכים?', opts:['מושך את העין','תצוגת מוצר','דוגמנית','יוקרתי','השקה']},
+    {k:'where', lbl:'איפה תפרסמו?', opts:['ריל / טיקטוק','סטורי','מודעה ממומנת']},
+    {k:'prod', lbl:'איזה תכשיט?', opts:['טבעת','שרשרת','עגילים','צמיד','צמיד רגל']},
+    {k:'place', lbl:'אווירה ומקום', opts:['ים וקיץ','יאכטה','עיר ושלט חוצות','סטודיו']}
+  ];
+  /* platform choices map to tags: every video is vertical, so reels/TikTok fit all; stories = up to 15s; paid ad = short and strong */
+  var ALIAS = {'ריל / טיקטוק':null, 'סטורי':'סטורי', 'מודעה ממומנת':'מודעה'};
+  var sel = {}, q = '';
+  var box = document.createElement('div'); box.className = 'finder'; box.setAttribute('role','search');
+  box.innerHTML = '<h3>מחפשים סרטון לצורך מסוים?</h3><p class="fd-tip">בחרו מה חשוב לכם, ונראה רק את הסרטונים שהכי מתאימים.</p><input type="search" placeholder="חיפוש: למשל ים, טבעת, זהב, שלט..." aria-label="חיפוש סרטונים"><div class="fd-groups"></div><div class="fd-bar" hidden><span class="cnt"></span><span class="note"></span><button type="button">ניקוי החיפוש</button></div>';
+  var grpWrap = box.querySelector('.fd-groups'), bar = box.querySelector('.fd-bar'), input = box.querySelector('input');
+  GROUPS.forEach(function(g){
+    var d = document.createElement('div'); d.className = 'fd-g'; var l = document.createElement('span'); l.className = 'lbl'; l.textContent = g.lbl; d.appendChild(l);
+    var ch = document.createElement('div'); ch.className = 'chips';
+    g.opts.forEach(function(o){ var b = document.createElement('button'); b.type = 'button'; b.textContent = o; b.setAttribute('aria-pressed','false');
+      b.addEventListener('click', function(){ var on = b.getAttribute('aria-pressed') !== 'true';
+        if (on && g.k === 'where') ch.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        sel[g.k] = Array.prototype.filter.call(ch.querySelectorAll('button'), function(x){ return x.getAttribute('aria-pressed') === 'true'; }).map(function(x){ return x.textContent; });
+        apply(); });
+      ch.appendChild(b); });
+    d.appendChild(ch); grpWrap.appendChild(d);
+  });
+  input.addEventListener('input', function(){ q = input.value.trim(); apply(); });
+  bar.querySelector('button').addEventListener('click', function(){ sel = {}; q = ''; input.value = ''; box.querySelectorAll('.fd-g button').forEach(function(b){ b.setAttribute('aria-pressed','false'); }); apply(); });
+  function place(){ var anchor = sec.querySelector('.cat-tabs') || sec.querySelector('.cat-title'); if (anchor && box.nextSibling !== anchor) anchor.parentNode.insertBefore(box, anchor); }
+  place(); setTimeout(place, 600);
+  function figs(){ return Array.prototype.slice.call(sec.querySelectorAll('.grid[data-cat] > figure')); }
+  function info(fig){ var m = /work-(\d+)\.mp4/.exec(fig.dataset.v || ''); return m ? {id:m[1], tags:T[m[1]] || [], text:((fig.querySelector('.title') || {}).textContent || '') + ' ' + ((fig.querySelector('.field') || {}).textContent || '')} : null; }
+  function apply(){
+    var groups = GROUPS.map(function(g){ return (sel[g.k] || []).map(function(o){ return g.k === 'where' ? ALIAS[o] : o; }).filter(function(o){ return o !== null; }); }).filter(function(a){ return a.length; });
+    var active = groups.length || q.length > 0 || (sel.where || []).length;
+    var list = figs(), scored = [];
+    list.forEach(function(fig){ var it = info(fig);
+      if (!it) { scored.push([fig, active ? -1 : 0]); return; }
+      var s = 0, all = true;
+      groups.forEach(function(opts){ var hit = opts.some(function(o){ return it.tags.indexOf(o) > -1; }); if (hit) s++; else all = false; });
+      if (q) { var toks = (it.text + ' ' + it.tags.join(' ')).toLowerCase().split(/[\s,.\-–\/]+/).filter(Boolean); var words = q.toLowerCase().split(/\s+/).filter(Boolean); var qh = words.every(function(w){ return toks.some(function(t){ return t === w || (w.length >= 3 && t.indexOf(w) === 0) || t === 'ה' + w || t === 'ו' + w; }); }); if (qh) s++; else all = false; }
+      scored.push([fig, s, all]); });
+    var need = groups.length + (q ? 1 : 0), full = scored.filter(function(x){ return x[2] && x[1] === need; });
+    var best = 0; scored.forEach(function(x){ if (x[1] > best) best = x[1]; });
+    var show = !active ? null : (full.length ? full : scored.filter(function(x){ return best > 0 && x[1] === best; }));
+    var showSet = show ? new Set(show.map(function(x){ return x[0]; })) : null;
+    list.forEach(function(fig){ fig.classList.toggle('flt-hide', !!showSet && !showSet.has(fig)); });
+    sec.querySelectorAll('.grid[data-cat]').forEach(function(g){
+      var any = !showSet || Array.prototype.some.call(g.children, function(f){ return f.tagName === 'FIGURE' && showSet.has(f); });
+      var h = g.previousElementSibling; while (h && !h.classList.contains('cat-title')) h = h.previousElementSibling;
+      var desc = h && h.nextElementSibling && h.nextElementSibling.classList.contains('cat-desc') ? h.nextElementSibling : null;
+      [g, h, desc].forEach(function(e){ if (e) e.classList.toggle('flt-hide', !any); });
+    });
+    var tabs = sec.querySelector('.cat-tabs'); if (tabs) tabs.classList.toggle('flt-hide', !!active);
+    if (active && window.__setCat) window.__setCat('all');
+    bar.hidden = !active;
+    if (active) {
+      var n = show.length; bar.querySelector('.cnt').textContent = n ? (n === 1 ? 'נמצא סרטון אחד' : 'נמצאו ' + n + ' סרטונים') : 'לא נמצאו סרטונים';
+      bar.querySelector('.note').textContent = (!full.length && n) ? 'אין התאמה מלאה, אלה הכי קרובים' : '';
+    }
+  }
 })();
 </script>
 </body></html>
