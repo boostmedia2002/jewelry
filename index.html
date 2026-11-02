@@ -1177,7 +1177,8 @@ html.shield video,html.shield .card img,html.shield .lbi img,html.shield .hc-sid
 </script>
 <style>
 /* watermark v2: one small mark, bottom-left, light */
-.wm{background-image:none!important}
+.wm{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='360' height='260'><text x='180' y='135' text-anchor='middle' transform='rotate(-24 180 130)' font-family='Arial,Helvetica,sans-serif' font-size='18' font-weight='700' letter-spacing='3' fill='rgba(255,255,255,0.17)' stroke='rgba(0,0,0,0.07)' stroke-width='0.6' paint-order='stroke'>BOOST MEDIA</text></svg>")!important;background-size:360px 260px!important;background-position:center!important}
+.card .wm,.hc-side .wm{background-size:170px 123px!important}
 .wm::after{content:"BOOST MEDIA";position:absolute;left:4%;bottom:3.5%;font:700 13px/1 Arial,Helvetica,sans-serif;letter-spacing:.18em;color:rgba(255,255,255,.55);text-shadow:0 1px 2px rgba(0,0,0,.35);white-space:nowrap}
 .card .wm::after,.hc-side .wm::after{font-size:8.5px;letter-spacing:.14em;left:6%;bottom:4%}
 .hero-frame .wm::after{font-size:11px}
