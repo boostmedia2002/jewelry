@@ -867,11 +867,24 @@ html.shield video,html.shield .card img,html.shield .lbi img,html.shield .hc-sid
     return v._loading.then(function(u){ if (!v.src) v.src = u; });
   }
   function play(v){ if (document.documentElement.classList.contains('lb-open')) return; load(v).then(function(){ if (visible.has(v)) { var p = v.play(); if (p && p.catch) p.catch(function(){}); } }); }
+  /* at most MAX previews play at once (the ones closest to the screen centre), started only after the card settles on screen */
+  var MAX = (window.matchMedia && matchMedia('(max-width: 640px)').matches) ? 2 : 2, pend;
+  function pick(){
+    var mid = innerHeight / 2, arr = Array.from(visible).map(function(v){ var r = v.getBoundingClientRect(); return [Math.abs((r.top + r.bottom) / 2 - mid), v]; });
+    arr.sort(function(a, b){ return a[0] - b[0]; });
+    arr.forEach(function(x, i){ if (i < MAX) play(x[1]); else x[1].pause(); });
+  }
+  function schedule(){ clearTimeout(pend); pend = setTimeout(pick, 250); }
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(en){ var v = en.target._pv; if (!v) return;
-      if (en.isIntersecting && en.intersectionRatio >= 0.5) { visible.add(v); play(v); }
+      if (en.isIntersecting && en.intersectionRatio >= 0.5) visible.add(v);
       else { visible.delete(v); v.pause(); } });
+    schedule();
   }, {threshold:[0, 0.5]});
+  window.addEventListener('scroll', schedule, {passive:true});
+  /* hero film: pause while off screen */
+  var hv = document.getElementById('heroVideo');
+  if (hv) new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { var q = hv.play(); if (q && q.catch) q.catch(function(){}); } else hv.pause(); }); }, {threshold:0.1}).observe(hv);
   function setup(){
     document.querySelectorAll('.inspo .grid[data-cat] > figure').forEach(function(fig){
       var card = fig.querySelector('.card'), src = fig.dataset.v;
@@ -888,9 +901,9 @@ html.shield video,html.shield .card img,html.shield .lbi img,html.shield .hc-sid
   }
   setup();
   new MutationObserver(function(){ setup(); }).observe(document.querySelector('.inspo') || document.body, {childList:true, subtree:true});
-  new MutationObserver(function(){ if (!document.documentElement.classList.contains('lb-open')) visible.forEach(play); })
+  new MutationObserver(function(){ var hvv = document.getElementById('heroVideo'); if (document.documentElement.classList.contains('lb-open')) { if (hvv) hvv.pause(); } else { schedule(); if (hvv && hvv.getBoundingClientRect().bottom > 0) { var q = hvv.play(); if (q && q.catch) q.catch(function(){}); } } })
     .observe(document.documentElement, {attributes:true, attributeFilter:['class']});
-  document.addEventListener('visibilitychange', function(){ if (document.hidden) visible.forEach(function(v){ v.pause(); }); else visible.forEach(play); });
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) visible.forEach(function(v){ v.pause(); }); else schedule(); });
 })();
 </script>
 </body></html>
