@@ -468,6 +468,33 @@ figure.picked .card{outline:3px solid #e8c98a;outline-offset:3px}
 .faq details[open] summary::after{content:"–"}
 .faq details p{margin:0 0 18px;font-size:16px;font-weight:600;line-height:1.65;color:var(--ink-soft)}
 @media (max-width:760px){.plans{grid-template-columns:1fr;gap:22px}.incl ul{grid-template-columns:1fr}}
+
+/* ===== Build your own ad ===== */
+.idea{margin-top:var(--sec-gap)}
+.idea h2{font-family:var(--display);font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.1;margin:0 0 12px}
+.idea .lead{margin:0 0 clamp(24px,3vw,36px);padding-bottom:clamp(16px,2vw,22px);border-bottom:1px solid var(--line);font-size:clamp(16px,1.3vw,18px);font-weight:600;line-height:1.6;color:var(--ink-soft)}
+.ib{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px;align-items:start}
+.ib-steps{display:flex;flex-direction:column;gap:14px;counter-reset:st}
+.ib-step{border:1px solid var(--line);border-radius:var(--r-md);background:#efe4d1;padding:20px 20px 22px}
+.ib-step h3{margin:0 0 4px;font-size:18px;font-weight:700;display:flex;gap:10px;align-items:center}
+.ib-step h3::before{counter-increment:st;content:counter(st);display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#0d0c0b;color:#e8c98a;font-size:14px;flex:none}
+.ib-step .tip{margin:0 0 12px;font-size:14px;font-weight:600;line-height:1.55;color:var(--ink-soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{appearance:none;cursor:pointer;min-height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(0,0,0,.22);background:#fff8ec;color:#0d0c0b;font:600 14px var(--body)}
+.chips button[aria-pressed="true"]{background:#0d0c0b;color:#e8c98a;border-color:#0d0c0b}
+.ib input[type=text],.ib textarea{width:100%;box-sizing:border-box;margin-top:10px;padding:11px 13px;border:1px solid rgba(0,0,0,.2);border-radius:var(--r-sm);background:#fffaf2;color:#0d0c0b;font:600 15px/1.5 var(--body)}
+.ib textarea{min-height:64px;resize:vertical}
+.ib label.sm{display:block;margin-top:10px;font-size:13px;font-weight:700;color:var(--ink-soft)}
+.ib-out{position:sticky;top:16px;border-radius:var(--r-md);background:#0d0c0b;color:#fff;padding:22px;border:1px solid rgba(232,201,138,.45)}
+.ib-out h3{margin:0 0 12px;font-family:var(--display);font-weight:500;font-size:24px;color:#e8c98a}
+.ib-out ol{margin:0 0 16px;padding:0 18px 0 0;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.55}
+.ib-out ol li span{color:#c4c0b8}
+.ib-out .empty{color:#c4c0b8;font-size:15px;margin:0 0 16px}
+.ib-send{display:flex;justify-content:center;align-items:center;gap:8px;min-height:48px;border-radius:999px;background:linear-gradient(135deg,#8a7146 0%,#c4a978 48%,#8f774b 100%);color:#fff;font:700 16px var(--body);text-decoration:none}
+.ib-send[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.ib-mail{display:block;margin-top:10px;text-align:center;color:#c4c0b8;font-size:14px;font-weight:600}
+.ib-reset{display:block;margin:12px auto 0;background:none;border:0;color:#c4c0b8;text-decoration:underline;font:600 13px var(--body);cursor:pointer}
+@media (max-width:860px){.ib{grid-template-columns:1fr}.ib-out{position:static}}
 /* running number on each gallery video */
 .card-num{position:absolute;top:10px;right:10px;z-index:2;min-width:30px;height:30px;padding:0 8px;box-sizing:border-box;border-radius:999px;background:rgba(0,0,0,.62);color:#fff;font:700 14px/30px var(--body);text-align:center;pointer-events:none;font-variant-numeric:tabular-nums}
 @media (max-width:640px){.card-num{top:6px;right:6px;min-width:22px;height:22px;padding:0 6px;font-size:11px;line-height:22px}}
@@ -542,6 +569,43 @@ figure.picked .card{outline:3px solid #e8c98a;outline-offset:3px}
       <li>3 פורמטים לכל סרטון</li><li>כתוביות</li><li>מוזיקה</li>
       <li>הלוגו שלכם בסוף הסרטון</li><li>דוגמנית קבועה למותג</li><li>עד 2 תיקונים קטנים</li>
     </ul></div>
+  </section>
+  <section class="idea" id="idea" aria-labelledby="ideaTitle">
+    <h2 id="ideaTitle">יש לכם רעיון משלכם?</h2>
+    <p class="lead">בונים פרסומת בכמה בחירות פשוטות, ושולחים לי. אני הופך את זה לסרטון מוכן.</p>
+    <div class="ib">
+      <div class="ib-steps">
+        <div class="ib-step" data-k="product"><h3>מה המוצר?</h3><p class="tip">איזה תכשיט נמצא במרכז הפרסומת.</p>
+          <div class="chips" data-multi="0"><button type="button">טבעת</button><button type="button">שרשרת</button><button type="button">עגילים</button><button type="button">צמיד</button><button type="button">צמיד רגל</button><button type="button">סט</button></div>
+          <input type="text" data-f="productNote" placeholder="שם המוצר או המותג (לא חובה)"></div>
+        <div class="ib-step" data-k="place"><h3>איפה זה קורה?</h3><p class="tip">המקום קובע את האווירה. אפשר לבחור יותר מאחד.</p>
+          <div class="chips" data-multi="1"><button type="button">חוף ים</button><button type="button">יאכטה</button><button type="button">סטודיו נקי</button><button type="button">רחוב בעיר</button><button type="button">שלט חוצות ענק</button><button type="button">בית, אור בוקר</button><button type="button">ערב / מסיבה</button><button type="button">טבע</button></div>
+          <input type="text" data-f="placeNote" placeholder="מקום אחר? כתבו כאן"></div>
+        <div class="ib-step" data-k="who"><h3>מי בסרטון?</h3><p class="tip">דוגמנית מראה איך התכשיט נראה עליה. בלי דוגמנית, המוצר הוא הכוכב.</p>
+          <div class="chips" data-multi="0" id="ibWho"><button type="button">דוגמנית</button><button type="button">רק יד</button><button type="button">רק המוצר</button></div>
+          <div id="ibModelsWrap" hidden><label class="sm">איזו דוגמנית?</label><div class="chips" data-multi="0" id="ibModels"></div></div></div>
+        <div class="ib-step" data-k="hook"><h3>3 השניות הראשונות</h3><p class="tip">החלק הכי חשוב. כאן מחליטים אם ממשיכים לצפות או גוללים הלאה.</p>
+          <div class="chips" data-multi="0"><button type="button">תקריב חזק לתכשיט</button><button type="button">אפקט מפתיע</button><button type="button">מבט ישיר למצלמה</button><button type="button">שאלה על המסך</button><button type="button">תנועה מהירה</button></div>
+          <input type="text" data-f="hookNote" placeholder="רעיון משלכם לפתיחה"></div>
+        <div class="ib-step" data-k="scenes"><h3>מה קורה בסרטון?</h3><p class="tip">כתבו במילים פשוטות, משפט לכל סצנה. אין צורך ביותר מזה.</p>
+          <input type="text" data-f="s1" placeholder="סצנה 1: למשל, היא הולכת על החוף והשרשרת נוצצת בשמש">
+          <input type="text" data-f="s2" placeholder="סצנה 2: למשל, תקריב איטי על התליון">
+          <input type="text" data-f="s3" placeholder="סצנה 3 (לא חובה)"></div>
+        <div class="ib-step" data-k="end"><h3>איך זה נגמר?</h3><p class="tip">מה הצופה צריך לעשות אחרי שראה את הסרטון.</p>
+          <div class="chips" data-multi="0"><button type="button">הלוגו שלי</button><button type="button">מבצע / הנחה</button><button type="button">"לרכישה בקישור"</button><button type="button">משפט של המותג</button></div>
+          <input type="text" data-f="endNote" placeholder="הטקסט בסיום (לא חובה)"></div>
+        <div class="ib-step" data-k="mood"><h3>אווירה ואורך</h3><p class="tip">המוזיקה והקצב.</p>
+          <div class="chips" data-multi="0" data-g="mood"><button type="button">יוקרתי ושקט</button><button type="button">אנרגטי</button><button type="button">רומנטי</button><button type="button">קיצי</button></div>
+          <label class="sm">אורך</label><div class="chips" data-multi="0" data-g="len"><button type="button">8 שניות</button><button type="button">15 שניות</button><button type="button">30 שניות</button></div></div>
+        <div class="ib-step" data-k="me"><h3>הפרטים שלכם</h3><p class="tip">כדי שאדע ממי הרעיון.</p>
+          <input type="text" data-f="name" placeholder="שם / שם העסק">
+          <textarea data-f="extra" placeholder="עוד משהו שחשוב לכם (לא חובה)"></textarea></div>
+      </div>
+      <aside class="ib-out" aria-live="polite"><h3>התסריט שלכם</h3><div id="ibSummary"></div>
+        <a class="ib-send" id="ibSend" target="_blank" rel="noopener" aria-disabled="true">שליחת התסריט בוואטסאפ</a>
+        <a class="ib-mail" id="ibMail" target="_blank" rel="noopener">או שליחה במייל</a>
+        <button type="button" class="ib-reset" id="ibReset">ניקוי והתחלה מחדש</button></aside>
+    </div>
   </section>
   <section class="faq" id="faq" aria-labelledby="faqTitle">
     <h2 id="faqTitle">שאלות נפוצות</h2>
@@ -904,6 +968,75 @@ html.shield video,html.shield .card img,html.shield .lbi img,html.shield .hc-sid
   new MutationObserver(function(){ var hvv = document.getElementById('heroVideo'); if (document.documentElement.classList.contains('lb-open')) { if (hvv) hvv.pause(); } else { schedule(); if (hvv && hvv.getBoundingClientRect().bottom > 0) { var q = hvv.play(); if (q && q.catch) q.catch(function(){}); } } })
     .observe(document.documentElement, {attributes:true, attributeFilter:['class']});
   document.addEventListener('visibilitychange', function(){ if (document.hidden) visible.forEach(function(v){ v.pause(); }); else schedule(); });
+})();
+</script>
+<script>
+/* Build-your-own-ad: guided script builder, sends to WhatsApp / email */
+(function(){
+  var root = document.getElementById('idea'); if (!root) return;
+  var KEY = 'idea-draft-v1', st = {chips:{}, f:{}};
+  try { st = JSON.parse(localStorage.getItem(KEY)) || st; } catch(e){}
+  st.chips = st.chips || {}; st.f = st.f || {};
+  function groupKey(g){ return g.dataset.g || g.id || g.closest('.ib-step').dataset.k; }
+  /* model names from the gallery */
+  var mWrap = document.getElementById('ibModels');
+  var names = Array.prototype.map.call(document.querySelectorAll('.inspo .grid[data-cat="modelsgal"] figure .title'), function(t){ return t.textContent.trim(); }).filter(Boolean);
+  if (!names.length) names = ['אביה','אור','עלמה','בר','רוז','אלינה','עדן','אלה'];
+  names.concat(['תבחר בשבילי']).forEach(function(n){ var b = document.createElement('button'); b.type = 'button'; b.textContent = n; mWrap.appendChild(b); });
+  var groups = root.querySelectorAll('.chips');
+  function syncWho(){ var w = (st.chips['ibWho'] || [])[0]; document.getElementById('ibModelsWrap').hidden = w !== 'דוגמנית'; }
+  groups.forEach(function(g){
+    var k = groupKey(g), multi = g.dataset.multi === '1';
+    g.querySelectorAll('button').forEach(function(b){
+      var v = b.textContent; b.setAttribute('aria-pressed', (st.chips[k] || []).indexOf(v) > -1 ? 'true' : 'false');
+      b.addEventListener('click', function(){
+        var cur = st.chips[k] || [], i = cur.indexOf(v);
+        if (multi) { if (i > -1) cur.splice(i, 1); else cur.push(v); }
+        else cur = i > -1 ? [] : [v];
+        st.chips[k] = cur;
+        g.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', cur.indexOf(x.textContent) > -1 ? 'true' : 'false'); });
+        syncWho(); render();
+      });
+    });
+  });
+  root.querySelectorAll('[data-f]').forEach(function(el){ el.value = st.f[el.dataset.f] || ''; el.addEventListener('input', function(){ st.f[el.dataset.f] = el.value; render(); }); });
+  function c(k){ return (st.chips[k] || []).join(', '); }
+  function f(k){ return (st.f[k] || '').trim(); }
+  function join(a, b){ return [a, b].filter(Boolean).join(' – '); }
+  function lines(){
+    var who = c('ibWho'); if (who === 'דוגמנית' && c('ibModels')) who += ': ' + c('ibModels');
+    var scenes = [f('s1'), f('s2'), f('s3')].filter(Boolean);
+    var L = [];
+    if (c('product') || f('productNote')) L.push(['מוצר', join(c('product'), f('productNote'))]);
+    if (c('place') || f('placeNote')) L.push(['מקום', join(c('place'), f('placeNote'))]);
+    if (who) L.push(['בסרטון', who]);
+    if (c('hook') || f('hookNote')) L.push(['פתיחה', join(c('hook'), f('hookNote'))]);
+    scenes.forEach(function(s, i){ L.push(['סצנה ' + (i + 1), s]); });
+    if (c('end') || f('endNote')) L.push(['סיום', join(c('end'), f('endNote'))]);
+    if (c('mood')) L.push(['אווירה', c('mood')]);
+    if (c('len')) L.push(['אורך', c('len')]);
+    if (f('extra')) L.push(['הערות', f('extra')]);
+    return L;
+  }
+  var sum = document.getElementById('ibSummary'), send = document.getElementById('ibSend'), mail = document.getElementById('ibMail');
+  function wa(){ try { return String(WHATSAPP_NUMBER || '').replace(/\D/g, ''); } catch(e){ return '972539507416'; } }
+  function render(){
+    try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){}
+    var L = lines();
+    sum.innerHTML = '';
+    if (!L.length) { var p = document.createElement('p'); p.className = 'empty'; p.textContent = 'בחרו בשלבים, והתסריט ייבנה כאן.'; sum.appendChild(p); }
+    else { var ol = document.createElement('ol'); L.forEach(function(x){ var li = document.createElement('li'); var s = document.createElement('span'); s.textContent = x[0] + ': '; li.appendChild(s); li.appendChild(document.createTextNode(x[1])); ol.appendChild(li); }); sum.appendChild(ol); }
+    var ok = L.length >= 2;
+    send.setAttribute('aria-disabled', ok ? 'false' : 'true');
+    var msg = 'היי, בניתי באתר רעיון לפרסומת' + (f('name') ? ' (' + f('name') + ')' : '') + ':\n' + L.map(function(x){ return '• ' + x[0] + ': ' + x[1]; }).join('\n');
+    send.href = 'https://wa.me/' + wa() + '?text=' + encodeURIComponent(msg);
+    mail.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=boostmedia2002@gmail.com&su=' + encodeURIComponent('רעיון לפרסומת' + (f('name') ? ' – ' + f('name') : '')) + '&body=' + encodeURIComponent(msg);
+  }
+  document.getElementById('ibReset').addEventListener('click', function(){
+    st = {chips:{}, f:{}}; root.querySelectorAll('[data-f]').forEach(function(el){ el.value = ''; });
+    root.querySelectorAll('.chips button').forEach(function(b){ b.setAttribute('aria-pressed', 'false'); }); syncWho(); render();
+  });
+  syncWho(); render();
 })();
 </script>
 </body></html>
