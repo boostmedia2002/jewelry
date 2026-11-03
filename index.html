@@ -922,8 +922,7 @@ html.shield video,html.shield .card img,html.shield .lbi img,html.shield .hc-sid
   function apply(){
     wrap(document.querySelector('.lb-stage video'));
     wrap(document.querySelector('.lbi > img'),'img');
-    addWm(document.getElementById('heroFrame'));
-    document.querySelectorAll('.inspo .card').forEach(addWm);
+    /* no watermark on gallery cards; only in the big view */
     document.querySelectorAll('video').forEach(function(v){ v.setAttribute('controlsList','nodownload noplaybackrate noremoteplayback'); v.disablePictureInPicture=true; v.setAttribute('disablePictureInPicture',''); v.setAttribute('disableRemotePlayback',''); });
   }
   apply(); setTimeout(apply,500); setTimeout(apply,2000);
