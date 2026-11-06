@@ -28,6 +28,18 @@ jobs:
           git add -A
           git commit -m "Add media files" || true
           git push
+      - name: Import media update nov6
+        if: hashFiles('videos/work-33.mp4') == ''
+        run: |
+          curl -fsSL -o /tmp/m.zip "https://d2ol7oe51mr4n9.cloudfront.net/user_3KXs4GUTt01aKFgydxDk0mn9qU6/5b2a9d7f-78ae-4546-9a1a-8c98e04c27e1.zip"
+          curl -fsSL -o /tmp/i.zip "https://d2ol7oe51mr4n9.cloudfront.net/user_3KXs4GUTt01aKFgydxDk0mn9qU6/77ac0156-8c4d-4bee-90c2-cf551ce01867.zip"
+          unzip -o /tmp/m.zip -d .
+          unzip -o /tmp/i.zip -d .
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A
+          git commit -m "2s logo on all videos + 12 new videos" || true
+          git push
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
