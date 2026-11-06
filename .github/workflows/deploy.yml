@@ -40,6 +40,16 @@ jobs:
           git add -A
           git commit -m "2s logo on all videos + 12 new videos" || true
           git push
+      - name: Import ring wall music update
+        if: hashFiles('videos/m27.txt') == ''
+        run: |
+          curl -fsSL -o /tmp/r.zip "https://d2ol7oe51mr4n9.cloudfront.net/user_3KXs4GUTt01aKFgydxDk0mn9qU6/a01f83c6-d063-414c-9c3d-569f5bc9ac3c.zip"
+          unzip -o /tmp/r.zip -d .
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Ring wall: original music" || true
+          git push
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
