@@ -50,6 +50,16 @@ jobs:
           git add -A
           git commit -m "Ring wall: original music" || true
           git push
+      - name: Import batch 5 videos
+        if: hashFiles('videos/b5.txt') == ''
+        run: |
+          curl -fsSL -o /tmp/b5.zip "https://d2ol7oe51mr4n9.cloudfront.net/user_3KXs4GUTt01aKFgydxDk0mn9qU6/4084b5a5-f4e6-493d-93b8-a2061bef9516.zip"
+          unzip -o /tmp/b5.zip -d .
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Batch 5: cafe, armchair (Bar), LOVE rings" || true
+          git push
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
