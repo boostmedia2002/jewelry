@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>סרטוני פרסום לתכשיטים | BOOST MEDIA</title>
-<meta name="description" content="סרטוני פרסום קצרים למותגי תכשיטים: דוגמניות, אפקטים ותצוגת מוצר. מ-200 ₪ לסרטון, מוכן תוך 2 ימי עסקים.">
+<meta name="description" content="סרטוני פרסום קצרים למותגי תכשיטים בישראל: דוגמניות, אפקטים ותצוגת מוצר. מ-200 ₪ לסרטון, מוכן תוך 2 ימי עסקים.">
 <meta name="theme-color" content="#F6F2EA">
 <meta name="color-scheme" content="light">
 <meta name="robots" content="noindex">
@@ -13,8 +13,8 @@
 <meta property="og:image" content="https://boostmedia2002.github.io/jewelry/images/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="v/w22.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600&family=Frank+Ruhl+Libre:wght@500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="v/w22.jpg" fetchpriority="high">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"BOOST MEDIA","description":"סרטוני פרסום קצרים למותגי תכשיטים","url":"https://boostmedia2002.github.io/jewelry/","email":"boostmedia2002@gmail.com","telephone":"+972539507416","areaServed":"IL","priceRange":"₪200–₪500"}
 </script>
@@ -30,7 +30,7 @@
 *{box-sizing:border-box}
 html{-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.6 var(--sans)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.45 var(--sans)}
 img,video{display:block;max-width:100%}
 a{color:inherit}
 h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;margin:0;letter-spacing:-.01em}
@@ -43,7 +43,7 @@ button,a,[role=button]{touch-action:manipulation}
 button{font:inherit;color:inherit}
 
 /* buttons: one primary, one link style */
-.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:600;font-size:17px;text-decoration:none;border:0;cursor:pointer;user-select:none;-webkit-user-select:none;transition:transform 160ms var(--ease-out),background-color 200ms ease}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:600;font-size:17px;text-decoration:none;border:0;cursor:pointer;user-select:none;-webkit-user-select:none;transition:transform 160ms var(--ease-out)}
 .btn:active{transform:scale(.97)}
 .btn svg{width:20px;height:20px;flex:none}
 .link{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-weight:600;color:var(--gold);text-decoration:none;background:none;border:0;padding:0;cursor:pointer;font-size:17px}
@@ -59,15 +59,15 @@ button{font:inherit;color:inherit}
 }
 
 /* header */
-.top{position:sticky;top:0;z-index:20;background:rgba(246,242,234,.86);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color 200ms ease;padding-top:env(safe-area-inset-top,0px)}
+.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid transparent;padding-top:env(safe-area-inset-top,0px)}
 .top.scrolled{border-color:var(--line)}
 .top .wrap{display:flex;align-items:center;gap:28px;height:64px}
-.mark{display:inline-flex;align-items:center;min-height:44px;font:700 15px/1 var(--sans);letter-spacing:.12em;text-decoration:none;direction:ltr}
+.mark{display:inline-flex;align-items:center;min-height:44px;font:600 15px/1 var(--sans);letter-spacing:.12em;text-decoration:none;direction:ltr}
 .nav{display:flex;gap:24px;margin-inline-start:auto}
 .nav a{text-decoration:none;font-size:16px;color:var(--muted);padding:12px 0}
 .nav a:hover{color:var(--ink)}
 .top .btn{min-height:40px;padding:0 18px;font-size:15px}
-@media (max-width:720px){.nav{display:none}.top .btn{display:none}}
+@media (max-width:720px){.top .wrap{gap:12px}.nav{gap:14px}.nav a{font-size:15px}.top .btn{display:none}.mark{font-size:13px;letter-spacing:.08em}}
 
 /* hero */
 .hero{padding-top:clamp(40px,7vw,88px)}
@@ -81,7 +81,6 @@ button{font:inherit;color:inherit}
 .reel figure{margin:0;position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:#e9e3d8}
 .reel figure:nth-child(2){transform:translateY(clamp(16px,3vw,48px))}
 .reel video,.reel img{width:100%;height:100%;object-fit:cover}
-.reel figcaption{position:absolute;inset-inline-start:14px;bottom:12px;color:#fff;font-size:15px;font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,.45)}
 @media (max-width:720px){
   .reel{grid-template-columns:1fr 1fr;}
   .reel figure:nth-child(3){display:none}
@@ -119,7 +118,7 @@ section{scroll-margin-top:72px}
 /* models */
 .models h2{font-size:clamp(34px,4.4vw,52px)}
 .models .line{font-family:var(--serif);font-size:clamp(20px,2vw,26px);margin-top:8px;color:var(--muted)}
-.rail{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(150px,18vw,220px);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;margin-top:28px;padding-bottom:8px;scrollbar-width:thin}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(150px,17vw,210px);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;margin-top:28px;padding-bottom:8px;scrollbar-width:thin}
 .rail button{scroll-snap-align:start;border:0;padding:0;background:none;cursor:pointer;text-align:start}
 .rail .ph{display:block;border-radius:14px;overflow:hidden;aspect-ratio:3/4;background:#e9e3d8}
 .rail img{width:100%;height:100%;object-fit:cover}
@@ -135,7 +134,7 @@ section{scroll-margin-top:72px}
 .head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px}
 .head h2{font-size:clamp(34px,4.6vw,56px)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips button{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:transparent;cursor:pointer;font-size:16px;transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease}
+.chips button{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:transparent;cursor:pointer;font-size:16px}
 .chips button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.6vw,20px) clamp(10px,1.4vw,16px);margin-top:28px}
 @media (max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
@@ -162,7 +161,7 @@ section{scroll-margin-top:72px}
 .plan .p small{font-size:.55em;margin-inline-start:2px}
 .plan.best .n::after{content:"הכי משתלם";font:600 13px/1 var(--sans);color:var(--gold);border:1px solid currentColor;border-radius:999px;padding:5px 10px;margin-inline-start:12px;vertical-align:middle}
 @media (max-width:640px){.plan{grid-template-columns:1fr auto}.plan .u{grid-column:1/-1;order:3;margin-top:-6px}}
-.incl{margin-top:22px;color:var(--muted)}
+.incl{margin-top:22px;color:var(--muted);max-width:62ch}
 .incl b{color:var(--ink);font-weight:600}
 
 /* faq */
@@ -181,6 +180,9 @@ section{scroll-margin-top:72px}
 .end h2{font-size:clamp(40px,6vw,76px)}
 .end p{margin-top:14px;color:var(--dark-muted);font-size:19px}
 .end .actions{justify-content:center}
+.end .contact{margin-top:20px;font-size:16px}
+.tile-media .num{position:absolute;top:8px;inset-inline-start:8px;background:rgba(20,18,16,.78);color:#fff;font-size:13px;font-weight:600;padding:3px 8px;border-radius:999px;font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){.tile-media img{transition:none!important;transform:none!important}.link::after{transition:none}.tile:active,.btn:active{transform:none}}
 footer{background:var(--dark);color:var(--dark-muted);font-size:14px;padding:28px 0 calc(28px + env(safe-area-inset-bottom,0px));border-top:1px solid #2A2622}
 footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 footer a{color:var(--dark-ink);display:inline-flex;align-items:center;min-height:44px}
@@ -188,8 +190,7 @@ footer a{color:var(--dark-ink);display:inline-flex;align-items:center;min-height
 /* phone action bar */
 .bar{display:none}
 @media (max-width:720px){
-  .bar{display:flex;position:fixed;inset-inline:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(246,242,234,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform 300ms var(--ease-out)}
-  .bar.show{transform:none}
+  .bar{display:flex;position:fixed;inset-inline:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
   .bar .btn{flex:1;justify-content:center}
   body{padding-bottom:76px}
 }
@@ -238,19 +239,19 @@ dialog.lb[open] .lb-stage{animation:stIn 250ms var(--ease-out)}
       <p class="tag">התכשיט שלכם, בתנועה שעוצרת את הגלילה.</p>
       <p class="facts"><span>מ-<b>200 ₪</b> לסרטון</span> · <span>מוכן תוך <b>2 ימי עסקים</b></span> · <span>3 פורמטים לכל סרטון</span></p>
       <div class="actions">
-        <a class="btn" href="#works">לראות עבודות</a>
-        <a class="link" href="https://wa.me/972539507416?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%A8%D7%98%D7%95%D7%9F%20%D7%9C%D7%AA%D7%9B%D7%A9%D7%99%D7%98%D7%99%D7%9D%20%D7%A9%D7%9C%D7%99." target="_blank" rel="noopener">או לכתוב לי בוואטסאפ</a>
+        <a class="btn" href="https://wa.me/972539507416?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%A8%D7%98%D7%95%D7%9F%20%D7%9C%D7%AA%D7%9B%D7%A9%D7%99%D7%98%D7%99%D7%9D%20%D7%A9%D7%9C%D7%99." target="_blank" rel="noopener">דברו איתי בוואטסאפ</a>
+        <a class="link" href="#works">לראות עבודות</a>
       </div>
     </div>
     <div class="reel">
-      <figure><video data-auto muted loop playsinline preload="metadata" poster="v/w22.jpg" src="v/w22.mp4" aria-label="סט ספיר על דוגמנית"></video><figcaption>סט ספיר על דוגמנית</figcaption></figure>
-      <figure><video data-auto muted loop playsinline preload="metadata" poster="v/w18.jpg" src="v/w18.mp4" aria-label="טבעת אופל באור רך"></video><figcaption>טבעת אופל באור רך</figcaption></figure>
-      <figure><video data-auto muted loop playsinline preload="metadata" poster="v/w24.jpg" src="v/w24.mp4" aria-label="זכוכית מגדלת ותכשיטי אמרלד"></video><figcaption>תכשיטי אמרלד</figcaption></figure>
+      <figure><video data-auto muted loop playsinline preload="metadata" poster="v/w22.jpg" src="v/w22.mp4" aria-label="סט ספיר על דוגמנית"></video></figure>
+      <figure><video data-auto muted loop playsinline preload="metadata" poster="v/w18.jpg" src="v/w18.mp4" aria-label="טבעת אופל באור רך"></video></figure>
+      <figure><video data-auto muted loop playsinline preload="metadata" poster="v/w24.jpg" src="v/w24.mp4" aria-label="זכוכית מגדלת ותכשיטי אמרלד"></video></figure>
     </div>
     <div class="motion-toggle"><button type="button" id="motion" aria-pressed="false">עצירת הסרטונים</button></div>
   </section>
 
-  <div class="strip">חדש: דוגמנית קבועה למותג שלכם, באותו פרצוף בכל הסרטונים.<a class="link" href="#models">לבחור דוגמנית</a></div>
+  <div class="strip">דוגמנית קבועה למותג שלכם, באותו פרצוף בכל הסרטונים, כלולה בכל חבילה.<a class="link" href="#models">לבחור דוגמנית</a></div>
 
   <section class="block dark" aria-labelledby="h-models">
     <div class="wrap feature">
@@ -259,7 +260,7 @@ dialog.lb[open] .lb-stage{animation:stIn 250ms var(--ease-out)}
         <p class="line">הלקוחה רואה איך זה נראה עליה.</p>
         <p class="sub">התכשיט שלכם על דוגמנית, בתאורה של קמפיין. בלי סטודיו, בלי יום צילום.</p>
         <div class="actions">
-          <button class="btn" type="button" data-filter="models">לכל סרטוני הדוגמניות</button>
+          <button class="link" type="button" data-filter="models">לכל סרטוני הדוגמניות</button>
           <button class="link" type="button" data-open="work-23">לראות דוגמה</button>
         </div>
       </div>
@@ -339,6 +340,7 @@ dialog.lb[open] .lb-stage{animation:stIn 250ms var(--ease-out)}
         <a class="btn" href="https://wa.me/972539507416?text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%A1%D7%A8%D7%98%D7%95%D7%9F%20%D7%9C%D7%AA%D7%9B%D7%A9%D7%99%D7%98%D7%99%D7%9D%20%D7%A9%D7%9C%D7%99." target="_blank" rel="noopener">דברו איתי בוואטסאפ</a>
         <a class="link" href="mailto:boostmedia2002@gmail.com">או במייל</a>
       </div>
+      <p class="contact">053-950-7416 · boostmedia2002@gmail.com</p>
     </div>
   </section>
 </main>
@@ -381,7 +383,7 @@ dialog.lb[open] .lb-stage{animation:stIn 250ms var(--ease-out)}
 
   /* header line + phone bar */
   var top=document.getElementById('top'),bar=document.getElementById('bar');
-  addEventListener('scroll',function(){var y=scrollY;top.classList.toggle('scrolled',y>8);bar.classList.toggle('show',y>innerHeight*.8);},{passive:true});
+  addEventListener('scroll',function(){var y=scrollY;top.classList.toggle('scrolled',y>8);},{passive:true});
 
   /* gallery */
   var grid=document.getElementById('grid'),more=document.getElementById('more'),filter='all',shown=12;
@@ -390,7 +392,7 @@ dialog.lb[open] .lb-stage{animation:stIn 250ms var(--ease-out)}
     grid.innerHTML='';
     list.slice(0,shown).forEach(function(i){
       var b=document.createElement('button');b.type='button';b.className='tile';b.dataset.id=i.id;
-      b.innerHTML='<span class="tile-media"><img loading="lazy" decoding="async" alt="" src="p/'+i.id+'.jpg"></span><span class="t"></span><span class="c"></span>';
+      b.innerHTML='<span class="tile-media"><img loading="lazy" decoding="async" width="300" height="430" sizes="(max-width:640px) 50vw, 25vw" src="p/'+i.id+'-s.webp" srcset="p/'+i.id+'-s.webp 300w, p/'+i.id+'.webp 600w"><span class="num"></span></span><span class="t"></span><span class="c"></span>';b.querySelector('img').alt='תמונה מתוך הסרטון '+i.t;b.querySelector('.num').textContent='#'+parseInt(i.id.slice(5),10);
       b.querySelector('.t').textContent=i.t;b.querySelector('.c').textContent=CAT[i.c];
       
       grid.appendChild(b);
@@ -409,7 +411,7 @@ dialog.lb[open] .lb-stage{animation:stIn 250ms var(--ease-out)}
 
   /* models rail */
   var rail=document.getElementById('rail');
-  MODELS.forEach(function(m){var b=document.createElement('button');b.type='button';b.innerHTML='<span class="ph"><img loading="lazy" decoding="async" alt="" src="'+m.img+'"></span><span></span>';b.lastChild.textContent=m.t;b.addEventListener('click',function(){openPhoto(m);});rail.appendChild(b);});
+  MODELS.forEach(function(m){var b=document.createElement('button');b.type='button';b.innerHTML='<span class="ph"><img loading="lazy" decoding="async" width="420" height="560" src="'+m.img+'"></span><span></span>';b.querySelector('img').alt=m.t+', דוגמנית';b.lastChild.textContent=m.t;b.addEventListener('click',function(){openPhoto(m);});rail.appendChild(b);});
 
   /* lightbox */
   var lb=document.getElementById('lb'),stage=document.getElementById('stage'),lbt=document.getElementById('lbt'),lbwa=document.getElementById('lbwa'),from=null;
@@ -417,7 +419,7 @@ dialog.lb[open] .lb-stage{animation:stIn 250ms var(--ease-out)}
   function show(){from=document.activeElement;document.querySelectorAll('video[data-auto]').forEach(function(v){v.pause();});lb.showModal();}
   function openVideo(id){
     var i=ITEMS.find(function(x){return x.id===id;});if(!i)return;clear();stage.classList.remove('photo');
-    var v=document.createElement('video');v.src='../videos/'+id+'.mp4';v.poster='p/'+id+'.jpg';v.controls=true;v.playsInline=true;v.autoplay=true;v.setAttribute('controlsList','nodownload noplaybackrate');v.disablePictureInPicture=true;
+    var v=document.createElement('video');v.src='v720/'+id+'.mp4';v.poster='p/'+id+'.webp';v.controls=true;v.playsInline=true;v.autoplay=true;v.setAttribute('controlsList','nodownload noplaybackrate');v.disablePictureInPicture=true;
     stage.prepend(v);lbt.textContent=i.t;lbwa.href=wa('היי, ראיתי באתר את "'+i.t+'" ('+id.replace('work-','#')+') ואני רוצה סרטון כזה לתכשיט שלי.');show();
   }
   function openPhoto(m){clear();stage.classList.add('photo');var im=document.createElement('img');im.src=m.img;im.alt=m.t+', דוגמנית';stage.prepend(im);lbt.textContent=m.t;lbwa.href=wa('היי, אני רוצה את '+m.t+' כדוגמנית קבועה למותג שלי.');show();}
