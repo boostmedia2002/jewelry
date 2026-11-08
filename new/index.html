@@ -411,7 +411,7 @@ dialog[open]{animation:fade 220ms var(--ease-out)}
   var lb=document.getElementById('lb'),stage=document.getElementById('stage'),lbId=null,lastFocus=null;
   function openVideo(id){var i=ITEMS.find(function(x){return x.id===id;});lbId=id;lastFocus=document.activeElement;
     stage.querySelectorAll('video').forEach(function(v){v.remove();});
-    var v=document.createElement('video');v.src='v720/'+id+'.mp4';v.poster='p/'+id+'.webp';v.controls=true;v.autoplay=true;v.playsInline=true;v.setAttribute('controlsList','nodownload noplaybackrate');v.disablePictureInPicture=true;stage.prepend(v);
+    var v=document.createElement('video');v.src=(i.src?'hd/':'../videos/')+id+'.mp4';v.preload='auto';v.poster='p/'+id+'.webp';v.controls=true;v.autoplay=true;v.playsInline=true;v.setAttribute('controlsList','nodownload noplaybackrate');v.disablePictureInPicture=true;stage.prepend(v);
     document.getElementById('lbT').textContent=numOf(id)+' · '+i.t+(i.src?' · צילום בסיס: '+i.src:'');render();lb.showModal();}
   document.getElementById('lbPick').addEventListener('click',function(){toggle(lbId);});
   lb.addEventListener('close',function(){stage.querySelectorAll('video').forEach(function(v){v.pause();v.remove();});lbId=null;if(lastFocus)lastFocus.focus({preventScroll:true});});
