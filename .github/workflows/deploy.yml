@@ -60,6 +60,17 @@ jobs:
           git add -A
           git commit -m "Batch 5: cafe, armchair (Bar), LOVE rings" || true
           git push
+      - name: Import batch 5 previews
+        if: hashFiles('videos/b5p.txt') == ''
+        run: |
+          curl -fsSL -o /tmp/b5p.zip "https://d2ol7oe51mr4n9.cloudfront.net/user_3KXs4GUTt01aKFgydxDk0mn9qU6/08c20894-2e70-4e24-8113-d262ec5e0ef6.zip"
+          unzip -o /tmp/b5p.zip -d .
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git pull --rebase || true
+          git add -A
+          git commit -m "Batch 5 previews" || true
+          git push
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
