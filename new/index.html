@@ -478,12 +478,13 @@ dialog::backdrop{transition:opacity 250ms var(--ease)}
   /* autoplay only visible videos, max 6 at once */
   /* phones get light video files and fewer previews at once; previews pause while the viewer is open */
   var small=matchMedia('(max-width:820px)').matches||!!(navigator.connection&&navigator.connection.saveData);
-  var MAXP=small?3:6,playing=new Set(),visible=new Set(),hold=false;
-  function tryPlay(v){if(hold||reduce)return;if(!v.src&&v.dataset.src)v.src=v.dataset.src;if(playing.size>=MAXP&&!playing.has(v))return;v.play().then(function(){v.classList.add('on');playing.add(v);}).catch(function(){});}
+  var MAXP=small?6:9,playing=new Set(),visible=new Set(),hold=false;
+  function tryPlay(v){if(hold||reduce||!visible.has(v))return;if(!v.src&&v.dataset.src)v.src=v.dataset.src;if(playing.has(v))return;if(playing.size>=MAXP)return;playing.add(v);v.play().then(function(){v.classList.add('on');if(!visible.has(v)||hold){v.pause();playing.delete(v);}}).catch(function(){playing.delete(v);});}
+  function refill(){visible.forEach(tryPlay);}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;
     if(e.isIntersecting){visible.add(v);tryPlay(v);}
-    else{visible.delete(v);v.pause();playing.delete(v);}});},{threshold:.35});
-  function holdPreviews(on){hold=on;if(on){playing.forEach(function(v){v.pause();});playing.clear();}else visible.forEach(tryPlay);}
+    else{visible.delete(v);v.pause();if(playing.delete(v))refill();}});},{threshold:.35});
+  function holdPreviews(on){hold=on;if(on){playing.forEach(function(v){v.pause();});playing.clear();}else refill();}
   document.querySelectorAll('video[data-auto]').forEach(function(v){io.observe(v);});
 
   /* gallery */
