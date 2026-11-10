@@ -82,6 +82,17 @@ jobs:
           git add -A
           git commit -m "Batch 6: newspaper hands (1:1 + cinematic)" || true
           git push
+      - name: Import batch 5+6 into new page
+        if: hashFiles('videos/b6n.txt') == ''
+        run: |
+          curl -fsSL -o /tmp/b6n.zip "https://d2ol7oe51mr4n9.cloudfront.net/user_3KXs4GUTt01aKFgydxDk0mn9qU6/4a4a27f1-829d-4b26-8952-308b6465669f.zip"
+          unzip -o /tmp/b6n.zip -d .
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git pull --rebase || true
+          git add -A
+          git commit -m "new/: add works 57-61 (cafe, armchair, LOVE, newspaper x2)" || true
+          git push
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
