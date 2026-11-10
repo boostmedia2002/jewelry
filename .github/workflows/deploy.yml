@@ -71,6 +71,17 @@ jobs:
           git add -A
           git commit -m "Batch 5 previews" || true
           git push
+      - name: Import batch 6 videos
+        if: hashFiles('videos/b6.txt') == ''
+        run: |
+          curl -fsSL -o /tmp/b6.zip "https://d2ol7oe51mr4n9.cloudfront.net/user_3KXs4GUTt01aKFgydxDk0mn9qU6/40203ee1-9329-4066-9471-bd7b97241410.zip"
+          unzip -o /tmp/b6.zip -d .
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git pull --rebase || true
+          git add -A
+          git commit -m "Batch 6: newspaper hands (1:1 + cinematic)" || true
+          git push
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
