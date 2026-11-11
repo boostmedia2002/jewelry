@@ -328,12 +328,23 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
 .help-in .btn{width:100%}
 .help-in .btn svg{width:22px;height:22px;flex:none}
 .help-in .x{position:absolute;top:8px;inset-inline-end:8px;width:44px;height:44px;border:0;background:none;font-size:1.6rem;line-height:1;color:var(--muted);cursor:pointer;border-radius:50%}
+
+/* WhatsApp cues */
+.helpbar .helpnum,.helpcard .helpnum{background:var(--wa);color:#fff}
+.helpnum svg{width:20px;height:20px}
+.helpcard .helpnum svg{width:24px;height:24px}
+.wafab{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:35;display:inline-flex;align-items:center;gap:8px;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;font-weight:600;font-size:1rem;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.22);transition:transform 160ms var(--ease),bottom 300ms var(--ease),background-color 160ms var(--ease)}
+.wafab svg{width:26px;height:26px;flex:none}
+.wafab:active{transform:scale(.97)}
+@media (hover:hover){.wafab:hover{background:var(--wa-press)}}
+.cart.show~.wafab{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
+.wafab span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
 </head>
 <body>
 <a class="skip" href="#gallery">דילוג לקטלוג הסרטונים</a>
 
-<button class="helpbar" type="button" data-help aria-haspopup="dialog"><b>יש לכם אמא ואבא</b><span class="sub">שאלה או בעיה? מדברים איתי ישירות</span><span class="helpnum"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg>055-6677-843</span></button>
+<button class="helpbar" type="button" data-help aria-haspopup="dialog"><b>יש לכם אמא ואבא</b><span class="sub">לוחצים על המספר ומדברים איתי בוואטסאפ או בטלפון</span><span class="helpnum"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>055-6677-843</span></button>
 
 <header class="top">
   <div class="wrap">
@@ -456,7 +467,7 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
         <details name="faq"><summary>איך משלמים?</summary><p>אין תשלום באתר. אחרי שתשלחו את ההזמנה נדבר בוואטסאפ על המחיר ועל דרך התשלום.</p></details>
         <details name="faq"><summary>כמה תיקונים אפשר לבקש?</summary><p>עד 2 תיקונים קטנים לכל סרטון, כל עוד הם לא משנים את הרעיון של הסרטון.</p></details>
       </div>
-      <button class="helpcard" type="button" data-help aria-haspopup="dialog"><span><b>יש לכם אמא ואבא</b><span class="sub">לא מצאתם תשובה? אני זמין בוואטסאפ ובטלפון, לפני ההזמנה וגם אחריה.</span></span><span class="helpnum"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg>055-6677-843</span></button>
+      <button class="helpcard" type="button" data-help aria-haspopup="dialog"><span><b>יש לכם אמא ואבא</b><span class="sub">לא מצאתם תשובה? לחצו על המספר ושלחו לי הודעה בוואטסאפ, או התקשרו.</span></span><span class="helpnum"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>055-6677-843</span></button>
     </div>
   </section>
 </main>
@@ -467,7 +478,7 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
       <h2 id="h-end">הסרטון הראשון שלכם מוכן תוך 2 ימי עסקים</h2>
       <p>בוחרים סרטון, מעלים תמונה של המוצר ושולחים. אין תשלום באתר.</p>
       <a class="btn gold big" href="#gallery">בחירת סרטון <span class="arr" aria-hidden="true">←</span></a>
-      <button class="helpcard" type="button" data-help aria-haspopup="dialog"><span><b>יש לכם אמא ואבא</b><span class="sub">נתקעתם או רוצים להתייעץ? וואטסאפ או טלפון, מה שנוח לכם.</span></span><span class="helpnum"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg>055-6677-843</span></button>
+      <button class="helpcard" type="button" data-help aria-haspopup="dialog"><span><b>יש לכם אמא ואבא</b><span class="sub">נתקעתם או רוצים להתייעץ? לחצו על המספר ושלחו לי הודעה בוואטסאפ, או התקשרו.</span></span><span class="helpnum"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>055-6677-843</span></button>
     </div>
     <div class="cols">
       <div><span class="mark" aria-hidden="true">BOOST <i>MEDIA</i></span><p>סרטוני פרסום ותמונות למוצרים של עסקים. © BOOST MEDIA · חלק מצילומי הבסיס באדיבות <a href="https://pixabay.com" rel="noopener" style="display:inline;min-height:0">Pixabay</a></p></div>
@@ -482,6 +493,7 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
   <button class="btn" type="button" id="cartGo">המשך להזמנה ←</button>
 </div>
 
+<a class="wafab" href="https://wa.me/972556677843?text=%D7%94%D7%99%D7%99%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A9%D7%90%D7%9C%D7%94%20%D7%A2%D7%9C%20%D7%94%D7%A1%D7%A8%D7%98%D7%95%D7%A0%D7%99%D7%9D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span>שאלה? כתבו לי בוואטסאפ</span></a>
 <dialog class="lb" id="lb" aria-label="צפייה בסרטון">
   <button class="x" type="button" data-close aria-label="סגירה">×</button>
   <div class="lb-in">
