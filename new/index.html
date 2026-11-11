@@ -13,7 +13,9 @@
 <meta name="robots" content="noindex">
 <meta property="og:title" content="BOOST MEDIA | סרטוני פרסום ותמונות למוצר שלכם">
 <meta property="og:description" content="בוחרים סרטון, שולחים תמונה של המוצר בוואטסאפ, ותוך 2 ימי עסקים הוא מוכן.">
-<meta property="og:image" content="https://boostmedia2002.github.io/jewelry/images/og.jpg">
+<meta property="og:image" content="https://boostmedia2002.github.io/jewelry/new/og.jpg?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Heebo:wght@400..700&display=swap" rel="stylesheet">
@@ -660,7 +662,7 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
   document.getElementById('mmZoom').addEventListener('click',function(){mm.close();if(!mmCur)return;document.getElementById('mzImg').src=mmCur.full;document.getElementById('mzImg').alt=mmCur.m.t;document.getElementById('mzT').textContent=mmCur.m.t;mz.showModal();});
   [mm,mz].forEach(function(d){d.addEventListener('click',function(e){if(e.target===d)d.close();});});
   mz.querySelector('.mz-stage').addEventListener('click',function(e){if(e.target.tagName!=='IMG')mz.close();});
-  document.getElementById('addImages').addEventListener('click',function(){images=!images;render();});
+  document.getElementById('addImages').addEventListener('click',function(){images=!images;if(!images)delete prod.images;render();});
   document.getElementById('sendIdea').addEventListener('click',function(){var t=document.getElementById('ideaText').value.trim();
     goWA(wa('היי, יש לי רעיון לסרטון (הפקה מקורית):\n'+(t||'אשמח לספר בשיחה')));});
 
@@ -698,7 +700,10 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
         inp.addEventListener('change',function(){if(inp.files[0]){prod[id]=inp.files[0];fillOrder();}});
         d.querySelector('.rm').addEventListener('click',function(){toggle(id);});
         s1.appendChild(d);});
-      if(images){var d=document.createElement('div');d.className='oi';d.innerHTML='<img class="p" alt="" src="m/cream-s.webp" width="76" height="108"><div><div class="t">10 תמונות קמפיין</div><div class="hint">200 ₪</div><div class="row"><button class="rm" type="button">הסרה</button></div></div>';d.querySelector('.rm').addEventListener('click',function(){images=false;render();});s1.appendChild(d);}
+      if(images){var d=document.createElement('div');d.className='oi';d.innerHTML='<img class="p" alt="" src="m/cream-s.webp" width="76" height="108"><div><div class="t">10 תמונות קמפיין</div><div class="hint">200 ₪</div><div class="row"><label class="up"><input type="file" accept="image/*" data-id="images" aria-label="העלאת תמונה של המוצר לתמונות הקמפיין"><span>העלאת תמונה של המוצר</span></label><button class="rm" type="button">הסרה</button></div></div>';
+        if(prod.images){var pim=document.createElement('img');pim.className='prod';pim.alt='המוצר שהעליתם';pim.src=URL.createObjectURL(prod.images);d.querySelector('.row').prepend(pim);d.querySelector('.up span').textContent='החלפת התמונה';}
+        (function(inp){inp.addEventListener('change',function(){if(inp.files[0]){prod.images=inp.files[0];fillOrder();}});})(d.querySelector('input'));
+        d.querySelector('.rm').addEventListener('click',function(){images=false;delete prod.images;render();});s1.appendChild(d);}
       var m=document.createElement('p');m.className='hint';m.textContent=model?('דוגמנית: '+model+'.'):'לא בחרתם דוגמנית. זה בסדר, אני אבחר.';s1.appendChild(m);
       var nl=document.createElement('label');nl.className='l';nl.htmlFor='oNote';nl.style.cssText='display:block;margin:18px 0 8px';nl.innerHTML='מה חשוב שאדע? <span class="hint">(לא חובה)</span>';
       var nt=document.createElement('textarea');nt.id='oNote';nt.rows=3;nt.style.minHeight='96px';nt.placeholder='למשל: שם המוצר, צבעים, טקסט שיופיע בסרטון';nt.value=note;nt.addEventListener('input',function(){note=nt.value;save();});s1.appendChild(nl);s1.appendChild(nt);
@@ -716,15 +721,15 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
     var L=['*הזמנה חדשה מהאתר · BOOST MEDIA*','מספר הזמנה: '+ordNo,'עסק: '+(nm||'לא צוין')];
     if(n){L.push('','*סרטונים ('+n+'):*');sel.forEach(function(id,k){var i=find(id);
       L.push((k+1)+'. סרטון '+numOf(id)+' · '+i.t+' · '+up(id)+' ₪','   תמונת מוצר: '+(prod[id]?'שולח/ת בהודעה נפרדת':'עדיין לא צירפתי, אשלח בשיחה'),'   לצפייה: '+BASE+'?v='+numOf(id));});}
-    if(images||model)L.push('');if(images)L.push('10 תמונות קמפיין · '+PI+' ₪');if(model)L.push('דוגמן/ית: '+model);
+    if(images)L.push('','*תמונות:*','1. 10 תמונות קמפיין · '+PI+' ₪','   תמונת מוצר: '+(prod.images?'שולח/ת בהודעה נפרדת':'עדיין לא צירפתי, אשלח בשיחה'),'   לצפייה: '+BASE+'#extras');if(model)L.push('','דוגמן/ית: '+model);
     if(note.trim())L.push('','*הערות:*',note.trim());
     if(n||images)L.push('','*מחיר: '+total()+' ₪*'+(n&&images?' (סרטונים '+vidsTotal()+' ₪ + תמונות '+PI+' ₪)':''));
     L.push('אשמח לקבל פרטי תשלום.');
     return L.join('\n');}
   function doSend(){document.getElementById('oMiss').hidden=true;goWA(wa(orderText()));if(Object.keys(prod).length)document.getElementById('oDone').classList.add('show');}
-  function missing(){return sel.filter(function(id){return !prod[id];});}
+  function missing(){return sel.filter(function(id){return !prod[id];}).concat(images&&!prod.images?['images']:[]);}
   document.getElementById('oSend').addEventListener('click',function(){var ms=missing(),bx=document.getElementById('oMiss');
-    if(ms.length&&bx.hidden){document.getElementById('oMissT').textContent=ms.length===1?'לא העליתם תמונה של המוצר לסרטון '+numOf(ms[0])+'.':'לא העליתם תמונה של המוצר ל-'+ms.length+' סרטונים.';bx.hidden=false;bx.scrollIntoView({block:'nearest'});return;}
+    if(ms.length&&bx.hidden){document.getElementById('oMissT').textContent=ms.length===1?(ms[0]==='images'?'לא העליתם תמונה של המוצר לתמונות הקמפיין.':'לא העליתם תמונה של המוצר לסרטון '+numOf(ms[0])+'.'):'לא העליתם תמונה של המוצר ל-'+ms.length+' פריטים בהזמנה.';bx.hidden=false;bx.scrollIntoView({block:'nearest'});return;}
     doSend();});
   document.getElementById('oMissSend').addEventListener('click',doSend);
   document.getElementById('oMissAdd').addEventListener('click',function(){var ms=missing();document.getElementById('oMiss').hidden=true;var inp=ms.length&&ob.querySelector('input[data-id="'+ms[0]+'"]');if(inp){inp.scrollIntoView({block:'center'});inp.click();}});
@@ -733,14 +738,14 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
   function loadImg(src){return new Promise(function(res,rej){var im=new Image();im.onload=function(){res(im)};im.onerror=rej;im.src=src;});}
   function cover(ctx,im,x,y,w,h){var r=Math.max(w/im.width,h/im.height),sw=w/r,sh=h/r;ctx.drawImage(im,(im.width-sw)/2,(im.height-sh)/2,sw,sh,x,y,w,h);}
   async function makeCard(){
-    var rows=sel.filter(function(id){return prod[id];});var W=1080,RH=640,H=160+rows.length*RH+40;
+    var rows=sel.filter(function(id){return prod[id];});if(images&&prod.images)rows.push('images');var W=1080,RH=640,H=160+rows.length*RH+40;
     var cv=document.createElement('canvas');cv.width=W;cv.height=H;var x=cv.getContext('2d');
     x.fillStyle='#FBF9F4';x.fillRect(0,0,W,H);x.direction='rtl';x.textAlign='right';x.fillStyle='#1A1814';x.font='800 44px Heebo, Arial';x.fillText('הזמנה · BOOST MEDIA',W-40,80);
-    x.fillStyle='#5B5650';x.font='400 28px Assistant, Arial';var nm=document.getElementById('oName').value.trim();x.fillText((ordNo?ordNo+' · ':'')+(nm?nm+' · ':'')+vids(sel.length)+' · '+total()+' ₪',W-40,124);
-    for(var k=0;k<rows.length;k++){var id=rows[k],i=find(id),y=160+k*RH;
-      var a=await loadImg('p/'+id+'.webp'),b=await loadImg(URL.createObjectURL(prod[id]));
+    x.fillStyle='#5B5650';x.font='400 28px Assistant, Arial';var nm=document.getElementById('oName').value.trim();x.fillText((ordNo?ordNo+' · ':'')+(nm?nm+' · ':'')+(sel.length?vids(sel.length)+' · ':'')+total()+' ₪',W-40,124);
+    for(var k=0;k<rows.length;k++){var id=rows[k],isP=id==='images',i=isP?{t:'10 תמונות קמפיין'}:find(id),y=160+k*RH;
+      var a=await loadImg(isP?'m/cream.webp':'p/'+id+'.webp'),b=await loadImg(URL.createObjectURL(prod[id]));
       cover(x,a,W-40-380,y,380,560);cover(x,b,40,y,600,560);
-      x.fillStyle='#1A1814';x.font='800 32px Heebo, Arial';x.fillText('סרטון '+numOf(id)+' · '+up(id)+' ₪',W-40,y+600);x.textAlign='left';x.fillStyle='#5B5650';x.font='400 26px Assistant, Arial';x.fillText('המוצר',40,y+600);x.textAlign='right';x.fillText(i.t,W-330,y+600);}
+      x.fillStyle='#1A1814';x.font='800 32px Heebo, Arial';x.fillText(isP?'תמונות · '+PI+' ₪':'סרטון '+numOf(id)+' · '+up(id)+' ₪',W-40,y+600);x.textAlign='left';x.fillStyle='#5B5650';x.font='400 26px Assistant, Arial';x.fillText('המוצר',40,y+600);x.textAlign='right';x.fillText(i.t,W-330,y+600);}
     return new Promise(function(res){cv.toBlob(function(bl){res(new File([bl],'boost-order.jpg',{type:'image/jpeg'}));},'image/jpeg',.88);});
   }
   document.getElementById('oShare').addEventListener('click',async function(){
