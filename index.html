@@ -195,6 +195,12 @@ p{margin:0}
 .thumbs span{display:block;aspect-ratio:2/3;border-radius:12px;overflow:hidden;background:var(--surface)}
 .thumbs img{width:100%;height:100%;object-fit:cover;transition:transform 500ms var(--ease)}
 @media (hover:hover){.thumbs span:hover img{transform:scale(1.03)}}
+.mm{border:0;border-radius:18px;padding:0;max-width:min(320px,calc(100% - 32px));width:100%;background:#fff;color:#111;box-shadow:0 20px 60px rgba(0,0,0,.35)}.mm::backdrop{background:rgba(0,0,0,.5)}
+.mm-in{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:18px;text-align:center}.mm-th{width:96px;height:128px;object-fit:cover;border-radius:12px;align-self:center}.mm-name{font-size:20px;font-weight:700}
+.mm-b{appearance:none;cursor:pointer;min-height:48px;border-radius:999px;border:1px solid #111;background:#fff;color:#111;font:inherit;font-size:16px;font-weight:700}.mm-main{background:#111;color:#fff}.mm-x{appearance:none;background:none;border:0;color:#666;font:inherit;font-size:14px;text-decoration:underline;cursor:pointer;padding:4px}
+.mz{border:0;padding:0;margin:0;width:100vw;height:100dvh;max-width:none;max-height:none;background:rgba(0,0,0,.94)}.mz::backdrop{background:rgba(0,0,0,.94)}
+.mz-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:max(64px,env(safe-area-inset-top,0px)) 16px max(24px,env(safe-area-inset-bottom,0px))}.mz-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px}
+.mz-bar{position:absolute;top:max(12px,env(safe-area-inset-top,0px));left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;color:#fff;font-size:18px;font-weight:700}.mz-x{appearance:none;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:20px;cursor:pointer}
 .mfilt{display:flex;gap:8px;margin:0 0 12px}.mfilt button{appearance:none;cursor:pointer;min-height:36px;padding:0 16px;border-radius:999px;border:1px solid var(--line,#d9d6cf);background:transparent;color:inherit;font:inherit;font-size:14px;font-weight:600}.mfilt button[aria-pressed=true]{background:var(--ink,#111);color:#fff;border-color:var(--ink,#111)}.model.mhide{display:none!important}
 .models{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 @media (max-width:640px){.models{grid-template-columns:repeat(3,1fr)}}
@@ -451,6 +457,8 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
   </div>
 </dialog>
 
+<dialog class="mm" id="mm" aria-labelledby="mmName"><div class="mm-in"><img id="mmImg" alt="" class="mm-th"><div class="mm-name" id="mmName"></div><button type="button" class="mm-b mm-main" id="mmPick">בחירה</button><button type="button" class="mm-b" id="mmZoom">הגדלת התמונה</button><button type="button" class="mm-x" data-close>סגירה</button></div></dialog>
+<dialog class="mz" id="mz" aria-labelledby="mzT"><div class="mz-stage"><img id="mzImg" alt=""></div><div class="mz-bar"><span id="mzT"></span><button type="button" class="mz-x" data-close aria-label="סגירה">✕</button></div></dialog>
 <dialog class="order" id="order" aria-labelledby="h-o">
   <header>
     <h2 id="h-o">ההזמנה שלי</h2>
@@ -546,9 +554,16 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
   MODELS.forEach(function(m){var b=document.createElement('button');b.type='button';b.className='model';b.dataset.g=m.g||'f';b.setAttribute('aria-pressed','false');
     b.innerHTML='<span class="ph"><img loading="lazy" decoding="async" width="420" height="560" alt=""></span><span class="n"></span>';
     b.querySelector('img').src=m.img;b.querySelector('.n').textContent=m.t;b.setAttribute('aria-label','בחירת דמות: '+m.t);
-    b.addEventListener('click',function(){model=model===m.t?null:m.t;mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',x===b&&model===m.t);});render();});
+    b.addEventListener('click',function(){openMM(m,b);});
     mg.appendChild(b);});
 
+  var mm=document.getElementById('mm'),mz=document.getElementById('mz'),mmCur=null;
+  function pickModel(m,b){model=model===m.t?null:m.t;mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',x===b&&model===m.t);});render();}
+  function openMM(m,b){mmCur={m:m,b:b};document.getElementById('mmName').textContent=m.t;document.getElementById('mmImg').src=m.img;document.getElementById('mmPick').textContent=model===m.t?'ביטול הבחירה':'בחירה';mm.showModal();}
+  document.getElementById('mmPick').addEventListener('click',function(){mm.close();if(mmCur)pickModel(mmCur.m,mmCur.b);});
+  document.getElementById('mmZoom').addEventListener('click',function(){mm.close();if(!mmCur)return;document.getElementById('mzImg').src=mmCur.m.img;document.getElementById('mzImg').alt=mmCur.m.t;document.getElementById('mzT').textContent=mmCur.m.t;mz.showModal();});
+  [mm,mz].forEach(function(d){d.addEventListener('click',function(e){if(e.target===d)d.close();});});
+  mz.querySelector('.mz-stage').addEventListener('click',function(e){if(e.target.tagName!=='IMG')mz.close();});
   document.getElementById('addImages').addEventListener('click',function(){images=!images;render();});
   document.getElementById('sendIdea').addEventListener('click',function(){var t=document.getElementById('ideaText').value.trim();
     open(wa('היי, יש לי רעיון לסרטון (הפקה מקורית):\n'+(t||'אשמח לספר בשיחה')),'_blank','noopener');});
