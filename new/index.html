@@ -202,7 +202,7 @@ p{margin:0}
 .mz{border:0;padding:0;margin:0;width:100vw;height:100dvh;max-width:none;max-height:none;background:rgba(0,0,0,.94)}.mz::backdrop{background:rgba(0,0,0,.94)}
 .mz-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:max(64px,env(safe-area-inset-top,0px)) 16px max(24px,env(safe-area-inset-bottom,0px))}.mz-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px}
 .mz-bar{position:absolute;top:max(12px,env(safe-area-inset-top,0px));left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;color:#fff;font-size:18px;font-weight:700}.mz-x{appearance:none;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:20px;cursor:pointer}
-.mx-grid{margin-top:10px}.mx-grid[hidden]{display:none!important}
+.mx-grid{margin-top:0}.mx-grid[hidden]{display:none!important}
 .mfilt{display:flex;gap:8px;margin:0 0 12px}.mfilt button{appearance:none;cursor:pointer;min-height:36px;padding:0 16px;border-radius:999px;border:1px solid var(--line,#d9d6cf);background:transparent;color:inherit;font:inherit;font-size:14px;font-weight:600}.mfilt button[aria-pressed=true]{background:var(--ink,#111);color:#fff;border-color:var(--ink,#111)}.model.mhide{display:none!important}
 .models{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 @media (max-width:640px){.models{grid-template-columns:repeat(3,1fr)}}
@@ -560,12 +560,13 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
     mg.appendChild(b);});
 
   var mx=document.getElementById('modelsMore');
-  MODELS.forEach(function(m){(m.x||[]).forEach(function(k){var b=document.createElement('button');b.type='button';b.className='model';b.dataset.g=m.g||'f';
-    var th='../images/models/more/'+k+'-s.webp',fu='../images/models/more/'+k+'.webp';
+  var allList=[];MODELS.forEach(function(m){allList.push({m:m,th:m.img,fu:m.img,main:1});});MODELS.forEach(function(m){(m.x||[]).forEach(function(k){allList.push({m:m,th:'../images/models/more/'+k+'-s.webp',fu:'../images/models/more/'+k+'.webp'});});});
+  allList.forEach(function(it){var m=it.m;(function(){var b=document.createElement('button');b.type='button';b.className='model';b.dataset.g=m.g||'f';
+    var th=it.th,fu=it.fu;
     b.innerHTML='<span class="ph"><img loading="lazy" decoding="async" width="480" height="640" alt=""></span><span class="n"></span>';
-    b.querySelector('img').src=th;b.querySelector('.n').textContent=m.t;b.setAttribute('aria-label','תמונה נוספת: '+m.t);
+    b.querySelector('img').src=th;b.querySelector('.n').textContent=m.t;b.setAttribute('aria-label','תמונה: '+m.t);
     b.addEventListener('click',function(){var main=null;mg.querySelectorAll('.model').forEach(function(x){if(x.querySelector('.n').textContent===m.t)main=x;});openMM(m,main||b,th,fu);});
-    mx.appendChild(b);});});
+    mx.appendChild(b);})();});
   var mm=document.getElementById('mm'),mz=document.getElementById('mz'),mmCur=null;
   function pickModel(m,b){model=model===m.t?null:m.t;mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',x===b&&model===m.t);});render();}
   function openMM(m,b,th,full){mmCur={m:m,b:b,full:full||m.img};document.getElementById('mmName').textContent=m.t;document.getElementById('mmImg').src=th||m.img;document.getElementById('mmPick').textContent=model===m.t?'ביטול הבחירה':'בחירה';mm.showModal();}
@@ -652,7 +653,7 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
   render();
 })();
 /* model filter */
-  (function(){var fb=document.querySelectorAll('.mfilt button');fb.forEach(function(x){x.addEventListener('click',function(){var on=x.getAttribute('aria-pressed')!=='true';fb.forEach(function(y){y.setAttribute('aria-pressed','false')});if(on)x.setAttribute('aria-pressed','true');var f=on?x.dataset.f:null;document.getElementById('modelsMore').hidden=f!=='all';document.querySelectorAll('#modelsGrid .model').forEach(function(m){m.classList.toggle('mhide',!!f&&f!=='all'&&m.dataset.g!==f)});});});})();
+  (function(){var fb=document.querySelectorAll('.mfilt button');fb.forEach(function(x){x.addEventListener('click',function(){var on=x.getAttribute('aria-pressed')!=='true';fb.forEach(function(y){y.setAttribute('aria-pressed','false')});if(on)x.setAttribute('aria-pressed','true');var f=on?x.dataset.f:null;document.getElementById('modelsMore').hidden=f!=='all';document.getElementById('modelsGrid').style.display=f==='all'?'none':'';document.querySelectorAll('#modelsGrid .model').forEach(function(m){m.classList.toggle('mhide',!!f&&f!=='all'&&m.dataset.g!==f)});});});})();
   </script>
 <script type="module">import {mountAll} from "./assets/moments/moments.js";mountAll();</script>
 </body>
