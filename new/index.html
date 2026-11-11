@@ -383,6 +383,7 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
 .ideac:active{transform:scale(.98)}
 .ideac[aria-pressed=true]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 @media (hover:hover){.ideac:hover{border-color:var(--ink)}}
+#ideasToggle[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -806,16 +807,9 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
     tg.addEventListener('click',function(){var open=bd.hidden;bd.hidden=!open;tg.setAttribute('aria-expanded',open);document.getElementById('modelsToggleT').textContent=open?'סגירת הדוגמניות והדוגמנים':'לכל הדוגמניות והדוגמנים';if(!open)document.getElementById('models').scrollIntoView({block:'nearest'});});})();
   /* ideas for productions: edit this list to add, remove or reword ideas. t = title, p = the prompt that goes into the idea box */
   var IDEAS=[
-    {t:'המוצר נופל למים',p:'המוצר שלי נופל לתוך מים צלולים בהילוך איטי, עם התזה גדולה, ונעצר מול המצלמה.'},
-    {t:'פתיחת קופסה',p:'ידיים פותחות קופסה יפה, והמוצר שלי מתגלה לאט באור חם.'},
-    {t:'לפני ואחרי',p:'מסך מפוצל: בצד אחד בלי המוצר שלי, ובצד השני איתו. המעבר בין הצדדים חד ומהיר.'},
-    {t:'המוצר מרחף',p:'המוצר שלי מרחף ומסתובב לאט על רקע נקי, והאור עובר עליו ומבליט את הפרטים.'},
-    {t:'שלט חוצות ענק',p:'המוצר שלי מופיע בגודל ענק על שלט חוצות ברחוב סואן, ואנשים עוצרים להסתכל.'},
-    {t:'מהחומרים למוצר',p:'חומרי הגלם של המוצר שלי עפים באוויר ומתחברים יחד למוצר המוגמר.'},
-    {t:'יום בחיים',p:'דוגמנית משתמשת במוצר שלי ברגעים קצרים לאורך היום: בבוקר, בעבודה ובערב.'},
-    {t:'ספירה לאחור להשקה',p:'ספירה לאחור 3, 2, 1 עם הבזקים קצרים של המוצר שלי, ובסוף המוצר המלא ושם העסק.'}
   ];
   (function(){var tg=document.getElementById('ideasToggle'),bd=document.getElementById('ideasBody'),ta=document.getElementById('ideaText');
+    if(!IDEAS.length){tg.hidden=true;return;}
     IDEAS.forEach(function(it){var b=document.createElement('button');b.type='button';b.className='ideac';var h=document.createElement('b');h.textContent=it.t;var q=document.createElement('span');q.textContent=it.p;var u=document.createElement('i');u.textContent='להשתמש ברעיון הזה';b.appendChild(h);b.appendChild(q);b.appendChild(u);
       b.addEventListener('click',function(){ta.value=it.p;bd.querySelectorAll('.ideac').forEach(function(x){x.setAttribute('aria-pressed',x===b);});ta.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});});b.setAttribute('aria-pressed','false');bd.appendChild(b);});
     tg.addEventListener('click',function(){var open=bd.hidden;bd.hidden=!open;tg.setAttribute('aria-expanded',open);document.getElementById('ideasToggleT').textContent=open?'סגירת הרעיונות':'רעיונות להפקה';});})();
