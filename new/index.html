@@ -361,6 +361,13 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
 .px::after{content:"";position:absolute;inset:-8px}
 .copyp{width:100%;margin-top:14px;min-height:48px}
 @media (max-width:640px){.order{overflow-y:auto;overscroll-behavior:contain}.order .body{overflow:visible;flex:none}.order>header{flex:none;position:sticky;top:0;z-index:2;background:var(--card)}.order footer{max-height:none;overflow:visible;flex:none}}
+
+.mtoggle{width:100%;justify-content:space-between;margin-top:4px}
+.mtoggle svg{width:22px;height:22px;flex:none;transition:transform 220ms var(--ease)}
+.mtoggle[aria-expanded=true] svg{transform:rotate(180deg)}
+#modelsBody{margin-top:16px}
+#modelsBody[hidden],#modelPicked[hidden]{display:none}
+#modelPicked{margin-top:10px;font-weight:600;color:var(--ink)}
 </style>
 </head>
 <body>
@@ -466,7 +473,9 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
           <span class="kicker">דוגמנית או דוגמן קבועים</span>
           <h3 id="h-m">אותה דוגמנית או דוגמן בכל הסרטונים שלכם</h3>
           <p>בחרו אחת, והיא תופיע בכל מה שתזמינו. אפשר גם לדלג, ואני אבחר.</p>
-          <div class="mfilt" role="group" aria-label="סינון"><button type="button" data-f="all" aria-pressed="false">הכל</button><button type="button" data-f="f" aria-pressed="false">דוגמניות</button><button type="button" data-f="m" aria-pressed="false">דוגמנים</button></div><div class="models" id="modelsGrid"></div><div class="models mx-grid" id="modelsMore" hidden></div>
+          <button class="btn line mtoggle" type="button" id="modelsToggle" aria-expanded="false" aria-controls="modelsBody"><span id="modelsToggleT">לכל הדוגמניות והדוגמנים</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <p class="hint" id="modelPicked" hidden></p>
+          <div id="modelsBody" hidden><div class="mfilt" role="group" aria-label="סינון"><button type="button" data-f="all" aria-pressed="false">הכל</button><button type="button" data-f="f" aria-pressed="false">דוגמניות</button><button type="button" data-f="m" aria-pressed="false">דוגמנים</button></div><div class="models" id="modelsGrid"></div><div class="models mx-grid" id="modelsMore" hidden></div></div>
         </article>
         <article class="box2" id="idea" aria-labelledby="h-idea">
           <span class="kicker">הפקה מקורית</span>
@@ -641,6 +650,7 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
     document.getElementById('cartTotal').textContent='בחרתם '+parts.join(' ו-')+(cnt?' · '+total()+' ₪':'');
     document.getElementById('cartLine').textContent=n>=10?'מחיר מבצע: 50 ₪ לסרטון':(vidsTotal()>500?'10 סרטונים עולים רק 500 ₪':(model?('דוגמנית: '+model):'אפשר להמשיך לבחור'));
     document.getElementById('cart').classList.toggle('show',cnt>0);
+    var mp=document.getElementById('modelPicked');mp.hidden=!model;mp.textContent=model?('בחרתם: '+model):'';
     var ai=document.getElementById('addImages');ai.textContent=images?'✓ נוסף להזמנה':'הוספה להזמנה · '+PI+' ₪';ai.setAttribute('aria-pressed',images);
     var lp=document.getElementById('lbPick');if(lbId){var on=sel.indexOf(lbId)>=0;lp.textContent=on?'✓ נבחר':'בחירה · '+vp(lbId)+' ₪';}
     if(od.open)fillOrder();
@@ -775,6 +785,8 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
   var topEl=document.querySelector('.top');
   function onS(){topEl.classList.toggle('scrolled',scrollY>8);}addEventListener('scroll',onS,{passive:true});onS();
   document.querySelectorAll('[data-play]').forEach(function(b){b.addEventListener('click',function(){openVideo(b.dataset.play);});});
+  (function(){var tg=document.getElementById('modelsToggle'),bd=document.getElementById('modelsBody');
+    tg.addEventListener('click',function(){var open=bd.hidden;bd.hidden=!open;tg.setAttribute('aria-expanded',open);document.getElementById('modelsToggleT').textContent=open?'סגירת הדוגמניות והדוגמנים':'לכל הדוגמניות והדוגמנים';if(!open)document.getElementById('models').scrollIntoView({block:'nearest'});});})();
   setFilter('all');
   try{var sv=JSON.parse(localStorage.getItem('bm-order')||'null');if(sv&&Date.now()-sv.t<864e5){sel=(sv.s||[]).filter(find);images=!!sv.i;model=sv.m||null;note=sv.o||'';ordNo=sv.k||'';document.getElementById('oName').value=sv.n||'';
     mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',x.querySelector('.n').textContent===model);});render();}}catch(e){}
