@@ -716,9 +716,9 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
     var L=['*הזמנה חדשה מהאתר · BOOST MEDIA*','מספר הזמנה: '+ordNo,'עסק: '+(nm||'לא צוין')];
     if(n){L.push('','*סרטונים ('+n+'):*');sel.forEach(function(id,k){var i=find(id);
       L.push((k+1)+'. סרטון '+numOf(id)+' · '+i.t+' · '+up(id)+' ₪','   תמונת מוצר: '+(prod[id]?'שולח/ת בהודעה נפרדת':'עדיין לא צירפתי, אשלח בשיחה'),'   לצפייה: '+BASE+'?v='+numOf(id));});}
-    L.push('','*תוספות:*','• 10 תמונות קמפיין: '+(images?'כן · '+PI+' ₪':'לא'),'• דוגמן/ית: '+(model||'לא בחרתי, אשמח שתבחרו'));
+    if(images||model)L.push('');if(images)L.push('10 תמונות קמפיין · '+PI+' ₪');if(model)L.push('דוגמן/ית: '+model);
     if(note.trim())L.push('','*הערות:*',note.trim());
-    if(n||images)L.push('','*מחיר: '+total()+' ₪*'+(n&&images?' (סרטונים '+vidsTotal()+' ₪ + תמונות '+PI+' ₪)':''));if(n>=10)L.push('מחיר מבצע: 50 ₪ לסרטון');else if(n)L.push('מבצע: 10 סרטונים ב-500 ₪');
+    if(n||images)L.push('','*מחיר: '+total()+' ₪*'+(n&&images?' (סרטונים '+vidsTotal()+' ₪ + תמונות '+PI+' ₪)':''));
     L.push('אשמח לקבל פרטי תשלום.');
     return L.join('\n');}
   function doSend(){document.getElementById('oMiss').hidden=true;goWA(wa(orderText()));if(Object.keys(prod).length)document.getElementById('oDone').classList.add('show');}
