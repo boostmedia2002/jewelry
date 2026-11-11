@@ -339,6 +339,9 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
 @media (hover:hover){.wafab:hover{background:var(--wa-press)}}
 .cart.show~.wafab{bottom:calc(100px + env(safe-area-inset-bottom,0px))}
 .wafab span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.wafb{display:flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:12px;background:var(--ink);color:#fff;font-weight:500;text-decoration:none}
+body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-inset-bottom,0px));z-index:60;box-shadow:0 6px 20px rgba(0,0,0,.25)}
 </style>
 </head>
 <body>
@@ -539,10 +542,21 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
 (function(){
   var WA='972539507416', PRICE=200;
   var ITEMS=[{"id": "work-15", "t": "טבעת ותליון אמרלד", "c": "models"}, {"id": "work-16", "t": "טבעות ועגילים עם משקפי שמש", "c": "models"}, {"id": "work-09", "t": "שרשרת וצמיד חרוזים", "c": "models"}, {"id": "work-01", "t": "תכשיטי צדפים ואור של קיץ", "c": "models"}, {"id": "work-13", "t": "שרשרת וטבעות מול הגלים", "c": "models"}, {"id": "work-11", "t": "טבעות בקופסאות על במה אדומה", "c": "gimmick"}, {"id": "work-10", "t": "Jewelry is the outfit", "c": "viral"}, {"id": "work-07", "t": "נפילה והתכשיטים עפים", "c": "viral"}, {"id": "work-06", "t": "שלט חוצות בלונדון", "c": "viral"}, {"id": "work-08", "t": "זהב נוזלי", "c": "gimmick"}, {"id": "work-05", "t": "טבעת אופל ב-360", "c": "gimmick"}, {"id": "work-03", "t": "שלט בלונדון ושולחן בים", "c": "viral"}, {"id": "work-21", "t": "צמיד על מדרגות זהב נוזלי", "c": "gimmick"}, {"id": "work-04", "t": "השרשרת והים", "c": "simple"}, {"id": "work-02", "t": "צמידי רגל בגלים", "c": "simple"}, {"id": "work-12", "t": "קיץ, קוקוס ובגדי ים", "c": "simple"}, {"id": "work-14", "t": "תכשיטי קיץ על היאכטה", "c": "simple"}, {"id": "work-17", "t": "טבעת אופל על משי", "c": "simple"}, {"id": "work-18", "t": "טבעת אופל באור רך", "c": "simple"}, {"id": "work-19", "t": "טבעת אופל בזוהר נואר", "c": "simple"}, {"id": "work-20", "t": "צמיד מרוקע בסטודיו", "c": "simple"}, {"id": "work-22", "t": "סט ספיר על דוגמנית", "c": "models"}, {"id": "work-23", "t": "צמידי טניס במגרש", "c": "models"}, {"id": "work-24", "t": "זכוכית מגדלת ותכשיטי אמרלד", "c": "models"}, {"id": "work-25", "t": "Coming Soon – עגילים ותכשיטים", "c": "viral"}, {"id": "work-26", "t": "נייר נקרע וחושף", "c": "viral"}, {"id": "work-27", "t": "קיר טבעות אירוסין", "c": "gimmick"}, {"id": "work-28", "t": "ציור שהופך לתכשיט", "c": "viral"}, {"id": "work-29", "t": "צללית ועגילים מתחלפים", "c": "gimmick"}, {"id": "work-30", "t": "קולאז׳ תכשיטים וחמסה", "c": "gimmick"}, {"id": "work-31", "t": "עגילי רובי – מפרומפט לתוצאה", "c": "viral"}, {"id": "work-32", "t": "You need more jewelry", "c": "viral"}, {"id": "work-33", "t": "טבעת טופז כחולה על היד", "c": "simple"}, {"id": "work-34", "t": "מדידת טבעת אבן כחולה", "c": "models", "pv": "pv/work-34.mp4", "src": "Pixabay"}, {"id": "work-35", "t": "ידיים עם טבעות בפארק", "c": "models", "pv": "pv/work-35.mp4", "src": "Pixabay"}, {"id": "work-36", "t": "כלה עם חינה וטבעות", "c": "models", "pv": "pv/work-36.mp4", "src": "Pixabay"}, {"id": "work-37", "t": "טבעת כתר על משטח שחור", "c": "simple", "pv": "pv/work-37.mp4", "src": "Pixabay"}, {"id": "work-38", "t": "טבעת עדינה על היד", "c": "models", "pv": "pv/work-38.mp4", "src": "Pixabay"}, {"id": "work-39", "t": "טבעת ספיר על סאטן לבן", "c": "simple", "pv": "pv/work-39.mp4", "src": "Pixabay"}, {"id": "work-40", "t": "טבעת יהלומים מסתובבת", "c": "simple", "pv": "pv/work-40.mp4", "src": "Pixabay"}, {"id": "work-41", "t": "טבעות אירוסין בתקריב", "c": "simple", "pv": "pv/work-41.mp4", "src": "Pixabay"}, {"id": "work-42", "t": "יהלומים וטבעות כסף", "c": "simple", "pv": "pv/work-42.mp4", "src": "Pixabay"}, {"id": "work-43", "t": "נוצה זוהרת ותכשיטי פנינים", "c": "gimmick", "pv": "pv/work-43.mp4", "src": "Pixabay"}, {"id": "work-44", "t": "טבעות אבני חן על מעמדים", "c": "simple", "pv": "pv/work-44.mp4", "src": "Pixabay"}, {"id": "work-45", "t": "טבעות זהב מסתובבות", "c": "simple", "pv": "pv/work-45.mp4", "src": "Pixabay"}, {"id": "work-46", "t": "טבעות כסף ברוח ונצנצים", "c": "gimmick", "pv": "pv/work-46.mp4", "src": "Pixabay"}, {"id": "work-47", "t": "טבעות זהב בין ורדים", "c": "gimmick", "pv": "pv/work-47.mp4", "src": "Pixabay"}, {"id": "work-49", "t": "טבעת אמטיסט וינטג׳", "c": "simple", "pv": "pv/work-49.mp4", "src": "Pixabay"}, {"id": "work-50", "t": "צמיד זהב מסתלסל באור", "c": "gimmick", "pv": "pv/work-50.mp4", "src": "Pixabay"}, {"id": "work-51", "t": "ספירלת פנינים", "c": "gimmick", "pv": "pv/work-51.mp4", "src": "Pixabay"}, {"id": "work-52", "t": "פנינה זוהרת בתוך צדף", "c": "gimmick", "pv": "pv/work-52.mp4", "src": "Pixabay"}, {"id": "work-53", "t": "צדף פנינים מתחת לים", "c": "gimmick", "pv": "pv/work-53.mp4", "src": "Pixabay"}, {"id": "work-54", "t": "פנינים ומשי זורם", "c": "simple", "pv": "pv/work-54.mp4", "src": "Pixabay"}, {"id": "work-55", "t": "קופסת טבעת בתוך ורד", "c": "simple", "pv": "pv/work-55.mp4", "src": "Pixabay"}, {"id": "work-56", "t": "כתר זהב מרחף", "c": "simple", "pv": "pv/work-56.mp4", "src": "Pixabay"}, {"id": "work-57", "t": "צמיד טניס בבית קפה פריזאי", "c": "models"}, {"id": "work-58", "t": "עגילי יהלום – דוגמנית בכורסה", "c": "models"}, {"id": "work-59", "t": "LOVE – טבעות אירוסין מתחלפות", "c": "viral"}, {"id": "work-60", "t": "טבעות זהב על עיתון", "c": "simple"}, {"id": "work-61", "t": "טבעות זהב על עיתון – קולנועי", "c": "simple"}, {"id": "work-62", "t": "טבעת יהלום מתפרקת ומתחברת – תלת-ממד", "c": "simple"}, {"id": "work-63", "t": "פיצוץ יהלומים – תלת-ממד", "c": "gimmick"}, {"id": "work-64", "t": "צמיד מרחף במדבר ורוד", "c": "gimmick"}, {"id": "work-65", "t": "טריילר יוקרה – ספיר ויהלומים בארמון", "c": "models"}, {"id": "work-66", "t": "מבצע יוקרתי – קולקציית ספיר", "c": "simple"}, {"id": "work-67", "t": "בוטיק מיניאטורי – טבעת וצמיד ענקיים", "c": "viral"}, {"id": "work-68", "t": "חטיפת שקית תכשיטים מהקטנוע", "c": "models viral"}, {"id": "work-69", "t": "שקית תכשיטים נגד גנב", "c": "models viral"}, {"id": "work-70", "t": "פריצה לרכב – שקית תכשיטים", "c": "viral"}], MODELS=[{"t": "אביב", "img": "../images/models/board/aviv.webp", "g": "m"}, {"t": "דנה", "img": "../images/models/board/dana.webp", "x": ["dana-29", "dana-31", "dana-32", "dana-33", "dana-34"]}, {"t": "אימי", "img": "../images/models/board/imi.webp", "x": ["imi-47"]}, {"t": "אבי", "img": "../images/models/board/avi.webp", "g": "m", "x": ["avi-43", "avi-44"]}, {"t": "ג׳רמי", "img": "../images/models/board/jeremy.webp", "g": "m", "x": ["jeremy-45"]}, {"t": "אור", "img": "../images/models/board/or.webp", "x": ["or-05", "or-07"]}, {"t": "נדב", "img": "../images/models/board/nadav.webp", "g": "m", "x": ["nadav-46"]}, {"t": "עלמה", "img": "../images/models/board/alma.webp", "x": ["alma-11"]}, {"t": "אלינה", "img": "../images/models/board/alina.webp", "x": ["alina-22", "alina-23"]}, {"t": "בר", "img": "../images/models/board/bar.webp", "x": ["bar-16", "bar-19", "bar-20", "bar-21"]}, {"t": "אלה", "img": "../images/models/board/ella.webp"}, {"t": "טיטי", "img": "../images/models/board/titi.webp", "x": ["titi-26", "titi-27"]}, {"t": "אביה", "img": "../images/models/board/aviya.webp", "x": ["aviya-00", "aviya-01"]}, {"t": "שרה", "img": "../images/models/board/sarah.webp"}, {"t": "תמי", "img": "../images/models/board/tami.webp"}, {"t": "שני", "img": "../images/models/board/shani.webp", "x": ["shani-35", "shani-36", "shani-38", "shani-40"]}];
-  var CAT={models:'עם דוגמנית',gimmick:'עוצר גלילה',simple:'הצגת מוצר'};
+  var CAT={models:'עם דוגמנית',gimmick:'עוצר גלילה',simple:'הצגת מוצר',viral:'ויראלי'};
+  function catOf(c){return c.split(' ').map(function(k){return CAT[k];}).join(' · ');}
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var sel=[], images=false, model=null, prod={};
+  var sel=[], images=false, model=null, prod={}, note='', ordNo='';
   function wa(t){return 'https://wa.me/'+WA+'?text='+encodeURIComponent(t);}
+  var mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  function waFallback(url){var o=document.getElementById('waFb');if(o)o.remove();var a=document.createElement('a');a.id='waFb';a.className='wafb';a.href=url;a.textContent='וואטסאפ לא נפתח? לחצו כאן';
+    (document.querySelector('dialog[open] footer')||document.querySelector('dialog[open] .help-in')||document.body).appendChild(a);setTimeout(function(){a.remove();},15000);}
+  function goWA(url){if(!mobile){open(url,'_blank','noopener');return;}
+    var m=url.match(/wa\.me\/(\d+)(?:\?text=(.*))?$/),left=false;function h(){if(document.hidden)left=true;}
+    document.addEventListener('visibilitychange',h);
+    location.href='whatsapp://send?phone='+m[1]+(m[2]?'&text='+m[2]:'');
+    setTimeout(function(){document.removeEventListener('visibilitychange',h);if(!left)waFallback(url);},2500);}
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="https://wa.me/"]');if(!a||!mobile||a.id==='waFb')return;e.preventDefault();goWA(a.href);});
+  function save(){try{localStorage.setItem('bm-order',JSON.stringify({s:sel,i:images,m:model,n:document.getElementById('oName').value,o:note,k:ordNo,t:Date.now()}));}catch(e){}}
   function numOf(id){return parseInt(id.slice(5),10);}
   function find(id){return ITEMS.find(function(x){return x.id===id;});}
 
@@ -602,6 +616,7 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
     var ai=document.getElementById('addImages');ai.textContent=images?'✓ נוסף להזמנה':'הוספה להזמנה';ai.setAttribute('aria-pressed',images);
     var lp=document.getElementById('lbPick');if(lbId){var on=sel.indexOf(lbId)>=0;lp.textContent=on?'✓ נבחר':'בחירה';}
     if(od.open)fillOrder();
+    save();
   }
 
   /* models */
@@ -629,7 +644,7 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
   mz.querySelector('.mz-stage').addEventListener('click',function(e){if(e.target.tagName!=='IMG')mz.close();});
   document.getElementById('addImages').addEventListener('click',function(){images=!images;render();});
   document.getElementById('sendIdea').addEventListener('click',function(){var t=document.getElementById('ideaText').value.trim();
-    open(wa('היי, יש לי רעיון לסרטון (הפקה מקורית):\n'+(t||'אשמח לספר בשיחה')),'_blank','noopener');});
+    goWA(wa('היי, יש לי רעיון לסרטון (הפקה מקורית):\n'+(t||'אשמח לספר בשיחה')));});
 
   /* video viewer */
   var lb=document.getElementById('lb'),stage=document.getElementById('stage'),lbId=null,lastFocus=null;
@@ -659,7 +674,7 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
       var s1=document.createElement('div');s1.className='step';s1.innerHTML='<h3>מה בחרתם</h3>';ob.appendChild(s1);
       sel.forEach(function(id){var i=find(id);var d=document.createElement('div');d.className='oi';
         d.innerHTML='<img class="p" alt="" width="76" height="108"><div><div class="t"></div><div class="hint"></div><div class="row"><label class="up"><input type="file" accept="image/*"><span>העלאת תמונה של המוצר</span></label><button class="rm" type="button">הסרה</button></div></div>';
-        d.querySelector('img.p').src='p/'+id+'-s.webp';d.querySelector('.t').textContent='סרטון '+numOf(id)+' · '+i.t;d.querySelector('.hint').textContent=CAT[i.c];
+        d.querySelector('img.p').src='p/'+id+'-s.webp';d.querySelector('.t').textContent='סרטון '+numOf(id)+' · '+i.t;d.querySelector('.hint').textContent=catOf(i.c);
         var inp=d.querySelector('input');inp.setAttribute('aria-label','העלאת תמונה של המוצר לסרטון '+numOf(id));
         if(prod[id]){var pi=document.createElement('img');pi.className='prod';pi.alt='המוצר שהעליתם';pi.src=URL.createObjectURL(prod[id]);d.querySelector('.row').prepend(pi);d.querySelector('.up span').textContent='החלפת התמונה';}
         inp.addEventListener('change',function(){if(inp.files[0]){prod[id]=inp.files[0];fillOrder();}});
@@ -667,15 +682,26 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
         s1.appendChild(d);});
       if(images){var d=document.createElement('div');d.className='oi';d.innerHTML='<img class="p" alt="" src="m/cream-s.webp" width="76" height="108"><div><div class="t">10 תמונות קמפיין</div><div class="row"><button class="rm" type="button">הסרה</button></div></div>';d.querySelector('.rm').addEventListener('click',function(){images=false;render();});s1.appendChild(d);}
       var m=document.createElement('p');m.className='hint';m.textContent=model?('דוגמנית: '+model+'.'):'לא בחרתם דוגמנית. זה בסדר, אני אבחר.';s1.appendChild(m);
+      var nl=document.createElement('label');nl.className='l';nl.htmlFor='oNote';nl.style.cssText='display:block;margin:18px 0 8px';nl.innerHTML='מה חשוב שאדע? <span class="hint">(לא חובה)</span>';
+      var nt=document.createElement('textarea');nt.id='oNote';nt.rows=3;nt.style.minHeight='96px';nt.placeholder='למשל: שם המוצר, צבעים, טקסט שיופיע בסרטון';nt.value=note;nt.addEventListener('input',function(){note=nt.value;save();});s1.appendChild(nl);s1.appendChild(nt);
       if(sel.length){var s2=document.createElement('p');s2.className='hint';s2.style.marginTop='8px';s2.textContent='אין לכם עכשיו תמונה של המוצר? אפשר לשלוח גם בלי, ולצרף אחר כך בשיחה.';s1.appendChild(s2);}
     }
     document.getElementById('oSend').disabled=!(sel.length||images);
     setProgress();
   }
-  function orderText(){var L=['היי, הזמנה מהאתר:'];var nm=document.getElementById('oName').value.trim();if(nm)L.push('עסק: '+nm);
-    sel.forEach(function(id){var i=find(id);L.push('• סרטון '+numOf(id)+' – '+i.t+(prod[id]?' (מצרף/ת תמונה של המוצר)':''));});
-    if(images)L.push('• 10 תמונות קמפיין');if(model)L.push('דוגמנית: '+model);return L.join('\n');}
-  document.getElementById('oSend').addEventListener('click',function(){open(wa(orderText()),'_blank','noopener');if(Object.keys(prod).length)document.getElementById('oDone').classList.add('show');});
+  function pad(n){return (n<10?'0':'')+n;}
+  var BASE='https://boostmedia2002.github.io/jewelry/new/';
+  function orderText(){var d=new Date();if(!ordNo){ordNo='BM-'+pad(d.getDate())+pad(d.getMonth()+1)+'-'+Math.floor(1000+Math.random()*9000);save();}
+    var nm=document.getElementById('oName').value.trim();
+    var L=['*הזמנה חדשה מהאתר · BOOST MEDIA*','מספר הזמנה: '+ordNo,'תאריך: '+pad(d.getDate())+'.'+pad(d.getMonth()+1)+'.'+d.getFullYear()+', '+pad(d.getHours())+':'+pad(d.getMinutes()),'עסק: '+(nm||'לא צוין')];
+    if(sel.length){L.push('','*סרטונים ('+sel.length+'):*');sel.forEach(function(id,k){var i=find(id);
+      L.push((k+1)+'. סרטון '+numOf(id)+' · '+i.t,'   סוג: '+catOf(i.c),'   תמונת מוצר: '+(prod[id]?'שולח/ת בהודעה הבאה':'אשלח בהמשך השיחה'),'   לצפייה: '+BASE+'?v='+numOf(id));});}
+    L.push('','*תוספות:*','• 10 תמונות קמפיין: '+(images?'כן':'לא'),'• דוגמן/ית: '+(model||'לא בחרתי, אשמח שתבחרו'));
+    if(note.trim())L.push('','*הערות:*',note.trim());
+    var parts=[];if(sel.length)parts.push(sel.length===1?'סרטון אחד':sel.length+' סרטונים');if(images)parts.push('10 תמונות קמפיין');
+    L.push('','*סיכום:* '+parts.join(' + '),'אשמח לקבל מחיר ופרטי תשלום.');
+    return L.join('\n');}
+  document.getElementById('oSend').addEventListener('click',function(){goWA(wa(orderText()));if(Object.keys(prod).length)document.getElementById('oDone').classList.add('show');});
 
   /* order card: the chosen video frame next to the customer's product photo, one image for the whole order */
   function loadImg(src){return new Promise(function(res,rej){var im=new Image();im.onload=function(){res(im)};im.onerror=rej;im.src=src;});}
@@ -704,6 +730,10 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
   function onS(){topEl.classList.toggle('scrolled',scrollY>8);}addEventListener('scroll',onS,{passive:true});onS();
   document.querySelectorAll('[data-play]').forEach(function(b){b.addEventListener('click',function(){openVideo(b.dataset.play);});});
   setFilter('all');
+  try{var sv=JSON.parse(localStorage.getItem('bm-order')||'null');if(sv&&Date.now()-sv.t<864e5){sel=(sv.s||[]).filter(find);images=!!sv.i;model=sv.m||null;note=sv.o||'';ordNo=sv.k||'';document.getElementById('oName').value=sv.n||'';
+    mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',x.querySelector('.n').textContent===model);});render();}}catch(e){}
+  document.getElementById('oName').addEventListener('input',save);
+  try{var qv=new URLSearchParams(location.search).get('v');if(qv){var qi=ITEMS.find(function(x){return numOf(x.id)===parseInt(qv,10);});if(qi)openVideo(qi.id);}}catch(e){}
   render();
 })();
 /* model filter */
