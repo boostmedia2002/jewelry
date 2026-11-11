@@ -342,6 +342,15 @@ dialog::backdrop{background:rgba(20,18,14,.6);transition:opacity 250ms var(--eas
 
 .wafb{display:flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:12px;background:var(--ink);color:#fff;font-weight:500;text-decoration:none}
 body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-inset-bottom,0px));z-index:60;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+
+.deal{display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px 12px;margin:-24px 0 20px;padding:10px 18px;border-radius:12px;background:var(--accent);color:var(--accent-ink);font-size:1.0625rem}
+.deal b{font-weight:700}
+.ototal{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ototal b{font-size:1.25rem;font-weight:700}
+.ototal span{color:var(--muted);font-size:.95rem}
+.omiss{display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:12px;background:var(--surface)}
+.ototal[hidden],.omiss[hidden]{display:none}
+.order footer{max-height:72dvh;overflow-y:auto;flex:none}
 </style>
 </head>
 <body>
@@ -410,6 +419,7 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
   <section class="sec" id="gallery" aria-labelledby="h-g">
     <div class="wrap">
       <div class="head"><h2 id="h-g">קטלוג הסרטונים</h2><p>לחצו על סרטון כדי לצפות בו. כפתור "בחירה" מוסיף אותו להזמנה.</p></div>
+      <p class="deal"><b>70 ₪ לסרטון</b><span>מבצע: 10 סרטונים ב-500 ₪</span></p>
       <div class="filters" role="group" aria-label="סוג הסרטון">
         <button type="button" data-f="all" aria-pressed="true">הכל</button>
         <button type="button" data-f="viral" aria-pressed="false">ויראלי</button>
@@ -468,7 +478,7 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
         <details name="faq"><summary>הדוגמאות הן של תכשיטים. זה מתאים גם לעסק שלי?</summary><p>כן. הרעיון של הסרטון נשאר, ואני שם בו את המוצר שלכם: קוסמטיקה, אוכל, בגדים, מוצרים לבית ועוד.</p></details>
         <details name="faq"><summary>אין לי עכשיו תמונה של המוצר. אפשר להזמין?</summary><p>כן. שלחו בלי תמונה, ותצרפו אותה אחר כך בשיחה.</p></details>
         <details name="faq"><summary>תוך כמה זמן הסרטון מוכן?</summary><p>תוך 2 ימי עסקים מרגע שקיבלתי את התמונות של המוצר.</p></details>
-        <details name="faq"><summary>איך משלמים?</summary><p>אין תשלום באתר. אחרי שתשלחו את ההזמנה נדבר בוואטסאפ על המחיר ועל דרך התשלום.</p></details>
+        <details name="faq"><summary>איך משלמים?</summary><p>סרטון עולה 70 ₪, ו-10 סרטונים עולים 500 ₪. אין תשלום באתר: אחרי שתשלחו את ההזמנה נסגור בוואטסאפ את דרך התשלום.</p></details>
         <details name="faq"><summary>כמה תיקונים אפשר לבקש?</summary><p>עד 2 תיקונים קטנים לכל סרטון, כל עוד הם לא משנים את הרעיון של הסרטון.</p></details>
       </div>
       <button class="helpcard" type="button" data-help aria-haspopup="dialog"><span><b>יש לכם אמא ואבא</b><span class="sub">לא מצאתם תשובה? לחצו על המספר ושלחו לי הודעה בוואטסאפ, או התקשרו.</span></span><span class="helpnum"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>055-6677-843</span></button>
@@ -527,7 +537,9 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
   <footer>
     <label class="l" for="oName">שם העסק <span class="hint">(לא חובה)</span></label>
     <input type="text" id="oName" autocomplete="organization" placeholder="למשל: הקרמים של נועה">
+    <div class="ototal" id="oTotal"></div>
     <button class="btn wa" type="button" id="oSend"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>שליחת ההזמנה בוואטסאפ</button>
+    <div class="omiss" id="oMiss" hidden><b id="oMissT"></b><span class="hint">תמונה של המוצר עוזרת לי להתחיל מהר. אפשר גם לשלוח אותה אחר כך בשיחה.</span><button class="btn" type="button" id="oMissAdd">הוספת תמונה עכשיו</button><button class="btn line" type="button" id="oMissSend">שליחה בלי תמונה</button></div>
     <div class="done" id="oDone" role="status">
       <b>ההזמנה נפתחה בוואטסאפ.</b>
       <span class="hint" id="oDoneHint">עכשיו לחצו כאן כדי לשלוח גם את התמונות של המוצר לאותה שיחה.</span>
@@ -545,7 +557,9 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
   var CAT={models:'עם דוגמנית',gimmick:'עוצר גלילה',simple:'הצגת מוצר',viral:'ויראלי'};
   function catOf(c){return c.split(' ').map(function(k){return CAT[k];}).join(' · ');}
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var sel=[], images=false, model=null, prod={}, note='', ordNo='';
+  var sel=[], images=false, model=null, prod={}, note='', ordNo='', P1=70, P10=500;
+  function priceOf(n){return Math.floor(n/10)*P10+(n%10)*P1;}
+  function vids(n){return n===1?'סרטון אחד':n+' סרטונים';}
   function wa(t){return 'https://wa.me/'+WA+'?text='+encodeURIComponent(t);}
   var mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   function waFallback(url){var o=document.getElementById('waFb');if(o)o.remove();var a=document.createElement('a');a.id='waFb';a.className='wafb';a.href=url;a.textContent='וואטסאפ לא נפתח? לחצו כאן';
@@ -582,7 +596,7 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
   var wall=document.getElementById('wall');
   ITEMS.forEach(function(i){
     var c=document.createElement('article');c.className='card';c.dataset.id=i.id;c.dataset.c=i.c;
-    c.innerHTML='<button class="media" type="button"><img loading="lazy" decoding="async" width="300" height="466" sizes="(max-width:640px) 50vw, 25vw"><video muted loop playsinline preload="none" aria-hidden="true"></video><span class="num" aria-hidden="true"></span><span class="check" aria-hidden="true">✓</span></button><div class="t"></div><button class="pick" type="button" aria-pressed="false">בחירה</button>';
+    c.innerHTML='<button class="media" type="button"><img loading="lazy" decoding="async" width="300" height="466" sizes="(max-width:640px) 50vw, 25vw"><video muted loop playsinline preload="none" aria-hidden="true"></video><span class="num" aria-hidden="true"></span><span class="check" aria-hidden="true">✓</span></button><div class="t"></div><button class="pick" type="button" aria-pressed="false">בחירה · 70 ₪</button>';
     var im=c.querySelector('img');im.src='p/'+i.id+'-s.webp';im.srcset='p/'+i.id+'-s.webp 300w, p/'+i.id+'.webp 600w';im.alt='';
     c.querySelector('video').dataset.src=i.pv||('../videos/preview/'+i.id+'.mp4');
     c.querySelector('.t').textContent=i.t;
@@ -606,15 +620,15 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
   /* selection */
   function toggle(id){var k=sel.indexOf(id);if(k<0)sel.push(id);else{sel.splice(k,1);delete prod[id];}render();}
   function render(){
-    wall.querySelectorAll('.card').forEach(function(c){var on=sel.indexOf(c.dataset.id)>=0;c.classList.toggle('sel',on);var b=c.querySelector('.pick');b.textContent=on?'✓ נבחר':'בחירה';b.setAttribute('aria-pressed',on);});
+    wall.querySelectorAll('.card').forEach(function(c){var on=sel.indexOf(c.dataset.id)>=0;c.classList.toggle('sel',on);var b=c.querySelector('.pick');b.textContent=on?'✓ נבחר':'בחירה · '+P1+' ₪';b.setAttribute('aria-pressed',on);});
     var n=sel.length,cnt=n+(images?1:0);
     document.getElementById('cartN').textContent=cnt;
     var parts=[];if(n)parts.push(n===1?'סרטון אחד':n+' סרטונים');if(images)parts.push('10 תמונות');
-    document.getElementById('cartTotal').textContent='בחרתם '+parts.join(' ו-');
-    document.getElementById('cartLine').textContent=model?('דוגמנית: '+model):'אפשר להמשיך לבחור';
+    document.getElementById('cartTotal').textContent='בחרתם '+parts.join(' ו-')+(n?' · '+priceOf(n)+' ₪':'');
+    document.getElementById('cartLine').textContent=n>=10?'מחיר מבצע: 10 סרטונים ב-500 ₪':(n>=8?'10 סרטונים עולים רק 500 ₪':(model?('דוגמנית: '+model):'אפשר להמשיך לבחור'));
     document.getElementById('cart').classList.toggle('show',cnt>0);
     var ai=document.getElementById('addImages');ai.textContent=images?'✓ נוסף להזמנה':'הוספה להזמנה';ai.setAttribute('aria-pressed',images);
-    var lp=document.getElementById('lbPick');if(lbId){var on=sel.indexOf(lbId)>=0;lp.textContent=on?'✓ נבחר':'בחירה';}
+    var lp=document.getElementById('lbPick');if(lbId){var on=sel.indexOf(lbId)>=0;lp.textContent=on?'✓ נבחר':'בחירה · '+P1+' ₪';}
     if(od.open)fillOrder();
     save();
   }
@@ -674,8 +688,8 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
       var s1=document.createElement('div');s1.className='step';s1.innerHTML='<h3>מה בחרתם</h3>';ob.appendChild(s1);
       sel.forEach(function(id){var i=find(id);var d=document.createElement('div');d.className='oi';
         d.innerHTML='<img class="p" alt="" width="76" height="108"><div><div class="t"></div><div class="hint"></div><div class="row"><label class="up"><input type="file" accept="image/*"><span>העלאת תמונה של המוצר</span></label><button class="rm" type="button">הסרה</button></div></div>';
-        d.querySelector('img.p').src='p/'+id+'-s.webp';d.querySelector('.t').textContent='סרטון '+numOf(id)+' · '+i.t;d.querySelector('.hint').textContent=catOf(i.c);
-        var inp=d.querySelector('input');inp.setAttribute('aria-label','העלאת תמונה של המוצר לסרטון '+numOf(id));
+        d.querySelector('img.p').src='p/'+id+'-s.webp';d.querySelector('.t').textContent='סרטון '+numOf(id)+' · '+i.t;d.querySelector('.hint').textContent=P1+' ₪';
+        var inp=d.querySelector('input');inp.dataset.id=id;inp.setAttribute('aria-label','העלאת תמונה של המוצר לסרטון '+numOf(id));
         if(prod[id]){var pi=document.createElement('img');pi.className='prod';pi.alt='המוצר שהעליתם';pi.src=URL.createObjectURL(prod[id]);d.querySelector('.row').prepend(pi);d.querySelector('.up span').textContent='החלפת התמונה';}
         inp.addEventListener('change',function(){if(inp.files[0]){prod[id]=inp.files[0];fillOrder();}});
         d.querySelector('.rm').addEventListener('click',function(){toggle(id);});
@@ -687,21 +701,29 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
       if(sel.length){var s2=document.createElement('p');s2.className='hint';s2.style.marginTop='8px';s2.textContent='אין לכם עכשיו תמונה של המוצר? אפשר לשלוח גם בלי, ולצרף אחר כך בשיחה.';s1.appendChild(s2);}
     }
     document.getElementById('oSend').disabled=!(sel.length||images);
+    var ot=document.getElementById('oTotal'),nn=sel.length;ot.hidden=!nn;ot.innerHTML='';if(nn){var b1=document.createElement('b');b1.textContent='סה"כ: '+priceOf(nn)+' ₪';var s1b=document.createElement('span');s1b.textContent=nn>=10?'מחיר מבצע: 10 סרטונים ב-500 ₪':(vids(nn)+' × '+P1+' ₪ · מבצע: 10 ב-500 ₪');ot.appendChild(b1);ot.appendChild(s1b);}
+    document.getElementById('oMiss').hidden=true;
     setProgress();
   }
   function pad(n){return (n<10?'0':'')+n;}
   var BASE='https://boostmedia2002.github.io/jewelry/new/';
   function orderText(){var d=new Date();if(!ordNo){ordNo='BM-'+pad(d.getDate())+pad(d.getMonth()+1)+'-'+Math.floor(1000+Math.random()*9000);save();}
-    var nm=document.getElementById('oName').value.trim();
-    var L=['*הזמנה חדשה מהאתר · BOOST MEDIA*','מספר הזמנה: '+ordNo,'תאריך: '+pad(d.getDate())+'.'+pad(d.getMonth()+1)+'.'+d.getFullYear()+', '+pad(d.getHours())+':'+pad(d.getMinutes()),'עסק: '+(nm||'לא צוין')];
-    if(sel.length){L.push('','*סרטונים ('+sel.length+'):*');sel.forEach(function(id,k){var i=find(id);
-      L.push((k+1)+'. סרטון '+numOf(id)+' · '+i.t,'   סוג: '+catOf(i.c),'   תמונת מוצר: '+(prod[id]?'שולח/ת בהודעה הבאה':'אשלח בהמשך השיחה'),'   לצפייה: '+BASE+'?v='+numOf(id));});}
-    L.push('','*תוספות:*','• 10 תמונות קמפיין: '+(images?'כן':'לא'),'• דוגמן/ית: '+(model||'לא בחרתי, אשמח שתבחרו'));
+    var nm=document.getElementById('oName').value.trim(),n=sel.length;
+    var L=['*הזמנה חדשה מהאתר · BOOST MEDIA*','מספר הזמנה: '+ordNo,'עסק: '+(nm||'לא צוין')];
+    if(n){L.push('','*סרטונים ('+n+'):*');sel.forEach(function(id,k){var i=find(id);
+      L.push((k+1)+'. סרטון '+numOf(id)+' · '+i.t+' · '+P1+' ₪','   תמונת מוצר: '+(prod[id]?'שולח/ת בהודעה נפרדת':'עדיין לא צירפתי, אשלח בשיחה'),'   לצפייה: '+BASE+'?v='+numOf(id));});}
+    L.push('','*תוספות:*','• 10 תמונות קמפיין: '+(images?'כן (מחיר בנפרד)':'לא'),'• דוגמן/ית: '+(model||'לא בחרתי, אשמח שתבחרו'));
     if(note.trim())L.push('','*הערות:*',note.trim());
-    var parts=[];if(sel.length)parts.push(sel.length===1?'סרטון אחד':sel.length+' סרטונים');if(images)parts.push('10 תמונות קמפיין');
-    L.push('','*סיכום:* '+parts.join(' + '),'אשמח לקבל מחיר ופרטי תשלום.');
+    if(n)L.push('','*מחיר: '+priceOf(n)+' ₪* ('+(n>=10?'מחיר מבצע, '+vids(n):vids(n)+' × '+P1+' ₪')+')','מבצע: 10 סרטונים ב-500 ₪');
+    L.push('אשמח לקבל פרטי תשלום.');
     return L.join('\n');}
-  document.getElementById('oSend').addEventListener('click',function(){goWA(wa(orderText()));if(Object.keys(prod).length)document.getElementById('oDone').classList.add('show');});
+  function doSend(){document.getElementById('oMiss').hidden=true;goWA(wa(orderText()));if(Object.keys(prod).length)document.getElementById('oDone').classList.add('show');}
+  function missing(){return sel.filter(function(id){return !prod[id];});}
+  document.getElementById('oSend').addEventListener('click',function(){var ms=missing(),bx=document.getElementById('oMiss');
+    if(ms.length&&bx.hidden){document.getElementById('oMissT').textContent=ms.length===1?'לא העליתם תמונה של המוצר לסרטון '+numOf(ms[0])+'.':'לא העליתם תמונה של המוצר ל-'+ms.length+' סרטונים.';bx.hidden=false;bx.scrollIntoView({block:'nearest'});return;}
+    doSend();});
+  document.getElementById('oMissSend').addEventListener('click',doSend);
+  document.getElementById('oMissAdd').addEventListener('click',function(){var ms=missing();document.getElementById('oMiss').hidden=true;var inp=ms.length&&ob.querySelector('input[data-id="'+ms[0]+'"]');if(inp){inp.scrollIntoView({block:'center'});inp.click();}});
 
   /* order card: the chosen video frame next to the customer's product photo, one image for the whole order */
   function loadImg(src){return new Promise(function(res,rej){var im=new Image();im.onload=function(){res(im)};im.onerror=rej;im.src=src;});}
@@ -710,11 +732,11 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
     var rows=sel.filter(function(id){return prod[id];});var W=1080,RH=640,H=160+rows.length*RH+40;
     var cv=document.createElement('canvas');cv.width=W;cv.height=H;var x=cv.getContext('2d');
     x.fillStyle='#FBF9F4';x.fillRect(0,0,W,H);x.direction='rtl';x.textAlign='right';x.fillStyle='#1A1814';x.font='800 44px Heebo, Arial';x.fillText('הזמנה · BOOST MEDIA',W-40,80);
-    x.fillStyle='#5B5650';x.font='400 28px Assistant, Arial';var nm=document.getElementById('oName').value.trim();x.fillText((nm?nm+' · ':'')+rows.length+(rows.length===1?' סרטון':' סרטונים'),W-40,124);
+    x.fillStyle='#5B5650';x.font='400 28px Assistant, Arial';var nm=document.getElementById('oName').value.trim();x.fillText((ordNo?ordNo+' · ':'')+(nm?nm+' · ':'')+vids(sel.length)+' · '+priceOf(sel.length)+' ₪',W-40,124);
     for(var k=0;k<rows.length;k++){var id=rows[k],i=find(id),y=160+k*RH;
       var a=await loadImg('p/'+id+'.webp'),b=await loadImg(URL.createObjectURL(prod[id]));
       cover(x,a,W-40-380,y,380,560);cover(x,b,40,y,600,560);
-      x.fillStyle='#1A1814';x.font='800 32px Heebo, Arial';x.fillText('סרטון '+numOf(id),W-40,y+600);x.textAlign='left';x.fillStyle='#5B5650';x.font='400 26px Assistant, Arial';x.fillText('המוצר',40,y+600);x.textAlign='right';x.fillText(i.t,W-260,y+600);}
+      x.fillStyle='#1A1814';x.font='800 32px Heebo, Arial';x.fillText('סרטון '+numOf(id)+' · '+P1+' ₪',W-40,y+600);x.textAlign='left';x.fillStyle='#5B5650';x.font='400 26px Assistant, Arial';x.fillText('המוצר',40,y+600);x.textAlign='right';x.fillText(i.t,W-330,y+600);}
     return new Promise(function(res){cv.toBlob(function(bl){res(new File([bl],'boost-order.jpg',{type:'image/jpeg'}));},'image/jpeg',.88);});
   }
   document.getElementById('oShare').addEventListener('click',async function(){
