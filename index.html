@@ -383,6 +383,8 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
 .ideac[aria-pressed=true]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 @media (hover:hover){.ideac:hover{border-color:var(--ink)}}
 #ideasToggle[hidden]{display:none}
+.ideac small{align-self:flex-start;padding:3px 10px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-size:.875rem;font-weight:600}
+.ideac span.fit{color:var(--ink);font-size:.95rem}
 </style>
 </head>
 <body>
@@ -496,7 +498,7 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
           <span class="kicker">הפקה מקורית</span>
           <h3 id="h-idea">רעיון משלכם לסרטון</h3>
           <p>כתבו אותו במשפט או שניים. אחזור אליכם בוואטסאפ עם תסריט לפני שמתחילים.</p>
-          <button class="btn line mtoggle" type="button" id="ideasToggle" aria-expanded="false" aria-controls="ideasBody"><span id="ideasToggleT">רעיונות להפקה</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="btn line mtoggle" type="button" id="ideasToggle" aria-expanded="false" aria-controls="ideasBody"><span id="ideasToggleT">לקבלת רעיונות</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <div class="ideas" id="ideasBody" hidden></div>
           <label class="l" for="ideaText">הרעיון שלכם</label>
           <textarea id="ideaText" placeholder="למשל: הבקבוק שלי נופל לתוך מים בהילוך איטי"></textarea>
@@ -806,13 +808,21 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
   (function(){var tg=document.getElementById('modelsToggle'),bd=document.getElementById('modelsBody');
     tg.addEventListener('click',function(){var open=bd.hidden;bd.hidden=!open;tg.setAttribute('aria-expanded',open);document.getElementById('modelsToggleT').textContent=open?'סגירת הדוגמניות והדוגמנים':'לכל הדוגמניות והדוגמנים';if(!open)document.getElementById('models').scrollIntoView({block:'nearest'});});})();
   /* ideas for productions: edit this list to add, remove or reword ideas. t = title, p = the prompt that goes into the idea box */
+  /* n = number in the private idea bank, k = type, e = production level, w = what happens, y = who it suits */
   var IDEAS=[
+    {n:3,t:'הידיים שלו במקום שלה',k:'רגש',e:'קלה',w:'אישה מבוגרת מנסה לענוד את המוצר מול המראה, והידיים שלה רועדות. בעלה בא מאחור ועונד לה אותו בעדינות.',y:'תכשיטים ומתנות ליום נישואין.'},
+    {n:17,t:'המגן מהסרט המפחיד',k:'הומור',e:'קלה',w:'זוג רואה סרט מפחיד על הספה. היא נבהלת, חוטפת את המוצר ומסתתרת מאחוריו.',y:'מוצרים לבית, בגדים ותיקים.'},
+    {n:54,t:'המגירה שנפתחת',k:'יוקרה',e:'קלה',w:'מגירה של קופסה מפוארת נפתחת לאט. המוצר נשלף, האור מחליק עליו, והוא נענד בקליק.',y:'תכשיטים, שעונים ובשמים.'},
+    {n:72,t:'שאלה אחת פתוחה',k:'רשתות',e:'קלה',w:'קופסה סגורה. ידיים פותחות אותה שכבה אחרי שכבה, והמוצר מתגלה רק בשנייה האחרונה.',y:'כל מוצר שנשלח באריזה יפה.'},
+    {n:7,t:'הצעצוע שנהיה אמיתי',k:'רגש',e:'בינונית',w:'ילדה מול מראה עונדת גרסת צעצוע של המוצר. רגע של חושך, והיא אישה עם המוצר האמיתי.',y:'תכשיטים, איפור ואופנה.'},
+    {n:39,t:'היציאה מהלופ',k:'טוויסט',e:'בינונית',w:'אותו בוקר אפור חוזר שלוש פעמים. בפעם הרביעית היא שמה את המוצר, והכול מקבל צבע.',y:'קוסמטיקה, בשמים ותכשיטים.'},
+    {n:53,t:'הצבע שחוזר לעיר',k:'לפני ואחרי',e:'מורכבת',w:'אישה הולכת בעיר בשחור‑לבן, ורק המוצר שעליה בצבע. עם כל צעד שלה הצבע מתפשט לרחוב.',y:'אופנה, נעליים ותיקים.'}
   ];
   (function(){var tg=document.getElementById('ideasToggle'),bd=document.getElementById('ideasBody'),ta=document.getElementById('ideaText');
     if(!IDEAS.length){tg.hidden=true;return;}
-    IDEAS.forEach(function(it){var b=document.createElement('button');b.type='button';b.className='ideac';var h=document.createElement('b');h.textContent=it.t;var q=document.createElement('span');q.textContent=it.p;var u=document.createElement('i');u.textContent='להשתמש ברעיון הזה';b.appendChild(h);b.appendChild(q);b.appendChild(u);
-      b.addEventListener('click',function(){ta.value=it.p;bd.querySelectorAll('.ideac').forEach(function(x){x.setAttribute('aria-pressed',x===b);});ta.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});});b.setAttribute('aria-pressed','false');bd.appendChild(b);});
-    tg.addEventListener('click',function(){var open=bd.hidden;bd.hidden=!open;tg.setAttribute('aria-expanded',open);document.getElementById('ideasToggleT').textContent=open?'סגירת הרעיונות':'רעיונות להפקה';});})();
+    IDEAS.forEach(function(it){var b=document.createElement('button');b.type='button';b.className='ideac';var g=document.createElement('small');g.textContent=it.k+' · הפקה '+it.e;var h=document.createElement('b');h.textContent=it.t;var q=document.createElement('span');q.textContent=it.w;var y=document.createElement('span');y.className='fit';y.textContent='מתאים ל: '+it.y;var u=document.createElement('i');u.textContent='לבחור ברעיון הזה';b.appendChild(g);b.appendChild(h);b.appendChild(q);b.appendChild(y);b.appendChild(u);
+      b.addEventListener('click',function(){ta.value='רעיון '+it.n+' מבנק הרעיונות: '+it.t+'. '+it.w;bd.querySelectorAll('.ideac').forEach(function(x){x.setAttribute('aria-pressed',x===b);});ta.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});});b.setAttribute('aria-pressed','false');bd.appendChild(b);});
+    tg.addEventListener('click',function(){var open=bd.hidden;bd.hidden=!open;tg.setAttribute('aria-expanded',open);document.getElementById('ideasToggleT').textContent=open?'סגירת הרעיונות':'לקבלת רעיונות';});})();
   setFilter('all');
   try{var sv=JSON.parse(localStorage.getItem('bm-order')||'null');if(sv&&Date.now()-sv.t<864e5){sel=(sv.s||[]).filter(find);images=!!sv.i;model=sv.m||null;note=sv.o||'';ordNo=sv.k||'';document.getElementById('oName').value=sv.n||'';
     mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',x.querySelector('.n').textContent===model);});render();}}catch(e){}
