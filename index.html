@@ -204,7 +204,7 @@ p{margin:0}
 .mz{border:0;padding:0;margin:0;width:100vw;height:100dvh;max-width:none;max-height:none;background:rgba(0,0,0,.94)}.mz::backdrop{background:rgba(0,0,0,.94)}
 .mz-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:max(64px,env(safe-area-inset-top,0px)) 16px max(24px,env(safe-area-inset-bottom,0px))}.mz-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px}
 .mz-bar{position:absolute;top:max(12px,env(safe-area-inset-top,0px));left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;color:#fff;font-size:18px;font-weight:700}.mz-x{appearance:none;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:20px;cursor:pointer}
-.camp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.camp-grid .wide{grid-column:1/-1}.camp-grid[hidden]{display:none!important}@media(min-width:700px){.camp-grid{grid-template-columns:repeat(3,1fr)}}.camp-grid button{appearance:none;border:0;padding:0;background:#222;border-radius:12px;overflow:hidden;cursor:zoom-in;display:block}.camp-grid img{display:block;width:100%;height:auto}.camp-grid button:not(.wide) img{aspect-ratio:3/4;object-fit:cover}.camp-grid img.top{object-position:center top}.mx-grid{margin-top:0}#modelsMore .model .n{display:none}.mx-grid[hidden]{display:none!important}
+.camp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}.camp-grid .wide{grid-column:1/-1}.camp-grid[hidden]{display:none!important}@media(min-width:700px){.camp-grid{grid-template-columns:repeat(3,1fr)}}.camp-grid button{appearance:none;border:0;padding:0;background:#222;border-radius:12px;overflow:hidden;cursor:zoom-in;display:block}.camp-grid img{display:block;width:100%;height:auto}.camp-grid button:not(.wide):not(.land) img{aspect-ratio:3/4;object-fit:cover}.camp-grid img.top{object-position:center top}.mx-grid{margin-top:0}#modelsMore .model .n{display:none}.mx-grid[hidden]{display:none!important}
 .mfilt{display:flex;gap:8px;margin:0 0 12px}.mfilt button{appearance:none;cursor:pointer;min-height:36px;padding:0 16px;border-radius:999px;border:1px solid var(--line,#d9d6cf);background:transparent;color:inherit;font:inherit;font-size:14px;font-weight:600}.mfilt button[aria-pressed=true]{background:var(--ink,#111);color:#fff;border-color:var(--ink,#111)}.model.mhide{display:none!important}
 .models{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 @media (max-width:640px){.models{grid-template-columns:repeat(3,1fr)}}
@@ -385,6 +385,22 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
 #ideasToggle[hidden]{display:none}
 .ideac small{align-self:flex-start;padding:3px 10px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-size:.875rem;font-weight:600}
 .ideac span.fit{color:var(--ink);font-size:.95rem}
+
+.ideas-intro{grid-column:1/-1;color:var(--ink);font-weight:500}
+.ideac{cursor:default;gap:8px}
+.ideac:active{transform:none}
+.ideac.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.ideac details{border-top:1px solid var(--line);margin-top:4px}
+.ideac summary{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:48px;cursor:pointer;font-weight:600;list-style:none}
+.ideac summary::-webkit-details-marker{display:none}
+.ideac summary::after{content:"";width:9px;height:9px;border-inline-end:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform 200ms var(--ease);margin-inline-end:4px}
+.ideac details[open] summary::after{transform:rotate(-135deg)}
+.ideac details p{color:var(--muted);font-size:.95rem;margin:4px 0}
+.ideac details ol{margin:8px 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.ideac details li{line-height:1.45}
+.ideac details li b{display:block;font-size:.875rem;color:#7A5A14;font-weight:600}
+.ideac .btn{min-height:48px;width:100%;margin-top:4px}
+@media (hover:hover){.ideac:hover{border-color:var(--line)}.ideac.on:hover{border-color:var(--ink)}}
 </style>
 </head>
 <body>
@@ -495,10 +511,10 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
           </div>
         </article>
         <article class="box2" id="idea" aria-labelledby="h-idea">
-          <span class="kicker">הפקה מקורית</span>
+          <span class="kicker">פרסומות יוקרה בסגנון הוליווד</span>
           <h3 id="h-idea">רעיון משלכם לסרטון</h3>
           <p>כתבו אותו במשפט או שניים. אחזור אליכם בוואטסאפ עם תסריט לפני שמתחילים.</p>
-          <button class="btn line mtoggle" type="button" id="ideasToggle" aria-expanded="false" aria-controls="ideasBody"><span id="ideasToggleT">לקבלת רעיונות</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="btn line mtoggle" type="button" id="ideasToggle" aria-expanded="false" aria-controls="ideasBody"><span id="ideasToggleT">רעיונות לפרסומת יוקרה</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <div class="ideas" id="ideasBody" hidden></div>
           <label class="l" for="ideaText">הרעיון שלכם</label>
           <textarea id="ideaText" placeholder="למשל: הבקבוק שלי נופל לתוך מים בהילוך איטי"></textarea>
@@ -808,21 +824,32 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
   (function(){var tg=document.getElementById('modelsToggle'),bd=document.getElementById('modelsBody');
     tg.addEventListener('click',function(){var open=bd.hidden;bd.hidden=!open;tg.setAttribute('aria-expanded',open);document.getElementById('modelsToggleT').textContent=open?'סגירת הדוגמניות והדוגמנים':'לכל הדוגמניות והדוגמנים';if(!open)document.getElementById('models').scrollIntoView({block:'nearest'});});})();
   /* ideas for productions: edit this list to add, remove or reword ideas. t = title, p = the prompt that goes into the idea box */
-  /* n = number in the private idea bank, k = type, e = production level, w = what happens, y = who it suits */
+  /* n = number in the private idea bank, k = type, e = production level, w = description, y = who it suits, d = seconds, s = the three beats */
   var IDEAS=[
-    {n:3,t:'הידיים שלו במקום שלה',k:'רגש',e:'קלה',w:'אישה מבוגרת מנסה לענוד את המוצר מול המראה, והידיים שלה רועדות. בעלה בא מאחור ועונד לה אותו בעדינות.',y:'תכשיטים ומתנות ליום נישואין.'},
-    {n:17,t:'המגן מהסרט המפחיד',k:'הומור',e:'קלה',w:'זוג רואה סרט מפחיד על הספה. היא נבהלת, חוטפת את המוצר ומסתתרת מאחוריו.',y:'מוצרים לבית, בגדים ותיקים.'},
-    {n:54,t:'המגירה שנפתחת',k:'יוקרה',e:'קלה',w:'מגירה של קופסה מפוארת נפתחת לאט. המוצר נשלף, האור מחליק עליו, והוא נענד בקליק.',y:'תכשיטים, שעונים ובשמים.'},
-    {n:72,t:'שאלה אחת פתוחה',k:'רשתות',e:'קלה',w:'קופסה סגורה. ידיים פותחות אותה שכבה אחרי שכבה, והמוצר מתגלה רק בשנייה האחרונה.',y:'כל מוצר שנשלח באריזה יפה.'},
-    {n:7,t:'הצעצוע שנהיה אמיתי',k:'רגש',e:'בינונית',w:'ילדה מול מראה עונדת גרסת צעצוע של המוצר. רגע של חושך, והיא אישה עם המוצר האמיתי.',y:'תכשיטים, איפור ואופנה.'},
-    {n:39,t:'היציאה מהלופ',k:'טוויסט',e:'בינונית',w:'אותו בוקר אפור חוזר שלוש פעמים. בפעם הרביעית היא שמה את המוצר, והכול מקבל צבע.',y:'קוסמטיקה, בשמים ותכשיטים.'},
-    {n:53,t:'הצבע שחוזר לעיר',k:'לפני ואחרי',e:'מורכבת',w:'אישה הולכת בעיר בשחור‑לבן, ורק המוצר שעליה בצבע. עם כל צעד שלה הצבע מתפשט לרחוב.',y:'אופנה, נעליים ותיקים.'}
+    {"n":3,"t":"הידיים שלו במקום שלה","k":"רגש","e":"קלה","w":"אישה מבוגרת עומדת מול המראה ומנסה לענוד את המוצר, אבל הידיים שלה רועדות. בעלה ניגש מאחור ועונד לה אותו לאט ובעדינות. בסוף שניהם מביטים במראה, והיא מחייכת אליו. סיפור שלם על אהבה של שנים, בלי מילה אחת.","y":"תכשיטים ומתנות ליום נישואין.","d":12,"s":["0–4: אישה מבוגרת מול מראה מנסה לשים את המוצר. הידיים רועדות וזה לא מצליח.","4–9: בעלה בא מאחור ועושה את זה בשבילה, לאט ובעדינות.","9–12: שניהם מביטים במראה. היא מחייכת אליו."]},
+    {"n":17,"t":"המגן מהסרט המפחיד","k":"הומור","e":"קלה","w":"זוג יושב על הספה בחושך ורואה סרט מפחיד. ברגע הבהלה היא חוטפת את המוצר ומסתתרת מאחוריו, ואז מציצה מעליו בעין אחת. הוא צוחק. המוצר מקבל תפקיד מצחיק שכולם מכירים מהבית.","y":"מוצרים לבית, בגדים ותיקים.","d":8,"s":["0–3: זוג על ספה בחושך. אור כחול מהבהב מהטלוויזיה. מתח.","3–6: קפיצת בהלה. היא חוטפת את המוצר ומסתתרת מאחוריו.","6–8: היא מציצה מעליו בעין אחת. הוא צוחק."]},
+    {"n":54,"t":"המגירה שנפתחת","k":"יוקרה","e":"קלה","w":"קופסת עץ מפוארת על קטיפה כהה. אצבע מושכת ידית קטנה, והמגירה נפתחת לאט. המוצר נשלף, האור מחליק עליו, והוא נענד בקליק. כל שלב הוא רגע, עם צלילים עדינים, כמו בפרסומת של בית אופנה.","y":"תכשיטים, שעונים ובשמים.","d":8,"s":["0–2: אצבע מושכת ידית פליז, והמגירה נפתחת.","2–5: המוצר נשלף, והאור מחליק עליו.","5–8: המוצר נענד, עם קליק של סגירה."]},
+    {"n":72,"t":"שאלה אחת פתוחה","k":"רשתות","e":"קלה","w":"הסרטון נפתח בקופסה סגורה ובשאלה: מה יש בפנים? ידיים פותחות אותה לאט, שכבה אחרי שכבה של נייר, והמצלמה מתקרבת. המוצר מתגלה רק בשנייה האחרונה. הסקרנות מחזיקה את הצופה עד הסוף.","y":"כל מוצר שנשלח באריזה יפה.","d":10,"s":["0–3: כיתוב: \"מה יש בקופסה שכל הלקוחות שלנו מצלמים?\"","3–8: ידיים פותחות לאט שכבות של נייר. המצלמה מתקרבת.","8–10: המוצר מתגלה."]},
+    {"n":31,"t":"השלג שלא היה שלג","k":"טוויסט","e":"קלה","w":"תקריב קסום: אבקה נוצצת יורדת לאט כמו שלג. המצלמה מתרחקת, ומתברר שזה לא שלג אלא שולחן עבודה. ידיים של בעלת מלאכה מסיימות את המוצר, והאבק הנוצץ בא מהעבודה שלה. כך רואים שהמוצר נעשה ביד.","y":"מוצרים בעבודת יד: תכשיטים, קרמיקה ונרות.","d":10,"s":["0–4: תקריב: אבקה נוצצת יורדת לאט כמו שלג על משטח כהה.","4–7: המצלמה מתרחקת. זה לא שלג, זה שולחן עבודה.","7–10: ידיים של בעלת מלאכה מסיימות את המוצר. ה\"שלג\" הוא האבק מהעבודה שלה."]},
+    {"n":7,"t":"הצעצוע שנהיה אמיתי","k":"רגש","e":"בינונית","w":"ילדה קטנה מול המראה עונדת גרסת צעצוע של המוצר. היד שלה מכסה את המצלמה לרגע של חושך. כשהיד יורדת היא כבר אישה, באותה תנוחה, והמוצר האמיתי עליה. חלום של ילדות שהתגשם, בחיתוך אחד.","y":"תכשיטים, איפור ואופנה.","d":12,"s":["0–4: ילדה מול מראה עונדת גרסת צעצוע מפלסטיק של המוצר. אור חם של אחר צהריים.","4–5: היד שלה מכסה את העדשה. חושך.","5–12: היד יורדת. אותה תנוחה, היא אישה, ועליה המוצר האמיתי. היא מחייכת."]},
+    {"n":39,"t":"היציאה מהלופ","k":"טוויסט","e":"בינונית","w":"אותו בוקר אפור חוזר שלוש פעמים: שעון מעורר, קפה, מראה. בפעם הרביעית היא עוצרת מול המראה ושמה את המוצר. הצבע חוזר לתמונה, והיא יוצאת לרחוב אחרת לגמרי. המוצר הוא הרגע ששובר את השגרה.","y":"קוסמטיקה, בשמים ותכשיטים.","d":12,"s":["0–5: שלוש פעמים אותו בוקר: שעון מעורר, קפה, מראה. הכול אפור.","5–8: בפעם הרביעית היא עוצרת מול המראה ושמה את המוצר.","8–12: הלופ נשבר. היא יוצאת מהדלת לרחוב בצבע מלא."]},
+    {"n":10,"t":"המתנה שאומרת מה שלא נאמר","k":"רגש","e":"בינונית","w":"ארוחת ערב שקטה: אמא ובת מתבגרת, כל אחת בטלפון שלה. בלילה האמא מוצאת קופסה קטנה על הכרית, ובתוכה המוצר. היא יוצאת למסדרון, הבת מציצה מהדלת, והן מתחבקות בלי מילים. המתנה אומרת את מה שהן לא יודעות להגיד.","y":"מתנות לכל אירוע משפחתי.","d":15,"s":["0–4: ארוחת ערב שקטה. אמא ובת מתבגרת, כל אחת בטלפון שלה.","4–10: האמא מוצאת קופסה קטנה על הכרית שלה. בפנים המוצר. הבזק של זיכרון: היא בגיל של הבת, עם אותו מבט.","10–15: היא יוצאת למסדרון, והבת מציצה מהדלת. חיבוק בלי מילים."]},
+    {"n":53,"t":"הצבע שחוזר לעיר","k":"לפני ואחרי","e":"מורכבת","w":"אישה הולכת בעיר עתיקה, והכול בשחור‑לבן. רק המוצר שעליה בצבע. עם כל צעד שלה, פסי צבע יוצאים מהרגליים ומטפסים על הקירות. בסוף היא מסתובבת, והצבע חוזר לכל העיר. סרט אופנה קצר.","y":"אופנה, נעליים ותיקים.","d":15,"s":["0–5: רחוב אבן בשחור‑לבן. אישה הולכת, ורק המוצר שעליה בצבע.","5–11: מכל צעד שלה יוצאים פסי צבע שמטפסים על הקירות.","11–15: היא מסתובבת, והצבע חוזר לכל העיר."]},
+    {"n":63,"t":"המסע של הסמל","k":"יוקרה","e":"מורכבת","w":"פרפר זהוב יוצא מקופסת תכשיטים ועף מעל עיר בלילה. הוא חוצה מדבר בזריחה, ים ויער ערפילי. בסוף הוא נוחת על יד של אישה והופך למוצר. מסע קולנועי קצר, בסגנון הפרסומות של בתי היוקרה.","y":"תכשיטים, שעונים ובשמים.","d":15,"s":["0–5: פרפר זהוב יוצא מקופסה ועף מעל עיר בלילה.","5–11: הוא חולף על פני מדבר, ים ויער, בשלושה חיתוכים.","11–15: הוא נוחת על יד של אישה והופך ל‑המוצר."]}
   ];
   (function(){var tg=document.getElementById('ideasToggle'),bd=document.getElementById('ideasBody'),ta=document.getElementById('ideaText');
     if(!IDEAS.length){tg.hidden=true;return;}
-    IDEAS.forEach(function(it){var b=document.createElement('button');b.type='button';b.className='ideac';var g=document.createElement('small');g.textContent=it.k+' · הפקה '+it.e;var h=document.createElement('b');h.textContent=it.t;var q=document.createElement('span');q.textContent=it.w;var y=document.createElement('span');y.className='fit';y.textContent='מתאים ל: '+it.y;var u=document.createElement('i');u.textContent='לבחור ברעיון הזה';b.appendChild(g);b.appendChild(h);b.appendChild(q);b.appendChild(y);b.appendChild(u);
-      b.addEventListener('click',function(){ta.value='רעיון '+it.n+' מבנק הרעיונות: '+it.t+'. '+it.w;bd.querySelectorAll('.ideac').forEach(function(x){x.setAttribute('aria-pressed',x===b);});ta.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});});b.setAttribute('aria-pressed','false');bd.appendChild(b);});
-    tg.addEventListener('click',function(){var open=bd.hidden;bd.hidden=!open;tg.setAttribute('aria-expanded',open);document.getElementById('ideasToggleT').textContent=open?'סגירת הרעיונות':'לקבלת רעיונות';});})();
+    var intro=document.createElement('p');intro.className='ideas-intro';intro.textContent='רעיונות לפרסומת יוקרה, בסגנון של הפקות הוליווד. כל רעיון הוא סיפור קצר שנבנה סביב המוצר שלכם.';bd.appendChild(intro);
+    IDEAS.forEach(function(it){var c=document.createElement('div');c.className='ideac';
+      var g=document.createElement('small');g.textContent=it.k+' · הפקה '+it.e;var h=document.createElement('b');h.textContent=it.t;var q=document.createElement('span');q.textContent=it.w;var y=document.createElement('span');y.className='fit';y.textContent='מתאים ל: '+it.y;
+      var d=document.createElement('details');var sm=document.createElement('summary');sm.textContent='לצפייה ברעיון המלא';d.appendChild(sm);
+      var hd=document.createElement('p');hd.textContent='סרטון של '+it.d+' שניות, בשלושה חלקים:';d.appendChild(hd);
+      var ol=document.createElement('ol');it.s.forEach(function(x){var li=document.createElement('li');var k=x.indexOf(': ');var tm=document.createElement('b');tm.textContent='שניות '+x.slice(0,k);li.appendChild(tm);li.appendChild(document.createTextNode(' '+x.slice(k+2)));ol.appendChild(li);});d.appendChild(ol);
+      var ft=document.createElement('p');ft.textContent='את הסרטון עצמו אני מתאים למוצר שלכם, ושולח לכם תסריט לאישור לפני שמתחילים.';d.appendChild(ft);
+      var u=document.createElement('button');u.type='button';u.className='btn line';u.textContent='לבחור ברעיון הזה';u.setAttribute('aria-pressed','false');
+      u.addEventListener('click',function(){ta.value='רעיון '+it.n+' מבנק הרעיונות: '+it.t+'. '+it.w;bd.querySelectorAll('.ideac').forEach(function(x){var on=x===c;x.classList.toggle('on',on);x.querySelector('button').setAttribute('aria-pressed',on);});ta.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});});
+      c.appendChild(g);c.appendChild(h);c.appendChild(q);c.appendChild(y);c.appendChild(d);c.appendChild(u);bd.appendChild(c);});
+    tg.addEventListener('click',function(){var open=bd.hidden;bd.hidden=!open;tg.setAttribute('aria-expanded',open);document.getElementById('ideasToggleT').textContent=open?'סגירת הרעיונות':'רעיונות לפרסומת יוקרה';});})();
   setFilter('all');
   try{var sv=JSON.parse(localStorage.getItem('bm-order')||'null');if(sv&&Date.now()-sv.t<864e5){sel=(sv.s||[]).filter(find);images=!!sv.i;model=sv.m||null;note=sv.o||'';ordNo=sv.k||'';document.getElementById('oName').value=sv.n||'';
     mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',x.querySelector('.n').textContent===model);});render();}}catch(e){}
@@ -831,7 +858,7 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
   render();
 })();
 /* model filter */
-  (function(){var cg=document.getElementById('campGrid'),mz=document.getElementById('mz');if(!cg)return;['c6','c7','c8','c9','c10','c11','c12','c13','c1','c2','c3','c4','c5'].forEach(function(k){var b=document.createElement('button');b.type='button';if(['c1','c2','c3','c4'].indexOf(k)>-1)b.className='wide';b.setAttribute('aria-label','הגדלת תמונת קמפיין');var i=document.createElement('img');i.loading='lazy';i.decoding='async';i.alt='תמונת קמפיין';i.src='images/campaigns/'+k+'-s.webp';if(k==='c11')i.className='top';b.appendChild(i);b.addEventListener('click',function(){document.getElementById('mzImg').src='images/campaigns/'+k+'.webp';document.getElementById('mzImg').alt='תמונת קמפיין';document.getElementById('mzT').textContent='קמפיין';mz.showModal();});cg.appendChild(b);});})();
+  (function(){var cg=document.getElementById('campGrid'),mz=document.getElementById('mz');if(!cg)return;['c6','c7','c8','c9','c10','c11','c12','c13','c1','c2','c3','c4','c5'].forEach(function(k){var b=document.createElement('button');b.type='button';if(['c1','c2','c3','c4'].indexOf(k)>-1)b.className='land';b.setAttribute('aria-label','הגדלת תמונת קמפיין');var i=document.createElement('img');i.loading='lazy';i.decoding='async';i.alt='תמונת קמפיין';i.src='images/campaigns/'+k+'-s.webp';if(k==='c11')i.className='top';b.appendChild(i);b.addEventListener('click',function(){document.getElementById('mzImg').src='images/campaigns/'+k+'.webp';document.getElementById('mzImg').alt='תמונת קמפיין';document.getElementById('mzT').textContent='קמפיין';mz.showModal();});cg.appendChild(b);});})();
   (function(){var fb=document.querySelectorAll('.mfilt button');fb.forEach(function(x){x.addEventListener('click',function(){var on=x.getAttribute('aria-pressed')!=='true';fb.forEach(function(y){y.setAttribute('aria-pressed','false')});if(on)x.setAttribute('aria-pressed','true');var f=on?x.dataset.f:null;document.getElementById('modelsMore').hidden=f!=='all';document.getElementById('campGrid').hidden=f!=='c';document.getElementById('modelsGrid').style.display=(f==='all'||f==='c')?'none':'';document.querySelectorAll('#modelsGrid .model').forEach(function(m){m.classList.toggle('mhide',!!f&&f!=='all'&&m.dataset.g!==f)});});});})();
   </script>
 <script type="module">import {mountAll} from "./new/assets/moments/moments.js";mountAll();</script>
