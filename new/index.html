@@ -785,11 +785,11 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
 
   /* gallery */
   var wall=document.getElementById('wall');
-  var GROUPS=[{k:'viral',t:'טרנדי ותופס את העין',d:'טרנדים ואפקטים מפתיעים שעוצרים את הגלילה.'},{k:'cine',t:'קולנועי',d:'אווירה של סרט: ים, אור ותנועה, והמוצר בתוך סיפור.'},{k:'models',t:'דוגמנית',d:'המוצר על דוגמנית, בתקריבים טבעיים.'},{k:'simple',t:'תצוגה ותלת מימד',d:'המוצר לבד, נקי ויפה: מסתובב, מתפרק ונבנה מחדש.'}];
+  var GROUPS=[{k:'viral',t:'טרנדי ותופס את העין',d:'מתאים לאינסטגרם, טיקטוק ומודעות ממומנות: למי שרוצה לעצור את הגלילה ולהגיע לקהל חדש.'},{k:'cine',t:'קולנועי',d:'מתאים למותגי יוקרה, להשקת קולקציה ולסרטון ראשי באתר או בקמפיין.'},{k:'models',t:'דוגמנית',d:'מתאים לתכשיטים ולאופנה, כשרוצים להראות איך המוצר נראה על אדם אמיתי.'},{k:'simple',t:'תצוגה ותלת מימד',d:'מתאים לאתר, לחנות אונליין ולדף מוצר, כשרוצים להראות את המוצר עצמו מכל זווית.'}];
   function grp(i){var g=i.c.split(' ')[0];return GROUPS.some(function(x){return x.k===g;})?g:'simple';}
   var SEQ={},seqN=0,PER=4,openG={};
   GROUPS.forEach(function(g){var its=ITEMS.filter(function(i){return grp(i)===g.k;});if(!its.length)return;
-    var hd=document.createElement('div');hd.className='wgroup';hd.dataset.g=g.k;var h3=document.createElement('h3');h3.textContent=g.t;var hp=document.createElement('p');hp.textContent=g.d+' '+its.length+' סרטונים.';hd.appendChild(h3);hd.appendChild(hp);wall.appendChild(hd);
+    var hd=document.createElement('div');hd.className='wgroup';hd.dataset.g=g.k;var h3=document.createElement('h3');h3.textContent=g.t;var hp=document.createElement('p');hp.textContent=g.d;hd.appendChild(h3);hd.appendChild(hp);wall.appendChild(hd);
     its.forEach(function(i){SEQ[i.id]=++seqN;
     var c=document.createElement('article');c.className='card';c.dataset.id=i.id;c.dataset.c=i.c;c.dataset.g=g.k;
     c.innerHTML='<button class="media" type="button"><img loading="lazy" decoding="async" width="300" height="466" sizes="(max-width:640px) 50vw, 25vw"><video muted loop playsinline preload="none" aria-hidden="true"></video><span class="num" aria-hidden="true"></span><span class="check" aria-hidden="true">✓</span></button><div class="t"></div><button class="pick" type="button" aria-pressed="false">בחירה</button>';
