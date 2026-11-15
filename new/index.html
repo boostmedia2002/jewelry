@@ -793,7 +793,7 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
     var c=document.createElement('article');c.className='card';c.dataset.id=i.id;c.dataset.c=i.c;c.dataset.g=g.k;
     c.innerHTML='<button class="media" type="button"><img loading="lazy" decoding="async" width="300" height="466" sizes="(max-width:640px) 50vw, 25vw"><video muted loop playsinline preload="none" aria-hidden="true"></video><span class="num" aria-hidden="true"></span><span class="check" aria-hidden="true">✓</span></button><div class="t"></div><button class="pick" type="button" aria-pressed="false">בחירה</button>';
     var im=c.querySelector('img');im.src='p/'+i.id+'-s.webp';im.srcset='p/'+i.id+'-s.webp 300w, p/'+i.id+'.webp 600w';im.alt='';
-    c.querySelector('video').dataset.src=(i.pv||('../videos/preview/'+i.id+'.mp4'))+'?e1';
+    c.querySelector('video').dataset.src=(i.pv||('../videos/preview/'+i.id+'.mp4'))+'?e2';
     c.querySelector('.t').textContent=i.t;
     c.querySelector('.num').textContent=SEQ[i.id];c.querySelector('.pick').textContent='בחירה · '+vp(i.id)+' ₪';
     c.querySelector('.media').setAttribute('aria-label','צפייה בסרטון: '+i.t);
@@ -865,7 +865,7 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
   var lb=document.getElementById('lb'),stage=document.getElementById('stage'),lbId=null,lastFocus=null;
   function openVideo(id){var i=find(id);lbId=id;lastFocus=document.activeElement;
     stage.innerHTML='';
-    var v=document.createElement('video');v.src=(small?'mob/':(i.src?'hd/':'../videos/'))+id+'.mp4?e1';v.loop=true;holdPreviews(true);stage.classList.add('loading');v.addEventListener('playing',function(){stage.classList.remove('loading');});v.addEventListener('waiting',function(){stage.classList.add('loading');});v.preload='auto';v.poster='p/'+id+'.webp';v.controls=true;v.autoplay=true;v.playsInline=true;v.setAttribute('controlsList','nodownload noplaybackrate');v.disablePictureInPicture=true;stage.appendChild(v);
+    var v=document.createElement('video');v.src=(small?'mob/':(i.src?'hd/':'../videos/'))+id+'.mp4?e2';v.loop=true;holdPreviews(true);stage.classList.add('loading');v.addEventListener('playing',function(){stage.classList.remove('loading');});v.addEventListener('waiting',function(){stage.classList.add('loading');});v.preload='auto';v.poster='p/'+id+'.webp';v.controls=true;v.autoplay=true;v.playsInline=true;v.setAttribute('controlsList','nodownload noplaybackrate');v.disablePictureInPicture=true;stage.appendChild(v);
     document.getElementById('lbT').textContent='סרטון '+dispNum(id)+' · '+i.t+(i.src?' · צילום בסיס: '+i.src:'');render();lb.showModal();}
   document.getElementById('lbPick').addEventListener('click',function(){toggle(lbId);});
   lb.addEventListener('close',function(){stage.innerHTML='';stage.classList.remove('loading');holdPreviews(false);lbId=null;if(lastFocus)lastFocus.focus({preventScroll:true});});
