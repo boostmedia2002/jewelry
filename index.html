@@ -544,6 +544,22 @@ dialog .undo{bottom:24px}
 .up.drop:active{transform:scale(.99)}
 .oi.hf .prods{margin:0 0 10px}
 #oTotal{display:none!important}
+.oi.hf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:stretch}
+.oi.hf .hf-prev{aspect-ratio:3/4;max-height:none;min-width:0;width:100%;height:auto}
+.oi.hf .hf-prev video,.oi.hf .hf-prev img{position:absolute;inset:0}
+.oi.hf .up.drop span{font-size:1rem}
+.oi.hf .up.drop::before{width:34px;height:34px;font-size:1.3rem}
+.oi.hf .hf-body{display:flex;flex-direction:column;min-width:0}
+.oi.hf .hf-body .t{font-size:1rem;line-height:1.3}
+.oi.hf .hf-body .hint{font-size:.9rem}
+.oi.hf .hf-body .row{flex:1;display:flex;flex-direction:column;margin-top:10px}
+.oi.hf .up.drop{flex:1;min-height:120px;padding:12px 8px}
+.oi.hf .up.drop small{font-size:.85rem}
+.oi.hf .prods{margin:8px 0 0}
+.oi.hf .prods .pw img.prod{width:48px;height:48px}
+.hf-note{grid-column:1/-1;display:block}
+.hf-note input{width:100%;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font:inherit;font-size:1rem}
+.hf-note input:focus{outline:3px solid var(--accent);outline-offset:1px}
 </style>
 </head>
 <body>
@@ -795,7 +811,7 @@ dialog .undo{bottom:24px}
   var CAT={models:'דוגמנית',cine:'קולנועי',simple:'תצוגה ותלת מימד',viral:'טרנדי ותופס את העין',gimmick:'עוצר גלילה'};
   function catOf(c){return c.split(' ').map(function(k){return CAT[k];}).join(' · ');}
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var sel=[], images=false, model=null, prod={}, note='', ordNo='', PS=50, PL=70, PD=50, PI=200, SHORT=[1,2,5,9,11,12,13,15,23,29,30,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,49,50,51,52,53,54,55,56,64];
+  var inotes={}, sel=[], images=false, model=null, prod={}, note='', ordNo='', PS=50, PL=70, PD=50, PI=200, SHORT=[1,2,5,9,11,12,13,15,23,29,30,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,49,50,51,52,53,54,55,56,64];
   /* videos under 10 seconds cost PS, longer ones PL; from 10 videos up each costs PD; 10 campaign photos cost PI */
   function vp(id){return SHORT.indexOf(numOf(id))>=0?PS:PL;}
   function up(id){return sel.length>=10?PD:vp(id);}
@@ -812,7 +828,7 @@ dialog .undo{bottom:24px}
     location.href='whatsapp://send?phone='+m[1]+(m[2]?'&text='+m[2]:'');
     setTimeout(function(){document.removeEventListener('visibilitychange',h);if(!left)waFallback(url);},2500);}
   document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="https://wa.me/"]');if(!a||!mobile||a.id==='waFb')return;e.preventDefault();goWA(a.href);});
-  function save(){try{localStorage.setItem('bm-order',JSON.stringify({s:sel,i:images,m:model,n:document.getElementById('oName').value,o:note,k:ordNo,t:Date.now()}));}catch(e){}}
+  function save(){try{localStorage.setItem('bm-order',JSON.stringify({s:sel,i:images,m:model,n:document.getElementById('oName').value,o:note,q:inotes,k:ordNo,t:Date.now()}));}catch(e){}}
   function numOf(id){return parseInt(id.slice(5),10);}
   function find(id){return ITEMS.find(function(x){return x.id===id;});}
 
@@ -983,16 +999,14 @@ dialog .undo{bottom:24px}
         d.className='oi hf';d.innerHTML='<div class="hf-prev"><video muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video><span class="hf-tag"></span><button class="rm hf-x" type="button" aria-label="הסרה">✕</button></div><div class="hf-body"><div class="t"></div><div class="hint"></div><div class="row"><label class="up drop"><input type="file" accept="image/*"><span>העלאת תמונת המוצר</span><small>אפשר כמה תמונות · JPG או PNG</small></label></div></div>';
         var hv=d.querySelector('video');hv.poster='p/'+id+'.webp';hv.src=(i.pv||('videos/preview/'+id+'.mp4'))+'?e2';hv.muted=true;setTimeout(function(){var pr=hv.play();if(pr&&pr.catch)pr.catch(function(){});},0);d.querySelector('.hf-tag').textContent='סרטון '+dispNum(id);d.querySelector('.t').textContent=i.t;d.querySelector('.hint').textContent=catOf(i.c);d.querySelector('.hf-x').setAttribute('aria-label','הסרת '+i.t);
         var inp=d.querySelector('input');inp.dataset.id=id;inp.setAttribute('aria-label','העלאת תמונה של המוצר לסרטון '+dispNum(id));
-        photoUI(d,id);
+        photoUI(d,id);var nw=document.createElement('label');nw.className='hf-note';var nI=document.createElement('input');nI.type='text';nI.placeholder='הערות (לא חובה)';nI.setAttribute('aria-label','הערות ל'+i.t+' (לא חובה)');nI.value=inotes[id]||'';nI.addEventListener('input',function(){if(nI.value.trim())inotes[id]=nI.value;else delete inotes[id];save();});nw.appendChild(nI);d.appendChild(nw);
         d.querySelector('.rm').addEventListener('click',function(){toggle(id);});
         s1.appendChild(d);});
       if(images){var d=document.createElement('div');d.className='oi';d.className='oi hf';d.innerHTML='<div class="hf-prev"><img alt="" src="m/ringhand.webp"><span class="hf-tag">תמונות</span><button class="rm hf-x" type="button" aria-label="הסרת תמונות הקמפיין">✕</button></div><div class="hf-body"><div class="t">10 תמונות קמפיין לתכשיטים</div><div class="hint">על דוגמנית או בסטודיו</div><div class="row"><label class="up drop"><input type="file" accept="image/*" data-id="images" aria-label="העלאת תמונה של המוצר לתמונות הקמפיין"><span>העלאת תמונת המוצר</span><small>אפשר כמה תמונות · JPG או PNG</small></label></div></div>';
-        photoUI(d,'images');
+        photoUI(d,'images');var nw=document.createElement('label');nw.className='hf-note';var nI=document.createElement('input');nI.type='text';nI.placeholder='הערות (לא חובה)';nI.setAttribute('aria-label','הערות ל'+'תמונות הקמפיין'+' (לא חובה)');nI.value=inotes['images']||'';nI.addEventListener('input',function(){if(nI.value.trim())inotes['images']=nI.value;else delete inotes['images'];save();});nw.appendChild(nI);d.appendChild(nw);
         d.querySelector('.rm').addEventListener('click',function(){var b4=snap();images=false;delete prod.images;render();toast('התמונות הוסרו מההזמנה',b4);});s1.appendChild(d);}
       var has=Object.keys(prod)[0],ms0=missing();if(has&&ms0.length){var cp=document.createElement('button');cp.type='button';cp.className='btn line copyp';cp.textContent='להשתמש באותן תמונות לכל ההזמנה';cp.addEventListener('click',function(){ms0.forEach(function(k){prod[k]=prod[has].slice();});fillOrder();});s1.appendChild(cp);}
       var m=document.createElement('p');m.className='hint';m.textContent=model?('דוגמנית: '+model+'.'):'לא בחרתם דוגמנית. זה בסדר, אני אבחר.';if(model){var mr=document.createElement('button');mr.type='button';mr.className='mrm';mr.textContent='הסרת הדמות';mr.addEventListener('click',function(){var b4=snap();model=null;mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed','false');});render();toast('הדמות הוסרה',b4);});m.appendChild(document.createTextNode(' '));m.appendChild(mr);}s1.appendChild(m);
-      var nl=document.createElement('label');nl.className='l';nl.htmlFor='oNote';nl.style.cssText='display:block;margin:18px 0 8px';nl.innerHTML='הערות <span class="hint">(לא חובה)</span>';
-      var nt=document.createElement('textarea');nt.id='oNote';nt.rows=3;nt.style.minHeight='96px';nt.placeholder='משהו שחשוב שנדע?';nt.value=note;nt.addEventListener('input',function(){note=nt.value;save();});s1.appendChild(nl);s1.appendChild(nt);
       var cl=document.createElement('button');cl.type='button';cl.className='oclear';cl.textContent='ביטול כל ההזמנה והתחלה מחדש';cl.addEventListener('click',function(){var b4=snap();sel=[];images=false;model=null;prod={};mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed','false');});render();toast('ההזמנה בוטלה',b4);});
       setTimeout(function(){s1.appendChild(cl);});
       if(sel.length){var s2=document.createElement('p');s2.className='hint';s2.style.marginTop='8px';s2.textContent='אין לכם עכשיו תמונה של המוצר? אפשר לשלוח גם בלי, ולצרף אחר כך בשיחה.';s1.appendChild(s2);}
@@ -1008,8 +1022,8 @@ dialog .undo{bottom:24px}
     var nm=document.getElementById('oName').value.trim(),n=sel.length;
     var L=['*הזמנה חדשה מהאתר · BOOST MEDIA*','מספר הזמנה: '+ordNo,'עסק: '+(nm||'לא צוין')];
     if(n){L.push('','*סרטונים ('+n+'):*');sel.forEach(function(id,k){var i=find(id);
-      L.push((k+1)+'. סרטון '+dispNum(id)+' · '+i.t+' · '+up(id)+' ₪','   תמונת מוצר: '+(prod[id]?pcount(id):'עדיין לא צירפתי, אשלח בשיחה'),'   לצפייה: '+BASE+'?v='+numOf(id));});}
-    if(images)L.push('','*תמונות:*','1. 10 תמונות קמפיין · '+PI+' ₪','   תמונת מוצר: '+(prod.images?pcount('images'):'עדיין לא צירפתי, אשלח בשיחה'),'   לצפייה: '+BASE+'#extras');if(model)L.push('','דוגמן/ית: '+model);
+      L.push((k+1)+'. סרטון '+dispNum(id)+' · '+i.t+' · '+up(id)+' ₪','   תמונת מוצר: '+(prod[id]?pcount(id):'עדיין לא צירפתי, אשלח בשיחה'),'   לצפייה: '+BASE+'?v='+numOf(id));if(inotes[id])L.push('   הערות: '+inotes[id].trim());});}
+    if(images)L.push('','*תמונות:*','1. 10 תמונות קמפיין · '+PI+' ₪','   תמונת מוצר: '+(prod.images?pcount('images'):'עדיין לא צירפתי, אשלח בשיחה'),'   לצפייה: '+BASE+'#extras');if(images&&inotes.images)L.push('   הערות: '+inotes.images.trim());if(model)L.push('','דוגמן/ית: '+model);
     if(note.trim())L.push('','*הערות:*',note.trim());
     if(n||images)L.push('','*מחיר: '+total()+' ₪*'+(n&&images?' (סרטונים '+vidsTotal()+' ₪ + תמונות '+PI+' ₪)':''));
     L.push('אשמח לקבל פרטי תשלום.');
@@ -1110,7 +1124,7 @@ dialog .undo{bottom:24px}
       var L=['*בקשה לרעיונות לסרטון · BOOST MEDIA*','אתר או אינסטגרם: '+v,'מוצר לקדם: '+(pr.value.trim()||'לא צוין'),'מטרה: '+(g||'לא צוינה'),'','אשמח לקבל 3 רעיונות לסרטון לעסק שלי.'];
       d.close();goWA(wa(L.join('\n')));});})();
   setFilter('all');
-  try{var sv=JSON.parse(localStorage.getItem('bm-order')||'null');if(sv&&Date.now()-sv.t<864e5){sel=(sv.s||[]).filter(find);images=!!sv.i;model=sv.m||null;note=sv.o||'';ordNo=sv.k||'';document.getElementById('oName').value=sv.n||'';
+  try{var sv=JSON.parse(localStorage.getItem('bm-order')||'null');if(sv&&Date.now()-sv.t<864e5){sel=(sv.s||[]).filter(find);images=!!sv.i;model=sv.m||null;note=sv.o||'';inotes=sv.q||{};ordNo=sv.k||'';document.getElementById('oName').value=sv.n||'';
     mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',x.querySelector('.n').textContent===model);});render();}}catch(e){}
   document.getElementById('oName').addEventListener('input',save);
   try{var qv=new URLSearchParams(location.search).get('v');if(qv&&/^\d{1,3}$/.test(qv)){var qi=ITEMS.find(function(x){return numOf(x.id)===parseInt(qv,10);});if(qi)openVideo(qi.id);}}catch(e){}
