@@ -516,6 +516,18 @@ dialog .undo{bottom:24px}
 .wall-hint{color:var(--muted);font-size:1rem;margin:4px 0 14px}
 .fits-line.mo-wh__text{font-size:clamp(1.55rem,3vw,2.6rem);line-height:1.3;max-width:30ch;margin:-8px 0 36px}
 #extras .scan-band{margin:clamp(28px,4vw,48px) 0 0}
+.callback{margin-top:16px;padding:22px 20px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.cb-head{display:flex;flex-direction:column;gap:4px}.cb-head b,.cb-done b{font-size:1.15rem;font-weight:600}.cb-head span,.cb-done span{color:var(--muted)}
+.cb-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media (max-width:640px){.cb-row{grid-template-columns:1fr}}
+.cb-f{display:flex;flex-direction:column;gap:6px;font-weight:500}.cb-f small{color:var(--muted);font-weight:400}
+.cb-f input,.cb-f select{min-height:52px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:1rem}
+.cb-f input[dir=ltr]{text-align:right}
+.cb-f input:focus,.cb-f select:focus{outline:3px solid var(--accent);outline-offset:1px}
+.cb-hp{display:none}
+.cb-msg{color:#A1281B;font-size:.95rem;margin:0}
+.callback .btn{align-self:flex-start}@media (max-width:640px){.callback .btn{width:100%}}
+.cb-done[hidden],.callback[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -636,6 +648,19 @@ dialog .undo{bottom:24px}
         </article>
       </div>
       <div class="scan-band"><div><b>לא יודעים מה לבחור?</b><span>צרפו קישור לאתר או לאינסטגרם שלכם, ונשלח לכם רעיונות לפרסומות שנבנו במיוחד בשביל העסק שלכם, על סמך מחקר.</span></div><button class="btn" type="button" data-scan>שלחו לי רעיונות</button></div>
+      <form class="callback" id="cbF" novalidate aria-labelledby="cbT">
+        <div class="cb-head"><b id="cbT">מעדיפים שנתקשר אליכם?</b><span>השאירו שם וטלפון, ונחזור אליכם בשיחה.</span></div>
+        <div class="cb-row">
+          <label class="cb-f"><span>שם</span><input id="cbName" autocomplete="name" required></label>
+          <label class="cb-f"><span>טלפון</span><input id="cbPhone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" required></label>
+          <label class="cb-f"><span>מתי נוח? <small>(לא חובה)</small></span><select id="cbTime"><option value="">לא משנה</option><option>בוקר</option><option>צהריים</option><option>ערב</option></select></label>
+        </div>
+        <input class="cb-hp" type="text" id="cbHp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="agree"><input type="checkbox" id="cbAgree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
+        <p class="cb-msg" id="cbMsg" role="alert" hidden></p>
+        <button class="btn" type="submit" id="cbBtn">חזרו אליי בטלפון</button>
+      </form>
+      <div class="callback cb-done" id="cbOk" role="status" hidden><b>תודה, קיבלנו!</b><span>נחזור אליכם בטלפון בהקדם.</span></div>
     </div>
   </section>
 
@@ -779,6 +804,22 @@ dialog .undo{bottom:24px}
 
   /* WhatsApp bubble steps aside while the visitor scrolls down */
   (function(){var f=document.querySelector('.wafab');if(!f)return;var y0=scrollY,tk=0;addEventListener('scroll',function(){if(tk)return;tk=requestAnimationFrame(function(){tk=0;var y=scrollY,d=y-y0;if(Math.abs(d)<8)return;f.classList.toggle('away',d>0&&y>200);y0=y;});},{passive:true});})();
+  /* call-back request: name + phone go to the business mailbox */
+  (function(){var f=document.getElementById('cbF');if(!f)return;var n=document.getElementById('cbName'),ph=document.getElementById('cbPhone'),tm=document.getElementById('cbTime'),ag=document.getElementById('cbAgree'),msg=document.getElementById('cbMsg'),bt=document.getElementById('cbBtn');
+    function err(t,el){msg.textContent=t;msg.hidden=false;el.focus();}
+    [n,ph,ag].forEach(function(x){x.addEventListener('input',function(){msg.hidden=true;});});
+    f.addEventListener('submit',function(e){e.preventDefault();msg.hidden=true;
+      if(document.getElementById('cbHp').value)return;
+      var nv=n.value.trim(),pv=ph.value.trim();
+      if(nv.length<2)return err('כתבו את השם שלכם.',n);
+      if(pv.replace(/\D/g,'').length<9)return err('כתבו מספר טלפון תקין.',ph);
+      if(!ag.checked)return err('כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.',ag);
+      bt.disabled=true;bt.textContent='שולח…';
+      fetch('https://formsubmit.co/ajax/boostmedia2002@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({'שם':nv,'טלפון':pv,'מתי נוח':tm.value||'לא משנה',_subject:'בקשה לשיחה חוזרת: '+nv+' '+pv,_template:'table',_captcha:'false'})})
+      .then(function(r){if(!r.ok)throw 0;f.hidden=true;document.getElementById('cbOk').hidden=false;})
+      .catch(function(){bt.disabled=false;bt.textContent='חזרו אליי בטלפון';err('משהו השתבש. נסו שוב, או התקשרו: 053-950-7416.',bt);});});
+  })();
   /* text size (remembered per visitor) */
   var root=document.documentElement,sb=document.getElementById('sizeBtn');
   function setBig(on){root.classList.toggle('big',on);sb.setAttribute('aria-pressed',on);try{localStorage.setItem('bm-big',on?'1':'');}catch(e){}}
