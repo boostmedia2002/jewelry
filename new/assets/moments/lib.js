@@ -98,7 +98,10 @@ export function once(el, fn, { threshold = 0.35, margin = '0px', rescue = 3000 }
 }
 
 export function split(el, unit = 'words') {
-  if (!el.getAttribute('aria-label')) el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+  // a plain paragraph may not carry aria-label: its words stay readable through a hidden copy instead
+  const named = el.getAttribute('role') || el.matches('h1,h2,h3,h4,h5,h6,a,button,section,blockquote,figure');
+  const label = el.textContent.replace(/\s+/g, ' ').trim();
+  if (named && !el.getAttribute('aria-label')) el.setAttribute('aria-label', label);
   const inners = [];
   const wrap = (text, cls) => {
     const s = document.createElement('span');
@@ -134,6 +137,7 @@ export function split(el, unit = 'words') {
   };
   walk(el);
   el.querySelectorAll('.mo-w').forEach(w => w.setAttribute('aria-hidden', 'true'));
+  if (!named) { const sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = label; el.append(sr); }
   return inners;
 }
 
