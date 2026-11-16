@@ -71,7 +71,11 @@ button[disabled]{opacity:.65;cursor:default}
     <div id="formWrap">
       <h2>השאירו פרטים</h2>
       <p class="sub"><svg class="wa" viewBox="0 0 24 24"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M8.7 7.3c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.3 2.5 1 3 .8 3.5.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4l-.5-.3-1.7-.8c-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2-1.3-.8-.7-1.3-1.5-1.4-1.8-.2-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9z"/></svg>נחזור אליך בהודעת וואטסאפ</p>
-      <form id="f" novalidate>
+      <form id="f" method="POST" action="https://formsubmit.co/boostmedia2002@gmail.com" novalidate>
+        <input type="hidden" name="_subject" id="subj" value="ליד חדש מהאתר">
+        <input type="hidden" name="_next" value="https://boostmedia2002.github.io/jewelry/contact/?ok=1">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
         <label for="name">שם</label>
         <input id="name" name="שם" autocomplete="name" placeholder="איך קוראים לך?" required>
         <label for="phone">טלפון</label>
@@ -94,20 +98,16 @@ button[disabled]{opacity:.65;cursor:default}
 </div>
 <script>
 const f=document.getElementById("f"),m=document.getElementById("m"),btn=document.getElementById("btn");
-f.addEventListener("submit",async e=>{
-  e.preventDefault();m.className="msg";m.textContent="";
-  const name=f.elements["שם"].value.trim(),phone=f.elements["טלפון"].value.trim();
-  if(!name){m.className="msg err";m.textContent="נא למלא שם";return}
-  if(phone.replace(/\D/g,"").length<9){m.className="msg err";m.textContent="נא למלא מספר טלפון תקין";return}
+if(new URLSearchParams(location.search).get("ok")){document.getElementById("formWrap").hidden=true;document.getElementById("ok").hidden=false;}
+f.addEventListener("submit",e=>{
+  m.className="msg";m.textContent="";
+  const name=f.elements["שם"].value.trim(),phone=f.elements["טלפון"].value.trim(),biz=(f.elements["שם העסק"].value||"").trim();
+  if(!name){e.preventDefault();m.className="msg err";m.textContent="נא למלא שם";return}
+  if(phone.replace(/\D/g,"").length<9){e.preventDefault();m.className="msg err";m.textContent="נא למלא מספר טלפון תקין";return}
+  document.getElementById("subj").value="ליד חדש מהאתר: "+name+" | "+phone+(biz?" | "+biz:"");
   btn.disabled=true;btn.textContent="שולח…";
-  const data=Object.fromEntries(new FormData(f));
-  const biz=(f.elements["שם העסק"].value||"").trim();data._subject="ליד חדש מהאתר: "+name+" | "+phone+(biz?" | "+biz:"");data._template="table";data._captcha="false";
-  try{
-    const r=await fetch("https://formsubmit.co/ajax/boostmedia2002@gmail.com",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(data)});
-    if(!r.ok)throw 0;
-    document.getElementById("formWrap").hidden=true;document.getElementById("ok").hidden=false;
-  }catch(err){m.className="msg err";m.textContent="משהו השתבש, נסו שוב או כתבו לנו בוואטסאפ: 053-9507416";btn.disabled=false;btn.textContent="אני רוצה לשמוע עוד";}
 });
+window.addEventListener("pageshow",()=>{btn.disabled=false;btn.textContent="אני רוצה לשמוע עוד"});
 </script>
 </body>
 </html>
