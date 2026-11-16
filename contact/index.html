@@ -5,54 +5,96 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>השארת פרטים | Boost Media</title>
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#14110d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f7f5f1;--card:#fff;--ink:#1d1b18;--muted:#6b665e;--line:#e4dfd6;--gold:#9a7a3a;--err:#a33}
-@media (prefers-color-scheme:dark){:root{--bg:#141311;--card:#1d1b18;--ink:#f1ede6;--muted:#a59f94;--line:#34302a;--gold:#d2b06a;--err:#e88}}
+:root{--bg:#14110d;--bg2:#221c14;--card:#fffdf9;--ink:#1d1912;--muted:#6f675a;--line:#e8e0d2;--gold:#c9a45c;--gold2:#e8cf96;--err:#b3261e}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Assistant","Segoe UI",Arial,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
-.card{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 22px}
-h1{font-size:24px;margin:0 0 6px}
-p.sub{margin:0 0 22px;color:var(--muted);font-size:15px}
+html,body{margin:0}
+body{min-height:100vh;font:17px/1.55 "Assistant","Segoe UI",Arial,sans-serif;color:var(--ink);
+ background:radial-gradient(120% 70% at 85% -10%,#3a2c18 0%,transparent 60%),radial-gradient(90% 60% at 0% 100%,#2b2115 0%,transparent 55%),linear-gradient(180deg,var(--bg),var(--bg2));
+ display:flex;flex-direction:column;align-items:center;padding:28px 16px 40px}
+.wrap{width:100%;max-width:440px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--gold2);font-weight:700;letter-spacing:.14em;font-size:13px;margin-bottom:22px}
+.gem{width:26px;height:26px}
+.hero{color:#f6efe2;margin-bottom:22px}
+.hero h1{font-family:"Frank Ruhl Libre",Georgia,serif;font-weight:700;font-size:clamp(30px,8vw,38px);line-height:1.15;margin:0 0 10px;text-wrap:balance}
+.hero h1 span{color:var(--gold)}
+.hero p{margin:0;color:#cfc4b0;font-size:16px}
+.perks{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
+.perks li{display:flex;align-items:center;gap:6px;font-size:14px;color:#efe6d4;background:rgba(201,164,92,.12);border:1px solid rgba(201,164,92,.35);border-radius:999px;padding:5px 12px}
+.perks svg{width:14px;height:14px;flex:none}
+.card{background:var(--card);border-radius:20px;padding:26px 20px 22px;box-shadow:0 20px 50px rgba(0,0,0,.45),0 0 0 1px rgba(201,164,92,.25)}
+.card h2{font-size:20px;margin:0 0 4px}
+.card .sub{margin:0 0 20px;color:var(--muted);font-size:15px;display:flex;align-items:center;gap:6px}
+.wa{width:18px;height:18px;flex:none}
 label{display:block;font-size:15px;font-weight:600;margin:0 0 6px}
 .opt{font-weight:400;color:var(--muted);font-size:13px}
-input{width:100%;font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);margin-bottom:16px}
-input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
-button{width:100%;font:inherit;font-weight:700;padding:13px;border:0;border-radius:10px;background:var(--ink);color:var(--bg);cursor:pointer}
-button[disabled]{opacity:.6;cursor:default}
-.note{margin:14px 0 0;color:var(--muted);font-size:13px;text-align:center}
-.note a{color:var(--muted)}
-.msg{margin-top:14px;font-size:15px;text-align:center}
+input{width:100%;font:inherit;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);margin-bottom:16px;transition:border-color .15s,box-shadow .15s}
+input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,164,92,.18)}
+button{width:100%;font:inherit;font-size:18px;font-weight:700;padding:15px;border:0;border-radius:12px;cursor:pointer;color:#1d1912;
+ background:linear-gradient(135deg,#e8cf96,#c9a45c 55%,#b08a45);box-shadow:0 8px 20px rgba(201,164,92,.35);transition:transform .1s,box-shadow .15s}
+button:active{transform:scale(.98)}
+button[disabled]{opacity:.65;cursor:default}
+.trust{display:flex;justify-content:center;gap:6px;align-items:center;margin:14px 0 0;color:var(--muted);font-size:13px;text-align:center}
+.trust a{color:var(--muted)}
+.lock{width:13px;height:13px}
+.msg{margin-top:12px;font-size:15px;text-align:center}
 .msg.err{color:var(--err)}
-.done{text-align:center}
-.done h1{margin-bottom:10px}
+.done{text-align:center;padding:10px 0}
+.check{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#e8cf96,#c9a45c)}
+.check svg{width:30px;height:30px}
+.done h2{font-family:"Frank Ruhl Libre",Georgia,serif;font-size:26px;margin:0 0 6px}
+.done p{margin:0;color:var(--muted)}
 .hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);opacity:0;pointer-events:none}
-.agree{display:flex;align-items:flex-start;gap:10px;margin:16px 0 4px;font-size:1rem;line-height:1.4;cursor:pointer;font-weight:400}.agree input{flex:none;width:24px;height:24px;min-height:0;margin:0;padding:0}.agree a{text-decoration:underline}
+.foot{margin-top:18px;text-align:center;color:#a99d88;font-size:13px}
+.foot a{color:var(--gold2);text-decoration:none}
+@media (prefers-reduced-motion:no-preference){.card{animation:up .5s ease-out both}.hero{animation:up .5s ease-out both}@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}}
 </style>
 </head>
 <body>
-<main class="card">
-<div id="formWrap">
-  <h1>השארת פרטים</h1>
-  <p class="sub">נחזור אליך בהודעת וואטסאפ עם כל הפרטים.</p>
-  <form id="f" novalidate>
-    <label for="name">שם</label>
-    <input id="name" name="שם" autocomplete="name" required>
-    <label for="phone">טלפון</label>
-    <input id="phone" name="טלפון" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" style="text-align:right" required>
-    <label for="biz">שם העסק <span class="opt">(לא חובה)</span></label>
-    <input id="biz" name="שם העסק" autocomplete="organization">
-    <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off">
-    <label class="agree" for="agree"><input id="agree" type="checkbox"><span>קראתי ואני מסכים/ה ל<a href="../privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
-    <button id="btn" type="submit">שליחה</button>
-    <div id="m" class="msg" role="status"></div>
-  </form>
-  <p class="note">הפרטים משמשים רק כדי לחזור אליך. <a href="../privacy.html">מדיניות פרטיות</a></p>
+<div class="wrap">
+  <div class="brand">
+    <svg class="gem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l3 18M15 3l-3 18"/></svg>
+    BOOST MEDIA
+  </div>
+  <header class="hero">
+    <h1>פרסומות שמוכרות <span>את התכשיטים שלך</span></h1>
+    <p>משאירים פרטים, ואנחנו חוזרים אליך עם דוגמאות שמתאימות לעסק שלך.</p>
+    <ul class="perks">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#c9a45c" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>בלי ימי צילום</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#c9a45c" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>התכשיט שלך בתוך הפרסומת</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#c9a45c" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>מוכן לאינסטגרם</li>
+    </ul>
+  </header>
+
+  <main class="card">
+    <div id="formWrap">
+      <h2>השאירו פרטים</h2>
+      <p class="sub"><svg class="wa" viewBox="0 0 24 24"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M8.7 7.3c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.3 2.5 1 3 .8 3.5.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4l-.5-.3-1.7-.8c-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2-1.3-.8-.7-1.3-1.5-1.4-1.8-.2-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9z"/></svg>נחזור אליך בהודעת וואטסאפ</p>
+      <form id="f" novalidate>
+        <label for="name">שם</label>
+        <input id="name" name="שם" autocomplete="name" placeholder="איך קוראים לך?" required>
+        <label for="phone">טלפון</label>
+        <input id="phone" name="טלפון" type="tel" inputmode="tel" autocomplete="tel" placeholder="050-0000000" dir="ltr" style="text-align:right" required>
+        <label for="biz">שם העסק <span class="opt">(לא חובה)</span></label>
+        <input id="biz" name="שם העסק" autocomplete="organization" placeholder="למשל: תכשיטי רוני">
+        <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off">
+        <button id="btn" type="submit">אני רוצה לשמוע עוד</button>
+        <div id="m" class="msg" role="status"></div>
+      </form>
+      <p class="trust"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>הפרטים משמשים רק כדי לחזור אליך · <a href="../privacy.html">פרטיות</a></p>
+    </div>
+    <div id="ok" class="done" hidden>
+      <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#1d1912" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg></div>
+      <h2>תודה, קיבלנו!</h2>
+      <p>נחזור אליך בהודעת וואטסאפ בהקדם.</p>
+    </div>
+  </main>
+  <p class="foot">רוצים לראות דוגמאות כבר עכשיו? <a href="../">לקטלוג הפרסומות</a></p>
 </div>
-<div id="ok" class="done" hidden>
-  <h1>תודה, קיבלנו!</h1>
-  <p class="sub">נחזור אליך בהודעת וואטסאפ בהקדם.</p>
-</div>
-</main>
 <script>
 const f=document.getElementById("f"),m=document.getElementById("m"),btn=document.getElementById("btn");
 f.addEventListener("submit",async e=>{
@@ -60,7 +102,6 @@ f.addEventListener("submit",async e=>{
   const name=f.elements["שם"].value.trim(),phone=f.elements["טלפון"].value.trim();
   if(!name){m.className="msg err";m.textContent="נא למלא שם";return}
   if(phone.replace(/\D/g,"").length<9){m.className="msg err";m.textContent="נא למלא מספר טלפון תקין";return}
-  if(!document.getElementById("agree").checked){m.className="msg err";m.textContent="כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות";document.getElementById("agree").focus();return}
   btn.disabled=true;btn.textContent="שולח…";
   const data=Object.fromEntries(new FormData(f));
   data._subject="ליד חדש מהאתר: "+name;data._template="table";data._captcha="false";
@@ -68,7 +109,7 @@ f.addEventListener("submit",async e=>{
     const r=await fetch("https://formsubmit.co/ajax/boostmedia2002@gmail.com",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(data)});
     if(!r.ok)throw 0;
     document.getElementById("formWrap").hidden=true;document.getElementById("ok").hidden=false;
-  }catch(err){m.className="msg err";m.textContent="משהו השתבש, נסה שוב או כתוב לנו בוואטסאפ: 053-9507416";btn.disabled=false;btn.textContent="שליחה";}
+  }catch(err){m.className="msg err";m.textContent="משהו השתבש, נסו שוב או כתבו לנו בוואטסאפ: 053-9507416";btn.disabled=false;btn.textContent="אני רוצה לשמוע עוד";}
 });
 </script>
 </body>
