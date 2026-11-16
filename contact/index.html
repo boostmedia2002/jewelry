@@ -5,28 +5,28 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>השארת פרטים | Boost Media</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#14110d">
+<meta name="theme-color" content="#fbf8f2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#14110d;--bg2:#221c14;--card:#fffdf9;--ink:#1d1912;--muted:#6f675a;--line:#e8e0d2;--gold:#c9a45c;--gold2:#e8cf96;--err:#b3261e}
+:root{--bg:#fbf8f2;--bg2:#f3ece0;--card:#fffdf9;--ink:#1d1912;--muted:#6f675a;--line:#e8e0d2;--gold:#c9a45c;--gold2:#e8cf96;--err:#b3261e}
 *{box-sizing:border-box}
 html,body{margin:0}
 body{min-height:100vh;font:17px/1.55 "Assistant","Segoe UI",Arial,sans-serif;color:var(--ink);
- background:radial-gradient(120% 70% at 85% -10%,#3a2c18 0%,transparent 60%),radial-gradient(90% 60% at 0% 100%,#2b2115 0%,transparent 55%),linear-gradient(180deg,var(--bg),var(--bg2));
+ background:radial-gradient(120% 70% at 85% -10%,#f1e2c2 0%,transparent 60%),radial-gradient(90% 60% at 0% 100%,#efe4d0 0%,transparent 55%),linear-gradient(180deg,var(--bg),var(--bg2));
  display:flex;flex-direction:column;align-items:center;padding:28px 16px 40px}
 .wrap{width:100%;max-width:440px}
-.brand{display:flex;align-items:center;gap:10px;color:var(--gold2);font-weight:700;letter-spacing:.14em;font-size:13px;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:10px;color:#9a7a3a;font-weight:700;letter-spacing:.14em;font-size:13px;margin-bottom:22px}
 .gem{width:26px;height:26px}
-.hero{color:#f6efe2;margin-bottom:22px}
+.hero{color:var(--ink);margin-bottom:22px}
 .hero h1{font-family:"Frank Ruhl Libre",Georgia,serif;font-weight:700;font-size:clamp(30px,8vw,38px);line-height:1.15;margin:0 0 10px;text-wrap:balance}
-.hero h1 span{color:var(--gold)}
-.hero p{margin:0;color:#cfc4b0;font-size:16px}
+.hero h1 span{color:#a8823c}
+.hero p{margin:0;color:var(--muted);font-size:16px}
 .perks{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
-.perks li{display:flex;align-items:center;gap:6px;font-size:14px;color:#efe6d4;background:rgba(201,164,92,.12);border:1px solid rgba(201,164,92,.35);border-radius:999px;padding:5px 12px}
+.perks li{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--ink);background:#fff;border:1px solid rgba(201,164,92,.5);border-radius:999px;padding:5px 12px}
 .perks svg{width:14px;height:14px;flex:none}
-.card{background:var(--card);border-radius:20px;padding:26px 20px 22px;box-shadow:0 20px 50px rgba(0,0,0,.45),0 0 0 1px rgba(201,164,92,.25)}
+.card{background:var(--card);border-radius:20px;padding:26px 20px 22px;box-shadow:0 18px 40px rgba(120,90,40,.14),0 0 0 1px rgba(201,164,92,.3)}
 .card h2{font-size:20px;margin:0 0 4px}
 .card .sub{margin:0 0 20px;color:var(--muted);font-size:15px;display:flex;align-items:center;gap:6px}
 .wa{width:18px;height:18px;flex:none}
@@ -49,8 +49,8 @@ button[disabled]{opacity:.65;cursor:default}
 .done h2{font-family:"Frank Ruhl Libre",Georgia,serif;font-size:26px;margin:0 0 6px}
 .done p{margin:0;color:var(--muted)}
 .hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);opacity:0;pointer-events:none}
-.foot{margin-top:18px;text-align:center;color:#a99d88;font-size:13px}
-.foot a{color:var(--gold2);text-decoration:none}
+.foot{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+.foot a{color:#9a7a3a;font-weight:600;text-decoration:none}
 @media (prefers-reduced-motion:no-preference){.card{animation:up .5s ease-out both}.hero{animation:up .5s ease-out both}@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}}
 </style>
 </head>
@@ -65,8 +65,9 @@ button[disabled]{opacity:.65;cursor:default}
     <p>משאירים פרטים, ואנחנו חוזרים אליך עם דוגמאות שמתאימות לעסק שלך.</p>
     <ul class="perks">
       <li><svg viewBox="0 0 24 24" fill="none" stroke="#c9a45c" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>בלי ימי צילום</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="#c9a45c" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>התכשיט שלך בתוך הפרסומת</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="#c9a45c" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>מוכן לאינסטגרם</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#c9a45c" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>בלי לשפוך הרבה כסף</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#c9a45c" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>בלי להתאמץ בכלל</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#c9a45c" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>הכל מוכן בשבילך, נשאר רק לבחור</li>
     </ul>
   </header>
 
