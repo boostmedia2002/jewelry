@@ -26,6 +26,7 @@ button[disabled]{opacity:.6;cursor:default}
 .done{text-align:center}
 .done h1{margin-bottom:10px}
 .hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);opacity:0;pointer-events:none}
+.agree{display:flex;align-items:flex-start;gap:10px;margin:16px 0 4px;font-size:1rem;line-height:1.4;cursor:pointer;font-weight:400}.agree input{flex:none;width:24px;height:24px;min-height:0;margin:0;padding:0}.agree a{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -41,6 +42,7 @@ button[disabled]{opacity:.6;cursor:default}
     <label for="biz">שם העסק <span class="opt">(לא חובה)</span></label>
     <input id="biz" name="שם העסק" autocomplete="organization">
     <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off">
+    <label class="agree" for="agree"><input id="agree" type="checkbox"><span>קראתי ואני מסכים/ה ל<a href="../privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
     <button id="btn" type="submit">שליחה</button>
     <div id="m" class="msg" role="status"></div>
   </form>
@@ -58,6 +60,7 @@ f.addEventListener("submit",async e=>{
   const name=f.elements["שם"].value.trim(),phone=f.elements["טלפון"].value.trim();
   if(!name){m.className="msg err";m.textContent="נא למלא שם";return}
   if(phone.replace(/\D/g,"").length<9){m.className="msg err";m.textContent="נא למלא מספר טלפון תקין";return}
+  if(!document.getElementById("agree").checked){m.className="msg err";m.textContent="כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות";document.getElementById("agree").focus();return}
   btn.disabled=true;btn.textContent="שולח…";
   const data=Object.fromEntries(new FormData(f));
   data._subject="ליד חדש מהאתר: "+name;data._template="table";data._captcha="false";
