@@ -528,6 +528,7 @@ dialog .undo{bottom:24px}
 .cb-msg{color:#A1281B;font-size:.95rem;margin:0}
 .callback .btn{align-self:flex-start}@media (max-width:640px){.callback .btn{width:100%}}
 .cb-done[hidden],.callback[hidden]{display:none}
+.ofine{margin:6px 0 0;text-align:center;color:var(--muted);font-size:.95rem}.ofine a,.ofine button{appearance:none;border:0;background:none;padding:12px 2px;margin:-12px 0;font:inherit;color:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -753,7 +754,7 @@ dialog .undo{bottom:24px}
   <div class="body" id="oBody"></div>
   <footer>
     <label class="l" for="oName">שם העסק <span class="hint">(לא חובה)</span></label>
-    <input type="text" id="oName" autocomplete="organization" placeholder="למשל: הקרמים של נועה">
+    <input type="text" id="oName" autocomplete="organization" placeholder="למשל: התכשיטים של נועה">
     <div class="ototal" id="oTotal"></div>
     <label class="agree"><input type="checkbox" id="oAgree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
   <p class="scan-err" id="oAgreeErr" role="alert" hidden>כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.</p>
@@ -765,9 +766,7 @@ dialog .undo{bottom:24px}
       <span class="hint" id="oDoneHint">עכשיו לחצו כאן כדי לשלוח גם את התמונות של המוצר לאותה שיחה.</span>
       <button class="btn line" type="button" id="oShare">שליחת התמונות בוואטסאפ</button>
     </div>
-    <span class="hint">אין תשלום באתר. אחרי השליחה נדבר בוואטסאפ על הפרטים. <a href="cancellation.html" target="_blank" rel="noopener">ביטולים והחזרים</a></span>
-    <span class="hint">בלי וואטסאפ? אפשר להזמין בטלפון <a href="tel:+972539507416">053-950-7416</a> או במייל <a href="mailto:boostmedia2002@gmail.com">boostmedia2002@gmail.com</a>.</span>
-    <button class="helplink" type="button" data-help aria-haspopup="dialog">נתקעתם? יש לכם אמא ואבא: <bdo dir="ltr">055-6677-843</bdo></button>
+    <p class="ofine">אין תשלום באתר · <a href="cancellation.html" target="_blank" rel="noopener">ביטולים</a> · <button type="button" data-help aria-haspopup="dialog">עזרה בטלפון</button></p>
   </footer>
 </dialog>
 
