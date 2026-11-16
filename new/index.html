@@ -490,6 +490,14 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
 .wmore{grid-column:1/-1;display:flex;justify-content:center;margin-top:-4px}
 .wmore .btn{min-height:52px}
 .wgroup[hidden],.wmore[hidden]{display:none}
+
+/* undo toast: every add/remove can be taken back */
+.undo{width:max-content;white-space:nowrap;position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translate(-50%,12px);z-index:80;display:flex;align-items:center;gap:14px;max-width:calc(100% - 32px);padding:8px 8px 8px 20px;padding-inline-start:20px;border-radius:999px;background:var(--ink);color:#fff;font-size:1rem;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity 180ms var(--ease),transform 180ms var(--ease)}
+.undo.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.undo button{min-height:44px;padding:0 18px;border:0;border-radius:999px;background:var(--accent);color:var(--accent-ink,#1A1814);font:inherit;font-weight:600;cursor:pointer}
+dialog .undo{bottom:24px}
+.oclear{display:block;margin:18px auto 0;min-height:44px;padding:0 12px;border:0;background:none;color:#9A2B1E;font:inherit;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.mrm{min-height:44px;padding:0 8px;border:0;background:none;color:var(--muted);font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -650,6 +658,7 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
   </div>
 </footer>
 
+<div class="undo" id="undo" role="status" aria-live="polite"><span id="undoT"></span><button type="button" id="undoB">ביטול</button></div>
 <div class="cart" id="cart" aria-live="polite">
   <div class="sum"><b id="cartTotal"></b><small id="cartLine"></small></div>
   <button class="btn" type="button" id="cartGo">המשך להזמנה ←</button>
@@ -807,7 +816,12 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
     document.getElementById('gallery').scrollIntoView({behavior:reduce?'auto':'smooth'});});});
 
   /* selection */
-  function toggle(id){var k=sel.indexOf(id);if(k<0)sel.push(id);else{sel.splice(k,1);delete prod[id];}render();}
+  function snap(){var p={};Object.keys(prod).forEach(function(k){p[k]=prod[k].slice();});return {s:sel.slice(),i:images,m:model,p:p};}
+  function restore(o){sel=o.s.slice();images=o.i;model=o.m;prod=o.p;mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',!!model&&x.getAttribute('aria-label')==='בחירת דמות: '+model);});render();}
+  var undoEl=document.getElementById('undo'),undoT=document.getElementById('undoT'),undoS=null,undoTm=0;
+  function toast(msg,before){undoS=before;undoT.textContent=msg;(document.querySelector('dialog[open]')||document.body).appendChild(undoEl);undoEl.classList.add('show');clearTimeout(undoTm);undoTm=setTimeout(function(){undoEl.classList.remove('show');undoS=null;},6000);}
+  document.getElementById('undoB').addEventListener('click',function(){if(undoS)restore(undoS);undoS=null;undoEl.classList.remove('show');});
+  function toggle(id){var b4=snap(),k=sel.indexOf(id);if(k<0)sel.push(id);else{sel.splice(k,1);delete prod[id];}render();toast(k<0?'הסרטון נוסף להזמנה':'הסרטון הוסר מההזמנה',b4);}
   function render(){
     wall.querySelectorAll('.card').forEach(function(c){var on=sel.indexOf(c.dataset.id)>=0;c.classList.toggle('sel',on);var b=c.querySelector('.pick');b.textContent=on?'✓ נבחר':'בחירה · '+vp(c.dataset.id)+' ₪';b.setAttribute('aria-pressed',on);});
     var n=sel.length,cnt=n+(images?1:0);
@@ -841,13 +855,13 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
     b.addEventListener('click',function(){var main=null;mg.querySelectorAll('.model').forEach(function(x){if(x.querySelector('.n').textContent===m.t)main=x;});openMM(m,main||b,th,fu);});
     mx.appendChild(b);})();});
   var mm=document.getElementById('mm'),mz=document.getElementById('mz'),mmCur=null;
-  function pickModel(m,b){model=model===m.t?null:m.t;mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',x===b&&model===m.t);});render();}
+  function pickModel(m,b){var b4=snap();model=model===m.t?null:m.t;setTimeout(function(){toast(model?'נבחרה דמות: '+model:'הדמות הוסרה',b4);});mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',x===b&&model===m.t);});render();}
   function openMM(m,b,th,full){mmCur={m:m,b:b,full:full||m.img};document.getElementById('mmName').textContent=m.t;document.getElementById('mmImg').src=th||m.img;document.getElementById('mmPick').textContent=model===m.t?'ביטול הבחירה':'בחירה';mm.showModal();}
   document.getElementById('mmPick').addEventListener('click',function(){mm.close();if(mmCur)pickModel(mmCur.m,mmCur.b);});
   document.getElementById('mmZoom').addEventListener('click',function(){mm.close();if(!mmCur)return;document.getElementById('mzImg').src=mmCur.full;document.getElementById('mzImg').alt=mmCur.m.t;document.getElementById('mzT').textContent=mmCur.m.t;mz.showModal();});
   [mm,mz].forEach(function(d){d.addEventListener('click',function(e){if(e.target===d)d.close();});});
   mz.querySelector('.mz-stage').addEventListener('click',function(e){if(e.target.tagName!=='IMG')mz.close();});
-  document.getElementById('addImages').addEventListener('click',function(){images=!images;if(!images)delete prod.images;render();});
+  document.getElementById('addImages').addEventListener('click',function(){var b4=snap();images=!images;if(!images)delete prod.images;render();toast(images?'התמונות נוספו להזמנה':'התמונות הוסרו מההזמנה',b4);});
 
   /* video viewer */
   var lb=document.getElementById('lb'),stage=document.getElementById('stage'),lbId=null,lastFocus=null;
@@ -891,11 +905,13 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
         s1.appendChild(d);});
       if(images){var d=document.createElement('div');d.className='oi';d.innerHTML='<img class="p" alt="" src="m/cream-s.webp" width="76" height="108"><div><div class="t">10 תמונות קמפיין</div><div class="hint">200 ₪</div><div class="row"><label class="up"><input type="file" accept="image/*" data-id="images" aria-label="העלאת תמונה של המוצר לתמונות הקמפיין"><span>העלאת תמונות של המוצר</span></label><button class="rm" type="button">הסרה</button></div></div>';
         photoUI(d,'images');
-        d.querySelector('.rm').addEventListener('click',function(){images=false;delete prod.images;render();});s1.appendChild(d);}
+        d.querySelector('.rm').addEventListener('click',function(){var b4=snap();images=false;delete prod.images;render();toast('התמונות הוסרו מההזמנה',b4);});s1.appendChild(d);}
       var has=Object.keys(prod)[0],ms0=missing();if(has&&ms0.length){var cp=document.createElement('button');cp.type='button';cp.className='btn line copyp';cp.textContent='להשתמש באותן תמונות לכל ההזמנה';cp.addEventListener('click',function(){ms0.forEach(function(k){prod[k]=prod[has].slice();});fillOrder();});s1.appendChild(cp);}
-      var m=document.createElement('p');m.className='hint';m.textContent=model?('דוגמנית: '+model+'.'):'לא בחרתם דוגמנית. זה בסדר, אני אבחר.';s1.appendChild(m);
+      var m=document.createElement('p');m.className='hint';m.textContent=model?('דוגמנית: '+model+'.'):'לא בחרתם דוגמנית. זה בסדר, אני אבחר.';if(model){var mr=document.createElement('button');mr.type='button';mr.className='mrm';mr.textContent='הסרת הדמות';mr.addEventListener('click',function(){var b4=snap();model=null;mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed','false');});render();toast('הדמות הוסרה',b4);});m.appendChild(document.createTextNode(' '));m.appendChild(mr);}s1.appendChild(m);
       var nl=document.createElement('label');nl.className='l';nl.htmlFor='oNote';nl.style.cssText='display:block;margin:18px 0 8px';nl.innerHTML='מה חשוב שאדע? <span class="hint">(לא חובה)</span>';
       var nt=document.createElement('textarea');nt.id='oNote';nt.rows=3;nt.style.minHeight='96px';nt.placeholder='למשל: שם המוצר, צבעים, טקסט שיופיע בסרטון';nt.value=note;nt.addEventListener('input',function(){note=nt.value;save();});s1.appendChild(nl);s1.appendChild(nt);
+      var cl=document.createElement('button');cl.type='button';cl.className='oclear';cl.textContent='ביטול כל ההזמנה והתחלה מחדש';cl.addEventListener('click',function(){var b4=snap();sel=[];images=false;model=null;prod={};mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed','false');});render();toast('ההזמנה בוטלה',b4);});
+      setTimeout(function(){s1.appendChild(cl);});
       if(sel.length){var s2=document.createElement('p');s2.className='hint';s2.style.marginTop='8px';s2.textContent='אין לכם עכשיו תמונה של המוצר? אפשר לשלוח גם בלי, ולצרף אחר כך בשיחה.';s1.appendChild(s2);}
     }
     document.getElementById('oSend').disabled=!(sel.length||images);
