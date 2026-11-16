@@ -510,6 +510,9 @@ dialog .undo{bottom:24px}
 @font-face{font-family:"Heebo Fallback";src:local("Arial"),local("Arial Hebrew"),local("Liberation Sans"),local("Arimo");size-adjust:96%;ascent-override:93.8%;descent-override:25%;line-gap-override:0%}
 .still{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin:0 0 12px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);font:inherit;font-size:1rem;cursor:pointer}
 .still[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.agree{display:flex;align-items:flex-start;gap:10px;margin:14px 0 4px;font-size:1rem;line-height:1.4;cursor:pointer}
+.agree input{flex:none;width:24px;height:24px;margin:0;accent-color:var(--ink)}
+.agree a{text-decoration:underline;text-underline-offset:3px}
 </style>
 </head>
 <body>
@@ -664,8 +667,8 @@ dialog .undo{bottom:24px}
       <button class="helpcard" type="button" data-help aria-haspopup="dialog"><span><b>יש לכם אמא ואבא</b><span class="sub">נתקעתם או רוצים להתייעץ? לחצו על המספר ושלחו לי הודעה בוואטסאפ, או התקשרו.</span></span><span class="helpnum"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>055-6677-843</span></button>
     </div>
     <div class="cols">
-      <div><span class="mark" aria-hidden="true">BOOST <i>MEDIA</i></span><p>סרטוני פרסום ותמונות למוצרים של עסקים. © BOOST MEDIA · חלק מצילומי הבסיס באדיבות <a class="credit" href="https://pixabay.com" rel="noopener" style="display:inline;min-height:0">Pixabay</a></p></div>
-      <div><h3>באתר</h3><ul><li><a href="#gallery">קטלוג הסרטונים</a></li><li><a href="#models">דוגמניות</a></li><li><a href="#extras">תמונות קמפיין</a></li><li><a href="#faq">שאלות</a></li><li><a href="privacy.html">מדיניות פרטיות</a></li><li><a href="terms.html">תנאי שימוש והזמנה</a></li><li><a href="accessibility.html">הצהרת נגישות</a></li></ul></div>
+      <div><span class="mark" aria-hidden="true">BOOST <i>MEDIA</i></span><p>סרטוני פרסום ותמונות למוצרים של עסקים. BOOST MEDIA, עוסק פטור, נתניה. © BOOST MEDIA · חלק מצילומי הבסיס באדיבות <a class="credit" href="https://pixabay.com" rel="noopener" style="display:inline;min-height:0">Pixabay</a></p></div>
+      <div><h3>באתר</h3><ul><li><a href="#gallery">קטלוג הסרטונים</a></li><li><a href="#models">דוגמניות</a></li><li><a href="#extras">תמונות קמפיין</a></li><li><a href="#faq">שאלות</a></li><li><a href="privacy.html">מדיניות פרטיות</a></li><li><a href="privacy.html#cookies">עוגיות</a></li><li><a href="terms.html">תנאי שימוש והזמנה</a></li><li><a href="cancellation.html">ביטולים והחזרים</a></li><li><a href="accessibility.html">הצהרת נגישות</a></li></ul></div>
       <div><h3>יצירת קשר</h3><ul><li><a href="https://wa.me/972539507416" target="_blank" rel="noopener">וואטסאפ</a></li><li><a href="tel:+972539507416">053-950-7416</a></li><li><a href="mailto:boostmedia2002@gmail.com">boostmedia2002@gmail.com</a></li></ul></div>
     </div>
   </div>
@@ -713,7 +716,9 @@ dialog .undo{bottom:24px}
   <input type="text" id="scanProd" placeholder="למשל: עגילי זהב, קרם פנים">
   <p class="l" id="scanGoalL">מה המטרה? <span class="hint">(לא חובה)</span></p>
   <div class="scan-goals" role="group" aria-labelledby="scanGoalL"><button type="button" aria-pressed="false">מכירות באינסטגרם</button><button type="button" aria-pressed="false">השקת מוצר</button><button type="button" aria-pressed="false">מבצע</button><button type="button" aria-pressed="false">חג</button></div>
-  <button class="btn wa" type="submit">שלחו לי רעיונות</button>
+  <label class="agree"><input type="checkbox" id="scanAgree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
+  <p class="scan-err" id="scanAgreeErr" role="alert" hidden>כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.</p>
+  <button class="btn wa" type="submit">שלחו לי רעיונות בוואטסאפ</button>
   <p class="hint">אין הרשמה ואין תשלום. השיחה ממשיכה בוואטסאפ.</p>
 </form></dialog>
 <dialog class="order" id="order" aria-labelledby="h-o">
@@ -728,6 +733,9 @@ dialog .undo{bottom:24px}
     <label class="l" for="oName">שם העסק <span class="hint">(לא חובה)</span></label>
     <input type="text" id="oName" autocomplete="organization" placeholder="למשל: הקרמים של נועה">
     <div class="ototal" id="oTotal"></div>
+    <label class="agree"><input type="checkbox" id="oAgree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
+  <p class="scan-err" id="oAgreeErr" role="alert" hidden>כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.</p>
+  
     <button class="btn wa" type="button" id="oSend"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>שליחת ההזמנה בוואטסאפ</button>
     <div class="omiss" id="oMiss" hidden><b id="oMissT"></b><span class="hint">תמונה של המוצר עוזרת לי להתחיל מהר. אפשר גם לשלוח אותה אחר כך בשיחה.</span><button class="btn" type="button" id="oMissAdd">הוספת תמונה עכשיו</button><button class="btn line" type="button" id="oMissSend">שליחה בלי תמונה</button></div>
     <div class="done" id="oDone" role="status">
@@ -735,7 +743,7 @@ dialog .undo{bottom:24px}
       <span class="hint" id="oDoneHint">עכשיו לחצו כאן כדי לשלוח גם את התמונות של המוצר לאותה שיחה.</span>
       <button class="btn line" type="button" id="oShare">שליחת התמונות בוואטסאפ</button>
     </div>
-    <span class="hint">אין תשלום באתר. אחרי השליחה נדבר בוואטסאפ על הפרטים.</span>
+    <span class="hint">אין תשלום באתר. אחרי השליחה נדבר בוואטסאפ על הפרטים. <a href="cancellation.html" target="_blank" rel="noopener">ביטולים והחזרים</a></span>
     <span class="hint">בלי וואטסאפ? אפשר להזמין בטלפון <a href="tel:+972539507416">053-950-7416</a> או במייל <a href="mailto:boostmedia2002@gmail.com">boostmedia2002@gmail.com</a>.</span>
     <button class="helplink" type="button" data-help aria-haspopup="dialog">נתקעתם? יש לכם אמא ואבא: <bdo dir="ltr">055-6677-843</bdo></button>
   </footer>
@@ -957,7 +965,9 @@ dialog .undo{bottom:24px}
   function doSend(){document.getElementById('oMiss').hidden=true;goWA(wa(orderText()));if(Object.keys(prod).length)document.getElementById('oDone').classList.add('show');}
   function pcount(k){var c=prod[k].length;return (c===1?'תמונה אחת':c+' תמונות')+', שולח/ת בהודעה נפרדת';}
   function missing(){return sel.filter(function(id){return !prod[id];}).concat(images&&!prod.images?['images']:[]);}
+  document.getElementById('oAgree').addEventListener('change',function(){document.getElementById('oAgreeErr').hidden=true;});
   document.getElementById('oSend').addEventListener('click',function(){var ms=missing(),bx=document.getElementById('oMiss');
+    var oa=document.getElementById('oAgree');if(!oa.checked){document.getElementById('oAgreeErr').hidden=false;oa.focus();return;}
     if(ms.length&&bx.hidden){document.getElementById('oMissT').textContent=ms.length===1?(ms[0]==='images'?'לא העליתם תמונה של המוצר לתמונות הקמפיין.':'לא העליתם תמונה של המוצר לסרטון '+dispNum(ms[0])+'.'):'לא העליתם תמונה של המוצר ל-'+ms.length+' פריטים בהזמנה.';bx.hidden=false;bx.scrollIntoView({block:'nearest'});return;}
     doSend();});
   document.getElementById('oMissSend').addEventListener('click',doSend);
@@ -1040,8 +1050,10 @@ dialog .undo{bottom:24px}
     gs.forEach(function(b){b.addEventListener('click',function(){var on=b.getAttribute('aria-pressed')!=='true';gs.forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed',on);});});
     d.addEventListener('click',function(e){if(e.target===d)d.close();});
     u.addEventListener('input',function(){er.hidden=true;});
+    var ag=document.getElementById('scanAgree'),agE=document.getElementById('scanAgreeErr');ag.addEventListener('change',function(){agE.hidden=true;});
     f.addEventListener('submit',function(e){e.preventDefault();var v=u.value.trim();
       if(v.length<3){er.hidden=false;u.focus();return;}
+      if(!ag.checked){agE.hidden=false;ag.focus();return;}
       var g='';gs.forEach(function(x){if(x.getAttribute('aria-pressed')==='true')g=x.textContent;});
       var L=['*בקשה לרעיונות לסרטון · BOOST MEDIA*','אתר או אינסטגרם: '+v,'מוצר לקדם: '+(pr.value.trim()||'לא צוין'),'מטרה: '+(g||'לא צוינה'),'','אשמח לקבל 3 רעיונות לסרטון לעסק שלי.'];
       d.close();goWA(wa(L.join('\n')));});})();
