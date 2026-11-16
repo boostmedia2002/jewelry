@@ -513,6 +513,9 @@ dialog .undo{bottom:24px}
 .agree{display:flex;align-items:flex-start;gap:10px;margin:14px 0 4px;font-size:1rem;line-height:1.4;cursor:pointer}
 .agree input{flex:none;width:24px;height:24px;margin:0;accent-color:var(--ink)}
 .agree a{text-decoration:underline;text-underline-offset:3px}
+.wall-hint{color:var(--muted);font-size:1rem;margin:4px 0 14px}
+.head p.fits-line{max-width:60ch}
+.fits-line b{color:var(--ink,inherit);font-weight:700}
 </style>
 </head>
 <body>
@@ -595,8 +598,7 @@ dialog .undo{bottom:24px}
 
   <section class="sec" id="gallery" aria-labelledby="h-g">
     <div class="wrap">
-      <div class="head"><h2 id="h-g">קטלוג הסרטונים</h2><p>לחצו על סרטון כדי לצפות בו. כפתור "בחירה" מוסיף אותו להזמנה.</p></div>
-      <p class="deal"><b>סרטון עד 10 שניות: 50 ₪</b><b>סרטון ארוך יותר: 70 ₪</b><span>500 ₪ ל-10 סרטונים, ו-50 ₪ לכל סרטון נוסף</span></p>
+      <div class="head"><h2 id="h-g">קטלוג הסרטונים</h2><p class="fits-line"><b>כל סרטון מתאים לכל מוצר.</b> הדוגמאות כאן הן של תכשיטים, אבל אני מחליף את התכשיט במוצר שלכם: קוסמטיקה, אוכל, בגדים או כלי בית. המוצר מתחלף, והרעיון נשאר.</p></div>
       <div class="scan-band"><div><b>לא יודעים מה לבחור?</b><span>שלחו לנו את האתר או האינסטגרם שלכם, ונחזיר לכם 3 רעיונות לסרטון שנבנו בשביל העסק שלכם.</span></div><button class="btn" type="button" data-scan>שלחו לי רעיונות</button></div>
       <button class="still" type="button" id="stillBtn" aria-pressed="false"><span aria-hidden="true">⏸</span> <span id="stillT">עצירת הסרטונים</span></button>
       <div class="filters" role="group" aria-label="סוג הסרטון">
@@ -606,6 +608,7 @@ dialog .undo{bottom:24px}
         <button type="button" data-f="models" aria-pressed="false">דוגמנית</button>
         <button type="button" data-f="simple" aria-pressed="false">תצוגה ותלת מימד</button>
       </div>
+      <p class="wall-hint">לחצו על סרטון כדי לצפות בו. כפתור "בחירה" מוסיף אותו להזמנה.</p>
       <div class="wall" id="wall"></div>
       <div class="more"><button class="btn line" type="button" id="moreBtn" aria-controls="wall" aria-expanded="false">כל הסרטונים</button></div>
           <div class="box2 msub gal-models" id="models" role="group" aria-labelledby="h-m">
@@ -616,13 +619,6 @@ dialog .undo{bottom:24px}
           <p class="hint" id="modelPicked" hidden></p>
           <div id="modelsBody" hidden><div class="mfilt" role="group" aria-label="סינון"><button type="button" data-f="all" aria-pressed="false">הכל</button><button type="button" data-f="f" aria-pressed="false">דוגמניות</button><button type="button" data-f="m" aria-pressed="false">דוגמנים</button><button type="button" data-f="c" aria-pressed="false">קמפיינים</button></div><div class="models" id="modelsGrid"></div><div class="models mx-grid" id="modelsMore" hidden></div><div class="camp-grid" id="campGrid" hidden></div></div>
           </div>
-    </div>
-  </section>
-
-  <section class="sec statement" id="fits" data-moment="word-highlight" aria-label="מתאים לכל מוצר">
-    <div class="wrap">
-      <p class="t-label">כל סרטון מתאים לכל מוצר</p>
-      <p class="mo-wh__text">הדוגמאות כאן הן של תכשיטים, אבל אני מחליף את התכשיט במוצר שלכם: קוסמטיקה, אוכל, בגדים או כלי בית. המוצר מתחלף, <strong>והרעיון נשאר.</strong></p>
     </div>
   </section>
 
