@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>השארת פרטים | Boost Media</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--bg:#f7f5f1;--card:#fff;--ink:#1d1b18;--muted:#6b665e;--line:#e4dfd6;--gold:#9a7a3a;--err:#a33}
+@media (prefers-color-scheme:dark){:root{--bg:#141311;--card:#1d1b18;--ink:#f1ede6;--muted:#a59f94;--line:#34302a;--gold:#d2b06a;--err:#e88}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Assistant","Segoe UI",Arial,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.card{width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 22px}
+h1{font-size:24px;margin:0 0 6px}
+p.sub{margin:0 0 22px;color:var(--muted);font-size:15px}
+label{display:block;font-size:15px;font-weight:600;margin:0 0 6px}
+.opt{font-weight:400;color:var(--muted);font-size:13px}
+input{width:100%;font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);margin-bottom:16px}
+input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+button{width:100%;font:inherit;font-weight:700;padding:13px;border:0;border-radius:10px;background:var(--ink);color:var(--bg);cursor:pointer}
+button[disabled]{opacity:.6;cursor:default}
+.note{margin:14px 0 0;color:var(--muted);font-size:13px;text-align:center}
+.note a{color:var(--muted)}
+.msg{margin-top:14px;font-size:15px;text-align:center}
+.msg.err{color:var(--err)}
+.done{text-align:center}
+.done h1{margin-bottom:10px}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<main class="card">
+<div id="formWrap">
+  <h1>השארת פרטים</h1>
+  <p class="sub">נחזור אליך בהודעת וואטסאפ עם כל הפרטים.</p>
+  <form id="f" novalidate>
+    <label for="name">שם</label>
+    <input id="name" name="שם" autocomplete="name" required>
+    <label for="phone">טלפון</label>
+    <input id="phone" name="טלפון" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" style="text-align:right" required>
+    <label for="biz">שם העסק <span class="opt">(לא חובה)</span></label>
+    <input id="biz" name="שם העסק" autocomplete="organization">
+    <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off">
+    <button id="btn" type="submit">שליחה</button>
+    <div id="m" class="msg" role="status"></div>
+  </form>
+  <p class="note">הפרטים משמשים רק כדי לחזור אליך. <a href="../privacy.html">מדיניות פרטיות</a></p>
+</div>
+<div id="ok" class="done" hidden>
+  <h1>תודה, קיבלנו!</h1>
+  <p class="sub">נחזור אליך בהודעת וואטסאפ בהקדם.</p>
+</div>
+</main>
+<script>
+const f=document.getElementById("f"),m=document.getElementById("m"),btn=document.getElementById("btn");
+f.addEventListener("submit",async e=>{
+  e.preventDefault();m.className="msg";m.textContent="";
+  const name=f.elements["שם"].value.trim(),phone=f.elements["טלפון"].value.trim();
+  if(!name){m.className="msg err";m.textContent="נא למלא שם";return}
+  if(phone.replace(/\D/g,"").length<9){m.className="msg err";m.textContent="נא למלא מספר טלפון תקין";return}
+  btn.disabled=true;btn.textContent="שולח…";
+  const data=Object.fromEntries(new FormData(f));
+  data._subject="ליד חדש מהאתר: "+name;data._template="table";data._captcha="false";
+  try{
+    const r=await fetch("https://formsubmit.co/ajax/boostmedia2002@gmail.com",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(data)});
+    if(!r.ok)throw 0;
+    document.getElementById("formWrap").hidden=true;document.getElementById("ok").hidden=false;
+  }catch(err){m.className="msg err";m.textContent="משהו השתבש, נסה שוב או כתוב לנו בוואטסאפ: 053-9507416";btn.disabled=false;btn.textContent="שליחה";}
+});
+</script>
+</body>
+</html>
