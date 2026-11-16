@@ -1026,7 +1026,7 @@ dialog .undo{bottom:24px}
   try{var sv=JSON.parse(localStorage.getItem('bm-order')||'null');if(sv&&Date.now()-sv.t<864e5){sel=(sv.s||[]).filter(find);images=!!sv.i;model=sv.m||null;note=sv.o||'';ordNo=sv.k||'';document.getElementById('oName').value=sv.n||'';
     mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',x.querySelector('.n').textContent===model);});render();}}catch(e){}
   document.getElementById('oName').addEventListener('input',save);
-  try{var qv=new URLSearchParams(location.search).get('v');if(qv){var qi=ITEMS.find(function(x){return numOf(x.id)===parseInt(qv,10);});if(qi)openVideo(qi.id);}}catch(e){}
+  try{var qv=new URLSearchParams(location.search).get('v');if(qv&&/^\d{1,3}$/.test(qv)){var qi=ITEMS.find(function(x){return numOf(x.id)===parseInt(qv,10);});if(qi)openVideo(qi.id);}}catch(e){}
   render();
 })();
 /* model filter */
