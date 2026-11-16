@@ -514,8 +514,7 @@ dialog .undo{bottom:24px}
 .agree input{flex:none;width:24px;height:24px;margin:0;accent-color:var(--ink)}
 .agree a{text-decoration:underline;text-underline-offset:3px}
 .wall-hint{color:var(--muted);font-size:1rem;margin:4px 0 14px}
-.head p.fits-line{max-width:60ch}
-.fits-line b{color:var(--ink,inherit);font-weight:700}
+.fits-line.mo-wh__text{font-size:clamp(1.55rem,3vw,2.6rem);line-height:1.3;max-width:30ch;margin:-8px 0 36px}
 </style>
 </head>
 <body>
@@ -598,7 +597,8 @@ dialog .undo{bottom:24px}
 
   <section class="sec" id="gallery" aria-labelledby="h-g">
     <div class="wrap">
-      <div class="head"><h2 id="h-g">קטלוג הסרטונים</h2><p class="fits-line"><b>כל סרטון מתאים לכל מוצר.</b> הדוגמאות כאן הן של תכשיטים, אבל אני מחליף את התכשיט במוצר שלכם: קוסמטיקה, אוכל, בגדים או כלי בית. המוצר מתחלף, והרעיון נשאר.</p></div>
+      <div class="head"><h2 id="h-g">קטלוג הסרטונים</h2></div>
+      <p class="fits-line mo-wh__text" data-moment="word-highlight"><strong>כל סרטון מתאים לכל מוצר.</strong> הדוגמאות כאן הן של תכשיטים, אבל אני מחליף את התכשיט במוצר שלכם: קוסמטיקה, אוכל, בגדים או כלי בית. המוצר מתחלף, <strong>והרעיון נשאר.</strong></p>
       <div class="scan-band"><div><b>לא יודעים מה לבחור?</b><span>שלחו לנו את האתר או האינסטגרם שלכם, ונחזיר לכם 3 רעיונות לסרטון שנבנו בשביל העסק שלכם.</span></div><button class="btn" type="button" data-scan>שלחו לי רעיונות</button></div>
       <button class="still" type="button" id="stillBtn" aria-pressed="false"><span aria-hidden="true">⏸</span> <span id="stillT">עצירת הסרטונים</span></button>
       <div class="filters" role="group" aria-label="סוג הסרטון">
