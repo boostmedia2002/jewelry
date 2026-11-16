@@ -101,7 +101,7 @@ f.addEventListener("submit",async e=>{
   if(phone.replace(/\D/g,"").length<9){m.className="msg err";m.textContent="נא למלא מספר טלפון תקין";return}
   btn.disabled=true;btn.textContent="שולח…";
   const data=Object.fromEntries(new FormData(f));
-  data._subject="ליד חדש מהאתר: "+name;data._template="table";data._captcha="false";
+  const biz=(f.elements["שם העסק"].value||"").trim();data._subject="ליד חדש מהאתר: "+name+" | "+phone+(biz?" | "+biz:"");data._template="table";data._captcha="false";
   try{
     const r=await fetch("https://formsubmit.co/ajax/boostmedia2002@gmail.com",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(data)});
     if(!r.ok)throw 0;
