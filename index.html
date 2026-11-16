@@ -529,6 +529,21 @@ dialog .undo{bottom:24px}
 .callback .btn{align-self:flex-start}@media (max-width:640px){.callback .btn{width:100%}}
 .cb-done[hidden],.callback[hidden]{display:none}
 .ofine{margin:6px 0 0;text-align:center;color:var(--muted);font-size:.95rem}.ofine a,.ofine button{appearance:none;border:0;background:none;padding:12px 2px;margin:-12px 0;font:inherit;color:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+/* order panel, studio style: preview on top, upload box, prompt */
+.oi.hf{display:flex;flex-direction:column;gap:14px;padding:14px;margin:0 0 14px;border:1px solid var(--line);border-radius:18px;background:var(--bg)}
+.oi.hf+.oi.hf{border-top:1px solid var(--line)}
+.hf-prev{position:relative;aspect-ratio:4/5;max-height:min(46vh,420px);border-radius:14px;overflow:hidden;background:var(--inv-bg)}
+.hf-prev video,.hf-prev img{width:100%;height:100%;object-fit:cover;display:block}
+.hf-tag{position:absolute;top:10px;inset-inline-start:10px;padding:5px 12px;border-radius:999px;background:rgba(26,24,20,.82);color:#fff;font-size:.9rem;font-weight:500}
+.rm.hf-x{position:absolute;top:8px;inset-inline-end:8px;width:44px;height:44px;min-height:0;padding:0;border-radius:50%;background:rgba(26,24,20,.82);color:#fff;text-decoration:none;font-size:1.1rem}
+.hf-body .t{font-weight:600;font-size:1.1rem}
+.hf-body .row{display:block;margin-top:12px}
+.up.drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:100%;min-height:112px;padding:16px;border:2px dashed #BDB4A3;border-radius:14px;background:var(--card);color:var(--ink);text-align:center}
+.up.drop::before{content:"+";display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--accent);font-size:1.5rem;font-weight:500;line-height:1}
+.up.drop span{font-weight:600}.up.drop small{color:var(--muted);font-size:.9rem}
+.up.drop:active{transform:scale(.99)}
+.oi.hf .prods{margin:0 0 10px}
+#oTotal{display:none!important}
 </style>
 </head>
 <body>
@@ -965,19 +980,19 @@ dialog .undo{bottom:24px}
     else{
       var s1=document.createElement('div');s1.className='step';s1.innerHTML='<h3>מה בחרתם</h3>';ob.appendChild(s1);
       sel.forEach(function(id){var i=find(id);var d=document.createElement('div');d.className='oi';
-        d.innerHTML='<img class="p" alt="" width="76" height="108"><div><div class="t"></div><div class="hint"></div><div class="row"><label class="up"><input type="file" accept="image/*"><span>העלאת תמונות של המוצר</span></label><button class="rm" type="button">הסרה</button></div></div>';
-        d.querySelector('img.p').src='p/'+id+'-s.webp';d.querySelector('.t').textContent='סרטון '+dispNum(id)+' · '+i.t;d.querySelector('.hint').textContent=up(id)+' ₪';
+        d.className='oi hf';d.innerHTML='<div class="hf-prev"><video muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video><span class="hf-tag"></span><button class="rm hf-x" type="button" aria-label="הסרה">✕</button></div><div class="hf-body"><div class="t"></div><div class="hint"></div><div class="row"><label class="up drop"><input type="file" accept="image/*"><span>העלאת תמונת המוצר</span><small>אפשר כמה תמונות · JPG או PNG</small></label></div></div>';
+        var hv=d.querySelector('video');hv.poster='p/'+id+'.webp';hv.src=(i.pv||('videos/preview/'+id+'.mp4'))+'?e2';hv.muted=true;setTimeout(function(){var pr=hv.play();if(pr&&pr.catch)pr.catch(function(){});},0);d.querySelector('.hf-tag').textContent='סרטון '+dispNum(id);d.querySelector('.t').textContent=i.t;d.querySelector('.hint').textContent=catOf(i.c);d.querySelector('.hf-x').setAttribute('aria-label','הסרת '+i.t);
         var inp=d.querySelector('input');inp.dataset.id=id;inp.setAttribute('aria-label','העלאת תמונה של המוצר לסרטון '+dispNum(id));
         photoUI(d,id);
         d.querySelector('.rm').addEventListener('click',function(){toggle(id);});
         s1.appendChild(d);});
-      if(images){var d=document.createElement('div');d.className='oi';d.innerHTML='<img class="p" alt="" src="m/cream-s.webp" width="76" height="108"><div><div class="t">10 תמונות קמפיין</div><div class="hint">200 ₪</div><div class="row"><label class="up"><input type="file" accept="image/*" data-id="images" aria-label="העלאת תמונה של המוצר לתמונות הקמפיין"><span>העלאת תמונות של המוצר</span></label><button class="rm" type="button">הסרה</button></div></div>';
+      if(images){var d=document.createElement('div');d.className='oi';d.className='oi hf';d.innerHTML='<div class="hf-prev"><img alt="" src="m/ringhand.webp"><span class="hf-tag">תמונות</span><button class="rm hf-x" type="button" aria-label="הסרת תמונות הקמפיין">✕</button></div><div class="hf-body"><div class="t">10 תמונות קמפיין לתכשיטים</div><div class="hint">על דוגמנית או בסטודיו</div><div class="row"><label class="up drop"><input type="file" accept="image/*" data-id="images" aria-label="העלאת תמונה של המוצר לתמונות הקמפיין"><span>העלאת תמונת המוצר</span><small>אפשר כמה תמונות · JPG או PNG</small></label></div></div>';
         photoUI(d,'images');
         d.querySelector('.rm').addEventListener('click',function(){var b4=snap();images=false;delete prod.images;render();toast('התמונות הוסרו מההזמנה',b4);});s1.appendChild(d);}
       var has=Object.keys(prod)[0],ms0=missing();if(has&&ms0.length){var cp=document.createElement('button');cp.type='button';cp.className='btn line copyp';cp.textContent='להשתמש באותן תמונות לכל ההזמנה';cp.addEventListener('click',function(){ms0.forEach(function(k){prod[k]=prod[has].slice();});fillOrder();});s1.appendChild(cp);}
       var m=document.createElement('p');m.className='hint';m.textContent=model?('דוגמנית: '+model+'.'):'לא בחרתם דוגמנית. זה בסדר, אני אבחר.';if(model){var mr=document.createElement('button');mr.type='button';mr.className='mrm';mr.textContent='הסרת הדמות';mr.addEventListener('click',function(){var b4=snap();model=null;mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed','false');});render();toast('הדמות הוסרה',b4);});m.appendChild(document.createTextNode(' '));m.appendChild(mr);}s1.appendChild(m);
-      var nl=document.createElement('label');nl.className='l';nl.htmlFor='oNote';nl.style.cssText='display:block;margin:18px 0 8px';nl.innerHTML='מה חשוב שאדע? <span class="hint">(לא חובה)</span>';
-      var nt=document.createElement('textarea');nt.id='oNote';nt.rows=3;nt.style.minHeight='96px';nt.placeholder='למשל: שם המוצר, צבעים, טקסט שיופיע בסרטון';nt.value=note;nt.addEventListener('input',function(){note=nt.value;save();});s1.appendChild(nl);s1.appendChild(nt);
+      var nl=document.createElement('label');nl.className='l';nl.htmlFor='oNote';nl.style.cssText='display:block;margin:18px 0 8px';nl.innerHTML='תארו את התוצאה <span class="hint">(לא חובה)</span>';
+      var nt=document.createElement('textarea');nt.id='oNote';nt.rows=3;nt.style.minHeight='96px';nt.placeholder='למשל: טבעת זהב עם אבן ירוקה, תאורה רכה, טקסט: קולקציית חורף';nt.value=note;nt.addEventListener('input',function(){note=nt.value;save();});s1.appendChild(nl);s1.appendChild(nt);
       var cl=document.createElement('button');cl.type='button';cl.className='oclear';cl.textContent='ביטול כל ההזמנה והתחלה מחדש';cl.addEventListener('click',function(){var b4=snap();sel=[];images=false;model=null;prod={};mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed','false');});render();toast('ההזמנה בוטלה',b4);});
       setTimeout(function(){s1.appendChild(cl);});
       if(sel.length){var s2=document.createElement('p');s2.className='hint';s2.style.marginTop='8px';s2.textContent='אין לכם עכשיו תמונה של המוצר? אפשר לשלוח גם בלי, ולצרף אחר כך בשיחה.';s1.appendChild(s2);}
