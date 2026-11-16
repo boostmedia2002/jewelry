@@ -518,7 +518,7 @@ dialog .undo{bottom:24px}
 #extras .scan-band{margin:clamp(28px,4vw,48px) 0 0}
 .callback{margin-top:16px;padding:22px 20px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
 .cb-head{display:flex;flex-direction:column;gap:4px}.cb-head b,.cb-done b{font-size:1.15rem;font-weight:600}.cb-head span,.cb-done span{color:var(--muted)}
-.cb-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cb-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 @media (max-width:640px){.cb-row{grid-template-columns:1fr}}
 .cb-f{display:flex;flex-direction:column;gap:6px;font-weight:500}.cb-f small{color:var(--muted);font-weight:400}
 .cb-f input,.cb-f select{min-height:52px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:1rem}
@@ -653,6 +653,7 @@ dialog .undo{bottom:24px}
         <div class="cb-row">
           <label class="cb-f"><span>שם</span><input id="cbName" autocomplete="name" required></label>
           <label class="cb-f"><span>טלפון</span><input id="cbPhone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" required></label>
+          <label class="cb-f"><span>שם העסק <small>(לא חובה)</small></span><input id="cbBiz" autocomplete="organization"></label>
         </div>
         <input class="cb-hp" type="text" id="cbHp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <label class="agree"><input type="checkbox" id="cbAgree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
@@ -815,7 +816,7 @@ dialog .undo{bottom:24px}
       if(!ag.checked)return err('כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.',ag);
       bt.disabled=true;bt.textContent='שולח…';
       fetch('https://formsubmit.co/ajax/boostmedia2002@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({'שם':nv,'טלפון':pv,_subject:'בקשה לשיחה חוזרת: '+nv+' '+pv,_template:'table',_captcha:'false'})})
+        body:JSON.stringify({'שם':nv,'טלפון':pv,'שם העסק':document.getElementById('cbBiz').value.trim()||'לא צוין',_subject:'בקשה לשיחה חוזרת: '+nv+' '+pv,_template:'table',_captcha:'false'})})
       .then(function(r){if(!r.ok)throw 0;f.hidden=true;document.getElementById('cbOk').hidden=false;})
       .catch(function(){bt.disabled=false;bt.textContent='חזרו אליי בטלפון';err('משהו השתבש. נסו שוב, או התקשרו: 053-950-7416.',bt);});});
   })();
