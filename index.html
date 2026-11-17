@@ -560,6 +560,7 @@ dialog .undo{bottom:24px}
 .hf-note{grid-column:1/-1;display:block}
 .hf-note input{width:100%;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font:inherit;font-size:1rem}
 .hf-note input:focus{outline:3px solid var(--accent);outline-offset:1px}
+.lead .howlink{color:var(--inv-ink);text-decoration:underline;text-underline-offset:4px;white-space:nowrap;display:inline-block;padding:10px 0;margin:-10px 0}
 </style>
 </head>
 <body>
@@ -591,13 +592,13 @@ dialog .undo{bottom:24px}
       <div class="over">
         <div class="box">
           <h1 id="h1">שלחו את העסק.<br><em>קבלו 3 רעיונות.</em></h1>
-          <p class="lead">מדביקים קישור לאתר או לאינסטגרם של העסק. אנחנו לומדים את המוצרים, הצבעים והסגנון שלכם, ובונים מזה 3 רעיונות לפרסומות. נשלח לכם בוואטסאפ את כל הרעיונות, כולל הצעת מחיר.</p>
+          <p class="lead">מדביקים קישור לאתר או לאינסטגרם של העסק. אנחנו לומדים את המוצרים, הצבעים והסגנון שלכם, ובונים מזה 3 רעיונות לפרסומות. נשלח לכם בוואטסאפ את כל הרעיונות, כולל הצעת מחיר. <a class="howlink" href="#how">איך זה עובד</a></p>
           <form class="hscan" id="hscan" novalidate>
             <label class="sr" for="hscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
             <input type="text" id="hscanUrl" inputmode="url" autocomplete="url" dir="ltr" placeholder="instagram.com/yourbusiness">
             <button class="btn gold" type="submit">שלחו לי רעיונות <span class="arr" aria-hidden="true">←</span></button>
           </form>
-          <p class="hscan-alt"><a href="#gallery">או בחרו סרטון מהקטלוג</a><span aria-hidden="true">·</span><a href="#how">איך זה עובד</a></p>
+          <p class="hscan-alt"><a href="#gallery">או בחרו סרטון מהקטלוג</a></p>
         </div>
         <button class="play" type="button" data-play="work-16">
           <span class="disc"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 2.6v12.8c0 .8.9 1.3 1.6.9l10.3-6.4c.6-.4.6-1.3 0-1.7L6.1 1.7c-.7-.4-1.6.1-1.6.9Z" fill="currentColor"/></svg></span>
