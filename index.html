@@ -759,8 +759,6 @@ dialog .undo{bottom:24px}
       <div class="scan-band"><div><b>לא יודעים מה לבחור?</b><span>צרפו קישור לאתר או לאינסטגרם שלכם, ונשלח לכם רעיונות לפרסומות שנבנו במיוחד בשביל העסק שלכם, על סמך מחקר.</span></div><form class="hscan bscan" id="bscan" novalidate>
             <label class="sr" for="bscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
             <input type="text" id="bscanUrl" data-r="url" inputmode="url" autocomplete="url" dir="ltr" placeholder="instagram.com/yourbusiness">
-            <label class="sr" for="bscanNote">הערות (לא חובה)</label>
-            <input type="text" id="bscanNote" data-r="note" placeholder="הערות (לא חובה)">
             <label class="agree hagree"><input type="checkbox" data-r="agree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
             <p class="hscan-err" data-r="err" role="alert" hidden></p>
             <button class="btn gold" type="submit">שליחה בוואטסאפ <span class="arr" aria-hidden="true">←</span></button>
@@ -1206,11 +1204,11 @@ dialog .undo{bottom:24px}
     var hf=document.getElementById('hscan'),hu=document.getElementById('hscanUrl');
     document.querySelectorAll('form.hscan').forEach(function(F){function q(k){return F.querySelector('[data-r="'+k+'"]');}var U=q('url'),N=q('note'),A=q('agree'),E=q('err');
       function bad(t,el){E.textContent=t;E.hidden=false;el.focus();}
-      [U,N,A].forEach(function(x){x.addEventListener('input',function(){E.hidden=true;});});
+      [U,N,A].forEach(function(x){if(x)x.addEventListener('input',function(){E.hidden=true;});});
       F.addEventListener('submit',function(e){e.preventDefault();E.hidden=true;var v=U.value.trim();
         if(v.length<3)return bad('כתבו קישור לאתר או את שם המשתמש באינסטגרם.',U);
         if(!A.checked)return bad('כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.',A);
-        var L=['*בקשה לרעיונות לסרטון · BOOST MEDIA*','אתר או אינסטגרם: '+v];if(N.value.trim())L.push('הערות: '+N.value.trim());L.push('','אשמח לקבל 3 רעיונות לסרטון לעסק שלי.');
+        var L=['*בקשה לרעיונות לסרטון · BOOST MEDIA*','אתר או אינסטגרם: '+v];if(N&&N.value.trim())L.push('הערות: '+N.value.trim());L.push('','אשמח לקבל 3 רעיונות לסרטון לעסק שלי.');
         goWA(wa(L.join('\n')));});});
     gs.forEach(function(b){b.addEventListener('click',function(){var on=b.getAttribute('aria-pressed')!=='true';gs.forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed',on);});});
     d.addEventListener('click',function(e){if(e.target===d)d.close();});
