@@ -576,6 +576,38 @@ dialog .undo{bottom:24px}
 @media (max-width:1180px){.top nav{display:none}}
 .sizehdr{min-width:44px;min-height:44px;padding:0 8px;font-size:.95rem}
 @media (max-width:600px){.top .wrap{position:relative}.tools .sizehdr{position:absolute;top:6px;inset-inline-end:var(--gut,16px);width:44px;min-height:40px;height:40px}}
+/* hero, second path: the ready-made ad catalog */
+.catcard{display:flex;flex-direction:column;gap:12px;margin-top:12px;padding:24px;border-radius:var(--r-lg);background:var(--card);color:var(--ink);border:1px solid var(--line);animation:enter 700ms var(--ease) 200ms both}
+.cc-k{color:#7A5A14;font-weight:500;font-size:1rem}
+.catcard h2{font-size:clamp(1.25rem,5.6vw,1.5rem);line-height:1.15}
+.catcard h2 em{font-style:normal;color:#7A5A14}
+.cc-p{color:var(--muted);font-size:1.0625rem}
+.cc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:4px}
+.cc-t{appearance:none;border:0;background:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;align-items:stretch;min-width:0;cursor:pointer;color:var(--ink);font:inherit;text-align:center}
+.cc-v{position:relative;display:block;width:100%;aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:var(--surface);transition:transform 160ms var(--ease)}
+.cc-v img,.cc-v video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 32%}
+.cc-v video{opacity:0;transition:opacity 300ms var(--ease)}.cc-v video.on{opacity:1}
+.cc-t:active .cc-v{transform:scale(.97)}
+.cc-l{font-size:.9375rem;font-weight:600;line-height:1.2;margin-top:2px}
+.cc-n{font-size:.875rem;line-height:1.1;color:var(--muted);margin-top:-2px}.cc-n{white-space:nowrap}.cc-n b{font-size:.9375rem;font-weight:700;color:#7A5A14}.cc-l{display:inline}
+.cc-go{width:100%;margin-top:4px;background:var(--ink);color:#fff}
+@media (min-width:1100px){
+ .hero .wrap{position:relative}
+ .hero{--hw:clamp(380px,36vw,520px)}
+ .film .box{width:var(--hw);max-width:none;box-sizing:border-box}
+ .catcard{position:absolute;bottom:32px;inset-inline-end:calc(var(--gut) + 32px);width:var(--hw);box-sizing:border-box;margin:0;padding:24px 28px;gap:10px;border:0;box-shadow:0 20px 50px rgba(0,0,0,.22);justify-content:space-between}
+ .catcard h2{font-size:clamp(1.25rem,1.72vw,1.5rem)}
+ .cc-p{font-size:1rem}
+ .hero{height:auto}.hero .wrap{height:auto}
+ .film{height:calc(100svh - var(--nav) - 32px);min-height:780px}
+ .catcard{height:var(--eqh,auto)}
+ .cc-row{flex:1;min-height:0;grid-template-rows:minmax(0,1fr)}
+ .cc-t{min-height:0}
+ .cc-v{flex:1;aspect-ratio:auto;min-height:44px}
+ .film .over{inset:32px;align-items:flex-end}
+ .film .play{align-self:flex-start;margin-inline-start:auto}
+}
+@media (max-width:1099px){.catcard{margin-inline:12px}}
 </style>
 </head>
 <body>
@@ -620,7 +652,15 @@ dialog .undo{bottom:24px}
           <span class="lbl">צפייה בסרטון עם קול<small>טבעות ועגילים עם משקפי שמש</small></span>
         </button>
       </div>
-    </div></div>
+    </div>
+    <aside class="catcard" aria-labelledby="ccT">
+      <span class="cc-k">קטלוג הפרסומות</span>
+      <h2 id="ccT">בחרו פרסומת.<br><em>קבלו אותה עם התכשיטים שלכם.</em></h2>
+      <p class="cc-p">פרסומות מוכנות ב-4 סגנונות. בוחרים אחת, שולחים תמונה של התכשיט, ותוך 2 ימי עסקים היא מוכנה.</p>
+      <div class="cc-row"><button class="cc-t" type="button" data-catgo="viral" aria-label="לקטלוג: פרסומות בסגנון טרנדי"><span class="cc-v" data-c="viral"><img src="p/work-68-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-68.mp4?e2" aria-hidden="true"></video></span><span class="cc-v" data-c="viral"><img src="p/work-69-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-69.mp4?e2" aria-hidden="true"></video></span><span class="cc-v" data-c="viral"><img src="p/work-25-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-25.mp4?e2" aria-hidden="true"></video></span><span class="cc-l">טרנדי</span><span class="cc-n" data-n="viral"></span></button><button class="cc-t" type="button" data-catgo="cine" aria-label="לקטלוג: פרסומות בסגנון קולנועי"><span class="cc-v" data-c="cine"><img src="p/work-21-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-21.mp4?e2" aria-hidden="true"></video></span><span class="cc-v" data-c="cine"><img src="p/work-72-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-72.mp4?e2" aria-hidden="true"></video></span><span class="cc-v" data-c="viral"><img src="p/work-29-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-29.mp4?e2" aria-hidden="true"></video></span><span class="cc-l">קולנועי</span><span class="cc-n" data-n="cine"></span></button><button class="cc-t" type="button" data-catgo="models" aria-label="לקטלוג: פרסומות בסגנון דוגמנית"><span class="cc-v" data-c="models"><img src="p/work-71-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-71.mp4?e2" aria-hidden="true"></video></span><span class="cc-v" data-c="models"><img src="p/work-16-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-16.mp4?e2" aria-hidden="true"></video></span><span class="cc-v" data-c="models"><img src="p/work-58-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-58.mp4?e2" aria-hidden="true"></video></span><span class="cc-l">דוגמנית</span><span class="cc-n" data-n="models"></span></button><button class="cc-t" type="button" data-catgo="simple" aria-label="לקטלוג: פרסומות בסגנון תצוגה"><span class="cc-v" data-c="simple"><img src="p/work-63-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-63.mp4?e2" aria-hidden="true"></video></span><span class="cc-v" data-c="simple"><img src="p/work-19-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-19.mp4?e2" aria-hidden="true"></video></span><span class="cc-v" data-c="models"><img src="p/work-24-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-24.mp4?e2" aria-hidden="true"></video></span><span class="cc-l">תצוגה</span><span class="cc-n" data-n="simple"></span></button></div>
+      <a class="btn cc-go" href="#gallery">לקטלוג הפרסומות <span class="arr" aria-hidden="true">←</span></a>
+    </aside>
+  </div>
   </section>
 
   <section class="how" id="how" aria-labelledby="h-how">
@@ -927,6 +967,15 @@ dialog .undo{bottom:24px}
       var wm=wall.querySelector('.wmore[data-g="'+g.k+'"]');if(!wm)return;wm.hidden=all||cs.length<=PER;wm.querySelector('button').textContent='לכל '+cs.length+' הסרטונים: '+g.t;});}
   moreBtn.addEventListener('click',function(){expanded=true;clip();});
   document.querySelectorAll('.filters button').forEach(function(b){b.addEventListener('click',function(){setFilter(b.dataset.f);});});
+  /* hero catalog card: how many more ads of each style wait in the catalog */
+  (function(){var shown={};document.querySelectorAll('.cc-v[data-c]').forEach(function(v){shown[v.dataset.c]=(shown[v.dataset.c]||0)+1;});
+    document.querySelectorAll('.cc-n[data-n]').forEach(function(n){var c=n.dataset.n,all=ITEMS.filter(function(i){return grp(i)===c;}).length;n.innerHTML='<b>&lrm;15+&lrm;</b>';});
+    var go=document.querySelector('.cc-go');if(go)go.firstChild.textContent='לכל ‎48+‎ הפרסומות בקטלוג ';})();
+  /* hero: the two blocks share one height when it fits under the sound button */
+  (function(){var bx=document.querySelector('.film .box'),cc=document.querySelector('.catcard'),pl=document.querySelector('.film .play'),fm=document.querySelector('.film');if(!bx||!cc)return;
+    function eq(){cc.style.removeProperty('--eqh');if(innerWidth<1100)return;cc.style.setProperty('--eqh',bx.offsetHeight+'px');}
+    eq();addEventListener('resize',eq);if(document.fonts)document.fonts.ready.then(eq);})();
+  document.querySelectorAll('[data-catgo]').forEach(function(t){t.addEventListener('click',function(){setFilter(t.dataset.catgo);document.getElementById('gallery').scrollIntoView({behavior:reduce?'auto':'smooth'});});});
   document.querySelectorAll('.tile[data-go]').forEach(function(t){t.addEventListener('click',function(){setFilter(t.dataset.go);
     document.getElementById('gallery').scrollIntoView({behavior:reduce?'auto':'smooth'});});});
 
