@@ -43,6 +43,9 @@ button{width:100%;margin-top:4px;font:inherit;font-size:18px;font-weight:700;pad
   background:linear-gradient(135deg,#ecd59f,#c9a45c 55%,#b08a45);box-shadow:0 10px 22px -8px rgba(176,138,69,.7);transition:transform .12s,filter .15s}
 button:active{transform:scale(.98)}
 button[disabled]{filter:grayscale(.3) opacity(.7);cursor:default}
+.ok-c{display:flex;gap:10px;align-items:flex-start;margin:2px 2px 14px;font-size:13.5px;line-height:1.45;color:var(--muted);cursor:pointer}
+.ok-c input{flex:none;width:20px;height:20px;margin:1px 0 0;accent-color:var(--gold)}
+.ok-c a{color:#8c6c30}
 .msg:empty{display:none}
 .msg{margin:10px 0 0;font-size:15px;text-align:center;color:var(--err)}
 .done{text-align:center;padding:18px 6px 10px}
@@ -52,7 +55,6 @@ button[disabled]{filter:grayscale(.3) opacity(.7);cursor:default}
 .done p{margin:0;color:var(--muted)}
 .hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 footer{text-align:center;padding:14px 16px max(22px,env(safe-area-inset-bottom))}
-footer .pv{border:0;color:#9a917f;font-weight:400;font-size:13px;margin-inline-start:18px}
 footer a{display:inline-flex;align-items:center;gap:6px;color:#8c6c30;font-weight:700;text-decoration:none;font-size:15px;border-bottom:1px solid rgba(140,108,48,.35);padding-bottom:2px}
 @media (min-width:900px){footer{text-align:right;max-width:1120px;width:100%;margin:0 auto}}
 @media (prefers-reduced-motion:no-preference){.box{animation:up .6s cubic-bezier(.2,.7,.2,1) both}@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
@@ -70,6 +72,7 @@ footer a{display:inline-flex;align-items:center;gap:6px;color:#8c6c30;font-weigh
         <div class="f"><input id="name" name="name" autocomplete="name" placeholder=" " required><label for="name">שם</label></div>
         <div class="f"><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder=" " dir="ltr" required><label for="phone">טלפון</label></div>
         <div class="f"><input id="biz" name="biz" autocomplete="organization" placeholder=" "><label for="biz">שם העסק (לא חובה)</label></div>
+        <label class="ok-c"><input type="checkbox" id="agree"><span>אני מאשר/ת שתחזרו אליי בוואטסאפ או בטלפון ושתשלחו לי מידע ופרסומות על השירות. אפשר לבקש הסרה בכל עת. <a href="../privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
         <input class="hp" type="text" name="company_site" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button id="btn" type="submit">אני רוצה לשמוע עוד</button>
         <p id="m" class="msg" role="status"></p>
@@ -82,10 +85,10 @@ footer a{display:inline-flex;align-items:center;gap:6px;color:#8c6c30;font-weigh
     </div>
   </div>
 </main>
-<footer><a href="../">לאתר הבית <span aria-hidden="true">←</span></a><a class="pv" href="../privacy.html">פרטיות</a></footer>
+<footer><a href="../">לאתר הבית <span aria-hidden="true">←</span></a></footer>
 <script>
 const FORM="https://docs.google.com/forms/d/e/1FAIpQLScHQQFXPujxqok3AofA3R7jMCt1mEHwfy3a37fzSr0RDPC8lQ/formResponse";
-const E={name:"entry.1105078249",phone:"entry.416340330",biz:"entry.202265588",src:"entry.1612544432"};
+const E={name:"entry.1105078249",phone:"entry.416340330",biz:"entry.202265588",src:"entry.1612544432",ok:"entry.1407423221"};
 const f=document.getElementById("f"),m=document.getElementById("m"),btn=document.getElementById("btn");
 f.addEventListener("submit",async e=>{
   e.preventDefault();m.textContent="";
@@ -93,8 +96,9 @@ f.addEventListener("submit",async e=>{
   if(f.company_site.value){done();return}
   if(!name){m.textContent="נא למלא שם";f.name.focus();return}
   if(phone.replace(/\D/g,"").length<9){m.textContent="נא למלא מספר טלפון תקין";f.phone.focus();return}
+  if(!document.getElementById("agree").checked){m.textContent="כדי לשלוח צריך לסמן את האישור";document.getElementById("agree").focus();return}
   btn.disabled=true;btn.textContent="שולח…";
-  const body=new URLSearchParams();body.set(E.name,name);body.set(E.phone,phone);if(biz)body.set(E.biz,biz);body.set(E.src,"טופס ישיר");
+  const body=new URLSearchParams();body.set(E.name,name);body.set(E.phone,phone);if(biz)body.set(E.biz,biz);body.set(E.src,"טופס ישיר");body.set(E.ok,"כן: אני מאשר/ת שתחזרו אליי בוואטסאפ או בטלפון ושתשלחו לי מידע ופרסומות על השירות. אפשר לבקש הסרה בכל עת.");
   const ac=new AbortController();const t=setTimeout(()=>ac.abort(),12000);
   try{await fetch(FORM,{method:"POST",mode:"no-cors",body,signal:ac.signal});clearTimeout(t);done()}
   catch(err){clearTimeout(t);btn.disabled=false;btn.textContent="אני רוצה לשמוע עוד";m.textContent="משהו השתבש, נסו שוב"}

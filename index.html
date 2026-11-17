@@ -688,7 +688,7 @@ dialog .undo{bottom:24px}
           <label class="cb-f"><span>שם העסק <small>(לא חובה)</small></span><input id="cbBiz" autocomplete="organization"></label>
         </div>
         <input class="cb-hp" type="text" id="cbHp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <label class="agree"><input type="checkbox" id="cbAgree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
+        <label class="agree"><input type="checkbox" id="cbAgree"><span>אני מאשר/ת שתחזרו אליי בוואטסאפ או בטלפון ושתשלחו לי מידע ופרסומות על השירות. אפשר לבקש הסרה בכל עת. <a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
         <p class="cb-msg" id="cbMsg" role="alert" hidden></p>
         <button class="btn" type="submit" id="cbBtn">חזרו אליי בטלפון</button>
       </form>
@@ -843,9 +843,9 @@ dialog .undo{bottom:24px}
       var nv=n.value.trim(),pv=ph.value.trim();
       if(nv.length<2)return err('כתבו את השם שלכם.',n);
       if(pv.replace(/\D/g,'').length<9)return err('כתבו מספר טלפון תקין.',ph);
-      if(!ag.checked)return err('כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.',ag);
+      if(!ag.checked)return err('כדי לשלוח צריך לסמן את האישור.',ag);
       bt.disabled=true;bt.textContent='שולח…';
-      var b=new URLSearchParams();b.set('entry.1105078249',nv);b.set('entry.416340330',pv);var bz=document.getElementById('cbBiz').value.trim();if(bz)b.set('entry.202265588',bz);b.set('entry.1612544432','האתר');
+      var b=new URLSearchParams();b.set('entry.1105078249',nv);b.set('entry.416340330',pv);var bz=document.getElementById('cbBiz').value.trim();if(bz)b.set('entry.202265588',bz);b.set('entry.1612544432','האתר');b.set('entry.1407423221','כן: אני מאשר/ת שתחזרו אליי בוואטסאפ או בטלפון ושתשלחו לי מידע ופרסומות על השירות. אפשר לבקש הסרה בכל עת.');
       fetch('https://docs.google.com/forms/d/e/1FAIpQLScHQQFXPujxqok3AofA3R7jMCt1mEHwfy3a37fzSr0RDPC8lQ/formResponse',{method:'POST',mode:'no-cors',body:b})
       .then(function(){f.hidden=true;document.getElementById('cbOk').hidden=false;})
       .catch(function(){bt.disabled=false;bt.textContent='חזרו אליי בטלפון';err('משהו השתבש. נסו שוב, או התקשרו: 053-950-7416.',bt);});});
