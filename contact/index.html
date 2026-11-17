@@ -2,112 +2,103 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>השארת פרטים | Boost Media</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#fbf8f2">
+<meta name="theme-color" content="#f6efe3">
+<meta property="og:title" content="פרסומות שמוכרות את התכשיטים שלך">
+<meta property="og:description" content="השאירו פרטים, ונחזור אליכם בוואטסאפ.">
+<meta property="og:image" content="https://boostmedia2002.github.io/jewelry/contact/form-strip.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fbf8f2;--bg2:#f3ece0;--card:#fffdf9;--ink:#1d1912;--muted:#6f675a;--line:#e8e0d2;--gold:#c9a45c;--gold2:#e8cf96;--err:#b3261e}
-*{box-sizing:border-box}
+:root{--ink:#1d1912;--muted:#6f675a;--line:#e6dccb;--gold:#b08a45;--gold-l:#e8cf96;--card:#fffdf9;--err:#b3261e}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
-body{min-height:100vh;font:17px/1.55 "Assistant","Segoe UI",Arial,sans-serif;color:var(--ink);
- background:radial-gradient(120% 70% at 85% -10%,#f1e2c2 0%,transparent 60%),radial-gradient(90% 60% at 0% 100%,#efe4d0 0%,transparent 55%),linear-gradient(180deg,var(--bg),var(--bg2));
- display:flex;flex-direction:column;align-items:center;padding:28px 16px 40px}
-.wrap{width:100%;max-width:440px}
-.brand{display:flex;align-items:center;gap:10px;color:#9a7a3a;font-weight:700;letter-spacing:.14em;font-size:13px;margin-bottom:22px}
-.gem{width:26px;height:26px}
-.hero{color:var(--ink);margin-bottom:22px}
-.hero h1{font-family:"Frank Ruhl Libre",Georgia,serif;font-weight:700;font-size:clamp(30px,8vw,38px);line-height:1.15;margin:0 0 10px;text-wrap:balance}
-.hero h1 span{color:#a8823c}
-.hero p{margin:0;color:var(--muted);font-size:16px}
-.perks{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
-.perks li{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--ink);background:#fff;border:1px solid rgba(201,164,92,.5);border-radius:999px;padding:5px 12px}
-.perks svg{width:14px;height:14px;flex:none}
-.card{background:var(--card);border-radius:20px;padding:26px 20px 22px;box-shadow:0 18px 40px rgba(120,90,40,.14),0 0 0 1px rgba(201,164,92,.3)}
-.card h2{font-size:20px;margin:0 0 4px}
-.card .sub{margin:0 0 20px;color:var(--muted);font-size:15px;display:flex;align-items:center;gap:6px}
-.wa{width:18px;height:18px;flex:none}
-label{display:block;font-size:15px;font-weight:600;margin:0 0 6px}
-.opt{font-weight:400;color:var(--muted);font-size:13px}
-input{width:100%;font:inherit;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);margin-bottom:16px;transition:border-color .15s,box-shadow .15s}
-input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,164,92,.18)}
-button{width:100%;font:inherit;font-size:18px;font-weight:700;padding:15px;border:0;border-radius:12px;cursor:pointer;color:#1d1912;
- background:linear-gradient(135deg,#e8cf96,#c9a45c 55%,#b08a45);box-shadow:0 8px 20px rgba(201,164,92,.35);transition:transform .1s,box-shadow .15s}
+body{min-height:100vh;min-height:100dvh;font:17px/1.5 "Assistant","Segoe UI",Arial,sans-serif;color:var(--ink);background:#f6efe3;display:flex;flex-direction:column}
+.bg{position:fixed;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(246,239,227,.55) 0%,rgba(246,239,227,.92) 45%,#f6efe3 75%),
+  url(../m/ringhand.webp) center top/cover no-repeat}
+@media (min-width:900px){.bg{background:
+  linear-gradient(270deg,#f6efe3 0%,#f6efe3 42%,rgba(246,239,227,.35) 62%,rgba(246,239,227,0) 80%),
+  url(../m/ringhand.webp) left center/auto 100% no-repeat,#f6efe3}}
+main{flex:1;width:100%;max-width:1120px;margin:0 auto;padding:max(28px,env(safe-area-inset-top)) 16px 24px;display:flex;align-items:center}
+.box{width:100%;max-width:430px;margin-top:22vh}
+@media (min-width:900px){.box{margin:0}}
+.brand{font-weight:700;letter-spacing:.2em;font-size:12px;color:#8c6c30;direction:ltr;text-align:right;margin-bottom:14px}
+h1{font-family:"Frank Ruhl Libre",Georgia,serif;font-weight:700;font-size:clamp(34px,9vw,48px);line-height:1.08;margin:0 0 10px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--gold)}
+.lead{margin:0 0 22px;color:var(--muted);font-size:17px;display:flex;align-items:center;gap:8px}
+.lead svg{width:20px;height:20px;flex:none}
+.card{background:var(--card);border-radius:22px;padding:22px 18px 18px;box-shadow:0 24px 50px -18px rgba(110,80,30,.35),0 0 0 1px rgba(176,138,69,.22)}
+.f{position:relative;margin-bottom:12px}
+.f input{width:100%;font:inherit;font-size:17px;padding:22px 16px 8px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);transition:border-color .15s,box-shadow .15s;outline:none}
+.f label{position:absolute;right:17px;top:16px;color:#9a917f;font-size:16px;pointer-events:none;transition:all .15s}
+.f input:focus,.f input:not(:placeholder-shown){border-color:var(--gold)}
+.f input:focus{box-shadow:0 0 0 4px rgba(176,138,69,.16)}
+.f input:focus+label,.f input:not(:placeholder-shown)+label{top:6px;font-size:12px;color:var(--gold)}
+.f input[dir=ltr]{text-align:right}
+button{width:100%;margin-top:4px;font:inherit;font-size:18px;font-weight:700;padding:16px;border:0;border-radius:14px;cursor:pointer;color:#1d1912;
+  background:linear-gradient(135deg,#ecd59f,#c9a45c 55%,#b08a45);box-shadow:0 10px 22px -8px rgba(176,138,69,.7);transition:transform .12s,filter .15s}
 button:active{transform:scale(.98)}
-button[disabled]{opacity:.65;cursor:default}
-.trust{display:flex;justify-content:center;gap:6px;align-items:center;margin:14px 0 0;color:var(--muted);font-size:13px;text-align:center}
-.trust a{color:var(--muted)}
-.lock{width:13px;height:13px}
-.msg{margin-top:12px;font-size:15px;text-align:center}
-.msg.err{color:var(--err)}
-.done{text-align:center;padding:10px 0}
-.check{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#e8cf96,#c9a45c)}
-.check svg{width:30px;height:30px}
-.done h2{font-family:"Frank Ruhl Libre",Georgia,serif;font-size:26px;margin:0 0 6px}
+button[disabled]{filter:grayscale(.3) opacity(.7);cursor:default}
+.msg:empty{display:none}
+.msg{margin:10px 0 0;font-size:15px;text-align:center;color:var(--err)}
+.done{text-align:center;padding:18px 6px 10px}
+.check{width:62px;height:62px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ecd59f,#b08a45)}
+.check svg{width:28px;height:28px}
+.done h2{font-family:"Frank Ruhl Libre",Georgia,serif;font-size:28px;margin:0 0 4px}
 .done p{margin:0;color:var(--muted)}
-.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);opacity:0;pointer-events:none}
-.foot{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
-.foot a{color:#9a7a3a;font-weight:600;text-decoration:none}
-@media (prefers-reduced-motion:no-preference){.card{animation:up .5s ease-out both}.hero{animation:up .5s ease-out both}@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+footer{text-align:center;padding:14px 16px max(22px,env(safe-area-inset-bottom))}
+footer a{display:inline-flex;align-items:center;gap:6px;color:#8c6c30;font-weight:700;text-decoration:none;font-size:15px;border-bottom:1px solid rgba(140,108,48,.35);padding-bottom:2px}
+@media (min-width:900px){footer{text-align:right;max-width:1120px;width:100%;margin:0 auto}}
+@media (prefers-reduced-motion:no-preference){.box{animation:up .6s cubic-bezier(.2,.7,.2,1) both}@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="brand">
-    <svg class="gem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l3 18M15 3l-3 18"/></svg>
-    BOOST MEDIA
-  </div>
-  <header class="hero">
-    <h1>פרסומות שמוכרות <span>את התכשיטים שלך</span></h1>
-    <ul class="perks">
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="#c9a45c" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg>הכל מוכן בשבילך, נשאר רק לבחור</li>
-    </ul>
-  </header>
-
-  <main class="card">
-    <div id="formWrap">
-      <h2>השאירו פרטים</h2>
-      <p class="sub"><svg class="wa" viewBox="0 0 24 24"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M8.7 7.3c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.3 2.5 1 3 .8 3.5.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4l-.5-.3-1.7-.8c-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2-1.3-.8-.7-1.3-1.5-1.4-1.8-.2-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9z"/></svg>נחזור אליך בהודעת וואטסאפ</p>
-      <form id="f" method="POST" action="https://formsubmit.co/boostmedia2002@gmail.com" novalidate>
-        <input type="hidden" name="_subject" id="subj" value="ליד חדש מהאתר">
-        <input type="hidden" name="_next" value="https://boostmedia2002.github.io/jewelry/contact/?ok=1">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <label for="name">שם</label>
-        <input id="name" name="שם" autocomplete="name" placeholder="איך קוראים לך?" required>
-        <label for="phone">טלפון</label>
-        <input id="phone" name="טלפון" type="tel" inputmode="tel" autocomplete="tel" placeholder="050-0000000" dir="ltr" style="text-align:right" required>
-        <label for="biz">שם העסק <span class="opt">(לא חובה)</span></label>
-        <input id="biz" name="שם העסק" autocomplete="organization" placeholder="למשל: תכשיטי רוני">
-        <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off">
+<div class="bg" aria-hidden="true"></div>
+<main>
+  <div class="box">
+    <div class="brand">BOOST MEDIA</div>
+    <h1>פרסומות שמוכרות <em>את התכשיטים שלך</em></h1>
+    <p class="lead"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M8.7 7.3c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.3 2.5 1 3 .8 3.5.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4l-.5-.3-1.7-.8c-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2-1.3-.8-.7-1.3-1.5-1.4-1.8-.2-.3 0-.4.1-.5l.4-.5.3-.4v-.5l-.8-1.9z"/></svg>השאירו פרטים, ונחזור אליכם בוואטסאפ</p>
+    <div class="card">
+      <form id="f" novalidate>
+        <div class="f"><input id="name" name="name" autocomplete="name" placeholder=" " required><label for="name">שם</label></div>
+        <div class="f"><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder=" " dir="ltr" required><label for="phone">טלפון</label></div>
+        <div class="f"><input id="biz" name="biz" autocomplete="organization" placeholder=" "><label for="biz">שם העסק (לא חובה)</label></div>
+        <input class="hp" type="text" name="company_site" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button id="btn" type="submit">אני רוצה לשמוע עוד</button>
-        <div id="m" class="msg" role="status"></div>
+        <p id="m" class="msg" role="status"></p>
       </form>
-      <p class="trust"><svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>הפרטים משמשים רק כדי לחזור אליך · <a href="../privacy.html">פרטיות</a></p>
+      <div id="ok" class="done" hidden>
+        <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#1d1912" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg></div>
+        <h2>תודה, קיבלנו!</h2>
+        <p>נחזור אליך בוואטסאפ בקרוב.</p>
+      </div>
     </div>
-    <div id="ok" class="done" hidden>
-      <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#1d1912" stroke-width="3"><path d="M5 12l5 5 9-10"/></svg></div>
-      <h2>תודה, קיבלנו!</h2>
-      <p>נחזור אליך בהודעת וואטסאפ בהקדם.</p>
-    </div>
-  </main>
-  <p class="foot">רוצים לראות דוגמאות כבר עכשיו? <a href="../">לקטלוג הפרסומות</a></p>
-</div>
+  </div>
+</main>
+<footer><a href="../">לקטלוג הפרסומות <span aria-hidden="true">←</span></a></footer>
 <script>
+const FORM="https://docs.google.com/forms/d/e/1FAIpQLScHQQFXPujxqok3AofA3R7jMCt1mEHwfy3a37fzSr0RDPC8lQ/formResponse";
+const E={name:"entry.1105078249",phone:"entry.416340330",biz:"entry.202265588"};
 const f=document.getElementById("f"),m=document.getElementById("m"),btn=document.getElementById("btn");
-if(new URLSearchParams(location.search).get("ok")){document.getElementById("formWrap").hidden=true;document.getElementById("ok").hidden=false;}
-f.addEventListener("submit",e=>{
-  m.className="msg";m.textContent="";
-  const name=f.elements["שם"].value.trim(),phone=f.elements["טלפון"].value.trim(),biz=(f.elements["שם העסק"].value||"").trim();
-  if(!name){e.preventDefault();m.className="msg err";m.textContent="נא למלא שם";return}
-  if(phone.replace(/\D/g,"").length<9){e.preventDefault();m.className="msg err";m.textContent="נא למלא מספר טלפון תקין";return}
-  document.getElementById("subj").value="ליד חדש מהאתר: "+name+" | "+phone+(biz?" | "+biz:"");
+f.addEventListener("submit",async e=>{
+  e.preventDefault();m.textContent="";
+  const name=f.name.value.trim(),phone=f.phone.value.trim(),biz=f.biz.value.trim();
+  if(f.company_site.value){done();return}
+  if(!name){m.textContent="נא למלא שם";f.name.focus();return}
+  if(phone.replace(/\D/g,"").length<9){m.textContent="נא למלא מספר טלפון תקין";f.phone.focus();return}
   btn.disabled=true;btn.textContent="שולח…";
+  const body=new URLSearchParams();body.set(E.name,name);body.set(E.phone,phone);if(biz)body.set(E.biz,biz);
+  const ac=new AbortController();const t=setTimeout(()=>ac.abort(),12000);
+  try{await fetch(FORM,{method:"POST",mode:"no-cors",body,signal:ac.signal});clearTimeout(t);done()}
+  catch(err){clearTimeout(t);btn.disabled=false;btn.textContent="אני רוצה לשמוע עוד";m.textContent="משהו השתבש, נסו שוב"}
 });
-window.addEventListener("pageshow",()=>{btn.disabled=false;btn.textContent="אני רוצה לשמוע עוד"});
+function done(){f.hidden=true;document.getElementById("ok").hidden=false}
 </script>
 </body>
 </html>
