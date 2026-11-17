@@ -472,11 +472,14 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
 .scan-goals button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .scan-in .btn.wa{width:100%;margin-top:10px}
 .film h1 em{font-style:normal;color:var(--accent)}
-.hscan{display:flex;gap:10px;margin-top:26px}
+.hscan{display:flex;flex-direction:column;gap:10px;margin-top:22px}
 .hscan input{flex:1;min-width:0;min-height:56px;padding:0 18px;border-radius:12px;border:1.5px solid rgba(246,243,236,.35);background:rgba(246,243,236,.08);color:var(--inv-ink);font-size:1.0625rem}
 .hscan input::placeholder{color:var(--inv-muted)}
 .hscan input:focus{outline:3px solid var(--accent);outline-offset:1px;border-color:transparent}
-.hscan .btn{flex:none}
+.hscan .btn{flex:none;width:100%}
+.hscan input[type=text]{flex:none}
+.hagree{margin:2px 0;color:var(--inv-muted);font-size:.9375rem;align-items:center}.hagree input{accent-color:var(--accent);min-height:0;flex:none;padding:0}.hagree a{color:var(--inv-ink)}
+.hscan-err{margin:0;color:#FFB4A8;font-size:.95rem}.hscan-err[hidden]{display:none}
 .hscan-alt{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin-top:12px;color:var(--inv-muted)}
 .hscan-alt a{display:inline-flex;align-items:center;min-height:44px;color:var(--inv-ink);text-underline-offset:5px}
 @media (max-width:640px){.hscan{flex-direction:column}.hscan .btn{width:100%}}
@@ -617,6 +620,7 @@ dialog .undo{bottom:24px}
 .cc-cap{appearance:none;border:0;background:none;padding:6px 0;margin:-4px 0;font:inherit;color:var(--ink);cursor:pointer;min-height:44px;justify-content:center}
 @media (hover:hover){.cc-cap:hover .cc-l{text-decoration:underline;text-underline-offset:3px}}
 .card.flash .media{animation:flash 1.6s var(--ease)}@keyframes flash{0%,60%{box-shadow:0 0 0 4px var(--accent)}100%{box-shadow:0 0 0 0 transparent}}
+.cc-how{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;margin:-8px 0;color:var(--ink);text-decoration:underline;text-underline-offset:4px}
 </style>
 </head>
 <body>
@@ -648,11 +652,15 @@ dialog .undo{bottom:24px}
       <div class="over">
         <div class="box">
           <h1 id="h1">שלחו את העסק.<br><em>קבלו 3 רעיונות.</em></h1>
-          <p class="lead">מדביקים קישור לאתר או לאינסטגרם של העסק. אנחנו לומדים את המוצרים, הצבעים והסגנון שלכם, ובונים מזה 3 רעיונות לפרסומות. נשלח לכם בוואטסאפ את כל הרעיונות, כולל הצעת מחיר. <a class="howlink" href="#how">איך זה עובד</a></p>
+          <p class="lead">מדביקים קישור לאתר או לאינסטגרם של העסק. אנחנו לומדים את המוצרים, הצבעים והסגנון שלכם, ובונים מזה 3 רעיונות לפרסומות. נשלח לכם בוואטסאפ את כל הרעיונות, כולל הצעת מחיר. <a class="howlink" href="#how">איך זה עובד?</a></p>
           <form class="hscan" id="hscan" novalidate>
             <label class="sr" for="hscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
             <input type="text" id="hscanUrl" inputmode="url" autocomplete="url" dir="ltr" placeholder="instagram.com/yourbusiness">
-            <button class="btn gold" type="submit">שלחו לי רעיונות <span class="arr" aria-hidden="true">←</span></button>
+            <label class="sr" for="hscanNote">הערות (לא חובה)</label>
+            <input type="text" id="hscanNote" placeholder="הערות (לא חובה)">
+            <label class="agree hagree"><input type="checkbox" id="hscanAgree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
+            <p class="hscan-err" id="hscanErr" role="alert" hidden></p>
+            <button class="btn gold" type="submit">שליחה בוואטסאפ <span class="arr" aria-hidden="true">←</span></button>
           </form>
           <p class="hscan-alt"><a href="#gallery">או בחרו סרטון מהקטלוג</a></p>
         </div>
@@ -666,6 +674,7 @@ dialog .undo{bottom:24px}
       <span class="cc-k">קטלוג הפרסומות</span>
       <h2 id="ccT">בחרו פרסומת.<br><em>קבלו אותה עם התכשיטים שלכם.</em></h2>
       <p class="cc-p">פרסומות מוכנות ב-4 סגנונות. בוחרים אחת, שולחים תמונה של התכשיט, ותוך 2 ימי עסקים היא מוכנה.</p>
+      <a class="cc-how" href="#faq">איך זה עובד?</a>
       <div class="cc-row"><div class="cc-col"><button class="cc-t" type="button" data-catgo="viral" data-vid="work-69" aria-label="לקטלוג: שקית תכשיטים נגד גנב"><span class="cc-v" data-c="viral"><img src="p/work-69-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-69.mp4?e2" aria-hidden="true"></video></span></button><button class="cc-t" type="button" data-catgo="viral" data-vid="work-29" aria-label="לקטלוג: צללית ועגילים מתחלפים"><span class="cc-v" data-c="viral"><img src="p/work-29-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-29.mp4?e2" aria-hidden="true"></video></span></button><button type="button" class="cc-cap" data-catgo="viral" aria-label="לכל הפרסומות בסגנון טרנדי"><span class="cc-l">טרנדי</span><span class="cc-n"><b>15+</b> פרסומות</span></button></div><div class="cc-col"><button class="cc-t" type="button" data-catgo="cine" data-vid="work-72" aria-label="לקטלוג: מהחלל עד החנות, LUNA JEWELRY"><span class="cc-v" data-c="cine"><img src="p/work-72-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-72.mp4?e2" aria-hidden="true"></video></span></button><button class="cc-t" type="button" data-catgo="models" data-vid="work-16" aria-label="לקטלוג: טבעות ועגילים עם משקפי שמש"><span class="cc-v" data-c="models"><img src="p/work-16-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-16.mp4?e2" aria-hidden="true"></video></span></button><button type="button" class="cc-cap" data-catgo="cine" aria-label="לכל הפרסומות בסגנון קולנועי"><span class="cc-l">קולנועי</span><span class="cc-n"><b>10+</b> פרסומות</span></button></div><div class="cc-col"><button class="cc-t" type="button" data-catgo="models" data-vid="work-71" aria-label="לקטלוג: לוקבוק"><span class="cc-v" data-c="models"><img src="p/work-71-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-71.mp4?e2" aria-hidden="true"></video></span></button><button class="cc-t" type="button" data-catgo="models" data-vid="work-24" aria-label="לקטלוג: זכוכית מגדלת ותכשיטי אמרלד"><span class="cc-v" data-c="models"><img src="p/work-24-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-24.mp4?e2" aria-hidden="true"></video></span></button><button type="button" class="cc-cap" data-catgo="models" aria-label="לכל הפרסומות בסגנון דוגמנית"><span class="cc-l">דוגמנית</span><span class="cc-n"><b>9+</b> פרסומות</span></button></div><div class="cc-col"><button class="cc-t" type="button" data-catgo="simple" data-vid="work-27" aria-label="לקטלוג: קיר טבעות אירוסין"><span class="cc-v" data-c="simple"><img src="p/work-27-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-27.mp4?e2" aria-hidden="true"></video></span></button><button class="cc-t" type="button" data-catgo="simple" data-vid="work-20" aria-label="לקטלוג: צמיד מרוקע בסטודיו"><span class="cc-v" data-c="simple"><img src="p/work-20-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-20.mp4?e2" aria-hidden="true"></video></span></button><button type="button" class="cc-cap" data-catgo="simple" aria-label="לכל הפרסומות בסגנון תצוגה"><span class="cc-l">תצוגה</span><span class="cc-n"><b>13+</b> פרסומות</span></button></div></div>
       <a class="btn cc-go" href="#gallery">לקטלוג הפרסומות <span class="arr" aria-hidden="true">←</span></a>
     </aside>
@@ -1184,7 +1193,14 @@ dialog .undo{bottom:24px}
   (function(){var d=document.getElementById('scanD'),f=document.getElementById('scanF'),u=document.getElementById('scanUrl'),pr=document.getElementById('scanProd'),er=document.getElementById('scanErr'),gs=f.querySelectorAll('.scan-goals button');
     document.querySelectorAll('[data-scan]').forEach(function(b){b.addEventListener('click',function(){er.hidden=true;d.showModal();setTimeout(function(){u.focus();},50);});});
     var hf=document.getElementById('hscan'),hu=document.getElementById('hscanUrl');
-    hf.addEventListener('submit',function(e){e.preventDefault();er.hidden=true;var v=hu.value.trim();u.value=v;d.showModal();setTimeout(function(){(v?pr:u).focus();},50);});
+    var hn=document.getElementById('hscanNote'),ha=document.getElementById('hscanAgree'),he=document.getElementById('hscanErr');
+    function herr(t,el){he.textContent=t;he.hidden=false;el.focus();}
+    [hu,hn,ha].forEach(function(x){x.addEventListener('input',function(){he.hidden=true;});});
+    hf.addEventListener('submit',function(e){e.preventDefault();he.hidden=true;var v=hu.value.trim();
+      if(v.length<3)return herr('כתבו קישור לאתר או את שם המשתמש באינסטגרם.',hu);
+      if(!ha.checked)return herr('כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.',ha);
+      var L=['*בקשה לרעיונות לסרטון · BOOST MEDIA*','אתר או אינסטגרם: '+v];if(hn.value.trim())L.push('הערות: '+hn.value.trim());L.push('','אשמח לקבל 3 רעיונות לסרטון לעסק שלי.');
+      goWA(wa(L.join('\n')));});
     gs.forEach(function(b){b.addEventListener('click',function(){var on=b.getAttribute('aria-pressed')!=='true';gs.forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed',on);});});
     d.addEventListener('click',function(e){if(e.target===d)d.close();});
     u.addEventListener('input',function(){er.hidden=true;});
