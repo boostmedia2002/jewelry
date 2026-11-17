@@ -561,6 +561,16 @@ dialog .undo{bottom:24px}
 .hf-note input{width:100%;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font:inherit;font-size:1rem}
 .hf-note input:focus{outline:3px solid var(--accent);outline-offset:1px}
 .lead .howlink{color:var(--inv-ink);text-decoration:underline;text-underline-offset:4px;white-space:nowrap;display:inline-block;padding:10px 0;margin:-10px 0}
+.cartbtn{background:var(--ink);color:#fff;border:0;font-weight:600}
+.cartbtn .n{background:var(--accent);color:var(--ink)}
+.catgo{min-height:48px;padding:0 16px;font-size:1rem}
+.a11y-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}.a11y-row .still{margin:0}
+.size.still{min-width:0;font:inherit;font-size:1rem}
+@media (max-width:600px){:root{--nav:118px}
+ .top .wrap{grid-template-columns:1fr;grid-template-rows:auto auto;height:auto;min-height:var(--nav);padding-block:6px;gap:6px;align-content:center}
+ .top .mark{justify-self:center;min-height:40px}
+ .tools{justify-self:stretch;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+ .tools .btn{width:100%;min-height:48px;padding:0 10px;justify-content:center;font-size:1rem}}
 </style>
 </head>
 <body>
@@ -578,9 +588,8 @@ dialog .undo{bottom:24px}
       <a href="#faq">שאלות</a>
     </nav>
     <div class="tools">
-      <button class="size" type="button" id="sizeBtn" aria-pressed="false" aria-label="הגדלת טקסט">א+</button>
-      <button class="btn line cartbtn" type="button" id="cartTop">ההזמנה <span class="n" id="cartN">0</span></button>
-      <a class="btn navgo" href="#gallery">בחירת סרטון</a>
+      <a class="btn line catgo" href="#gallery">לקטלוג הפרסומות</a>
+      <button class="btn cartbtn" type="button" id="cartTop">ההזמנות שלי <span class="n" id="cartN">0</span></button>
     </div>
   </div>
 </header>
@@ -645,7 +654,7 @@ dialog .undo{bottom:24px}
     <div class="wrap">
       <div class="head"><h2 id="h-g">קטלוג הסרטונים</h2></div>
       <p class="fits-line mo-wh__text" data-moment="word-highlight"><strong>כל סרטון מתאים לכל מוצר.</strong> בוחרים סרטון שאהבתם, ואני מכין אותו מחדש עם התכשיטים שלכם. המוצר מתחלף, <strong>והרעיון נשאר.</strong></p>
-      <button class="still" type="button" id="stillBtn" aria-pressed="false"><span aria-hidden="true">⏸</span> <span id="stillT">עצירת הסרטונים</span></button>
+      <div class="a11y-row"><button class="size still" type="button" id="sizeBtn" aria-pressed="false" aria-label="הגדלת טקסט">א+ הגדלת טקסט</button><button class="still" type="button" id="stillBtn" aria-pressed="false"><span aria-hidden="true">⏸</span> <span id="stillT">עצירת הסרטונים</span></button></div>
       <div class="filters" role="group" aria-label="סוג הסרטון">
         <button type="button" data-f="all" aria-pressed="true">הכל</button>
         <button type="button" data-f="viral" aria-pressed="false">טרנדי ותופס את העין</button>
