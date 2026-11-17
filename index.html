@@ -834,7 +834,7 @@ dialog .undo{bottom:24px}
 
   /* WhatsApp bubble steps aside while the visitor scrolls down */
   (function(){var f=document.querySelector('.wafab');if(!f)return;var y0=scrollY,tk=0;addEventListener('scroll',function(){if(tk)return;tk=requestAnimationFrame(function(){tk=0;var y=scrollY,d=y-y0;if(Math.abs(d)<8)return;f.classList.toggle('away',d>0&&y>200);y0=y;});},{passive:true});})();
-  /* call-back request: name + phone go to the business mailbox */
+  /* call-back request: name + phone go to the leads form (Google Forms), same list as contact/ */
   (function(){var f=document.getElementById('cbF');if(!f)return;var n=document.getElementById('cbName'),ph=document.getElementById('cbPhone'),ag=document.getElementById('cbAgree'),msg=document.getElementById('cbMsg'),bt=document.getElementById('cbBtn');
     function err(t,el){msg.textContent=t;msg.hidden=false;el.focus();}
     [n,ph,ag].forEach(function(x){x.addEventListener('input',function(){msg.hidden=true;});});
@@ -845,9 +845,9 @@ dialog .undo{bottom:24px}
       if(pv.replace(/\D/g,'').length<9)return err('כתבו מספר טלפון תקין.',ph);
       if(!ag.checked)return err('כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.',ag);
       bt.disabled=true;bt.textContent='שולח…';
-      fetch('https://formsubmit.co/ajax/boostmedia2002@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({'שם':nv,'טלפון':pv,'שם העסק':document.getElementById('cbBiz').value.trim()||'לא צוין',_subject:'בקשה לשיחה חוזרת: '+nv+' '+pv,_template:'table',_captcha:'false'})})
-      .then(function(r){if(!r.ok)throw 0;f.hidden=true;document.getElementById('cbOk').hidden=false;})
+      var b=new URLSearchParams();b.set('entry.1105078249',nv);b.set('entry.416340330',pv);var bz=document.getElementById('cbBiz').value.trim();if(bz)b.set('entry.202265588',bz);b.set('entry.1612544432','האתר');
+      fetch('https://docs.google.com/forms/d/e/1FAIpQLScHQQFXPujxqok3AofA3R7jMCt1mEHwfy3a37fzSr0RDPC8lQ/formResponse',{method:'POST',mode:'no-cors',body:b})
+      .then(function(){f.hidden=true;document.getElementById('cbOk').hidden=false;})
       .catch(function(){bt.disabled=false;bt.textContent='חזרו אליי בטלפון';err('משהו השתבש. נסו שוב, או התקשרו: 053-950-7416.',bt);});});
   })();
   /* text size (remembered per visitor) */

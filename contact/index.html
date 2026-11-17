@@ -52,6 +52,7 @@ button[disabled]{filter:grayscale(.3) opacity(.7);cursor:default}
 .done p{margin:0;color:var(--muted)}
 .hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 footer{text-align:center;padding:14px 16px max(22px,env(safe-area-inset-bottom))}
+footer .pv{border:0;color:#9a917f;font-weight:400;font-size:13px;margin-inline-start:18px}
 footer a{display:inline-flex;align-items:center;gap:6px;color:#8c6c30;font-weight:700;text-decoration:none;font-size:15px;border-bottom:1px solid rgba(140,108,48,.35);padding-bottom:2px}
 @media (min-width:900px){footer{text-align:right;max-width:1120px;width:100%;margin:0 auto}}
 @media (prefers-reduced-motion:no-preference){.box{animation:up .6s cubic-bezier(.2,.7,.2,1) both}@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
@@ -81,10 +82,10 @@ footer a{display:inline-flex;align-items:center;gap:6px;color:#8c6c30;font-weigh
     </div>
   </div>
 </main>
-<footer><a href="../">לאתר הבית <span aria-hidden="true">←</span></a></footer>
+<footer><a href="../">לאתר הבית <span aria-hidden="true">←</span></a><a class="pv" href="../privacy.html">פרטיות</a></footer>
 <script>
 const FORM="https://docs.google.com/forms/d/e/1FAIpQLScHQQFXPujxqok3AofA3R7jMCt1mEHwfy3a37fzSr0RDPC8lQ/formResponse";
-const E={name:"entry.1105078249",phone:"entry.416340330",biz:"entry.202265588"};
+const E={name:"entry.1105078249",phone:"entry.416340330",biz:"entry.202265588",src:"entry.1612544432"};
 const f=document.getElementById("f"),m=document.getElementById("m"),btn=document.getElementById("btn");
 f.addEventListener("submit",async e=>{
   e.preventDefault();m.textContent="";
@@ -93,7 +94,7 @@ f.addEventListener("submit",async e=>{
   if(!name){m.textContent="נא למלא שם";f.name.focus();return}
   if(phone.replace(/\D/g,"").length<9){m.textContent="נא למלא מספר טלפון תקין";f.phone.focus();return}
   btn.disabled=true;btn.textContent="שולח…";
-  const body=new URLSearchParams();body.set(E.name,name);body.set(E.phone,phone);if(biz)body.set(E.biz,biz);
+  const body=new URLSearchParams();body.set(E.name,name);body.set(E.phone,phone);if(biz)body.set(E.biz,biz);body.set(E.src,"טופס ישיר");
   const ac=new AbortController();const t=setTimeout(()=>ac.abort(),12000);
   try{await fetch(FORM,{method:"POST",mode:"no-cors",body,signal:ac.signal});clearTimeout(t);done()}
   catch(err){clearTimeout(t);btn.disabled=false;btn.textContent="אני רוצה לשמוע עוד";m.textContent="משהו השתבש, נסו שוב"}
