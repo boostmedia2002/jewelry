@@ -642,7 +642,6 @@ dialog .undo{bottom:24px}
     <a class="mark" href="#top" aria-label="BOOST MEDIA, לראש העמוד">BOOST <i>MEDIA</i></a>
     <nav aria-label="ניווט">
             <a href="#gallery">קטלוג הסרטונים</a>
-      <a href="#extras">קטלוג תמונות</a>
       <a href="#faq">שאלות</a>
     </nav>
     <div class="tools">
@@ -718,7 +717,7 @@ dialog .undo{bottom:24px}
       <p class="wall-hint">לחצו על סרטון כדי לצפות בו. כפתור "בחירה" מוסיף אותו להזמנה.</p>
       <div class="wall" id="wall"></div>
       <div class="more"><button class="btn line" type="button" id="moreBtn" aria-controls="wall" aria-expanded="false">כל הסרטונים</button></div>
-          <div class="box2 msub gal-models" id="models" role="group" aria-labelledby="h-m">
+          <div class="box2 msub gal-models" id="models" hidden style="display:none" role="group" aria-labelledby="h-m">
           <span class="kicker">דוגמנית לסרטונים</span>
           <h3 id="h-m">אותה דוגמנית או דוגמן בכל הסרטונים שלכם</h3>
           <p>בחרו אחת, והיא תופיע בכל מה שתזמינו. אפשר גם לדלג, ואני אבחר.</p>
@@ -731,7 +730,7 @@ dialog .undo{bottom:24px}
 
   <section class="sec" id="extras" aria-label="תמונות קמפיין">
     <div class="wrap">
-      <div class="extras">
+      <div class="extras" hidden style="display:none">
         <article class="box2 wide" aria-labelledby="h-i">
           <div class="txt">
           <span class="kicker">תמונות</span>
@@ -773,7 +772,7 @@ dialog .undo{bottom:24px}
         <details name="faq"><summary>הדוגמאות הן של תכשיטים. זה מתאים גם לעסק שלי?</summary><p>כן. הרעיון של הסרטון נשאר, ואני שם בו את המוצר שלכם: קוסמטיקה, אוכל, בגדים, מוצרים לבית ועוד.</p></details>
         <details name="faq"><summary>אין לי עכשיו תמונה של המוצר. אפשר להזמין?</summary><p>כן. שלחו בלי תמונה, ותצרפו אותה אחר כך בשיחה.</p></details>
         <details name="faq"><summary>תוך כמה זמן הסרטון מוכן?</summary><p>תוך 2 ימי עסקים מרגע שקיבלתי את התמונות של המוצר.</p></details>
-        <details name="faq"><summary>איך משלמים?</summary><p>סרטון עד 10 שניות עולה 50 ₪, וסרטון ארוך יותר עולה 70 ₪. 10 סרטונים עולים 500 ₪, וכל סרטון נוסף 50 ₪. 10 תמונות קמפיין עולות 200 ₪. אין תשלום באתר: אחרי שתשלחו את ההזמנה נסגור בוואטסאפ את דרך התשלום.</p></details>
+        <details name="faq"><summary>איך משלמים?</summary><p>סרטון עד 10 שניות עולה 50 ₪, וסרטון ארוך יותר עולה 70 ₪. 10 סרטונים עולים 500 ₪, וכל סרטון נוסף 50 ₪. אין תשלום באתר: אחרי שתשלחו את ההזמנה נסגור בוואטסאפ את דרך התשלום.</p></details>
         <details name="faq"><summary>כמה תיקונים אפשר לבקש?</summary><p>עד 2 תיקונים קטנים לכל סרטון, כל עוד הם לא משנים את הרעיון של הסרטון.</p></details>
       </div>
       <button class="helpcard" type="button" data-help aria-haspopup="dialog"><span><b>יש לכם אמא ואבא</b><span class="sub">לא מצאתם תשובה? לחצו על המספר ושלחו לי הודעה בוואטסאפ, או התקשרו.</span></span><span class="helpnum"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>055-6677-843</span></button>
@@ -791,7 +790,7 @@ dialog .undo{bottom:24px}
     </div>
     <div class="cols">
       <div><span class="mark" aria-hidden="true">BOOST <i>MEDIA</i></span><p>סרטוני פרסום ותמונות למוצרים של עסקים. BOOST MEDIA, עוסק פטור, נתניה. © BOOST MEDIA · חלק מצילומי הבסיס באדיבות <a class="credit" href="https://pixabay.com" rel="noopener" style="display:inline;min-height:0">Pixabay</a></p></div>
-      <div><h3>באתר</h3><ul><li><a href="#gallery">קטלוג הסרטונים</a></li><li><a href="#extras">קטלוג תמונות</a></li><li><a href="#faq">שאלות</a></li><li><a href="privacy.html">מדיניות פרטיות</a></li><li><a href="privacy.html#cookies">עוגיות</a></li><li><a href="terms.html">תנאי שימוש והזמנה</a></li><li><a href="cancellation.html">ביטולים והחזרים</a></li><li><a href="accessibility.html">הצהרת נגישות</a></li></ul></div>
+      <div><h3>באתר</h3><ul><li><a href="#gallery">קטלוג הסרטונים</a></li><li><a href="#faq">שאלות</a></li><li><a href="privacy.html">מדיניות פרטיות</a></li><li><a href="privacy.html#cookies">עוגיות</a></li><li><a href="terms.html">תנאי שימוש והזמנה</a></li><li><a href="cancellation.html">ביטולים והחזרים</a></li><li><a href="accessibility.html">הצהרת נגישות</a></li></ul></div>
       <div><h3>יצירת קשר</h3><ul><li><a href="https://wa.me/972539507416" target="_blank" rel="noopener">וואטסאפ</a></li><li><a href="tel:+972539507416">053-950-7416</a></li><li><a href="mailto:boostmedia2002@gmail.com">boostmedia2002@gmail.com</a></li></ul></div>
     </div>
   </div>
@@ -1207,7 +1206,7 @@ dialog .undo{bottom:24px}
       var L=['*בקשה לרעיונות לסרטון · BOOST MEDIA*','אתר או אינסטגרם: '+v,'מוצר לקדם: '+(pr.value.trim()||'לא צוין'),'מטרה: '+(g||'לא צוינה'),'','אשמח לקבל 3 רעיונות לסרטון לעסק שלי.'];
       d.close();goWA(wa(L.join('\n')));});})();
   setFilter('all');
-  try{var sv=JSON.parse(localStorage.getItem('bm-order')||'null');if(sv&&Date.now()-sv.t<864e5){sel=(sv.s||[]).filter(find);images=!!sv.i;model=sv.m||null;note=sv.o||'';inotes=sv.q||{};ordNo=sv.k||'';document.getElementById('oName').value=sv.n||'';
+  try{var sv=JSON.parse(localStorage.getItem('bm-order')||'null');if(sv&&Date.now()-sv.t<864e5){sel=(sv.s||[]).filter(find);images=false;model=null;note=sv.o||'';inotes=sv.q||{};ordNo=sv.k||'';document.getElementById('oName').value=sv.n||'';
     mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',x.querySelector('.n').textContent===model);});render();}}catch(e){}
   document.getElementById('oName').addEventListener('input',save);
   try{var qv=new URLSearchParams(location.search).get('v');if(qv&&/^\d{1,3}$/.test(qv)){var qi=ITEMS.find(function(x){return numOf(x.id)===parseInt(qv,10);});if(qi)openVideo(qi.id);}}catch(e){}
