@@ -491,7 +491,10 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
 .how-steps{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .how-steps li{padding:28px;border-radius:var(--r-lg);background:var(--inv-surface)}
 .how-n{display:block;font:600 2.4rem/1 var(--font-display);color:var(--accent);margin-bottom:18px}
-.how-steps h3{font-size:1.5rem;margin-bottom:8px}
+.how-steps h3,.how-steps h4{font-size:1.5rem;margin-bottom:8px}
+.how-way{margin-top:40px;scroll-margin-top:calc(var(--nav) + 16px)}.how-way+.how-way{margin-top:56px;padding-top:48px;border-top:1px solid rgba(255,255,255,.14)}
+.how-t{font-size:1.5rem;line-height:1.3;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}.how-t span{font-size:.875rem;font-weight:700;color:var(--ink);background:var(--accent);border-radius:999px;padding:4px 12px}
+.how-way .how-steps{margin-top:20px}.how-way .how-cta{margin-top:20px}.how-cta a.btn{color:var(--ink);text-decoration:none}
 .how-steps p{color:var(--inv-muted)}
 .how-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin-top:32px}
 .how-cta a{color:var(--inv-ink);min-height:44px;display:inline-flex;align-items:center;text-underline-offset:5px}
@@ -809,7 +812,7 @@ dialog .undo{bottom:24px}
       <div class="over">
         <div class="box">
           <h1 id="h1">שלחו את העסק.<br><em>קבלו 3 רעיונות.</em></h1>
-          <p class="lead">מדביקים קישור לאתר או לאינסטגרם של העסק. אנחנו לומדים את המוצרים, הצבעים והסגנון שלכם, ובונים מזה 3 רעיונות לפרסומות. נשלח לכם בוואטסאפ את כל הרעיונות, כולל הצעת מחיר. <a class="howlink" href="#how">איך זה עובד?</a></p>
+          <p class="lead">מדביקים קישור לאתר או לאינסטגרם של העסק. אנחנו לומדים את המוצרים, הצבעים והסגנון שלכם, ובונים מזה 3 רעיונות לפרסומות. נשלח לכם בוואטסאפ את כל הרעיונות, כולל הצעת מחיר. <a class="howlink" href="#how-scan">איך זה עובד?</a></p>
           <form class="hscan" id="hscan" novalidate>
             <label class="sr" for="hscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
             <input type="text" id="hscanUrl" data-r="url" inputmode="url" autocomplete="url" dir="ltr" placeholder="instagram.com/yourbusiness">
@@ -831,7 +834,7 @@ dialog .undo{bottom:24px}
       <span class="cc-k">קטלוג הפרסומות</span>
       <h2 id="ccT">בחרו פרסומת.<br><em>קבלו אותה עם התכשיטים שלכם.</em></h2>
       <p class="cc-p">פרסומות מוכנות ב-4 סגנונות. בוחרים אחת, שולחים תמונה של התכשיט, ותוך 2 ימי עסקים היא מוכנה.</p>
-      <a class="cc-how" href="#faq">איך זה עובד?</a>
+      <a class="cc-how" href="#how-cat">איך זה עובד?</a>
       <div class="cc-row"><div class="cc-col"><button class="cc-t" type="button" data-catgo="viral" data-vid="work-69" aria-label="לסרטון בקטלוג: שקית תכשיטים נגד גנב"><span class="cc-v" data-c="viral"><img src="p/work-69-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-69.mp4?e2" aria-hidden="true"></video></span></button><button class="cc-t" type="button" data-catgo="viral" data-vid="work-29" aria-label="לסרטון בקטלוג: צללית ועגילים מתחלפים"><span class="cc-v" data-c="viral"><img src="p/work-29-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-29.mp4?e2" aria-hidden="true"></video></span></button><div class="cc-cap"><span class="cc-l">טרנדי</span><span class="cc-n"><b>11+</b> פרסומות</span></div></div><div class="cc-col"><button class="cc-t" type="button" data-catgo="cine" data-vid="work-72" aria-label="לסרטון בקטלוג: מהחלל עד החנות, LUNA JEWELRY"><span class="cc-v" data-c="cine"><img src="p/work-72-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-72.mp4?e2" aria-hidden="true"></video></span></button><button class="cc-t" type="button" data-catgo="models" data-vid="work-16" aria-label="לסרטון בקטלוג: טבעות ועגילים עם משקפי שמש"><span class="cc-v" data-c="models"><img src="p/work-16-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-16.mp4?e2" aria-hidden="true"></video></span></button><div class="cc-cap"><span class="cc-l">קולנועי</span><span class="cc-n"><b>9+</b> פרסומות</span></div></div><div class="cc-col"><button class="cc-t" type="button" data-catgo="models" data-vid="work-71" aria-label="לסרטון בקטלוג: לוקבוק"><span class="cc-v" data-c="models"><img src="p/work-71-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-71.mp4?e2" aria-hidden="true"></video></span></button><button class="cc-t" type="button" data-catgo="models" data-vid="work-24" aria-label="לסרטון בקטלוג: זכוכית מגדלת ותכשיטי אמרלד"><span class="cc-v" data-c="models"><img src="p/work-24-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-24.mp4?e2" aria-hidden="true"></video></span></button><div class="cc-cap"><span class="cc-l">דוגמנית</span><span class="cc-n"><b>7+</b> פרסומות</span></div></div><div class="cc-col"><button class="cc-t" type="button" data-catgo="simple" data-vid="work-27" aria-label="לסרטון בקטלוג: קיר טבעות אירוסין"><span class="cc-v" data-c="simple"><img src="p/work-27-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-27.mp4?e2" aria-hidden="true"></video></span></button><button class="cc-t" type="button" data-catgo="simple" data-vid="work-20" aria-label="לסרטון בקטלוג: צמיד מרוקע בסטודיו"><span class="cc-v" data-c="simple"><img src="p/work-20-s.webp" alt="" loading="lazy" width="150" height="233"><video data-auto muted loop playsinline preload="none" data-src="videos/preview/work-20.mp4?e2" aria-hidden="true"></video></span></button><div class="cc-cap"><span class="cc-l">תצוגה</span><span class="cc-n"><b>15+</b> פרסומות</span></div></div></div>
       <a class="btn cc-go" href="#gallery">לקטלוג הפרסומות <span class="arr" aria-hidden="true">←</span></a>
     </aside>
@@ -841,13 +844,25 @@ dialog .undo{bottom:24px}
   <section class="how" id="how" aria-labelledby="h-how">
     <div class="wrap">
       <p class="how-k">איך זה עובד</p>
-      <h2 id="h-how">שלושה שלבים. אתם לא עורכים כלום.</h2>
-      <ol class="how-steps">
-        <li><span class="how-n">01</span><h3>מדביקים קישור</h3><p>לאתר או לאינסטגרם של העסק. אנחנו לומדים ממנו את המוצרים, הצבעים והסגנון שלכם.</p></li>
-        <li><span class="how-n">02</span><h3>בוחרים רעיון</h3><p>נשלח לכם בוואטסאפ 3 רעיונות לסרטון שנבנו בשביל העסק שלכם, כל אחד עם מחיר.</p></li>
-        <li><span class="how-n">03</span><h3>מקבלים סרטון</h3><p>תוך 2 ימי עסקים, מוכן לאינסטגרם, לטיקטוק ולאתר. רוצים לשנות משהו קטן? כותבים לנו.</p></li>
-      </ol>
-      <div class="how-cta"><button class="btn gold" type="button" data-scan>שלחו לי רעיונות <span class="arr" aria-hidden="true">←</span></button><a href="#gallery">מעדיפים לבחור לבד? לקטלוג הסרטונים</a></div>
+      <h2 id="h-how">שתי דרכים. אתם לא עורכים כלום.</h2>
+      <div class="how-way" id="how-scan">
+        <h3 class="how-t"><span>דרך 1</span>שולחים את העסק, מקבלים רעיונות</h3>
+        <ol class="how-steps">
+          <li><span class="how-n">01</span><h4>מדביקים קישור</h4><p>לאתר או לאינסטגרם של העסק. אנחנו לומדים ממנו את המוצרים, הצבעים והסגנון שלכם.</p></li>
+          <li><span class="how-n">02</span><h4>בוחרים רעיון</h4><p>נשלח לכם בוואטסאפ 3 רעיונות לסרטון שנבנו בשביל העסק שלכם, כל אחד עם מחיר.</p></li>
+          <li><span class="how-n">03</span><h4>מקבלים סרטון</h4><p>תוך 2 ימי עסקים, מוכן לאינסטגרם, לטיקטוק ולאתר. רוצים לשנות משהו קטן? כותבים לנו.</p></li>
+        </ol>
+        <div class="how-cta"><button class="btn gold" type="button" data-scan>שלחו לי רעיונות <span class="arr" aria-hidden="true">←</span></button></div>
+      </div>
+      <div class="how-way" id="how-cat">
+        <h3 class="how-t"><span>דרך 2</span>בוחרים פרסומת מהקטלוג</h3>
+        <ol class="how-steps">
+          <li><span class="how-n">01</span><h4>בוחרים פרסומת</h4><p>סרטון או תמונת קמפיין מהקטלוג. רואים בדיוק מה מקבלים, ולחיצה על הפרסומת מציגה את המחיר.</p></li>
+          <li><span class="how-n">02</span><h4>מצרפים תמונות</h4><p>של התכשיטים שלכם, ואם רוצים גם לוגו. לא חייבים את כל סוגי התכשיטים שמופיעים בפרסומת.</p></li>
+          <li><span class="how-n">03</span><h4>מקבלים אותה שלכם</h4><p>תוך 2 ימי עסקים, אותה פרסומת עם התכשיטים שלכם. רוצים לשנות משהו קטן? כותבים לנו.</p></li>
+        </ol>
+        <div class="how-cta"><a class="btn gold" href="#gallery">לקטלוג הפרסומות <span class="arr" aria-hidden="true">←</span></a></div>
+      </div>
     </div>
   </section>
 
