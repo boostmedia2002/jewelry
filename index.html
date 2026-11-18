@@ -500,6 +500,28 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
 .how-steps{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .how-steps li{padding:28px;border-radius:var(--r-lg);background:var(--inv-surface)}
 .how-n{display:block;font:600 2.4rem/1 var(--font-display);color:var(--accent);margin-bottom:18px}
+.how{padding-block:36px}.how h2{max-width:none}
+.hw-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:18px;background:rgba(255,255,255,.07);border-radius:14px;padding:4px;max-width:560px}
+.hw-tabs button{appearance:none;border:0;border-radius:11px;min-height:46px;background:transparent;color:var(--inv-ink);font:inherit;font-weight:600;font-size:.95rem;cursor:pointer}
+.hw-tabs button[aria-selected=true]{background:var(--accent);color:var(--ink)}
+.hw-tabs button:focus-visible,.hw-s:focus-visible,.hw-dx:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hw-p{max-width:560px;scroll-margin-top:calc(var(--nav) + 16px)}.hw-p[hidden]{display:none}
+.hw-line{margin:16px 0 0;font-size:1.125rem;line-height:1.5;color:var(--inv-ink)}
+.hw-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.hw-s{appearance:none;border:0;background:none;padding:0;color:var(--inv-ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:6px;text-align:center}
+.hw-s .ph{position:relative;display:block;aspect-ratio:1;border-radius:12px;overflow:hidden;background:#000;outline:2px solid transparent;outline-offset:-2px;transition:outline-color 160ms ease}
+.hw-s .ph img{display:block;width:100%;height:100%;object-fit:cover}
+.hw-s .ph i{position:absolute;bottom:5px;right:5px;width:22px;height:22px;border-radius:11px;background:var(--accent);color:var(--ink);font-style:normal;font-weight:800;font-size:.8125rem;display:grid;place-items:center}
+.hw-s .ph em,.hw-dimg em{position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.72);color:#fff;font-style:normal;font-size:.625rem;border-radius:999px;padding:1px 6px}
+.hw-s b{font-size:.875rem;font-weight:600;line-height:1.25}
+.hw-s[aria-expanded=true] .ph{outline-color:var(--accent)}
+.hw-hint{margin:8px 0 0;font-size:.8125rem;color:var(--inv-muted)}
+.hw-d{margin-top:12px;padding:12px;border-radius:16px;background:var(--inv-surface);display:grid;grid-template-columns:minmax(0,46%) minmax(0,1fr);gap:14px;align-items:start}.hw-d[hidden]{display:none}
+.hw-dimg{position:relative;border-radius:12px;overflow:hidden;background:#000}.hw-dimg img{display:block;width:100%;height:auto;max-height:340px;object-fit:cover;object-position:top}.hw-dimg em[hidden]{display:none}
+.hw-dt h3{font-size:1.0625rem;line-height:1.3;margin:0 0 6px}.hw-dt p{margin:0;color:var(--inv-muted);font-size:.9375rem;line-height:1.5}
+.hw-dx{appearance:none;border:0;background:none;color:var(--inv-ink);font:inherit;font-size:.875rem;text-decoration:underline;text-underline-offset:3px;padding:10px 0 2px;cursor:pointer}
+.hw-cta{margin-top:16px}.hw-cta .btn{width:100%;color:var(--ink);text-decoration:none}
+@media (max-width:600px){.hw-d{grid-template-columns:1fr;gap:10px;padding:10px}.hw-dimg{max-width:300px;margin-inline:auto;width:100%}.hw-dimg img{max-height:420px}}
 .how-steps h3,.how-steps h4{font-size:1.5rem;margin-bottom:8px}
 .how-way{margin-top:40px;scroll-margin-top:calc(var(--nav) + 16px)}.how-way+.how-way{margin-top:56px;padding-top:48px;border-top:1px solid rgba(255,255,255,.14)}
 .how-t{font-size:1.5rem;line-height:1.3;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}.how-t span{font-size:.875rem;font-weight:700;color:var(--ink);background:var(--accent);border-radius:999px;padding:4px 12px}
@@ -855,23 +877,20 @@ dialog .undo{bottom:24px}
     <div class="wrap">
       <p class="how-k">איך זה עובד</p>
       <h2 id="h-how">שתי דרכים. אתם לא עורכים כלום.</h2>
-      <div class="how-way" id="how-scan">
-        <h3 class="how-t"><span>דרך 1</span>שולחים את העסק, מקבלים רעיונות</h3>
-        <ol class="how-steps">
-          <li><span class="how-n">01</span><h4>מדביקים קישור</h4><p>לאתר או לאינסטגרם של העסק. אנחנו לומדים ממנו את המוצרים, הצבעים והסגנון שלכם.</p></li>
-          <li><span class="how-n">02</span><h4>בוחרים רעיון</h4><p>נשלח לכם בוואטסאפ 3 רעיונות לסרטון שנבנו בשביל העסק שלכם, כל אחד עם מחיר.</p></li>
-          <li><span class="how-n">03</span><h4>מקבלים סרטון</h4><p>תוך 2 ימי עסקים, מוכן לאינסטגרם, לטיקטוק ולאתר. רוצים לשנות משהו קטן? כותבים לנו.</p></li>
-        </ol>
-        <div class="how-cta"><button class="btn gold" type="button" data-scan>שלחו לי רעיונות <span class="arr" aria-hidden="true">←</span></button></div>
+      <div class="hw-tabs" role="tablist" aria-label="שתי הדרכים"><button type="button" role="tab" id="hwt-cat" data-hw="cat" aria-selected="true" aria-controls="how-cat">בוחרים מהקטלוג</button><button type="button" role="tab" id="hwt-scan" data-hw="scan" aria-selected="false" aria-controls="how-scan">שולחים את העסק</button></div>
+      <div class="hw-p" id="how-cat" role="tabpanel" aria-labelledby="hwt-cat">
+        <p class="hw-line">לוחצים על סרטון או תמונה, מצרפים תמונה של התכשיט שלכם, ושולחים לי בוואטסאפ.</p>
+        <div class="hw-row"><button type="button" class="hw-s" aria-expanded="false" data-big="how/b1.webp" data-h="בוחרים פרסומת" data-d="גוללים בקטלוג ומסננים לפי סגנון. לחיצה על + או על הסרטון פותחת אותו עם המחיר. הלב שומר אותו לרשימת &quot;אהבתי&quot;, כדי לחזור אליו אחר כך." data-ill="0"><span class="ph"><img src="how/b1-s.webp" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">1</i></span><b>בוחרים</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/b2.webp" data-h="מצרפים תמונות של התכשיט" data-d="בחלון שנפתח יש משבצת לכל סוג תכשיט שמופיע בפרסומת, למשל טבעת, צמיד ועגילים. מעלים תמונות מהטלפון, וכמה שיותר זוויות, יותר טוב. לא חייבים את כל הסוגים, ואפשר להוסיף גם לוגו והערות." data-ill="0"><span class="ph"><img src="how/b2-s.webp" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">2</i></span><b>מצרפים תכשיט</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/b3.webp" data-h="שולחים בוואטסאפ ומקבלים" data-d="לוחצים &quot;שליחה אליי בוואטסאפ&quot;, או מוסיפים לסל כדי להזמין כמה יחד. ההזמנה נפתחת בוואטסאפ כהודעה מוכנה, ואתם רק שולחים. תוך 2 ימי עסקים מקבלים את הפרסומת עם התכשיטים שלכם." data-ill="1"><span class="ph"><img src="how/b3-s.webp" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">3</i><em>המחשה</em></span><b>שולחים ומקבלים</b></button></div>
+        <p class="hw-hint">לחיצה על תמונה פותחת הסבר מפורט.</p>
+        <div class="hw-d" hidden><div class="hw-dimg"><img alt=""><em hidden>המחשה</em></div><div class="hw-dt"><h3></h3><p></p><button type="button" class="hw-dx">סגירה</button></div></div>
+        <div class="hw-cta"><a class="btn gold" href="#gallery">לקטלוג הפרסומות <span class="arr" aria-hidden="true">←</span></a></div>
       </div>
-      <div class="how-way" id="how-cat">
-        <h3 class="how-t"><span>דרך 2</span>בוחרים פרסומת מהקטלוג</h3>
-        <ol class="how-steps">
-          <li><span class="how-n">01</span><h4>בוחרים פרסומת</h4><p>סרטון או תמונת קמפיין מהקטלוג. רואים בדיוק מה מקבלים, ולחיצה על הפרסומת מציגה את המחיר.</p></li>
-          <li><span class="how-n">02</span><h4>מצרפים תמונות</h4><p>של התכשיטים שלכם, ואם רוצים גם לוגו. לא חייבים את כל סוגי התכשיטים שמופיעים בפרסומת.</p></li>
-          <li><span class="how-n">03</span><h4>מקבלים אותה שלכם</h4><p>תוך 2 ימי עסקים, אותה פרסומת עם התכשיטים שלכם. רוצים לשנות משהו קטן? כותבים לנו.</p></li>
-        </ol>
-        <div class="how-cta"><a class="btn gold" href="#gallery">לקטלוג הפרסומות <span class="arr" aria-hidden="true">←</span></a></div>
+      <div class="hw-p" id="how-scan" role="tabpanel" aria-labelledby="hwt-scan">
+        <p class="hw-line">מדביקים קישור לעסק, מקבלים 3 תסריטים בוואטסאפ, ובוחרים אחד.</p>
+        <div class="hw-row"><button type="button" class="hw-s" aria-expanded="false" data-big="how/a1.webp" data-h="מדביקים קישור לעסק" data-d="מדביקים קישור לאתר או לאינסטגרם של העסק. אפשר לסמן לאן הסרטון מיועד ולהוסיף הערה, ואז לוחצים &quot;שליחה בוואטסאפ&quot;." data-ill="0"><span class="ph"><img src="how/a1-s.webp" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">1</i></span><b>מדביקים קישור</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/a2.webp" data-h="מקבלים 3 תסריטים ובוחרים" data-d="לומדים את המוצרים, הצבעים והסגנון שלכם, ושולחים לכם בוואטסאפ 3 תסריטים שנכתבו בשביל העסק שלכם, כל אחד עם מחיר. עונים במספר של התסריט שאהבתם, למשל &quot;1 מעניין אותי&quot;." data-ill="1"><span class="ph"><img src="how/a2-s.webp" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">2</i><em>המחשה</em></span><b>בוחרים תסריט</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/a3.webp" data-h="מקבלים את הסרטון" data-d="תוך 2 ימי עסקים הסרטון מגיע אליכם בוואטסאפ, מוכן לאינסטגרם, לטיקטוק ולאתר. רוצים לשנות משהו קטן? כותבים לנו." data-ill="1"><span class="ph"><img src="how/a3-s.webp" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">3</i><em>המחשה</em></span><b>מקבלים סרטון</b></button></div>
+        <p class="hw-hint">לחיצה על תמונה פותחת הסבר מפורט.</p>
+        <div class="hw-d" hidden><div class="hw-dimg"><img alt=""><em hidden>המחשה</em></div><div class="hw-dt"><h3></h3><p></p><button type="button" class="hw-dx">סגירה</button></div></div>
+        <div class="hw-cta"><button class="btn gold" type="button" data-scan>שלחו לי רעיונות <span class="arr" aria-hidden="true">←</span></button></div>
       </div>
     </div>
   </section>
@@ -1220,6 +1239,17 @@ dialog .undo{bottom:24px}
   document.querySelectorAll('#pfilt button').forEach(function(b){var k=b.dataset.p,n=PHOTOS.filter(function(i){return k==='all'||pTypes(i.id)[k];}).length;var c=document.createElement('span');c.className='fc';c.textContent=n;b.appendChild(c);
     b.addEventListener('click',function(){if(k==='all')pset=[];else{var x=pset.indexOf(k);if(x<0)pset.push(k);else pset.splice(x,1);if(pset.length===4)pset=[];}applyP();});});
   /* once a filter row scrolls away, a slim bar under the header sums up what is chosen for the catalog on screen */
+  /* how it works: two tabs; a step opens a slightly larger picture with a fuller explanation, inside the page */
+  (function(){var tabs=[].slice.call(document.querySelectorAll('.hw-tabs button'));if(!tabs.length)return;
+    function closeD(p){p.querySelectorAll('.hw-s').forEach(function(b){b.setAttribute('aria-expanded','false');});p.querySelector('.hw-d').hidden=true;}
+    function pick(k){tabs.forEach(function(t){var on=t.dataset.hw===k;t.setAttribute('aria-selected',on);var p=document.getElementById('how-'+t.dataset.hw);p.hidden=!on;if(!on)closeD(p);});}
+    tabs.forEach(function(t){t.addEventListener('click',function(){pick(t.dataset.hw);});});
+    document.querySelectorAll('.hw-p').forEach(function(p){var d=p.querySelector('.hw-d');
+      p.querySelectorAll('.hw-s').forEach(function(b){b.addEventListener('click',function(){var was=b.getAttribute('aria-expanded')==='true';closeD(p);if(was)return;
+        b.setAttribute('aria-expanded','true');var im=d.querySelector('img');im.src=b.dataset.big;im.alt=b.dataset.h;d.querySelector('em').hidden=b.dataset.ill!=='1';d.querySelector('h3').textContent=b.dataset.h;d.querySelector('p').textContent=b.dataset.d;d.hidden=false;});});
+      d.querySelector('.hw-dx').addEventListener('click',function(){closeD(p);});});
+    document.querySelectorAll('a[href="#how-cat"],a[href="#how-scan"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();pick(a.getAttribute('href').slice(5));document.getElementById('how').scrollIntoView({block:'start'});});});
+    pick('cat');})();
   /* headings fill with colour as they move up the screen */
   var fillH=[].slice.call(document.querySelectorAll('h2.fillh'));
   function fillUp(){var H=innerHeight;fillH.forEach(function(h){var r=h.getBoundingClientRect(),p=(H*.92-(r.top+r.height/2))/(H*.42);h.style.setProperty('--p',(Math.max(0,Math.min(1,p))*100).toFixed(1)+'%');});}
