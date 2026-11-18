@@ -681,7 +681,8 @@ dialog .undo{bottom:24px}
 .lb-tile b{position:absolute;top:3px;inset-inline-start:3px;min-width:18px;height:18px;border-radius:9px;background:#D9FE16;color:#131416;font-size:.6875rem;display:grid;place-items:center;padding:0 4px}
 .lb-rm{position:absolute;top:0;inset-inline-end:0;z-index:1;width:30px;height:30px;border:0;border-end-start-radius:10px;background:rgba(0,0,0,.72);color:#fff;font-size:1rem;line-height:1;cursor:pointer}
 .lb-logo{flex-direction:row;align-items:center;gap:12px}.lb-logo small{display:block;font-size:.8125rem;color:#8A8B8D}
-.lb-done{font-size:.8125rem;color:#D9FE16}.lb-tip{font-size:.8125rem;color:#8A8B8D}
+.lb-done{font-size:.8125rem;color:#D9FE16}.lb-tip{font-size:.8125rem;color:#8A8B8D}.lb-sub{font-size:.8125rem;color:#c9cacb;margin-top:-4px}.lb-sub[hidden]{display:none}
+.lb-tile .lb-ic{position:relative;display:block;width:30px;height:26px;color:#d6d7d8}.lb-tile .lb-ic svg{width:100%;height:100%;display:block}.lb-tile .lb-ic em{position:absolute;top:-6px;inset-inline-end:-8px;width:16px;height:16px;border-radius:8px;background:#D9FE16;color:#131416;font-style:normal;font-size:.75rem;font-weight:800;line-height:16px;text-align:center}.lb-tile.has .lb-ic{display:none}
 #lbNote{min-height:48px;padding:0 14px;border:0;border-radius:12px;background:#1F1F21;color:#fff;font:inherit;font-size:1rem}#lbNote::placeholder{color:#8A8B8D}
 #lbNote:focus{outline:3px solid #D9FE16;outline-offset:1px}
 .lb-agree{margin:2px 0;color:#c9cacb;font-size:.875rem;align-items:center}.lb-agree input{accent-color:#D9FE16}.lb-agree a{color:#fff}
@@ -693,7 +694,7 @@ dialog .undo{bottom:24px}
 .lb-after[hidden],.lb-done[hidden],.lb-err[hidden],.lb-tip[hidden],.lb-fit[hidden]{display:none}
 .lb-more{display:none}
 @media (min-width:900px){.lb .stage.ph{aspect-ratio:4/5}}
-@media (max-width:899px){.lb .stage img.lb-ph{height:calc(100% - 18px);object-fit:cover;object-position:50% 30%}.lb .stage{height:46dvh}.lb .stage video{height:calc(100% - 18px);object-fit:cover;object-position:50% 35%}.lb-panel{position:relative;margin-top:-18px;border-radius:20px 20px 0 0;background:#131416;padding-top:20px}}
+@media (max-width:899px){.lb .stage{background:#131416!important}.lb .stage::after{top:calc(50% - 9px)}.lb .stage img.lb-ph{height:calc(100% - 18px);object-fit:cover;object-position:50% 30%}.lb .stage{height:46dvh}.lb .stage video{height:calc(100% - 18px);object-fit:cover;object-position:50% 35%}.lb-panel{position:relative;margin-top:-18px;border-radius:20px 20px 0 0;background:#131416;padding-top:20px}}
 .lb .undo{bottom:16px}
 @media (min-width:900px){
  .lb{background:transparent;padding:4dvh 24px}
@@ -889,8 +890,8 @@ dialog .undo{bottom:24px}
         <h2 id="lbName"></h2>
         <p class="lb-fit" id="lbFit"></p>
         <p class="lb-price" id="lbPrice"></p>
-        <div class="lb-box"><p class="lb-bt" id="lbBT">התכשיטים שלכם</p><div class="lb-tiles" id="lbTiles"></div><p class="lb-done" id="lbDone" role="status" hidden></p><p class="lb-tip" id="lbTip"></p></div>
-        <div class="lb-box lb-logo"><div class="lb-tiles" id="lbLogo"></div><span><b class="lb-bt">לוגו המותג</b><small id="lbLogoT"></small></span></div>
+        <div class="lb-box"><p class="lb-bt" id="lbBT">הוסיפו כאן תמונות של המוצרים שלכם</p><p class="lb-sub" id="lbSub"></p><div class="lb-tiles" id="lbTiles"></div><p class="lb-done" id="lbDone" role="status" hidden></p><p class="lb-tip" id="lbTip"></p></div>
+        <div class="lb-box lb-logo"><div class="lb-tiles" id="lbLogo"></div><span><b class="lb-bt">הוסיפו כאן את הלוגו שלכם</b><small id="lbLogoT"></small></span></div>
         <label class="sr" for="lbNote">הערות</label>
         <input type="text" id="lbNote" placeholder="הערות" autocomplete="off">
         <label class="agree lb-agree"><input type="checkbox" id="lbAgree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
@@ -1162,9 +1163,9 @@ dialog .undo{bottom:24px}
   function lbSync(){var a=lbArr();if(sel.indexOf(lbId)>=0){if(a.length)prod[lbId]=a;else delete prod[lbId];render();}else fillLb();}
   function mkTile(label,hint,key){var mine=lbArr().filter(function(f){return f._k===key;});
     var t=document.createElement('label');t.className='lb-tile'+(mine.length?' has':'');
-    var inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.multiple=true;inp.setAttribute('aria-label','העלאת תמונות: '+label+(hint?' ('+hint+')':''));
-    inp.addEventListener('change',function(){[].slice.call(inp.files).forEach(function(f){if(lbArr().length<12){f._k=key;lbArr().push(f);}});lbSync();});
-    t.appendChild(inp);var ic=document.createElement('i');ic.textContent='+';ic.setAttribute('aria-hidden','true');t.appendChild(ic);
+    var inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.multiple=true;inp.setAttribute('aria-label',(key==='לוגו'?'העלאת הלוגו':'העלאת תמונות של '+label)+(hint?' ('+hint+')':''));
+    inp.addEventListener('change',function(){[].slice.call(inp.files).forEach(function(f){f._k=key;lbArr().push(f);});lbSync();});
+    t.appendChild(inp);var ic=document.createElement('i');ic.className='lb-ic';ic.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="9" cy="9.5" r="1.8" fill="currentColor"/><path d="M4 18l5-5 3.5 3.5L15 14l5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><em>+</em>';t.appendChild(ic);
     var sp=document.createElement('span');sp.textContent=label;t.appendChild(sp);if(hint){var sm=document.createElement('small');sm.textContent=hint;t.appendChild(sm);}
     if(mine.length){t.style.backgroundImage='url('+URL.createObjectURL(mine[mine.length-1])+')';var b=document.createElement('b');b.textContent=mine.length;t.appendChild(b);
       var rm=document.createElement('button');rm.type='button';rm.className='lb-rm';rm.textContent='×';rm.setAttribute('aria-label','הסרת התמונות: '+label);
@@ -1175,21 +1176,33 @@ dialog .undo{bottom:24px}
     document.getElementById('lbName').textContent=i.t;
     var ft=document.getElementById('lbFit');ft.textContent='';ft.hidden=!m.f;if(m.f){var fb=document.createElement('b');fb.textContent='מתאים ל: ';ft.appendChild(fb);ft.appendChild(document.createTextNode(m.f));}
     document.getElementById('lbPrice').textContent=i.ph?'10 תמונות קמפיין · '+PI+' ₪':vp(id)+' ₪';
-    document.getElementById('lbBT').textContent=m.b?'התמונה שלכם':'התכשיטים שלכם';
+    document.getElementById('lbBT').textContent=m.b?'הוסיפו כאן את התמונה שלכם':'הוסיפו כאן תמונות של המוצרים שלכם';
+    var sb=document.getElementById('lbSub');sb.textContent=m.t.length>1?'לא חייבים את כולם. אפשר להעלות, למשל, רק '+m.t[0][0]+' ולדלג על השאר.':'';sb.hidden=!sb.textContent;
     var tl=document.getElementById('lbTiles');tl.textContent='';m.t.forEach(function(x){tl.appendChild(mkTile(x[0],x[1],x[0]));});
-    var tip=document.getElementById('lbTip');tip.textContent=(m.x?m.x+' ':'')+(m.b?'':'צלמו כל תכשיט מכמה זוויות, באור טוב ועל רקע נקי.');tip.hidden=!tip.textContent;
-    var lg=document.getElementById('lbLogo');lg.textContent='';lg.appendChild(mkTile('לוגו','','לוגו'));document.getElementById('lbLogoT').textContent='יופיע '+m.l;
+    var tip=document.getElementById('lbTip');tip.textContent=(m.x?m.x+' ':'')+(m.b?'אפשר כמה תמונות.':'אין הגבלה על מספר התמונות: כמה שיותר זוויות, יותר טוב. צלמו באור טוב ועל רקע נקי.');tip.hidden=!tip.textContent;
+    var lg=document.getElementById('lbLogo');lg.textContent='';lg.appendChild(mkTile('לוגו','','לוגו'));document.getElementById('lbLogoT').textContent='קובץ PNG או JPG · יופיע '+m.l+' · לא חובה';
     var dn=document.getElementById('lbDone');dn.hidden=!a.length;dn.textContent=a.length?'✓ הועלו '+pdesc(a):'';
     var pk=document.getElementById('lbPick');pk.textContent=inCart?'✓ בסל · הסרה מהסל':'הוספה לסל';pk.setAttribute('aria-pressed',inCart);}
+  /* the viewer takes the media's own shape: nothing is cut off and no black bars */
+  var stAR=0;
+  function fitStage(ar){if(ar)stAR=ar;ar=stAR;var m=stage.querySelector('video,img.lb-ph');if(!m||!ar)return;
+    var wide=innerWidth>=900,maxW,maxH,top=wide?0:18;
+    if(wide){maxW=(stage.parentNode.getBoundingClientRect().width-40)/2;maxH=Math.min(innerHeight*.74,620);}
+    else{maxW=document.documentElement.clientWidth;maxH=innerHeight*.7;}
+    var w=maxW,h=w/ar;if(h>maxH){h=maxH;w=h*ar;}w=Math.floor(w);h=Math.floor(h);
+    function set(el,k,v){el.style.setProperty(k,v,'important');}
+    set(stage,'aspect-ratio','auto');set(stage,'height',(h+top)+'px');set(stage,'width',wide?w+'px':'100%');
+    set(m,'width',w+'px');set(m,'height',h+'px');set(m,'object-fit','contain');set(m,'margin-inline','auto');set(m,'display','block');}
+  addEventListener('resize',function(){if(lb.open)fitStage();});
   function openVideo(id){var i=find(id);if(!i)return;var was=lb.open;lbId=id;if(!was)lastFocus=document.activeElement;
     stage.innerHTML='';
     stage.classList.toggle('ph',!!i.ph);
-    if(i.ph){var pim=document.createElement('img');pim.className='lb-ph';pim.alt=i.t;pim.src='ph/'+phN(id)+'.webp';holdPreviews(true);stage.classList.remove('loading');stage.appendChild(pim);pim.addEventListener('click',function(){zoomPh(id);});stage.appendChild(zoomBtn(id));}else{
-    var v=document.createElement('video');v.src=(small?'mob/':(i.src?'hd/':'videos/'))+id+'.mp4?e2';v.loop=true;holdPreviews(true);stage.classList.add('loading');v.addEventListener('playing',function(){stage.classList.remove('loading');});v.addEventListener('waiting',function(){stage.classList.add('loading');});v.preload='auto';v.poster='p/'+id+'.webp';v.controls=true;v.autoplay=true;v.playsInline=true;v.setAttribute('controlsList','nodownload noplaybackrate');v.disablePictureInPicture=true;stage.appendChild(v);}
+    if(i.ph){var pim=document.createElement('img');pim.className='lb-ph';pim.alt=i.t;pim.src='ph/'+phN(id)+'.webp';holdPreviews(true);stage.classList.remove('loading');stage.appendChild(pim);pim.addEventListener('click',function(){zoomPh(id);});stage.appendChild(zoomBtn(id));fitStage(i.a);}else{
+    var v=document.createElement('video');v.src=(small?'mob/':(i.src?'hd/':'videos/'))+id+'.mp4?e2';v.loop=true;holdPreviews(true);stage.classList.add('loading');v.addEventListener('playing',function(){stage.classList.remove('loading');});v.addEventListener('waiting',function(){stage.classList.add('loading');});v.preload='auto';v.poster='p/'+id+'.webp';v.controls=true;v.autoplay=true;v.playsInline=true;v.setAttribute('controlsList','nodownload noplaybackrate');v.disablePictureInPicture=true;stage.appendChild(v);fitStage((META[id]||{}).a||.5625);v.addEventListener('loadedmetadata',function(){if(v.videoWidth&&lbId===id)fitStage(v.videoWidth/v.videoHeight);});}
     if(sel.indexOf(id)>=0)draft[id]=prod[id]||draft[id]||[];
     lbNote.value=inotes[id]||dnote[id]||'';document.getElementById('lbErr').hidden=true;document.getElementById('lbAfter').hidden=true;
     var mr=document.getElementById('lbMore');mr.textContent='';(i.ph?PHOTOS.slice(PHOTOS.indexOf(i)+1).concat(PHOTOS.slice(0,PHOTOS.indexOf(i))):ITEMS.filter(function(x){return x.id!==id&&grp(x)===grp(i);})).slice(0,6).forEach(function(x){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label',(x.ph?'תמונה ':'סרטון ')+dispNum(x.id)+': '+x.t);var im=document.createElement('img');im.loading='lazy';im.alt='';im.src=x.ph?'ph/'+phN(x.id)+'-s.webp':'p/'+x.id+'-s.webp';b.appendChild(im);b.addEventListener('click',function(){openVideo(x.id);});mr.appendChild(b);});
-    fillLb();render();if(!was)lb.showModal();lb.scrollTop=0;}
+    fillLb();render();if(!was)lb.showModal();fitStage();lb.scrollTop=0;}
   lbNote.addEventListener('input',function(){var v=lbNote.value;dnote[lbId]=v;if(sel.indexOf(lbId)>=0){if(v.trim())inotes[lbId]=v;else delete inotes[lbId];save();}});
   document.getElementById('lbPick').addEventListener('click',function(){var id=lbId,b4=snap(),k=sel.indexOf(id),a=lbArr(),nv=lbNote.value.trim();
     if(k<0){sel.push(id);if(a.length)prod[id]=a;if(nv)inotes[id]=nv;}else{sel.splice(k,1);delete prod[id];delete inotes[id];}
@@ -1201,11 +1214,11 @@ dialog .undo{bottom:24px}
     var L=['*הזמנה מהאתר · BOOST MEDIA*',i.ph?'תמונת קמפיין '+dispNum(id)+' · '+i.t+' · 10 תמונות קמפיין '+PI+' ₪':'סרטון '+dispNum(id)+' · '+i.t+' · '+vp(id)+' ₪','תמונות: '+(a.length?pdesc(a)+', שולח/ת בהודעה נפרדת':'עדיין לא צירפתי, אשלח בשיחה')];
     if(nv)L.push('הערות: '+nv);L.push('לצפייה: '+BASE+(i.ph?'ph/'+phN(id)+'.webp':'?v='+numOf(id)),'','אשמח לקבל פרטי תשלום.');
     goWA(wa(L.join('\n')));document.getElementById('lbAfter').hidden=!a.length;});
-  document.getElementById('lbShare').addEventListener('click',async function(){var files=lbArr().slice(0,10);
+  document.getElementById('lbShare').addEventListener('click',async function(){var files=lbArr().slice();
     if(navigator.canShare&&navigator.canShare({files:files})){try{await navigator.share({files:files});}catch(e){}}
     else document.getElementById('lbAfterT').textContent='במכשיר הזה אי אפשר לשלוח מכאן. צרפו את התמונות ישירות בשיחת הוואטסאפ.';});
   lb.addEventListener('click',function(e){if(e.target===lb)lb.close();});
-  lb.addEventListener('close',function(){stage.innerHTML='';stage.classList.remove('loading');holdPreviews(false);lbId=null;if(lastFocus)lastFocus.focus({preventScroll:true});});
+  lb.addEventListener('close',function(){stage.innerHTML='';stage.removeAttribute('style');stAR=0;stage.classList.remove('loading');holdPreviews(false);lbId=null;if(lastFocus)lastFocus.focus({preventScroll:true});});
   stage.addEventListener('contextmenu',function(e){e.preventDefault();});
   var helpD=document.getElementById('help');document.querySelectorAll('[data-help]').forEach(function(b){b.addEventListener('click',function(){helpD.showModal();});});helpD.addEventListener('click',function(e){if(e.target===helpD)helpD.close();});
   document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',function(){b.closest('dialog').close();});});
@@ -1225,20 +1238,20 @@ dialog .undo{bottom:24px}
         var x=document.createElement('button');x.type='button';x.className='px';x.setAttribute('aria-label','הסרת תמונה '+(k+1));x.textContent='×';
         x.addEventListener('click',function(){list.splice(k,1);if(!list.length)delete prod[key];fillOrder();});w.appendChild(im);w.appendChild(x);box.appendChild(w);});
       d.querySelector('.row').before(box);d.querySelector('.up span').textContent='הוספת תמונות';}
-    inp.addEventListener('change',function(){if(inp.files.length){prod[key]=(prod[key]||[]).concat([].slice.call(inp.files)).slice(0,8);fillOrder();}});}
+    inp.addEventListener('change',function(){if(inp.files.length){prod[key]=(prod[key]||[]).concat([].slice.call(inp.files));fillOrder();}});}
   function fillOrder(){
     ob.innerHTML='';
     if(!sel.length&&!images){ob.innerHTML='<p class="empty">עוד לא בחרתם סרטון. סגרו את החלון, לחצו "בחירה" על סרטון שאהבתם, וחזרו לכאן.</p>';}
     else{
       var s1=document.createElement('div');s1.className='step';s1.innerHTML='<h3>מה בחרתם</h3>';ob.appendChild(s1);
       sel.forEach(function(id){var i=find(id);var d=document.createElement('div');d.className='oi';
-        d.className='oi hf';d.innerHTML='<div class="hf-prev"><video muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video><span class="hf-tag"></span><button class="rm hf-x" type="button" aria-label="הסרה">✕</button></div><div class="hf-body"><div class="t"></div><div class="hint"></div><div class="row"><label class="up drop"><input type="file" accept="image/*"><span>העלאת תמונת המוצר</span><small>אפשר כמה תמונות · JPG או PNG</small></label></div></div>';
-        var hv=d.querySelector('video');if(i.ph){hv.poster='ph/'+phN(id)+'-s.webp';hv.style.cursor='zoom-in';hv.addEventListener('click',function(){zoomPh(id);});d.querySelector('.hf-prev').appendChild(zoomBtn(id));}else{hv.poster='p/'+id+'.webp';hv.src=(i.pv||('videos/preview/'+id+'.mp4'))+'?e2';}hv.muted=true;setTimeout(function(){var pr=hv.play();if(pr&&pr.catch)pr.catch(function(){});},0);d.querySelector('.hf-tag').textContent=(i.ph?'תמונה ':'סרטון ')+dispNum(id);d.querySelector('.t').textContent=i.t;d.querySelector('.hint').textContent=i.ph?'תמונת קמפיין':catOf(i.c);d.querySelector('.hf-x').setAttribute('aria-label','הסרת '+i.t);
+        d.className='oi hf';d.innerHTML='<div class="hf-prev"><video muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video><span class="hf-tag"></span><button class="rm hf-x" type="button" aria-label="הסרה">✕</button></div><div class="hf-body"><div class="t"></div><div class="hint"></div><div class="row"><label class="up drop"><input type="file" accept="image/*"><span>הוסיפו כאן תמונות של המוצרים שלכם</span><small>אין הגבלה על מספר התמונות · JPG או PNG</small></label></div></div>';
+        var hv=d.querySelector('video');var pvb=d.querySelector('.hf-prev'),par=i.ph?i.a:((META[id]||{}).a||.5625);pvb.style.aspectRatio=String(Math.max(.5625,Math.min(1.25,par)));if(i.ph){hv.poster='ph/'+phN(id)+'-s.webp';hv.style.cursor='zoom-in';hv.addEventListener('click',function(){zoomPh(id);});d.querySelector('.hf-prev').appendChild(zoomBtn(id));}else{hv.poster='p/'+id+'.webp';hv.src=(i.pv||('videos/preview/'+id+'.mp4'))+'?e2';}hv.muted=true;setTimeout(function(){var pr=hv.play();if(pr&&pr.catch)pr.catch(function(){});},0);d.querySelector('.hf-tag').textContent=(i.ph?'תמונה ':'סרטון ')+dispNum(id);d.querySelector('.t').textContent=i.t;d.querySelector('.hint').textContent=i.ph?'תמונת קמפיין':catOf(i.c);d.querySelector('.hf-x').setAttribute('aria-label','הסרת '+i.t);
         var inp=d.querySelector('input');inp.dataset.id=id;inp.setAttribute('aria-label','העלאת תמונה של המוצר לסרטון '+dispNum(id));
         photoUI(d,id);var nw=document.createElement('label');nw.className='hf-note';var nI=document.createElement('input');nI.type='text';nI.placeholder='הערות (לא חובה)';nI.setAttribute('aria-label','הערות ל'+i.t+' (לא חובה)');nI.value=inotes[id]||'';nI.addEventListener('input',function(){if(nI.value.trim())inotes[id]=nI.value;else delete inotes[id];save();});nw.appendChild(nI);d.appendChild(nw);
         d.querySelector('.rm').addEventListener('click',function(){toggle(id);});
         s1.appendChild(d);});
-      if(images){var d=document.createElement('div');d.className='oi';d.className='oi hf';d.innerHTML='<div class="hf-prev"><img alt="" src="m/ringhand.webp"><span class="hf-tag">תמונות</span><button class="rm hf-x" type="button" aria-label="הסרת תמונות הקמפיין">✕</button></div><div class="hf-body"><div class="t">10 תמונות קמפיין לתכשיטים</div><div class="hint">על דוגמנית או בסטודיו</div><div class="row"><label class="up drop"><input type="file" accept="image/*" data-id="images" aria-label="העלאת תמונה של המוצר לתמונות הקמפיין"><span>העלאת תמונת המוצר</span><small>אפשר כמה תמונות · JPG או PNG</small></label></div></div>';
+      if(images){var d=document.createElement('div');d.className='oi';d.className='oi hf';d.innerHTML='<div class="hf-prev"><img alt="" src="m/ringhand.webp"><span class="hf-tag">תמונות</span><button class="rm hf-x" type="button" aria-label="הסרת תמונות הקמפיין">✕</button></div><div class="hf-body"><div class="t">10 תמונות קמפיין לתכשיטים</div><div class="hint">על דוגמנית או בסטודיו</div><div class="row"><label class="up drop"><input type="file" accept="image/*" data-id="images" aria-label="העלאת תמונה של המוצר לתמונות הקמפיין"><span>הוסיפו כאן תמונות של המוצרים שלכם</span><small>אין הגבלה על מספר התמונות · JPG או PNG</small></label></div></div>';
         photoUI(d,'images');var nw=document.createElement('label');nw.className='hf-note';var nI=document.createElement('input');nI.type='text';nI.placeholder='הערות (לא חובה)';nI.setAttribute('aria-label','הערות ל'+'תמונות הקמפיין'+' (לא חובה)');nI.value=inotes['images']||'';nI.addEventListener('input',function(){if(nI.value.trim())inotes['images']=nI.value;else delete inotes['images'];save();});nw.appendChild(nI);d.appendChild(nw);
         d.querySelector('.rm').addEventListener('click',function(){var b4=snap();images=false;delete prod.images;render();toast('התמונות הוסרו מההזמנה',b4);});s1.appendChild(d);}
       var has=Object.keys(prod)[0],ms0=missing();if(has&&ms0.length){var cp=document.createElement('button');cp.type='button';cp.className='btn line copyp';cp.textContent='להשתמש באותן תמונות לכל ההזמנה';cp.addEventListener('click',function(){ms0.forEach(function(k){prod[k]=prod[has].slice();});fillOrder();});s1.appendChild(cp);}
