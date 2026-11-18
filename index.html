@@ -707,6 +707,9 @@ dialog .undo{bottom:24px}
 .vstat .vs-v svg{color:rgba(255,255,255,.75)}
 .vstat .vs-l{pointer-events:auto;appearance:none;border:0;background:none;color:#fff;font:inherit;padding:8px 6px;margin:-8px -6px;cursor:pointer}
 .vstat .vs-l svg{color:rgba(255,255,255,.75)}.vstat .vs-l[aria-pressed=true] svg{color:#ff3b5c}
+#gallery .filters .fh{color:#ff3b5c;font-size:1rem;line-height:1}#gallery .filters .f-liked[aria-pressed=true] .fh{color:#131416}#gallery .filters .f-liked[aria-pressed=true]::before{content:none}
+.liked-empty{margin:10px 0 0;padding:14px;border-radius:12px;background:#1F1F21;color:#c9cacb;font-size:.9375rem}.liked-empty[hidden]{display:none}
+@media (min-width:960px){.liked-empty{max-width:720px;margin-inline:auto}}
 #gallery .ph-head{margin-top:44px;scroll-margin-top:90px}
 .lb .stage img.lb-ph{display:block;width:100%;height:100%;object-fit:contain}
 @media (max-width:640px){#gallery .wall,#gallery .pwall{margin-inline:-4px}}
@@ -848,7 +851,9 @@ dialog .undo{bottom:24px}
         <button type="button" data-f="cine" aria-pressed="false">קולנועי</button>
         <button type="button" data-f="models" aria-pressed="false">דוגמנית</button>
         <button type="button" data-f="simple" aria-pressed="false">תצוגה</button>
+        <button type="button" data-f="liked" class="f-liked" aria-pressed="false"><span class="fh" aria-hidden="true">♥</span>אהבתי</button>
       </div>
+      <p class="liked-empty" id="likedEmpty" hidden>עוד לא סימנתם סרטונים. לחצו על הלב בסרטון שאהבתם, והוא יישמר כאן.</p>
       <div class="wall" id="wall"></div>
       <div class="head ph-head" id="photos"><h2 id="h-ph" class="fillh">תמונות קמפיינים</h2></div>
       <p class="fits-line">בוחרים תמונה שאהבתם, ואני מכין אותה מחדש עם התכשיטים שלכם.</p>
@@ -1155,10 +1160,10 @@ dialog .undo{bottom:24px}
   function stView(id){if(!STDB||stMe||seen[id]||isPh(id))return;seen[id]=1;(stat[id]||(stat[id]={})).v=((stat[id].v)||0)+1;stInc(id,'v',1);stPaint();}
   if(STDB)fetch(STDB+'/rest/v1/stats?select=id,v,l,hide',{headers:{apikey:STKEY}}).then(function(r){return r.ok?r.json():null;}).then(function(a){if(!a||!a.forEach)return;var off=false;a.forEach(function(x){if(x.id==='_all'){off=x.hide;return;}stat[x.id]={v:x.v,l:x.l};if(x.hide)stHide[x.id]=1;});if(off)return;stat.__ok=1;stPaint();}).catch(function(){});
   wall.addEventListener('click',function(e){var b=e.target.closest('.vs-l');if(!b)return;e.stopPropagation();var id=b.closest('.card').dataset.id,on=!liked[id];if(on)liked[id]=1;else delete liked[id];
-    var d=stat[id]||(stat[id]={});d.l=Math.max(0,(d.l||0)+(on?1:-1));try{localStorage.setItem('bm-liked',JSON.stringify(liked));}catch(e2){}if(!stMe)stInc(id,'l',on?1:-1);stPaint();},true);
+    var d=stat[id]||(stat[id]={});d.l=Math.max(0,(d.l||0)+(on?1:-1));try{localStorage.setItem('bm-liked',JSON.stringify(liked));}catch(e2){}if(!stMe)stInc(id,'l',on?1:-1);stPaint();likedUp();toast(on?'נשמר ברשימת \u201cאהבתי\u201d':'הוסר מרשימת \u201cאהבתי\u201d',null);},true);
   /* rows of 3 that fill the width at the posters' real proportions; a leftover of 4 becomes 2+2, never 4 in a row */
   function layout(){var W=wall.clientWidth,G=4;if(!W)return;
-    wall.querySelectorAll('.wsec').forEach(function(sec){if(sec.hidden)return;var cs=[].slice.call(sec.querySelectorAll('.card')),n=cs.length,k=0,typ=0;
+    wall.querySelectorAll('.wsec').forEach(function(sec){if(sec.hidden)return;var cs=[].slice.call(sec.querySelectorAll('.card')).filter(function(c){return !c.hidden;}),n=cs.length,k=0,typ=0;
       while(k<n){var left=n-k,take=left===4?2:Math.min(3,left),part=cs.slice(k,k+take),sum=0;k+=take;part.forEach(function(c){sum+=+c.dataset.ar;});
         var h=(W-G*(take-1))/sum;if(take===3&&!typ)typ=h;
         if(take<3)h=Math.min(h,(typ||(W-2*G)/1.8)*1.5,innerHeight*.8);
@@ -1186,7 +1191,7 @@ dialog .undo{bottom:24px}
     var inP=pf.getBoundingClientRect().bottom<hb&&pwall.getBoundingClientRect().bottom>hb+80,inV=!inP&&vf.getBoundingClientRect().bottom<hb&&wall.getBoundingClientRect().bottom>hb+80&&document.getElementById('photos').getBoundingClientRect().top>hb+60;
     fsZone=inP?'p':inV?'v':'';var open=document.querySelector('dialog[open]');fsum.hidden=!fsZone||!!open;if(!fsZone)return;fsum.style.top=Math.round(hb)+'px';
     document.getElementById('fsumK').textContent=inP?'תמונות: ':'סרטונים: ';
-    document.getElementById('fsumV').textContent=inP?(pset.length?pset.map(function(k){return PT[k];}).join(', '):'הכל'):(fset.length?fset.map(function(k){return NM[k];}).join(', '):'הכל');}
+    document.getElementById('fsumV').textContent=inP?(pset.length?pset.map(function(k){return PT[k];}).join(', '):'הכל'):(likedMode?'אהבתי':(fset.length?fset.map(function(k){return NM[k];}).join(', '):'הכל'));}
   addEventListener('scroll',function(){if(fsT)return;fsT=requestAnimationFrame(function(){fsT=0;fsumUp();});},{passive:true});addEventListener('resize',fsumUp);
   document.getElementById('fsumB').addEventListener('click',function(){var el=fsZone==='p'?document.getElementById('pfilt'):document.querySelector('#gallery .filters:not(.pf)');el.scrollIntoView({block:'center',behavior:'auto'});});
   function layoutP(){var W=pwall.clientWidth,G=4;if(!W)return;var cs=[].slice.call(pwall.querySelectorAll('.card')).filter(function(c){return !c.hidden;}),n=cs.length,k=0,typ=0;
@@ -1195,16 +1200,20 @@ dialog .undo{bottom:24px}
       part.forEach(function(c){c.style.width=(h*c.dataset.ar-.03).toFixed(2)+'px';c.style.height=h.toFixed(2)+'px';});}}
   wall.addEventListener('click',function(e){var c=e.target.closest('.card');if(!c)return;
     if(e.target.closest('.pick'))toggle(c.dataset.id);else if(e.target.closest('.media'))openVideo(c.dataset.id);});
-  var fset=[];
-  function applyF(){document.querySelectorAll('#gallery .filters:not(.pf) button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f==='all'?!fset.length:fset.indexOf(b.dataset.f)>=0);});
-    curF=fset.length?fset.join(' '):'all';wall.querySelectorAll('.wsec').forEach(function(c){c.hidden=!!fset.length&&fset.indexOf(c.dataset.g)<0;});layout();var wt=wall.getBoundingClientRect().top;if(wt<0)window.scrollBy(0,wt-160);}
-  function setFilter(f){fset=f==='all'?[]:[f];applyF();}
-  function toggleF(f){if(f==='all')fset=[];else{var k=fset.indexOf(f);if(k<0)fset.push(f);else fset.splice(k,1);if(fset.length===GROUPS.length)fset=[];}applyF();}
+  var fset=[],likedMode=false;
+  function likedN(){return wall.querySelectorAll('.card').length?[].filter.call(wall.querySelectorAll('.card'),function(c){return liked[c.dataset.id];}).length:0;}
+  function likedUp(){var b=document.querySelector('#gallery .f-liked .fc');if(b)b.textContent=likedN();if(likedMode)applyF();}
+  function applyF(){document.querySelectorAll('#gallery .filters:not(.pf) button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f==='liked'?likedMode:(b.dataset.f==='all'?(!fset.length&&!likedMode):fset.indexOf(b.dataset.f)>=0));});
+    curF=likedMode?'liked':(fset.length?fset.join(' '):'all');wall.querySelectorAll('.card').forEach(function(c){c.hidden=likedMode&&!liked[c.dataset.id];});
+    wall.querySelectorAll('.wsec').forEach(function(c){c.hidden=likedMode?!c.querySelector('.card:not([hidden])'):(!!fset.length&&fset.indexOf(c.dataset.g)<0);});
+    document.getElementById('likedEmpty').hidden=!(likedMode&&!likedN());layout();var wt=wall.getBoundingClientRect().top;if(wt<0)window.scrollBy(0,wt-160);}
+  function setFilter(f){likedMode=false;fset=f==='all'?[]:[f];applyF();}
+  function toggleF(f){if(f==='liked'){likedMode=!likedMode;fset=[];applyF();return;}likedMode=false;if(f==='all')fset=[];else{var k=fset.indexOf(f);if(k<0)fset.push(f);else fset.splice(k,1);if(fset.length===GROUPS.length)fset=[];}applyF();}
   var curF='all',loT=0;
   function clip(){layout();}
   addEventListener('resize',function(){cancelAnimationFrame(loT);loT=requestAnimationFrame(layout);});
   layout();addEventListener('load',layout);
-  document.querySelectorAll('#gallery .filters:not(.pf) button').forEach(function(b){var n=b.dataset.f==='all'?wall.querySelectorAll('.card').length:wall.querySelectorAll('.wsec[data-g="'+b.dataset.f+'"] .card').length;var c=document.createElement('span');c.className='fc';c.textContent=n;b.appendChild(c);b.addEventListener('click',function(){toggleF(b.dataset.f);});});
+  document.querySelectorAll('#gallery .filters:not(.pf) button').forEach(function(b){var n=b.dataset.f==='all'?wall.querySelectorAll('.card').length:wall.querySelectorAll('.wsec[data-g="'+b.dataset.f+'"] .card').length;var c=document.createElement('span');c.className='fc';c.textContent=b.dataset.f==='liked'?likedN():n;b.appendChild(c);b.addEventListener('click',function(){toggleF(b.dataset.f);});});
   (function(){var go=document.querySelector('.cc-go');if(go)go.firstChild.textContent='לכל \u200e'+(ITEMS.length-1)+'+\u200e הפרסומות בקטלוג ';})();
   /* hero: the two blocks share one height when it fits under the sound button */
   (function(){var bx=document.querySelector('.film .box'),cc=document.querySelector('.catcard'),pl=document.querySelector('.film .play'),fm=document.querySelector('.film');if(!bx||!cc)return;
@@ -1219,7 +1228,7 @@ dialog .undo{bottom:24px}
   function snap(){var p={};Object.keys(prod).forEach(function(k){p[k]=prod[k].slice();});return {s:sel.slice(),i:images,m:model,p:p};}
   function restore(o){sel=o.s.slice();images=o.i;model=o.m;prod=o.p;mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',!!model&&x.getAttribute('aria-label')==='בחירת דמות: '+model);});render();}
   var undoEl=document.getElementById('undo'),undoT=document.getElementById('undoT'),undoS=null,undoTm=0;
-  function toast(msg,before){undoS=before;undoT.textContent=msg;(document.querySelector('dialog[open]')||document.body).appendChild(undoEl);undoEl.classList.add('show');clearTimeout(undoTm);undoTm=setTimeout(function(){undoEl.classList.remove('show');undoS=null;},6000);}
+  function toast(msg,before){undoS=before;document.getElementById('undoB').style.display=before?'':'none';undoT.textContent=msg;(document.querySelector('dialog[open]')||document.body).appendChild(undoEl);undoEl.classList.add('show');clearTimeout(undoTm);undoTm=setTimeout(function(){undoEl.classList.remove('show');undoS=null;},6000);}
   document.getElementById('undoB').addEventListener('click',function(){if(undoS)restore(undoS);undoS=null;undoEl.classList.remove('show');});
   function toggle(id){var b4=snap(),k=sel.indexOf(id);if(k<0)sel.push(id);else{sel.splice(k,1);delete prod[id];}render();toast(k<0?'הסרטון נוסף להזמנה':'הסרטון הוסר מההזמנה',b4);}
   function render(){
