@@ -574,7 +574,7 @@ dialog .undo{bottom:24px}
 @media (max-width:600px){:root{--nav:118px}
  .top .wrap{grid-template-columns:1fr;grid-template-rows:auto auto;height:auto;min-height:var(--nav);padding-block:6px;gap:6px;align-content:center}
  .top .mark{justify-self:center;min-height:40px}
- .tools{justify-self:stretch;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+ .tools{justify-self:stretch;display:grid;grid-template-columns:1fr;gap:8px}
  .tools .btn{width:100%;min-height:48px;padding:0 10px;justify-content:center;font-size:1rem}}
 .tools .btn{white-space:nowrap}
 .top nav a{white-space:nowrap}
@@ -705,8 +705,13 @@ dialog .undo{bottom:24px}
 .vstat span,.vstat button{display:inline-flex;align-items:center;gap:4px;font-variant-numeric:tabular-nums}
 .vstat svg{width:15px;height:15px;flex:none}.vstat b{font-weight:600}
 .vstat .vs-v svg{color:rgba(255,255,255,.75)}
-.vstat .vs-l{pointer-events:auto;appearance:none;border:0;background:none;color:#fff;font:inherit;padding:8px 6px;margin:-8px -6px;cursor:pointer}
-.vstat .vs-l svg{color:rgba(255,255,255,.75)}.vstat .vs-l[aria-pressed=true] svg{color:#ff3b5c}
+.vs-l{position:absolute;top:6px;right:6px;left:auto;z-index:3;appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:30px;height:30px;padding:0 7px;border:0;border-radius:15px;background:rgba(19,20,22,.62);color:#fff;font:600 .75rem/1 inherit;font-family:inherit;font-variant-numeric:tabular-nums;cursor:pointer;direction:ltr;box-shadow:0 1px 4px rgba(0,0,0,.35);transition:transform 160ms ease,background-color 160ms ease}
+.vs-l::after{content:"";position:absolute;inset:-7px}
+.vs-l svg{width:17px;height:17px;flex:none}.vs-l svg path{fill:none;stroke:#fff;stroke-width:2}
+.vs-l b:empty{display:none}
+.vs-l:active{transform:scale(.88)}
+.vs-l[aria-pressed=true]{background:#fff;color:#131416}.vs-l[aria-pressed=true] svg path{fill:#ff3b5c;stroke:#ff3b5c}
+@media (hover:hover){.vs-l:hover{background:rgba(19,20,22,.85)}.vs-l[aria-pressed=true]:hover{background:#fff}}
 .likehdr{display:inline-flex;align-items:center;justify-content:center;gap:4px;color:var(--ink);font-variant-numeric:tabular-nums}.likehdr .lh{color:#e0245e;font-size:1.05rem;line-height:1}
 .likehdr[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
 @media (max-width:600px){.tools .sizehdr.likehdr{inset-inline-end:calc(var(--gut,16px) + 48px);width:auto;min-width:46px;padding:0 6px;gap:3px}}
@@ -791,7 +796,6 @@ dialog .undo{bottom:24px}
     <div class="tools">
       <button class="size sizehdr" type="button" id="sizeBtn" aria-pressed="false" aria-label="הגדלת טקסט">א+</button>
       <button class="size sizehdr likehdr" type="button" id="likedTop" aria-pressed="false" aria-label="הסרטונים שאהבתי"><span class="lh" aria-hidden="true">♥</span><span id="likedTopN">0</span></button>
-      <a class="btn line catgo" href="#gallery">לקטלוג הפרסומות</a>
       <button class="btn cartbtn" type="button" id="cartTop">ההזמנות שלי <span class="n" id="cartN">0</span></button>
     </div>
   </div>
@@ -1153,7 +1157,7 @@ dialog .undo{bottom:24px}
     var im=c.querySelector('img');im.src='p/'+i.id+'-s.webp';im.srcset='p/'+i.id+'-s.webp 300w, p/'+i.id+'.webp 600w';
     c.querySelector('video').dataset.src=(i.pv||('videos/preview/'+i.id+'.mp4'))+'?e2';
     c.querySelector('.media').setAttribute('aria-label','הוספת סרטון '+SEQ[i.id]+': '+i.t);
-    var vs=document.createElement('div');vs.className='vstat';vs.hidden=true;vs.innerHTML='<span class="vs-v" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5C6.5 5 2.6 9.2 1.5 12c1.1 2.8 5 7 10.5 7s9.400-4.200 10.500-7C21.400 9.200 17.500 5 12 5Zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" fill="currentColor"/></svg><b></b></span><button type="button" class="vs-l" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.500-4.700-9.600-9.200C.900 8.500 2.700 5 6.200 5c2 0 3.400 1.100 4.300 2.300.300.400 1.200.400 1.500 0C12.900 6.100 14.300 5 16.300 5c3.500 0 5.300 3.500 3.800 6.800C18 16.300 12 21 12 21Z" fill="currentColor"/></svg><b></b></button>';c.appendChild(vs);
+    var vs=document.createElement('div');vs.className='vstat';vs.hidden=true;vs.innerHTML='<span class="vs-v" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5C6.5 5 2.6 9.2 1.5 12c1.1 2.8 5 7 10.5 7s9.400-4.200 10.500-7C21.400 9.200 17.500 5 12 5Zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" fill="currentColor"/></svg><b></b></span>';c.appendChild(vs);var hb=document.createElement('div');hb.innerHTML='<button type="button" class="vs-l" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.500-4.700-9.600-9.200C.900 8.500 2.700 5 6.200 5c2 0 3.400 1.100 4.300 2.300.300.400 1.200.400 1.500 0C12.900 6.100 14.300 5 16.300 5c3.500 0 5.300 3.500 3.800 6.800C18 16.300 12 21 12 21Z" fill="currentColor"/></svg><b></b></button>';c.appendChild(hb.firstChild);
     rows.appendChild(c);io.observe(c.querySelector('video'));near.observe(c.querySelector('video'));
   });});
   /* real views and likes, kept in the owner's own database; nothing shows until the database answers */
@@ -1161,8 +1165,8 @@ dialog .undo{bottom:24px}
   try{if(/[?&]me=1/.test(location.search))localStorage.setItem('bm-me','1');if(/[?&]me=0/.test(location.search))localStorage.removeItem('bm-me');stMe=!!localStorage.getItem('bm-me');liked=JSON.parse(localStorage.getItem('bm-liked')||'{}');}catch(e){}
   function stFmt(n){return n<1000?String(n):(n/1000).toFixed(n<10000?1:0).replace('.0','')+'K';}
   function stPaint(){wall.querySelectorAll('.card').forEach(function(c){var id=c.dataset.id,b=c.querySelector('.vstat');if(!b)return;var d=stat[id]||{},v=d.v||0,l=d.l||0;
-    b.hidden=!STDB||!stat.__ok||!!stHide[id];var vv=b.querySelector('.vs-v');vv.hidden=v<1;vv.querySelector('b').textContent=stFmt(v);
-    var lb2=b.querySelector('.vs-l');lb2.querySelector('b').textContent=l>0?stFmt(l):'';lb2.setAttribute('aria-pressed',!!liked[id]);lb2.setAttribute('aria-label',(liked[id]?'ביטול לייק':'לייק')+' לסרטון '+dispNum(id)+(l?', '+l+' לייקים':''));
+    var ok=!!STDB&&!!stat.__ok&&!stHide[id];b.hidden=!ok||v<1;var vv=b.querySelector('.vs-v');vv.hidden=v<1;vv.querySelector('b').textContent=stFmt(v);
+    var lb2=c.querySelector('.vs-l');lb2.querySelector('b').textContent=ok&&l>0?stFmt(l):'';lb2.setAttribute('aria-pressed',!!liked[id]);lb2.setAttribute('aria-label',(liked[id]?'ביטול לייק':'לייק')+' לסרטון '+dispNum(id)+(l?', '+l+' לייקים':''));
     if(v>0)vv.setAttribute('aria-label',v+' צפיות');});}
   function stInc(id,k,by){if(!STDB)return;fetch(STDB+'/rest/v1/rpc/bump',{method:'POST',keepalive:true,headers:{apikey:STKEY,'Content-Type':'application/json'},body:JSON.stringify({p_id:id,p_k:k,p_by:by})}).catch(function(){});}
   function stView(id){if(!STDB||stMe||seen[id]||isPh(id))return;seen[id]=1;(stat[id]||(stat[id]={})).v=((stat[id].v)||0)+1;stInc(id,'v',1);stPaint();}
