@@ -19,7 +19,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Heebo:wght@400..700&display=optional" rel="stylesheet">
-<link rel="preload" as="image" href="v/w16.jpg" fetchpriority="high">
 <link rel="modulepreload" href="assets/moments/moments.js">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"BOOST MEDIA","description":"סרטוני פרסום ותמונות למוצרים של עסקים","url":"https://boostmedia2002.github.io/jewelry/","email":"boostmedia2002@gmail.com","telephone":"+972539507416","areaServed":"IL"}
@@ -624,6 +623,10 @@ dialog .undo{bottom:24px}
 @media (hover:hover){.cc-cap:hover .cc-l{text-decoration:underline;text-underline-offset:3px}}
 .card.flash .media{animation:flash 1.6s var(--ease)}@keyframes flash{0%,60%{box-shadow:0 0 0 4px var(--accent)}100%{box-shadow:0 0 0 0 transparent}}
 .cc-how{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;margin:-8px 0;color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+/* hero without a background video: the two blocks sit on the page */
+.film{background:transparent}
+.hero .film{height:auto}
+@media (max-width:1099px){.hero{min-height:0}.hero .film{min-height:0;overflow:visible}.hero .film .over{position:relative;inset:auto}}
 </style>
 </head>
 <body>
@@ -650,7 +653,6 @@ dialog .undo{bottom:24px}
 <main id="top">
   <section class="hero" aria-labelledby="h1" data-enter>
     <div class="wrap"><div class="film">
-      <video data-auto muted loop playsinline preload="metadata" poster="v/w16.jpg" src="v/w16.mp4" aria-hidden="true"></video>
       <div class="over">
         <div class="box">
           <h1 id="h1">שלחו את העסק.<br><em>קבלו 3 רעיונות.</em></h1>
