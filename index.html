@@ -689,6 +689,13 @@ dialog .undo{bottom:24px}
 .oi.ci .hf-note{display:block;width:100%;grid-column:auto}.oi.ci .hf-note input{width:100%}
 @media (min-width:641px){.order[open]{display:block;overflow-y:auto;overscroll-behavior:contain}.order .body{overflow:visible}.order>header{position:sticky;top:0;z-index:5}.order footer{max-height:none;overflow:visible}}
 .cart-row{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px}.cart-x{appearance:none;border:0;background:none;padding:4px 0;margin:0;font:inherit;font-size:.875rem;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+#gallery .filters{position:static}
+#gallery .card[hidden]{display:none!important}
+#gallery .pf{margin-bottom:10px}
+.fsum{position:fixed;inset-inline:0;z-index:25;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;padding:6px max(16px,calc((100vw - 720px)/2));background:rgba(19,20,22,.96);border-bottom:1px solid #2a2b2d;color:#fff;font-size:.9375rem}
+.fsum[hidden]{display:none}
+.fsum-t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.fsum-t b{color:#8A8B8D;font-weight:400}.fsum-t span{color:#D9FE16;font-weight:700}
+.fsum button{flex:none;appearance:none;border:1px solid #3a3b3d;border-radius:999px;background:transparent;color:#fff;font:600 .8125rem inherit;font-family:inherit;padding:7px 12px;cursor:pointer}
 #gallery .ph-head{margin-top:44px;scroll-margin-top:90px}
 .lb .stage img.lb-ph{display:block;width:100%;height:100%;object-fit:contain}
 @media (max-width:640px){#gallery .wall,#gallery .pwall{margin-inline:-4px}}
@@ -834,6 +841,14 @@ dialog .undo{bottom:24px}
       <div class="wall" id="wall"></div>
       <div class="head ph-head" id="photos"><h2 id="h-ph">קטלוג תמונות תכשיטים</h2></div>
       <p class="fits-line">בוחרים תמונה שאהבתם, ואני מכין אותה מחדש עם התכשיטים שלכם.</p>
+      <p class="ftitle"><b>סינון לפי סוג תכשיט</b><span>אפשר לבחור כמה</span></p>
+      <div class="filters pf" id="pfilt" role="group" aria-label="סינון לפי סוג תכשיט, אפשר לבחור כמה">
+        <button type="button" data-p="all" aria-pressed="true">הכל</button>
+        <button type="button" data-p="e" aria-pressed="false">עגילים</button>
+        <button type="button" data-p="n" aria-pressed="false">שרשראות</button>
+        <button type="button" data-p="r" aria-pressed="false">טבעות</button>
+        <button type="button" data-p="b" aria-pressed="false">צמידים</button>
+      </div>
       <div class="pwall" id="pwall" role="group" aria-labelledby="h-ph"><div class="jrows"></div></div>
           <div class="box2 msub gal-models" id="models" hidden style="display:none" role="group" aria-labelledby="h-m">
           <span class="kicker">דוגמנית לסרטונים</span>
@@ -915,6 +930,7 @@ dialog .undo{bottom:24px}
 </footer>
 
 <div class="undo" id="undo" role="status" aria-live="polite"><span id="undoT"></span><button type="button" id="undoB">ביטול</button></div>
+<div class="fsum" id="fsum" hidden><span class="fsum-t"><b id="fsumK"></b><span id="fsumV"></span></span><button type="button" id="fsumB">שינוי סינון</button></div>
 <div class="cart" id="cart" aria-live="polite">
   <div class="sum"><b id="cartTotal"></b><span class="cart-row"><small id="cartLine"></small><button type="button" class="cart-x" id="cartX" aria-label="ביטול כל הבחירה">ביטול</button></span></div>
   <button class="btn" type="button" id="cartGo">המשך להזמנה ←</button>
@@ -1129,14 +1145,29 @@ dialog .undo{bottom:24px}
     c.innerHTML='<button class="media" type="button"><img loading="lazy" decoding="async" alt=""><span class="plus" aria-hidden="true">+</span><span class="check" aria-hidden="true">✓</span></button>';
     c.querySelector('img').src='ph/'+phN(i.id)+'-s.webp';c.querySelector('.media').setAttribute('aria-label','הוספת תמונה '+phN(i.id)+': '+i.t);pwall.firstChild.appendChild(c);});
   pwall.addEventListener('click',function(e){var c=e.target.closest('.card');if(c)openVideo(c.dataset.id);});
-  function layoutP(){var W=pwall.clientWidth,G=4;if(!W)return;var cs=[].slice.call(pwall.querySelectorAll('.card')),n=cs.length,k=0,typ=0;
+  var pset=[],PT={e:'עגילים',n:'שרשראות',r:'טבעות',b:'צמידים'};
+  function pTypes(id){var o={};((PMETA[id]||{}).t||[]).forEach(function(x){var l=x[0];o[l.indexOf('עגיל')===0?'e':l.indexOf('שרשר')===0?'n':l.indexOf('טבע')===0?'r':'b']=1;});return o;}
+  function applyP(){document.querySelectorAll('#pfilt button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.p==='all'?!pset.length:pset.indexOf(b.dataset.p)>=0);});
+    pwall.querySelectorAll('.card').forEach(function(c){var t=pTypes(c.dataset.id);c.hidden=!!pset.length&&!pset.some(function(k){return t[k];});});layoutP();fsumUp();}
+  document.querySelectorAll('#pfilt button').forEach(function(b){var k=b.dataset.p,n=PHOTOS.filter(function(i){return k==='all'||pTypes(i.id)[k];}).length;var c=document.createElement('span');c.className='fc';c.textContent=n;b.appendChild(c);
+    b.addEventListener('click',function(){if(k==='all')pset=[];else{var x=pset.indexOf(k);if(x<0)pset.push(k);else pset.splice(x,1);if(pset.length===4)pset=[];}applyP();});});
+  /* once a filter row scrolls away, a slim bar under the header sums up what is chosen for the catalog on screen */
+  var fsum=document.getElementById('fsum'),fsZone='',fsT=0;
+  function fsumUp(){var hb=document.querySelector('header.top').getBoundingClientRect().bottom,vf=document.querySelector('#gallery .filters:not(.pf)'),pf=document.getElementById('pfilt');
+    var inP=pf.getBoundingClientRect().bottom<hb&&pwall.getBoundingClientRect().bottom>hb+80,inV=!inP&&vf.getBoundingClientRect().bottom<hb&&wall.getBoundingClientRect().bottom>hb+80&&document.getElementById('photos').getBoundingClientRect().top>hb+60;
+    fsZone=inP?'p':inV?'v':'';var open=document.querySelector('dialog[open]');fsum.hidden=!fsZone||!!open;if(!fsZone)return;fsum.style.top=Math.round(hb)+'px';
+    document.getElementById('fsumK').textContent=inP?'תמונות: ':'סרטונים: ';
+    document.getElementById('fsumV').textContent=inP?(pset.length?pset.map(function(k){return PT[k];}).join(', '):'הכל'):(fset.length?fset.map(function(k){return NM[k];}).join(', '):'הכל');}
+  addEventListener('scroll',function(){if(fsT)return;fsT=requestAnimationFrame(function(){fsT=0;fsumUp();});},{passive:true});addEventListener('resize',fsumUp);
+  document.getElementById('fsumB').addEventListener('click',function(){var el=fsZone==='p'?document.getElementById('pfilt'):document.querySelector('#gallery .filters:not(.pf)');el.scrollIntoView({block:'center',behavior:'auto'});});
+  function layoutP(){var W=pwall.clientWidth,G=4;if(!W)return;var cs=[].slice.call(pwall.querySelectorAll('.card')).filter(function(c){return !c.hidden;}),n=cs.length,k=0,typ=0;
     while(k<n){var left=n-k,take=left===5?3:Math.min(4,left),part=cs.slice(k,k+take),sum=0;k+=take;part.forEach(function(c){sum+=+c.dataset.ar;});
       var h=(W-G*(take-1))/sum;if(take===4&&!typ)typ=h;if(take<4)h=Math.min(h,(typ||h)*1.35);
       part.forEach(function(c){c.style.width=(h*c.dataset.ar-.03).toFixed(2)+'px';c.style.height=h.toFixed(2)+'px';});}}
   wall.addEventListener('click',function(e){var c=e.target.closest('.card');if(!c)return;
     if(e.target.closest('.pick'))toggle(c.dataset.id);else if(e.target.closest('.media'))openVideo(c.dataset.id);});
   var fset=[];
-  function applyF(){document.querySelectorAll('#gallery .filters button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f==='all'?!fset.length:fset.indexOf(b.dataset.f)>=0);});
+  function applyF(){document.querySelectorAll('#gallery .filters:not(.pf) button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f==='all'?!fset.length:fset.indexOf(b.dataset.f)>=0);});
     curF=fset.length?fset.join(' '):'all';wall.querySelectorAll('.wsec').forEach(function(c){c.hidden=!!fset.length&&fset.indexOf(c.dataset.g)<0;});layout();var wt=wall.getBoundingClientRect().top;if(wt<0)window.scrollBy(0,wt-160);}
   function setFilter(f){fset=f==='all'?[]:[f];applyF();}
   function toggleF(f){if(f==='all')fset=[];else{var k=fset.indexOf(f);if(k<0)fset.push(f);else fset.splice(k,1);if(fset.length===GROUPS.length)fset=[];}applyF();}
@@ -1144,7 +1175,7 @@ dialog .undo{bottom:24px}
   function clip(){layout();}
   addEventListener('resize',function(){cancelAnimationFrame(loT);loT=requestAnimationFrame(layout);});
   layout();addEventListener('load',layout);
-  document.querySelectorAll('#gallery .filters button').forEach(function(b){var n=b.dataset.f==='all'?wall.querySelectorAll('.card').length:wall.querySelectorAll('.wsec[data-g="'+b.dataset.f+'"] .card').length;var c=document.createElement('span');c.className='fc';c.textContent=n;b.appendChild(c);b.addEventListener('click',function(){toggleF(b.dataset.f);});});
+  document.querySelectorAll('#gallery .filters:not(.pf) button').forEach(function(b){var n=b.dataset.f==='all'?wall.querySelectorAll('.card').length:wall.querySelectorAll('.wsec[data-g="'+b.dataset.f+'"] .card').length;var c=document.createElement('span');c.className='fc';c.textContent=n;b.appendChild(c);b.addEventListener('click',function(){toggleF(b.dataset.f);});});
   (function(){var go=document.querySelector('.cc-go');if(go)go.firstChild.textContent='לכל \u200e'+(ITEMS.length-1)+'+\u200e הפרסומות בקטלוג ';})();
   /* hero: the two blocks share one height when it fits under the sound button */
   (function(){var bx=document.querySelector('.film .box'),cc=document.querySelector('.catcard'),pl=document.querySelector('.film .play'),fm=document.querySelector('.film');if(!bx||!cc)return;
