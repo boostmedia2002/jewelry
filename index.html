@@ -626,6 +626,8 @@ dialog .undo{bottom:24px}
 /* hero without a background video: the two blocks sit on the page */
 .film{background:transparent}
 .hero .film{height:auto}
+.film-bg{display:none}
+@media (min-width:1100px){.hero .film{background:var(--inv-bg)}.film-bg{display:block}}
 @media (max-width:1099px){.hero{min-height:0}.hero .film{min-height:0;overflow:visible}.hero .film .over{position:relative;inset:auto}}
 </style>
 </head>
@@ -653,6 +655,7 @@ dialog .undo{bottom:24px}
 <main id="top">
   <section class="hero" aria-labelledby="h1" data-enter>
     <div class="wrap"><div class="film">
+      <video class="film-bg" data-auto muted loop playsinline preload="none" data-src="v/w16.mp4" poster="v/w16.jpg" aria-hidden="true"></video>
       <div class="over">
         <div class="box">
           <h1 id="h1">שלחו את העסק.<br><em>קבלו 3 רעיונות.</em></h1>
