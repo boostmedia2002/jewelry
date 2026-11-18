@@ -367,7 +367,7 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
 .px{position:absolute;top:-8px;inset-inline-start:-8px;width:28px;height:28px;border-radius:50%;border:2px solid var(--card);background:var(--ink);color:#fff;font-size:1rem;line-height:1;cursor:pointer;padding:0}
 .px::after{content:"";position:absolute;inset:-8px}
 .copyp{width:100%;margin-top:14px;min-height:48px}
-@media (max-width:640px){.order{overflow-y:auto;overscroll-behavior:contain}.order .body{overflow:visible;flex:none}.order>header{flex:none;position:sticky;top:0;z-index:2;background:var(--card)}.order footer{max-height:none;overflow:visible;flex:none}}
+@media (max-width:640px){.order{overflow-y:auto;overscroll-behavior:contain}.order .body{overflow:visible;flex:none}.order>header{flex:none;position:sticky;top:0;z-index:5;background:var(--card)}.order footer{max-height:none;overflow:visible;flex:none}}
 
 .mtoggle{width:100%;justify-content:space-between;margin-top:4px}
 .mtoggle svg{width:22px;height:22px;flex:none;transition:transform 220ms var(--ease)}
@@ -650,6 +650,44 @@ dialog .undo{bottom:24px}
 .lb .stage{position:relative}.lb .stage img.lb-ph{cursor:zoom-in}
 .ph-zoom{position:absolute;bottom:10px;inset-inline-start:10px;z-index:2;appearance:none;border:0;border-radius:999px;background:rgba(19,20,22,.72);color:#fff;font:600 .8125rem/1 inherit;font-family:inherit;padding:8px 12px;cursor:pointer}
 @media (max-width:899px){.lb .stage .ph-zoom{bottom:28px}}
+#gallery .ftitle{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:4px 0 0;font-size:.875rem;color:#8A8B8D}#gallery .ftitle b{color:#fff;font-size:.9375rem}
+#gallery .filters{flex-wrap:wrap;overflow:visible;margin-inline:0;padding-inline:0;gap:6px}
+#gallery .filters button{flex:none;min-height:38px;padding:0 12px;border:1px solid #3a3b3d;background:transparent;color:#e6e6e6;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+#gallery .filters button[aria-pressed=true]{background:#D9FE16;border-color:#D9FE16;color:#131416}
+#gallery .filters button[aria-pressed=true]::before{content:"✓";font-weight:800}
+#gallery .filters .fc{font-weight:400;font-size:.8125rem;opacity:.7}
+@media (hover:hover){#gallery .filters button:hover{background:rgba(255,255,255,.08)}#gallery .filters button[aria-pressed=true]:hover{background:#D9FE16}}
+@media (min-width:960px){#gallery .ftitle{max-width:720px;margin-inline:auto}}
+/* ===== cart window, black and yellow like the pick panel ===== */
+.order{--card:#131416;--bg:#1F1F21;--line:#2a2b2d;--ink:#fff;--muted:#8A8B8D;--accent:#D9FE16;--inv-bg:#000;background:#131416;color:#fff}
+.order>header{background:#131416!important;border-color:#2a2b2d}.order>header h2{font-weight:900}
+.order .x{background:#2a2b2d;color:#fff;box-shadow:none}
+.order .progress{display:none}
+.order footer{background:#131416;border-color:#2a2b2d}
+.order input[type=text]{background:#1F1F21;border:0;color:#fff}.order input::placeholder{color:#8A8B8D}
+.order #oSend{background:#D9FE16;color:#131416;border:0}.order #oSend:disabled{opacity:.4}
+.order .btn.line,.order .btn:not(.wa){background:#2a2b2d;color:#fff;border:0}
+.order a,.order .ofine button{color:#fff}.order .agree{color:#c9cacb}
+.order .oclear{color:#8A8B8D;background:none;border:0;text-decoration:underline;font:inherit;font-size:.875rem;display:block;margin:6px auto 0;cursor:pointer}
+.order .empty{color:#c9cacb}
+.order .omiss{background:#1F1F21;border:0;color:#fff}
+.order .done{color:#fff}
+.oi.ci{display:flex;flex-direction:column;gap:8px;background:#1F1F21;border-radius:14px;padding:12px;margin:0 0 10px;border:0}
+.oi.ci+.oi.ci{border-top:0}
+.ci-top{display:flex;gap:12px;align-items:flex-start}
+.ci-th{position:relative;width:84px;flex:none;padding:0;border:0;border-radius:10px;overflow:hidden;background:#000;cursor:pointer}.ci-th img{display:block;width:100%;height:auto;max-height:150px;object-fit:cover}
+.ci-th i{position:absolute;inset:auto 0 0 0;background:linear-gradient(transparent,rgba(0,0,0,.82));color:#fff;font-style:normal;font-size:.75rem;padding:12px 0 4px;text-align:center}
+.ci-meta{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.ci-tag{font-size:.8125rem;color:#8A8B8D}.ci-meta b{font-size:1rem;font-weight:800;line-height:1.3}.ci-pr{font-size:.875rem;color:#c9cacb}
+.ci-x{width:34px;height:34px;flex:none;border:0;border-radius:17px;background:#2a2b2d;color:#fff;font-size:.95rem;cursor:pointer}
+.ci-h{font-size:.9375rem;font-weight:700;margin-top:4px}.ci-sub{font-size:.8125rem;color:#8A8B8D;margin-top:-4px}
+.ci-tiles .lb-tile{width:64px;height:64px;font-size:.75rem}.ci-tiles .lb-tile .lb-ic{width:24px;height:20px}
+.ci-sep{width:1px;align-self:stretch;background:#2a2b2d;margin:0 2px}
+.oi.ci .hf-note input{background:#131416;border:0;min-height:42px}
+.osum{display:flex;justify-content:space-between;align-items:baseline;padding:2px 2px 6px}.osum span{color:#c9cacb}.osum b{font-size:1.375rem;font-weight:900}.osum[hidden]{display:none}
+.mz-stage .mz-v{max-width:100%;max-height:100%;border-radius:12px;background:#000}
+.mz-stage img[hidden]{display:none}
+.oi.ci .hf-note{display:block;width:100%;grid-column:auto}.oi.ci .hf-note input{width:100%}
+@media (min-width:641px){.order[open]{display:block;overflow-y:auto;overscroll-behavior:contain}.order .body{overflow:visible}.order>header{position:sticky;top:0;z-index:5}.order footer{max-height:none;overflow:visible}}
 #gallery .ph-head{margin-top:44px;scroll-margin-top:90px}
 .lb .stage img.lb-ph{display:block;width:100%;height:100%;object-fit:contain}
 @media (max-width:640px){#gallery .wall,#gallery .pwall{margin-inline:-4px}}
@@ -783,7 +821,8 @@ dialog .undo{bottom:24px}
       <div class="head"><h2 id="h-g">קטלוג הפרסומות</h2></div>
       <p class="fits-line mo-wh__text" data-moment="word-highlight"><strong>כל סרטון מתאים לכל מוצר.</strong> בוחרים סרטון שאהבתם, ואני מכין אותו מחדש עם התכשיטים שלכם. המוצר מתחלף, <strong>והרעיון נשאר.</strong></p>
       <div class="a11y-row"><button class="still" type="button" id="stillBtn" aria-pressed="false"><span aria-hidden="true">⏸</span> <span id="stillT">עצירת הסרטונים</span></button></div>
-      <div class="filters" role="group" aria-label="סוג הסרטון">
+      <p class="ftitle"><b>סינון לפי סגנון</b><span>אפשר לבחור כמה</span></p>
+      <div class="filters" role="group" aria-label="סינון לפי סגנון, אפשר לבחור כמה">
         <button type="button" data-f="all" aria-pressed="true">הכל</button>
         <button type="button" data-f="viral" aria-pressed="false">טרנדי</button>
         <button type="button" data-f="cine" aria-pressed="false">קולנועי</button>
@@ -939,7 +978,7 @@ dialog .undo{bottom:24px}
 </form></dialog>
 <dialog class="order" id="order" aria-labelledby="h-o">
   <header>
-    <h2 id="h-o">ההזמנה שלי</h2>
+    <h2 id="h-o">הסל שלי</h2>
     <p class="hint" id="oStepTxt">שלב 1 מתוך 3</p>
     <div class="progress" aria-hidden="true"><span id="pg1"></span><span id="pg2"></span><span id="pg3"></span></div>
     <button class="x" type="button" data-close aria-label="סגירה">×</button>
@@ -948,7 +987,7 @@ dialog .undo{bottom:24px}
   <footer>
     <label class="l" for="oName">שם העסק <span class="hint">(לא חובה)</span></label>
     <input type="text" id="oName" autocomplete="organization" placeholder="למשל: התכשיטים של נועה">
-    <div class="ototal" id="oTotal"></div>
+    <div class="ototal" id="oTotal"></div><div class="osum" id="oSum" hidden><span>סה״כ</span><b id="oSumV"></b></div>
     <label class="agree"><input type="checkbox" id="oAgree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
   <p class="scan-err" id="oAgreeErr" role="alert" hidden>כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.</p>
   
@@ -977,6 +1016,10 @@ dialog .undo{bottom:24px}
   var PHOTOS=[{"id":"photo-1","t":"ים בשמש ועגיל פנינת בארוק, עלמה","c":"photo","ph":1,"a":0.6719},{"id":"photo-2","t":"חוף, עגיל ותליון צדף ספירלה, עלמה","c":"photo","ph":1,"a":0.8},{"id":"photo-3","t":"רשת כדורעף בחוף, עגילי דיסקיות וצמיד רחב, עלמה","c":"photo","ph":1,"a":0.8},{"id":"photo-4","t":"ים בשקיעה, חישוק רוז גולד ושרשראות טניס, שני","c":"photo","ph":1,"a":0.8},{"id":"photo-5","t":"בלייזר שמנת ועגילי טיפה זהב, דנה","c":"photo","ph":1,"a":0.6642},{"id":"photo-6","t":"פרופיל, יד על העיניים ועגיל זהב כפול, אביה","c":"photo","ph":1,"a":0.8},{"id":"photo-7","t":"עגיל זהב ביד ובאוזן, שרה","c":"photo","ph":1,"a":0.8},{"id":"photo-8","t":"שמש, עגיל פנינה וצ'וקר פנינים, אור","c":"photo","ph":1,"a":1.0},{"id":"photo-9","t":"שוכבת בחול, חולצת פשתן וחישוקי זהב, עלמה","c":"photo","ph":1,"a":0.8},{"id":"photo-10","t":"חישוקי זהב גדולים על רקע בז׳, שרה","c":"photo","ph":1,"a":0.8},{"id":"photo-11","t":"בלייזר לבן, עגיל חוליות וטבעת טיפות, אלה","c":"photo","ph":1,"a":0.5595},{"id":"photo-12","t":"פרווה ועגילי שמפניה, דנה","c":"photo","ph":1,"a":1.5052},{"id":"photo-13","t":"עגיל זהב מרוקע עם פנינה, דנה","c":"photo","ph":1,"a":0.6719},{"id":"photo-14","t":"שקיעה בחוף ותליון שמש, אימי","c":"photo","ph":1,"a":0.8},{"id":"photo-15","t":"שכבות שרשראות פנינים וזהב מול הים, שרה","c":"photo","ph":1,"a":0.7534},{"id":"photo-16","t":"ים טרופי, פנינים ותליון צדף, בר","c":"photo","ph":1,"a":0.8},{"id":"photo-17","t":"יד מעל העיניים, שרשרת חוט לבן ועגיל כסף, בר","c":"photo","ph":1,"a":1.3273},{"id":"photo-18","t":"פרופיל, שרשרת חרוזים לבנה ועגיל ירח, הילה","c":"photo","ph":1,"a":0.7534},{"id":"photo-19","t":"גופייה שחורה ושרשרת פרחי זהב, אימי","c":"photo","ph":1,"a":0.7534},{"id":"photo-20","t":"בריכה בשקיעה, שרשרת וטבעת יהלומים, דנה","c":"photo","ph":1,"a":0.6719},{"id":"photo-21","t":"בריכה ותכשיטי טורקיז, אלינה","c":"photo","ph":1,"a":0.8},{"id":"photo-22","t":"שרשרת יהלום וחולצה לבנה (בלי פנים)","c":"photo","ph":1,"a":1.0},{"id":"photo-23","t":"חוט ירוק עם תליון שמש ושרשרת אבן ירוקה","c":"photo","ph":1,"a":0.7534},{"id":"photo-24","t":"חרוזי תכלת ותליון שמש, גופייה חומה ברחוב","c":"photo","ph":1,"a":1.0},{"id":"photo-25","t":"שרשראות טיפה צהובה וסגולה, חולצה שחורה","c":"photo","ph":1,"a":0.7632},{"id":"photo-26","t":"תליון אובלי כסף על חוט לבן, חולצה שחורה, בר","c":"photo","ph":1,"a":0.8},{"id":"photo-27","t":"פרופיל, שרשראות פנינים ועגיל זהב כפול, בר","c":"photo","ph":1,"a":0.8},{"id":"photo-28","t":"חול וטיפות מים, טבעות אבן ירוקה וורודה, שרה","c":"photo","ph":1,"a":0.8},{"id":"photo-29","t":"חליפה לבנה ולקט טבעות זהב, בר","c":"photo","ph":1,"a":0.8},{"id":"photo-30","t":"שמלה פרוותית ו-3 טבעות זהב, עלמה","c":"photo","ph":1,"a":0.8},{"id":"photo-31","t":"טבעת ושרשרת יהלומים, דנה","c":"photo","ph":1,"a":0.7469},{"id":"photo-32","t":"חולצת תחרה וחיוך, אימי","c":"photo","ph":1,"a":0.6642},{"id":"photo-33","t":"טבעת אבן מרובעת ליד השפתיים (בלי פנים)","c":"photo","ph":1,"a":1.0},{"id":"photo-34","t":"שתי ידיים עם 3 טבעות (בלי פנים)","c":"photo","ph":1,"a":1.0},{"id":"photo-35","t":"רקע בז׳, שמלה פרוותית ו-3 טבעות זהב, עלמה","c":"photo","ph":1,"a":0.8},{"id":"photo-36","t":"ידיים על שפת בריכה, צמידים וטבעות זהב","c":"photo","ph":1,"a":0.7534},{"id":"photo-37","t":"ידיים על חצאית גזה, צמידי זהב, שרשרת יד וטבעות","c":"photo","ph":1,"a":0.7534},{"id":"photo-38","t":"רקע בז׳, צמידי זהב ושרשרת קורל, בר","c":"photo","ph":1,"a":0.8},{"id":"photo-39","t":"שרשרת צדף זהב, כפר יווני בשקיעה","c":"photo","ph":1,"a":0.7534},{"id":"photo-40","t":"עגילי חישוק קלועים עם פנינה על ענף","c":"photo","ph":1,"a":0.6719},{"id":"photo-41","t":"שרשרת מטבע פרח על אבן בחוף","c":"photo","ph":1,"a":0.8},{"id":"photo-42","t":"שרשרת פנינים על שקית בד ליד הים","c":"photo","ph":1,"a":0.8},{"id":"photo-43","t":"פנינים וצדף על מעקה מול הים","c":"photo","ph":1,"a":0.6719},{"id":"photo-44","t":"שרשרת פנינים על בלוקי בטון","c":"photo","ph":1,"a":0.5595},{"id":"photo-45","t":"קופסאות HAIM GLORY עם חישוקי זהב גליים","c":"photo","ph":1,"a":1.3273},{"id":"photo-46","t":"קופסה חומה עם השם Name ושרשרת תליון טיפה","c":"photo","ph":1,"a":0.7534},{"id":"photo-47","t":"קופסת שמנת עם השם Name ושרשרת פנינים","c":"photo","ph":1,"a":0.7534},{"id":"photo-48","t":"מעמד תצוגה עם שרשרת לב ושמש והשם Name","c":"photo","ph":1,"a":0.6719},{"id":"photo-49","t":"קופסת קטיפה בורדו עם טבעת יהלום והשם NAME, רקע לבן","c":"photo","ph":1,"a":0.6719}];
   var PMETA={"photo-1":{"t":[["עגילים",""]],"l":"על התמונה"},"photo-2":{"t":[["עגילים",""],["שרשרת",""]],"l":"על התמונה"},"photo-3":{"t":[["עגילים",""],["צמיד",""],["טבעת",""]],"l":"על התמונה"},"photo-4":{"t":[["עגילים",""],["שרשראות",""]],"l":"על התמונה"},"photo-5":{"t":[["עגילים",""],["שרשרת",""],["טבעת",""],["צמיד",""]],"l":"על התמונה"},"photo-6":{"t":[["עגילים",""],["שרשרת",""],["טבעת",""]],"l":"על התמונה"},"photo-7":{"t":[["עגילים",""]],"l":"על התמונה"},"photo-8":{"t":[["עגילים",""],["שרשרת",""]],"l":"על התמונה"},"photo-9":{"t":[["עגילים",""],["שרשרת",""]],"l":"על התמונה"},"photo-10":{"t":[["עגילים",""]],"l":"על התמונה"},"photo-11":{"t":[["עגילים",""],["טבעת",""]],"l":"על התמונה"},"photo-12":{"t":[["עגילים",""],["טבעת",""]],"l":"על התמונה"},"photo-13":{"t":[["עגילים",""]],"l":"על התמונה"},"photo-14":{"t":[["שרשרת",""]],"l":"על התמונה"},"photo-15":{"t":[["שרשראות",""],["עגילים",""]],"l":"על התמונה"},"photo-16":{"t":[["שרשראות",""],["עגילים",""]],"l":"על התמונה"},"photo-17":{"t":[["שרשרת",""],["עגילים",""]],"l":"על התמונה"},"photo-18":{"t":[["שרשראות",""],["עגילים",""]],"l":"על התמונה"},"photo-19":{"t":[["שרשרת",""]],"l":"על התמונה"},"photo-20":{"t":[["שרשרת",""],["טבעות",""]],"l":"על התמונה"},"photo-21":{"t":[["שרשראות",""],["עגילים",""]],"l":"על התמונה"},"photo-22":{"t":[["שרשרת",""],["טבעות",""],["עגילים",""]],"l":"על התמונה"},"photo-23":{"t":[["שרשראות",""]],"l":"על התמונה"},"photo-24":{"t":[["שרשראות",""]],"l":"על התמונה"},"photo-25":{"t":[["שרשראות",""]],"l":"על התמונה"},"photo-26":{"t":[["שרשרת",""]],"l":"על התמונה"},"photo-27":{"t":[["שרשראות",""],["עגילים",""]],"l":"על התמונה"},"photo-28":{"t":[["טבעות",""]],"l":"על התמונה"},"photo-29":{"t":[["טבעות",""]],"l":"על התמונה"},"photo-30":{"t":[["טבעות",""],["עגילים",""]],"l":"על התמונה"},"photo-31":{"t":[["טבעות",""],["שרשרת",""]],"l":"על התמונה"},"photo-32":{"t":[["עגילים",""],["שרשרת",""],["טבעת",""],["צמיד",""]],"l":"על התמונה"},"photo-33":{"t":[["טבעת",""]],"l":"על התמונה"},"photo-34":{"t":[["טבעות",""]],"l":"על התמונה"},"photo-35":{"t":[["טבעות",""],["עגילים",""]],"l":"על התמונה"},"photo-36":{"t":[["צמידים",""],["טבעות",""]],"l":"על התמונה"},"photo-37":{"t":[["צמידים",""],["טבעות",""]],"l":"על התמונה"},"photo-38":{"t":[["צמידים",""],["שרשרת",""],["טבעות",""],["עגילים",""]],"l":"על התמונה"},"photo-39":{"t":[["שרשרת",""]],"l":"על התמונה"},"photo-40":{"t":[["עגילים",""]],"l":"על התמונה"},"photo-41":{"t":[["שרשרת",""]],"l":"על התמונה"},"photo-42":{"t":[["שרשרת",""]],"l":"על התמונה"},"photo-43":{"t":[["שרשרת",""],["צמיד",""]],"l":"על התמונה"},"photo-44":{"t":[["שרשרת",""]],"l":"על התמונה"},"photo-45":{"t":[["עגילים",""]],"l":"על הקופסה"},"photo-46":{"t":[["שרשרת",""]],"l":"על הקופסה"},"photo-47":{"t":[["שרשרת",""]],"l":"על הקופסה"},"photo-48":{"t":[["שרשראות",""]],"l":"על המעמד"},"photo-49":{"t":[["טבעת",""]],"l":"על הקופסה"}};
   function zoomPh(id){var i=find(id);if(!i)return;var z=document.getElementById('mz'),zi=document.getElementById('mzImg');zi.src='ph/'+phN(id)+'.webp';zi.alt=i.t;document.getElementById('mzT').textContent='תמונה '+phN(id);if(!z.open)z.showModal();}
+  function zoomVid(id){var i=find(id);if(!i)return;var z=document.getElementById('mz'),st=z.querySelector('.mz-stage'),zi=document.getElementById('mzImg');zi.hidden=true;var o=st.querySelector('video');if(o)o.remove();
+    var v=document.createElement('video');v.src=(small?'mob/':(i.src?'hd/':'videos/'))+id+'.mp4?e2';v.poster='p/'+id+'.webp';v.controls=true;v.autoplay=true;v.loop=true;v.playsInline=true;v.setAttribute('controlsList','nodownload');v.className='mz-v';st.appendChild(v);
+    document.getElementById('mzT').textContent='סרטון '+dispNum(id);if(!z.open)z.showModal();}
+  document.getElementById('mz').addEventListener('close',function(){var v=this.querySelector('.mz-v');if(v){v.pause();v.remove();}document.getElementById('mzImg').hidden=false;});
   function zoomBtn(id){var b=document.createElement('button');b.type='button';b.className='ph-zoom';b.textContent='הגדלה';b.setAttribute('aria-label','הגדלת התמונה');b.addEventListener('click',function(e){e.stopPropagation();zoomPh(id);});return b;}
   function isPh(id){return typeof id==='string'&&id.indexOf('photo-')===0;}
   function phN(id){return id.slice(6);}
@@ -1090,13 +1133,16 @@ dialog .undo{bottom:24px}
       part.forEach(function(c){c.style.width=(h*c.dataset.ar-.03).toFixed(2)+'px';c.style.height=h.toFixed(2)+'px';});}}
   wall.addEventListener('click',function(e){var c=e.target.closest('.card');if(!c)return;
     if(e.target.closest('.pick'))toggle(c.dataset.id);else if(e.target.closest('.media'))openVideo(c.dataset.id);});
-  function setFilter(f){document.querySelectorAll('.filters button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f===f);});
-    curF=f;wall.querySelectorAll('.wsec').forEach(function(c){c.hidden=!(f==='all'||c.dataset.g===f);});layout();var wt=wall.getBoundingClientRect().top;if(wt<0)window.scrollBy(0,wt-160);}
+  var fset=[];
+  function applyF(){document.querySelectorAll('#gallery .filters button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f==='all'?!fset.length:fset.indexOf(b.dataset.f)>=0);});
+    curF=fset.length?fset.join(' '):'all';wall.querySelectorAll('.wsec').forEach(function(c){c.hidden=!!fset.length&&fset.indexOf(c.dataset.g)<0;});layout();var wt=wall.getBoundingClientRect().top;if(wt<0)window.scrollBy(0,wt-160);}
+  function setFilter(f){fset=f==='all'?[]:[f];applyF();}
+  function toggleF(f){if(f==='all')fset=[];else{var k=fset.indexOf(f);if(k<0)fset.push(f);else fset.splice(k,1);if(fset.length===GROUPS.length)fset=[];}applyF();}
   var curF='all',loT=0;
   function clip(){layout();}
   addEventListener('resize',function(){cancelAnimationFrame(loT);loT=requestAnimationFrame(layout);});
   layout();addEventListener('load',layout);
-  document.querySelectorAll('.filters button').forEach(function(b){b.addEventListener('click',function(){setFilter(b.dataset.f);});});
+  document.querySelectorAll('#gallery .filters button').forEach(function(b){var n=b.dataset.f==='all'?wall.querySelectorAll('.card').length:wall.querySelectorAll('.wsec[data-g="'+b.dataset.f+'"] .card').length;var c=document.createElement('span');c.className='fc';c.textContent=n;b.appendChild(c);b.addEventListener('click',function(){toggleF(b.dataset.f);});});
   (function(){var go=document.querySelector('.cc-go');if(go)go.firstChild.textContent='לכל \u200e'+(ITEMS.length-1)+'+\u200e הפרסומות בקטלוג ';})();
   /* hero: the two blocks share one height when it fits under the sound button */
   (function(){var bx=document.querySelector('.film .box'),cc=document.querySelector('.catcard'),pl=document.querySelector('.film .play'),fm=document.querySelector('.film');if(!bx||!cc)return;
@@ -1242,30 +1288,45 @@ dialog .undo{bottom:24px}
     inp.addEventListener('change',function(){if(inp.files.length){prod[key]=(prod[key]||[]).concat([].slice.call(inp.files));fillOrder();}});}
   function fillOrder(){
     ob.innerHTML='';
-    if(!sel.length&&!images){ob.innerHTML='<p class="empty">עוד לא בחרתם סרטון. סגרו את החלון, לחצו "בחירה" על סרטון שאהבתם, וחזרו לכאן.</p>';}
+    if(!sel.length&&!images){ob.innerHTML='<p class="empty">הסל ריק. לחצו על + בסרטון או בתמונה שאהבתם כדי להוסיף אותם לכאן.</p>';}
     else{
-      var s1=document.createElement('div');s1.className='step';s1.innerHTML='<h3>מה בחרתם</h3>';ob.appendChild(s1);
-      sel.forEach(function(id){var i=find(id);var d=document.createElement('div');d.className='oi';
-        d.className='oi hf';d.innerHTML='<div class="hf-prev"><video muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video><span class="hf-tag"></span><button class="rm hf-x" type="button" aria-label="הסרה">✕</button></div><div class="hf-body"><div class="t"></div><div class="hint"></div><div class="row"><label class="up drop"><input type="file" accept="image/*"><span>הוסיפו כאן תמונות של המוצרים שלכם</span><small>אין הגבלה על מספר התמונות · JPG או PNG</small></label></div></div>';
-        var hv=d.querySelector('video');var pvb=d.querySelector('.hf-prev'),par=i.ph?i.a:((META[id]||{}).a||.5625);pvb.style.aspectRatio=String(Math.max(.5625,Math.min(1.25,par)));if(i.ph){hv.poster='ph/'+phN(id)+'-s.webp';hv.style.cursor='zoom-in';hv.addEventListener('click',function(){zoomPh(id);});d.querySelector('.hf-prev').appendChild(zoomBtn(id));}else{hv.poster='p/'+id+'.webp';hv.src=(i.pv||('videos/preview/'+id+'.mp4'))+'?e2';}hv.muted=true;setTimeout(function(){var pr=hv.play();if(pr&&pr.catch)pr.catch(function(){});},0);d.querySelector('.hf-tag').textContent=(i.ph?'תמונה ':'סרטון ')+dispNum(id);d.querySelector('.t').textContent=i.t;d.querySelector('.hint').textContent=i.ph?'תמונת קמפיין':catOf(i.c);d.querySelector('.hf-x').setAttribute('aria-label','הסרת '+i.t);
-        var inp=d.querySelector('input');inp.dataset.id=id;inp.setAttribute('aria-label','העלאת תמונה של המוצר לסרטון '+dispNum(id));
-        photoUI(d,id);var nw=document.createElement('label');nw.className='hf-note';var nI=document.createElement('input');nI.type='text';nI.placeholder='הערות (לא חובה)';nI.setAttribute('aria-label','הערות ל'+i.t+' (לא חובה)');nI.value=inotes[id]||'';nI.addEventListener('input',function(){if(nI.value.trim())inotes[id]=nI.value;else delete inotes[id];save();});nw.appendChild(nI);d.appendChild(nw);
-        d.querySelector('.rm').addEventListener('click',function(){toggle(id);});
+      var s1=document.createElement('div');s1.className='step';ob.appendChild(s1);
+      sel.forEach(function(id){var i=find(id),m=META[id]||PMETA[id]||{t:[['תכשיט','']],l:'בסוף הסרטון'},d=document.createElement('div');d.className='oi ci';
+        var top=document.createElement('div');top.className='ci-top';
+        var th=document.createElement('button');th.type='button';th.className='ci-th';th.setAttribute('aria-label',(i.ph?'הגדלת ':'צפייה ב')+i.t);var ti=document.createElement('img');ti.alt='';ti.src=i.ph?'ph/'+phN(id)+'-s.webp':'p/'+id+'-s.webp';th.appendChild(ti);var tl=document.createElement('i');tl.textContent=i.ph?'הגדלה':'▶ צפייה';th.appendChild(tl);th.addEventListener('click',function(){if(i.ph)zoomPh(id);else zoomVid(id);});
+        var mt=document.createElement('div');mt.className='ci-meta';var tg=document.createElement('span');tg.className='ci-tag';tg.textContent=(i.ph?'תמונה ':'סרטון ')+dispNum(id);var nm=document.createElement('b');nm.textContent=i.t;var pr=document.createElement('span');pr.className='ci-pr';pr.textContent=i.ph?'10 תמונות קמפיין · '+PI+' ₪':up(id)+' ₪';mt.appendChild(tg);mt.appendChild(nm);mt.appendChild(pr);
+        var rm=document.createElement('button');rm.type='button';rm.className='ci-x';rm.textContent='✕';rm.setAttribute('aria-label','הסרה מהסל: '+i.t);rm.addEventListener('click',function(){toggle(id);});
+        top.appendChild(th);top.appendChild(mt);top.appendChild(rm);d.appendChild(top);
+        var h=document.createElement('p');h.className='ci-h';h.textContent=m.b?'הוסיפו כאן את התמונה שלכם':'הוסיפו כאן תמונות של המוצרים שלכם';d.appendChild(h);
+        if(m.t.length>1){var sb=document.createElement('p');sb.className='ci-sub';sb.textContent='לא חייבים את כולם.';d.appendChild(sb);}
+        var tw=document.createElement('div');tw.className='lb-tiles ci-tiles';m.t.forEach(function(x,k){tw.appendChild(cartTile(id,x[0],x[0],k===0));});var sp=document.createElement('span');sp.className='ci-sep';tw.appendChild(sp);tw.appendChild(cartTile(id,'לוגו','לוגו',false));d.appendChild(tw);
+        var a=prod[id]||[];if(a.length){var dn=document.createElement('p');dn.className='lb-done';dn.textContent='✓ הועלו '+pdesc(a);d.appendChild(dn);}
+        var nw=document.createElement('label');nw.className='hf-note';var nI=document.createElement('input');nI.type='text';nI.placeholder='הערות (לא חובה)';nI.setAttribute('aria-label','הערות ל'+i.t+' (לא חובה)');nI.value=inotes[id]||'';nI.addEventListener('input',function(){if(nI.value.trim())inotes[id]=nI.value;else delete inotes[id];save();});nw.appendChild(nI);d.appendChild(nw);
         s1.appendChild(d);});
       if(images){var d=document.createElement('div');d.className='oi';d.className='oi hf';d.innerHTML='<div class="hf-prev"><img alt="" src="m/ringhand.webp"><span class="hf-tag">תמונות</span><button class="rm hf-x" type="button" aria-label="הסרת תמונות הקמפיין">✕</button></div><div class="hf-body"><div class="t">10 תמונות קמפיין לתכשיטים</div><div class="hint">על דוגמנית או בסטודיו</div><div class="row"><label class="up drop"><input type="file" accept="image/*" data-id="images" aria-label="העלאת תמונה של המוצר לתמונות הקמפיין"><span>הוסיפו כאן תמונות של המוצרים שלכם</span><small>אין הגבלה על מספר התמונות · JPG או PNG</small></label></div></div>';
         photoUI(d,'images');var nw=document.createElement('label');nw.className='hf-note';var nI=document.createElement('input');nI.type='text';nI.placeholder='הערות (לא חובה)';nI.setAttribute('aria-label','הערות ל'+'תמונות הקמפיין'+' (לא חובה)');nI.value=inotes['images']||'';nI.addEventListener('input',function(){if(nI.value.trim())inotes['images']=nI.value;else delete inotes['images'];save();});nw.appendChild(nI);d.appendChild(nw);
         d.querySelector('.rm').addEventListener('click',function(){var b4=snap();images=false;delete prod.images;render();toast('התמונות הוסרו מההזמנה',b4);});s1.appendChild(d);}
-      var has=Object.keys(prod)[0],ms0=missing();if(has&&ms0.length){var cp=document.createElement('button');cp.type='button';cp.className='btn line copyp';cp.textContent='להשתמש באותן תמונות לכל ההזמנה';cp.addEventListener('click',function(){ms0.forEach(function(k){prod[k]=prod[has].slice();});fillOrder();});s1.appendChild(cp);}
       var m=document.createElement('p');m.className='hint';m.textContent=model?('דוגמנית: '+model+'.'):'';if(model){var mr=document.createElement('button');mr.type='button';mr.className='mrm';mr.textContent='הסרת הדמות';mr.addEventListener('click',function(){var b4=snap();model=null;mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed','false');});render();toast('הדמות הוסרה',b4);});m.appendChild(document.createTextNode(' '));m.appendChild(mr);}if(model)s1.appendChild(m);
-      var cl=document.createElement('button');cl.type='button';cl.className='oclear';cl.textContent='ביטול כל ההזמנה והתחלה מחדש';cl.addEventListener('click',function(){var b4=snap();sel=[];images=false;model=null;prod={};mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed','false');});render();toast('ההזמנה בוטלה',b4);});
+      var cl=document.createElement('button');cl.type='button';cl.className='oclear';cl.textContent='ביטול כל ההזמנה';cl.addEventListener('click',function(){var b4=snap();sel=[];images=false;model=null;prod={};mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed','false');});render();toast('ההזמנה בוטלה',b4);});
       setTimeout(function(){s1.appendChild(cl);});
-      if(sel.length){var s2=document.createElement('p');s2.className='hint';s2.style.marginTop='8px';s2.textContent='אין לכם עכשיו תמונה של המוצר? אפשר לשלוח גם בלי, ולצרף אחר כך בשיחה.';s1.appendChild(s2);}
     }
     document.getElementById('oSend').disabled=!(sel.length||images);
     var ot=document.getElementById('oTotal'),nn=sel.length;ot.hidden=!(nn||images);ot.innerHTML='';if(nn||images){var b1=document.createElement('b');b1.textContent='סה"כ: '+total()+' ₪';var s1b=document.createElement('span');s1b.textContent=nn>=10?'מחיר מבצע: 50 ₪ לסרטון':'מבצע: 10 סרטונים ב-500 ₪';ot.appendChild(b1);ot.appendChild(s1b);}
     document.getElementById('oMiss').hidden=true;
-    setProgress();
+    var nIt=sel.length+(images?1:0),os=document.getElementById('oSum');os.hidden=!nIt;document.getElementById('oSumV').textContent=total()+' ₪';
+    document.getElementById('oStepTxt').textContent=nIt===1?'פריט אחד':nIt+' פריטים';
   }
+  /* one upload tile in the cart, same as in the pick panel; files go to the item with their jewelry type */
+  function cartTile(id,label,key,first){var a=prod[id]||[],mine=a.filter(function(f){return f._k===key;});
+    var t=document.createElement('label');t.className='lb-tile'+(mine.length?' has':'');
+    var inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.multiple=true;if(first)inp.dataset.id=id;inp.setAttribute('aria-label',key==='לוגו'?'העלאת הלוגו':'העלאת תמונות של '+label);
+    inp.addEventListener('change',function(){var l=prod[id]||(prod[id]=[]);[].slice.call(inp.files).forEach(function(f){f._k=key;l.push(f);});if(draft[id]!==l)draft[id]=l;save();fillOrder();if(lbId===id&&lb.open)fillLb();});
+    t.appendChild(inp);var ic=document.createElement('i');ic.className='lb-ic';ic.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="9" cy="9.5" r="1.8" fill="currentColor"/><path d="M4 18l5-5 3.5 3.5L15 14l5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><em>+</em>';t.appendChild(ic);
+    var sp=document.createElement('span');sp.textContent=label;t.appendChild(sp);
+    if(mine.length){t.style.backgroundImage='url('+URL.createObjectURL(mine[mine.length-1])+')';var b=document.createElement('b');b.textContent=mine.length;t.appendChild(b);
+      var rm=document.createElement('button');rm.type='button';rm.className='lb-rm';rm.textContent='×';rm.setAttribute('aria-label','הסרת התמונות: '+label);
+      rm.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var l=(prod[id]||[]).filter(function(f){return f._k!==key;});if(l.length)prod[id]=l;else delete prod[id];draft[id]=l;fillOrder();});t.appendChild(rm);}
+    return t;}
   function pad(n){return (n<10?'0':'')+n;}
   var BASE='https://boostmedia2002.github.io/jewelry/';
   function orderText(){var d=new Date();if(!ordNo){ordNo='BM-'+pad(d.getDate())+pad(d.getMonth()+1)+'-'+Math.floor(1000+Math.random()*9000);save();}
@@ -1284,7 +1345,7 @@ dialog .undo{bottom:24px}
   document.getElementById('oAgree').addEventListener('change',function(){document.getElementById('oAgreeErr').hidden=true;});
   document.getElementById('oSend').addEventListener('click',function(){var ms=missing(),bx=document.getElementById('oMiss');
     var oa=document.getElementById('oAgree');if(!oa.checked){document.getElementById('oAgreeErr').hidden=false;oa.focus();return;}
-    if(ms.length&&bx.hidden){document.getElementById('oMissT').textContent=ms.length===1?(ms[0]==='images'?'לא העליתם תמונה של המוצר לתמונות הקמפיין.':'לא העליתם תמונה של המוצר לסרטון '+dispNum(ms[0])+'.'):'לא העליתם תמונה של המוצר ל-'+ms.length+' פריטים בהזמנה.';bx.hidden=false;bx.scrollIntoView({block:'nearest'});return;}
+    if(ms.length&&bx.hidden){document.getElementById('oMissT').textContent=ms.length===1?(ms[0]==='images'?'לא העליתם תמונה של המוצר לתמונות הקמפיין.':'לא העליתם תמונה של המוצר '+(isPh(ms[0])?'לתמונה ':'לסרטון ')+dispNum(ms[0])+'.'):'לא העליתם תמונה של המוצר ל-'+ms.length+' פריטים בהזמנה.';bx.hidden=false;bx.scrollIntoView({block:'nearest'});return;}
     doSend();});
   document.getElementById('oMissSend').addEventListener('click',doSend);
   document.getElementById('oMissAdd').addEventListener('click',function(){var ms=missing();document.getElementById('oMiss').hidden=true;var inp=ms.length&&ob.querySelector('input[data-id="'+ms[0]+'"]');if(inp){inp.scrollIntoView({block:'center'});inp.click();}});
