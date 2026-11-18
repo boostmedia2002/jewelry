@@ -481,6 +481,10 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
 .hscan .btn{flex:none;width:100%}
 .hscan input[type=text]{flex:none}
 .hagree{margin:2px 0;color:var(--inv-muted);font-size:.9375rem;align-items:center}.hagree input{accent-color:var(--accent);min-height:0;flex:none;padding:0}.hagree a{color:var(--inv-ink)}
+.hdest{display:flex;flex-direction:column;gap:8px;margin:2px 0}.hdest-l{color:var(--inv-ink);font-size:.95rem}.hdest-l small{color:var(--inv-muted);font-size:.875rem}
+.hdest-b{display:flex;flex-wrap:wrap;gap:8px}.hdest-b button{appearance:none;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid rgba(246,243,236,.35);background:transparent;color:var(--inv-ink);font:inherit;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.hdest-b button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--ink);font-weight:600}.hdest-b button[aria-pressed=true]::before{content:"✓";font-weight:800}
+.hdest-b button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .hscan-err{margin:0;color:#FFB4A8;font-size:.95rem}.hscan-err[hidden]{display:none}
 .hscan-alt{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin-top:12px;color:var(--inv-muted)}
 .hscan-alt a{display:inline-flex;align-items:center;min-height:44px;color:var(--inv-ink);text-underline-offset:5px}
@@ -818,6 +822,7 @@ dialog .undo{bottom:24px}
             <input type="text" id="hscanUrl" data-r="url" inputmode="url" autocomplete="url" dir="ltr" placeholder="instagram.com/yourbusiness">
             <label class="sr" for="hscanNote">הערות (לא חובה)</label>
             <input type="text" id="hscanNote" data-r="note" placeholder="הערות (לא חובה)">
+            <div class="hdest" data-r="dest" role="group" aria-labelledby="hdestL"><span class="hdest-l" id="hdestL">לאן הסרטון מיועד? <small>(לא חובה, אפשר לסמן כמה)</small></span><div class="hdest-b"><button type="button" aria-pressed="false">אתר</button><button type="button" aria-pressed="false">אינסטגרם</button><button type="button" aria-pressed="false">פייסבוק</button></div></div>
             <label class="agree hagree"><input type="checkbox" id="hscanAgree" data-r="agree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
             <p class="hscan-err" id="hscanErr" data-r="err" role="alert" hidden></p>
             <button class="btn gold" type="submit">שליחה בוואטסאפ <span class="arr" aria-hidden="true">←</span></button>
@@ -1527,13 +1532,14 @@ dialog .undo{bottom:24px}
   (function(){var d=document.getElementById('scanD'),f=document.getElementById('scanF'),u=document.getElementById('scanUrl'),pr=document.getElementById('scanProd'),er=document.getElementById('scanErr'),gs=f.querySelectorAll('.scan-goals button');
     document.querySelectorAll('[data-scan]').forEach(function(b){b.addEventListener('click',function(){var x=document.getElementById('hscanUrl');document.getElementById('hscan').scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});setTimeout(function(){x.focus({preventScroll:true});},reduce?0:500);});});
     var hf=document.getElementById('hscan'),hu=document.getElementById('hscanUrl');
-    document.querySelectorAll('form.hscan').forEach(function(F){function q(k){return F.querySelector('[data-r="'+k+'"]');}var U=q('url'),N=q('note'),A=q('agree'),E=q('err');
+    document.querySelectorAll('form.hscan').forEach(function(F){function q(k){return F.querySelector('[data-r="'+k+'"]');}var U=q('url'),N=q('note'),A=q('agree'),E=q('err'),DS=q('dest');
+      if(DS)DS.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');});});
       function bad(t,el){E.textContent=t;E.hidden=false;el.focus();}
       [U,N,A].forEach(function(x){if(x)x.addEventListener('input',function(){E.hidden=true;});});
       F.addEventListener('submit',function(e){e.preventDefault();E.hidden=true;var v=U.value.trim();
         if(v.length<3)return bad('כתבו קישור לאתר או את שם המשתמש באינסטגרם.',U);
         if(!A.checked)return bad('כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.',A);
-        var L=['*בקשה לרעיונות לסרטון · BOOST MEDIA*','אתר או אינסטגרם: '+v];if(N&&N.value.trim())L.push('הערות: '+N.value.trim());L.push('','אשמח לקבל 3 רעיונות לסרטון לעסק שלי.');
+        var L=['*בקשה לרעיונות לסרטון · BOOST MEDIA*','אתר או אינסטגרם: '+v];if(N&&N.value.trim())L.push('הערות: '+N.value.trim());var ds=DS?[].filter.call(DS.querySelectorAll('button'),function(b){return b.getAttribute('aria-pressed')==='true';}).map(function(b){return b.textContent;}):[];if(ds.length)L.push('מיועד ל: '+ds.join(', '));L.push('','אשמח לקבל 3 רעיונות לסרטון לעסק שלי.');
         goWA(wa(L.join('\n')));});});
     gs.forEach(function(b){b.addEventListener('click',function(){var on=b.getAttribute('aria-pressed')!=='true';gs.forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed',on);});});
     d.addEventListener('click',function(e){if(e.target===d)d.close();});
