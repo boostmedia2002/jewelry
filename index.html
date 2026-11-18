@@ -709,7 +709,8 @@ dialog .undo{bottom:24px}
 .vs-l::after{content:"";position:absolute;inset:-7px}
 .vs-l svg{width:17px;height:17px;flex:none}.vs-l svg path{fill:none;stroke:#fff;stroke-width:2}
 .vs-l b:empty{display:none}
-.vs-l:active{transform:scale(.88)}
+.vs-l,.vstat{-webkit-transform:translateZ(0);transform:translateZ(0)}.vs-l{-webkit-appearance:none}
+.vs-l:active{-webkit-transform:translateZ(0) scale(.88);transform:translateZ(0) scale(.88)}
 .vs-l[aria-pressed=true]{background:#fff;color:#131416}.vs-l[aria-pressed=true] svg path{fill:#ff3b5c;stroke:#ff3b5c}
 @media (hover:hover){.vs-l:hover{background:rgba(19,20,22,.85)}.vs-l[aria-pressed=true]:hover{background:#fff}}
 .likehdr{display:inline-flex;align-items:center;justify-content:center;gap:4px;color:var(--ink);font-variant-numeric:tabular-nums}.likehdr .lh{color:#e0245e;font-size:1.05rem;line-height:1}
