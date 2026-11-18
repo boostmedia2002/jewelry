@@ -688,6 +688,7 @@ dialog .undo{bottom:24px}
 .mz-stage img[hidden]{display:none}
 .oi.ci .hf-note{display:block;width:100%;grid-column:auto}.oi.ci .hf-note input{width:100%}
 @media (min-width:641px){.order[open]{display:block;overflow-y:auto;overscroll-behavior:contain}.order .body{overflow:visible}.order>header{position:sticky;top:0;z-index:5}.order footer{max-height:none;overflow:visible}}
+.cart-row{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:12px}.cart-x{appearance:none;border:0;background:none;padding:4px 0;margin:0;font:inherit;font-size:.875rem;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 #gallery .ph-head{margin-top:44px;scroll-margin-top:90px}
 .lb .stage img.lb-ph{display:block;width:100%;height:100%;object-fit:contain}
 @media (max-width:640px){#gallery .wall,#gallery .pwall{margin-inline:-4px}}
@@ -914,7 +915,7 @@ dialog .undo{bottom:24px}
 
 <div class="undo" id="undo" role="status" aria-live="polite"><span id="undoT"></span><button type="button" id="undoB">ביטול</button></div>
 <div class="cart" id="cart" aria-live="polite">
-  <div class="sum"><b id="cartTotal"></b><small id="cartLine"></small></div>
+  <div class="sum"><b id="cartTotal"></b><span class="cart-row"><small id="cartLine"></small><button type="button" class="cart-x" id="cartX" aria-label="ביטול כל הבחירה">ביטול</button></span></div>
   <button class="btn" type="button" id="cartGo">המשך להזמנה ←</button>
 </div>
 
@@ -1275,6 +1276,7 @@ dialog .undo{bottom:24px}
   /* order sheet: 1 what you chose, 2 product photo, 3 send */
   function openOrder(){fillOrder();document.getElementById('oDone').classList.remove('show');od.showModal();}
   document.getElementById('cartGo').addEventListener('click',openOrder);
+  document.getElementById('cartX').addEventListener('click',function(){var b4=snap();sel=[];images=false;model=null;prod={};mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed','false');});render();toast('הבחירה בוטלה',b4);});
   document.getElementById('cartTop').addEventListener('click',openOrder);
   function setProgress(){var has=sel.length||images,photos=Object.keys(prod).length>0,step=!has?1:(photos?3:2);
     document.getElementById('oStepTxt').textContent=!has?'שלב 1 מתוך 3: בוחרים סרטון':step===2?'שלב 2 מתוך 3: תמונה של המוצר':'שלב 3 מתוך 3: שליחה בוואטסאפ';
