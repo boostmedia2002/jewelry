@@ -707,7 +707,14 @@ dialog .undo{bottom:24px}
 .vstat .vs-v svg{color:rgba(255,255,255,.75)}
 .vstat .vs-l{pointer-events:auto;appearance:none;border:0;background:none;color:#fff;font:inherit;padding:8px 6px;margin:-8px -6px;cursor:pointer}
 .vstat .vs-l svg{color:rgba(255,255,255,.75)}.vstat .vs-l[aria-pressed=true] svg{color:#ff3b5c}
-#gallery .filters .fh{color:#ff3b5c;font-size:1rem;line-height:1}#gallery .filters .f-liked[aria-pressed=true] .fh{color:#131416}#gallery .filters .f-liked[aria-pressed=true]::before{content:none}
+.likehdr{display:inline-flex;align-items:center;justify-content:center;gap:4px;color:var(--ink);font-variant-numeric:tabular-nums}.likehdr .lh{color:#e0245e;font-size:1.05rem;line-height:1}
+.likehdr[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media (max-width:600px){.tools .sizehdr.likehdr{inset-inline-end:calc(var(--gut,16px) + 48px);width:auto;min-width:46px;padding:0 6px;gap:3px}}
+@media (max-width:360px){.tools .sizehdr{width:36px;min-width:36px;padding:0}.tools .sizehdr.likehdr{inset-inline-end:calc(var(--gut,16px) + 39px);min-width:38px;padding:0 3px;gap:2px;font-size:.875rem}}
+.liked-bar{display:flex;flex-direction:column;gap:10px;margin:10px 0 0;padding:14px;border-radius:12px;background:#1F1F21;color:#fff}.liked-bar[hidden]{display:none}.liked-bar b span{color:#ff3b5c}
+.lbar-b{display:flex;flex-wrap:wrap;gap:8px}.lbar-go,.lbar-x{appearance:none;border:0;border-radius:12px;font:inherit;font-weight:800;min-height:46px;padding:0 16px;cursor:pointer}
+.lbar-go{flex:1 1 220px;background:#D9FE16;color:#131416}.lbar-x{flex:0 1 auto;background:#2a2b2d;color:#fff;font-weight:600}
+@media (min-width:960px){.liked-bar{max-width:720px;margin-inline:auto}}
 .liked-empty{margin:10px 0 0;padding:14px;border-radius:12px;background:#1F1F21;color:#c9cacb;font-size:.9375rem}.liked-empty[hidden]{display:none}
 @media (min-width:960px){.liked-empty{max-width:720px;margin-inline:auto}}
 #gallery .ph-head{margin-top:44px;scroll-margin-top:90px}
@@ -783,6 +790,7 @@ dialog .undo{bottom:24px}
     </nav>
     <div class="tools">
       <button class="size sizehdr" type="button" id="sizeBtn" aria-pressed="false" aria-label="הגדלת טקסט">א+</button>
+      <button class="size sizehdr likehdr" type="button" id="likedTop" aria-pressed="false" aria-label="הסרטונים שאהבתי"><span class="lh" aria-hidden="true">♥</span><span id="likedTopN">0</span></button>
       <a class="btn line catgo" href="#gallery">לקטלוג הפרסומות</a>
       <button class="btn cartbtn" type="button" id="cartTop">ההזמנות שלי <span class="n" id="cartN">0</span></button>
     </div>
@@ -851,8 +859,8 @@ dialog .undo{bottom:24px}
         <button type="button" data-f="cine" aria-pressed="false">קולנועי</button>
         <button type="button" data-f="models" aria-pressed="false">דוגמנית</button>
         <button type="button" data-f="simple" aria-pressed="false">תצוגה</button>
-        <button type="button" data-f="liked" class="f-liked" aria-pressed="false"><span class="fh" aria-hidden="true">♥</span>אהבתי</button>
       </div>
+      <div class="liked-bar" id="likedBar" hidden><b><span aria-hidden="true">♥</span> הסרטונים שאהבתי</b><div class="lbar-b"><button type="button" class="lbar-go" id="likedCart">הוספת הכל לסל והמשך לקופה</button><button type="button" class="lbar-x" id="likedExit">חזרה לכל הסרטונים</button></div></div>
       <p class="liked-empty" id="likedEmpty" hidden>עוד לא סימנתם סרטונים. לחצו על הלב בסרטון שאהבתם, והוא יישמר כאן.</p>
       <div class="wall" id="wall"></div>
       <div class="head ph-head" id="photos"><h2 id="h-ph" class="fillh">תמונות קמפיינים</h2></div>
@@ -1202,18 +1210,22 @@ dialog .undo{bottom:24px}
     if(e.target.closest('.pick'))toggle(c.dataset.id);else if(e.target.closest('.media'))openVideo(c.dataset.id);});
   var fset=[],likedMode=false;
   function likedN(){return wall.querySelectorAll('.card').length?[].filter.call(wall.querySelectorAll('.card'),function(c){return liked[c.dataset.id];}).length:0;}
-  function likedUp(){var b=document.querySelector('#gallery .f-liked .fc');if(b)b.textContent=likedN();if(likedMode)applyF();}
+  function likedUp(){var n=likedN();document.getElementById('likedTopN').textContent=n;document.getElementById('likedTop').setAttribute('aria-label','הסרטונים שאהבתי: '+n);if(likedMode)applyF();}
   function applyF(){document.querySelectorAll('#gallery .filters:not(.pf) button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f==='liked'?likedMode:(b.dataset.f==='all'?(!fset.length&&!likedMode):fset.indexOf(b.dataset.f)>=0));});
     curF=likedMode?'liked':(fset.length?fset.join(' '):'all');wall.querySelectorAll('.card').forEach(function(c){c.hidden=likedMode&&!liked[c.dataset.id];});
     wall.querySelectorAll('.wsec').forEach(function(c){c.hidden=likedMode?!c.querySelector('.card:not([hidden])'):(!!fset.length&&fset.indexOf(c.dataset.g)<0);});
-    document.getElementById('likedEmpty').hidden=!(likedMode&&!likedN());layout();var wt=wall.getBoundingClientRect().top;if(wt<0)window.scrollBy(0,wt-160);}
+    document.getElementById('likedEmpty').hidden=!(likedMode&&!likedN());document.getElementById('likedBar').hidden=!(likedMode&&likedN());document.getElementById('likedTop').setAttribute('aria-pressed',likedMode);layout();var wt=wall.getBoundingClientRect().top;if(wt<0)window.scrollBy(0,wt-160);}
   function setFilter(f){likedMode=false;fset=f==='all'?[]:[f];applyF();}
   function toggleF(f){if(f==='liked'){likedMode=!likedMode;fset=[];applyF();return;}likedMode=false;if(f==='all')fset=[];else{var k=fset.indexOf(f);if(k<0)fset.push(f);else fset.splice(k,1);if(fset.length===GROUPS.length)fset=[];}applyF();}
   var curF='all',loT=0;
+  document.getElementById('likedTop').addEventListener('click',function(){toggleF('liked');if(likedMode)document.querySelector('#gallery .ftitle').scrollIntoView({block:'start'});});
+  document.getElementById('likedExit').addEventListener('click',function(){setFilter('all');});
+  document.getElementById('likedCart').addEventListener('click',function(){var b4=snap(),n=0;wall.querySelectorAll('.card').forEach(function(c){var id=c.dataset.id;if(liked[id]&&sel.indexOf(id)<0){sel.push(id);n++;}});render();openOrder();});
+  setTimeout(likedUp,0);
   function clip(){layout();}
   addEventListener('resize',function(){cancelAnimationFrame(loT);loT=requestAnimationFrame(layout);});
   layout();addEventListener('load',layout);
-  document.querySelectorAll('#gallery .filters:not(.pf) button').forEach(function(b){var n=b.dataset.f==='all'?wall.querySelectorAll('.card').length:wall.querySelectorAll('.wsec[data-g="'+b.dataset.f+'"] .card').length;var c=document.createElement('span');c.className='fc';c.textContent=b.dataset.f==='liked'?likedN():n;b.appendChild(c);b.addEventListener('click',function(){toggleF(b.dataset.f);});});
+  document.querySelectorAll('#gallery .filters:not(.pf) button').forEach(function(b){var n=b.dataset.f==='all'?wall.querySelectorAll('.card').length:wall.querySelectorAll('.wsec[data-g="'+b.dataset.f+'"] .card').length;var c=document.createElement('span');c.className='fc';c.textContent=n;b.appendChild(c);b.addEventListener('click',function(){toggleF(b.dataset.f);});});
   (function(){var go=document.querySelector('.cc-go');if(go)go.firstChild.textContent='לכל \u200e'+(ITEMS.length-1)+'+\u200e הפרסומות בקטלוג ';})();
   /* hero: the two blocks share one height when it fits under the sound button */
   (function(){var bx=document.querySelector('.film .box'),cc=document.querySelector('.catcard'),pl=document.querySelector('.film .play'),fm=document.querySelector('.film');if(!bx||!cc)return;
