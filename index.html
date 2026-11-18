@@ -645,8 +645,8 @@ dialog .undo{bottom:24px}
 #gallery .media{aspect-ratio:auto;width:100%;height:100%;border-radius:0;background:#1F1F21}
 #gallery .card.sel .media{box-shadow:none;outline:3px solid #D9FE16;outline-offset:-3px}
 #gallery .media .check{top:6px;inset-inline-end:6px;width:26px;height:26px;border-radius:13px;background:#D9FE16;color:#131416;font-size:.8rem}
-#gallery .pcard .plus{position:absolute;top:6px;inset-inline-end:6px;width:24px;height:24px;border-radius:12px;background:#D9FE16;color:#131416;display:grid;place-items:center;font-size:1.05rem;font-weight:800;line-height:1;box-shadow:0 1px 4px rgba(0,0,0,.35)}
-#gallery .pcard.sel .plus{display:none}
+#gallery .card .plus{z-index:1;position:absolute;top:6px;inset-inline-end:6px;width:24px;height:24px;border-radius:12px;background:#D9FE16;color:#131416;display:grid;place-items:center;font-size:1.05rem;font-weight:800;line-height:1;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+#gallery .card.sel .plus{display:none}
 .lb .stage{position:relative}.lb .stage img.lb-ph{cursor:zoom-in}
 .ph-zoom{position:absolute;bottom:10px;inset-inline-start:10px;z-index:2;appearance:none;border:0;border-radius:999px;background:rgba(19,20,22,.72);color:#fff;font:600 .8125rem/1 inherit;font-family:inherit;padding:8px 12px;cursor:pointer}
 @media (max-width:899px){.lb .stage .ph-zoom{bottom:28px}}
@@ -1062,10 +1062,10 @@ dialog .undo{bottom:24px}
     var h3=document.createElement('h3');h3.textContent=NM[g.k];var rows=document.createElement('div');rows.className='jrows';sec.appendChild(h3);sec.appendChild(rows);wall.appendChild(sec);
     its.forEach(function(i){SEQ[i.id]=++seqN;
     var c=document.createElement('article');c.className='card';c.dataset.id=i.id;c.dataset.c=i.c;c.dataset.g=g.k;c.dataset.ar=(META[i.id]||{}).a||.5625;
-    c.innerHTML='<button class="media" type="button"><img loading="lazy" decoding="async" sizes="(max-width:640px) 34vw, 300px" alt=""><video muted loop playsinline preload="none" aria-hidden="true"></video><span class="check" aria-hidden="true">✓</span></button>';
+    c.innerHTML='<button class="media" type="button"><img loading="lazy" decoding="async" sizes="(max-width:640px) 34vw, 300px" alt=""><video muted loop playsinline preload="none" aria-hidden="true"></video><span class="plus" aria-hidden="true">+</span><span class="check" aria-hidden="true">✓</span></button>';
     var im=c.querySelector('img');im.src='p/'+i.id+'-s.webp';im.srcset='p/'+i.id+'-s.webp 300w, p/'+i.id+'.webp 600w';
     c.querySelector('video').dataset.src=(i.pv||('videos/preview/'+i.id+'.mp4'))+'?e2';
-    c.querySelector('.media').setAttribute('aria-label','סרטון '+SEQ[i.id]+': '+i.t);
+    c.querySelector('.media').setAttribute('aria-label','הוספת סרטון '+SEQ[i.id]+': '+i.t);
     rows.appendChild(c);io.observe(c.querySelector('video'));near.observe(c.querySelector('video'));
   });});
   /* rows of 3 that fill the width at the posters' real proportions; a leftover of 4 becomes 2+2, never 4 in a row */
