@@ -646,7 +646,7 @@ dialog .undo{bottom:24px}
 #gallery .card.sel .media{box-shadow:none;outline:3px solid #D9FE16;outline-offset:-3px}
 #gallery .media .check{top:6px;inset-inline-end:6px;width:26px;height:26px;border-radius:13px;background:#D9FE16;color:#131416;font-size:.8rem}
 @media (max-width:640px){#gallery .wall{margin-inline:-4px}}
-@media (min-width:960px){#gallery .head,#gallery .fits-line,#gallery .a11y-row,#gallery .wall{max-width:900px;margin-inline:auto}#gallery .filters{max-width:900px;margin-inline:auto;padding-inline:0}}
+@media (min-width:960px){#gallery .head,#gallery .fits-line,#gallery .a11y-row,#gallery .wall{max-width:720px;margin-inline:auto}#gallery .filters{max-width:720px;margin-inline:auto;padding-inline:0}}
 /* ===== pick-a-video panel ===== */
 .lb{background:#131416;color:#fff;width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;overflow-y:auto;overscroll-behavior:contain}
 .lb::backdrop{background:rgba(0,0,0,.82)}
@@ -685,6 +685,7 @@ dialog .undo{bottom:24px}
 .lb-after{display:flex;flex-direction:column;gap:8px;font-size:.9375rem;color:#c9cacb}.lb-after b{color:#fff}
 .lb-after[hidden],.lb-done[hidden],.lb-err[hidden],.lb-tip[hidden],.lb-fit[hidden]{display:none}
 .lb-more{display:none}
+@media (max-width:899px){.lb .stage{height:46dvh}.lb .stage video{height:calc(100% - 18px);object-fit:cover;object-position:50% 35%}.lb-panel{position:relative;margin-top:-18px;border-radius:20px 20px 0 0;background:#131416;padding-top:20px}}
 .lb .undo{bottom:16px}
 @media (min-width:900px){
  .lb{background:transparent;padding:4dvh 24px}
