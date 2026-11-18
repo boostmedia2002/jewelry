@@ -696,6 +696,7 @@ dialog .undo{bottom:24px}
 .fsum[hidden]{display:none}
 .fsum-t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.fsum-t b{color:#8A8B8D;font-weight:400}.fsum-t span{color:#D9FE16;font-weight:700}
 .fsum button{flex:none;appearance:none;border:1px solid #3a3b3d;border-radius:999px;background:transparent;color:#fff;font:600 .8125rem inherit;font-family:inherit;padding:7px 12px;cursor:pointer}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){#gallery h2.fillh{--p:0%;display:inline-block;background:linear-gradient(to left,#D9FE16 var(--p),rgba(255,255,255,.3) var(--p));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}}
 #gallery .ph-head{margin-top:44px;scroll-margin-top:90px}
 .lb .stage img.lb-ph{display:block;width:100%;height:100%;object-fit:contain}
 @media (max-width:640px){#gallery .wall,#gallery .pwall{margin-inline:-4px}}
@@ -827,7 +828,7 @@ dialog .undo{bottom:24px}
 
   <section class="sec" id="gallery" aria-labelledby="h-g">
     <div class="wrap">
-      <div class="head"><h2 id="h-g">קטלוג הפרסומות</h2></div>
+      <div class="head"><h2 id="h-g" class="fillh">קטלוג הפרסומות</h2></div>
       <p class="fits-line mo-wh__text" data-moment="word-highlight"><strong>כל סרטון מתאים לכל מוצר.</strong> בוחרים סרטון שאהבתם, ואני מכין אותו מחדש עם התכשיטים שלכם. המוצר מתחלף, <strong>והרעיון נשאר.</strong></p>
       <div class="a11y-row"><button class="still" type="button" id="stillBtn" aria-pressed="false"><span aria-hidden="true">⏸</span> <span id="stillT">עצירת הסרטונים</span></button></div>
       <p class="ftitle"><b>סינון לפי סגנון</b><span>אפשר לבחור כמה</span></p>
@@ -839,7 +840,7 @@ dialog .undo{bottom:24px}
         <button type="button" data-f="simple" aria-pressed="false">תצוגה</button>
       </div>
       <div class="wall" id="wall"></div>
-      <div class="head ph-head" id="photos"><h2 id="h-ph">קטלוג תמונות תכשיטים</h2></div>
+      <div class="head ph-head" id="photos"><h2 id="h-ph" class="fillh">תמונות קמפיינים</h2></div>
       <p class="fits-line">בוחרים תמונה שאהבתם, ואני מכין אותה מחדש עם התכשיטים שלכם.</p>
       <p class="ftitle"><b>סינון לפי סוג תכשיט</b><span>אפשר לבחור כמה</span></p>
       <div class="filters pf" id="pfilt" role="group" aria-label="סינון לפי סוג תכשיט, אפשר לבחור כמה">
@@ -1152,6 +1153,10 @@ dialog .undo{bottom:24px}
   document.querySelectorAll('#pfilt button').forEach(function(b){var k=b.dataset.p,n=PHOTOS.filter(function(i){return k==='all'||pTypes(i.id)[k];}).length;var c=document.createElement('span');c.className='fc';c.textContent=n;b.appendChild(c);
     b.addEventListener('click',function(){if(k==='all')pset=[];else{var x=pset.indexOf(k);if(x<0)pset.push(k);else pset.splice(x,1);if(pset.length===4)pset=[];}applyP();});});
   /* once a filter row scrolls away, a slim bar under the header sums up what is chosen for the catalog on screen */
+  /* headings fill with colour as they move up the screen */
+  var fillH=[].slice.call(document.querySelectorAll('h2.fillh'));
+  function fillUp(){var H=innerHeight;fillH.forEach(function(h){var r=h.getBoundingClientRect(),p=(H*.92-(r.top+r.height/2))/(H*.42);h.style.setProperty('--p',(Math.max(0,Math.min(1,p))*100).toFixed(1)+'%');});}
+  addEventListener('scroll',function(){requestAnimationFrame(fillUp);},{passive:true});addEventListener('resize',fillUp);fillUp();
   var fsum=document.getElementById('fsum'),fsZone='',fsT=0;
   function fsumUp(){var hb=document.querySelector('header.top').getBoundingClientRect().bottom,vf=document.querySelector('#gallery .filters:not(.pf)'),pf=document.getElementById('pfilt');
     var inP=pf.getBoundingClientRect().bottom<hb&&pwall.getBoundingClientRect().bottom>hb+80,inV=!inP&&vf.getBoundingClientRect().bottom<hb&&wall.getBoundingClientRect().bottom>hb+80&&document.getElementById('photos').getBoundingClientRect().top>hb+60;
