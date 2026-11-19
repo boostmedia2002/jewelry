@@ -31,11 +31,11 @@
   <p class="lead">Drag to rotate. Pinch or scroll to zoom. On a phone, tap the AR button to place the ring in your room at real size.</p>
 
   <div class="viewer">
-    <model-viewer src="topaz/ring.gltf" alt="Blue topaz halo ring in 3D"
+    <model-viewer src="topaz/ring.glb" ios-src="topaz/ring.usdz" alt="Blue topaz halo ring in 3D"
       camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="1500"
       shadow-intensity="0.5" exposure="1.0" environment-image="neutral"
       min-camera-orbit="auto auto 2%"
-      ar ar-modes="webxr scene-viewer quick-look" ar-scale="fixed">
+      ar ar-modes="scene-viewer webxr quick-look" ar-scale="fixed">
       <button slot="ar-button" class="ar">View in your space (AR)</button>
     </model-viewer>
   </div>
@@ -44,7 +44,7 @@
   <h2>Option A: a 360° button on the store's photo</h2>
   <p class="lead">The store keeps its normal photo. Only this photo gets a "360° View" button.</p>
   <div class="card">
-    <img src="topaz-photo.jpg" alt="Blue topaz halo ring" data-model="topaz/ring.gltf">
+    <img src="topaz-photo.jpg" alt="Blue topaz halo ring" data-model="topaz/ring.glb" data-ios="topaz/ring.usdz">
     <div class="t">
       <div>Blue Topaz Halo Ring — White Gold</div>
       <div class="price">₪3,290</div>
