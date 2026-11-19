@@ -828,6 +828,10 @@ dialog .undo{bottom:24px}
 .hw-line.stp{font-size:1.0625rem}
 .closing .callback{color:var(--ink);text-align:start;width:100%;margin-top:0}
 .contact-mid{background:#fff;color:var(--ink)}.pre-contact{padding-bottom:28px;min-height:0}.contact-mid .close-type{min-height:0;padding-block:28px 40px;gap:18px}.contact-mid .close-type h2{font-size:clamp(2rem,4.5vw,3.4rem)}.contact-mid .callback{width:100%;margin-top:0}.contact-mid .helpcard{margin-top:0}
+.contact-mid .cb-one{max-width:520px;margin-inline:auto;padding:24px 20px;gap:16px}.contact-mid .cb-one h2{font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.15;max-width:none}
+.cb-form{display:flex;flex-direction:column;gap:12px}.cb-form[hidden]{display:none}.cb-form .btn{width:100%;align-self:stretch}.cb-form .agree{font-size:.8125rem;color:var(--muted)}
+.cb-one .cb-done{display:flex;flex-direction:column;gap:4px}.cb-one .cb-done[hidden]{display:none}
+.cb-wa{appearance:none;border:0;border-top:1px solid var(--line);background:none;color:var(--ink);font:inherit;cursor:pointer;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px 0 0;width:100%;text-align:start}.cb-wa .helpnum{min-height:48px;background:var(--wa,#0a7c3e);color:#fff}
 </style>
 </head>
 <body>
@@ -979,21 +983,19 @@ dialog .undo{bottom:24px}
   <section class="contact-mid" id="contact" aria-labelledby="h-end">
     <div class="wrap">
       <div class="close-type">
-      <h2 id="h-end">השאירו פרטים ליצירת קשר</h2>
-      <form class="callback" id="cbF" novalidate aria-labelledby="cbT">
-        <div class="cb-head"><b id="cbT">מעדיפים שנתקשר אליכם?</b><span>השאירו שם וטלפון, ונחזור אליכם בשיחה.</span></div>
-        <div class="cb-row">
+      <div class="callback cb-one">
+        <h2 id="h-end">השאירו פרטים, ונחזור אליכם</h2>
+        <form class="cb-form" id="cbF" novalidate aria-labelledby="h-end">
           <label class="cb-f"><span>שם</span><input id="cbName" autocomplete="name" required></label>
           <label class="cb-f"><span>טלפון</span><input id="cbPhone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" required></label>
-          <label class="cb-f"><span>שם העסק <small>(לא חובה)</small></span><input id="cbBiz" autocomplete="organization"></label>
-        </div>
-        <input class="cb-hp" type="text" id="cbHp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <label class="agree"><input type="checkbox" id="cbAgree"><span>אני מאשר/ת שתחזרו אליי בוואטסאפ או בטלפון ושתשלחו לי מידע ופרסומות על השירות. אפשר לבקש הסרה בכל עת. <a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
-        <p class="cb-msg" id="cbMsg" role="alert" hidden></p>
-        <button class="btn" type="submit" id="cbBtn">חזרו אליי בטלפון</button>
-      </form>
-      <div class="callback cb-done" id="cbOk" role="status" hidden><b>תודה, קיבלנו!</b><span>נחזור אליכם בטלפון בהקדם.</span></div>
-      <button class="helpcard" type="button" data-help aria-haspopup="dialog"><span><b>יש לכם אמא ואבא</b><span class="sub">נתקעתם או רוצים להתייעץ? לחצו על המספר ושלחו לי הודעה בוואטסאפ, או התקשרו.</span></span><span class="helpnum"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>055-6677-843</span></button>
+          <input class="cb-hp" type="text" id="cbHp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label class="agree"><input type="checkbox" id="cbAgree"><span>אני מאשר/ת שתחזרו אליי בוואטסאפ או בטלפון ושתשלחו לי מידע ופרסומות על השירות. אפשר לבקש הסרה בכל עת. <a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
+          <p class="cb-msg" id="cbMsg" role="alert" hidden></p>
+          <button class="btn" type="submit" id="cbBtn">חזרו אליי</button>
+        </form>
+        <div class="cb-done" id="cbOk" role="status" hidden><b>תודה, קיבלנו!</b><span>נחזור אליכם בטלפון בהקדם.</span></div>
+        <button class="cb-wa" type="button" data-help aria-haspopup="dialog"><span>או ישר בוואטסאפ ובטלפון</span><span class="helpnum"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>055-6677-843</span></button>
+      </div>
     </div>
     </div>
   </section>
@@ -1180,10 +1182,10 @@ dialog .undo{bottom:24px}
       if(pv.replace(/\D/g,'').length<9)return err('כתבו מספר טלפון תקין.',ph);
       if(!ag.checked)return err('כדי לשלוח צריך לסמן את האישור.',ag);
       bt.disabled=true;bt.textContent='שולח…';
-      var b=new URLSearchParams();b.set('entry.1105078249',nv);b.set('entry.416340330',pv);var bz=document.getElementById('cbBiz').value.trim();if(bz)b.set('entry.202265588',bz);b.set('entry.1612544432','האתר');b.set('entry.1407423221','כן: אני מאשר/ת שתחזרו אליי בוואטסאפ או בטלפון ושתשלחו לי מידע ופרסומות על השירות. אפשר לבקש הסרה בכל עת.');
+      var b=new URLSearchParams();b.set('entry.1105078249',nv);b.set('entry.416340330',pv);b.set('entry.1612544432','האתר');b.set('entry.1407423221','כן: אני מאשר/ת שתחזרו אליי בוואטסאפ או בטלפון ושתשלחו לי מידע ופרסומות על השירות. אפשר לבקש הסרה בכל עת.');
       fetch('https://docs.google.com/forms/d/e/1FAIpQLScHQQFXPujxqok3AofA3R7jMCt1mEHwfy3a37fzSr0RDPC8lQ/formResponse',{method:'POST',mode:'no-cors',body:b})
       .then(function(){f.hidden=true;document.getElementById('cbOk').hidden=false;})
-      .catch(function(){bt.disabled=false;bt.textContent='חזרו אליי בטלפון';err('משהו השתבש. נסו שוב, או התקשרו: 053-950-7416.',bt);});});
+      .catch(function(){bt.disabled=false;bt.textContent='חזרו אליי';err('משהו השתבש. נסו שוב, או התקשרו: 053-950-7416.',bt);});});
   })();
   /* text size (remembered per visitor) */
   var root=document.documentElement,sb=document.getElementById('sizeBtn');
