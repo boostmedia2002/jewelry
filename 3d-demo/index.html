@@ -13,15 +13,16 @@
   h1{font-size:clamp(28px,5vw,44px);line-height:1.1;margin:0 0 8px;letter-spacing:-.02em}
   h2{font-size:22px;margin:56px 0 6px}
   p.lead{color:var(--muted);margin:0 0 28px;max-width:60ch}
-  .viewer{width:100%;height:min(70vh,560px);background:#fff;border:1px solid var(--line);border-radius:20px}
+  .viewer{width:100%;height:min(70vh,560px);background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden}
   model-viewer{width:100%;height:100%;--poster-color:transparent}
   .ar{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);border:0;border-radius:999px;padding:12px 20px;background:var(--ink);color:#fff;font:600 15px system-ui,sans-serif}
   .hint{color:var(--muted);font-size:14px;margin-top:10px}
   .card{display:flex;gap:24px;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px}
-  .card img{width:260px;height:260px;border-radius:14px;display:block}
+  .card img{width:260px;height:260px;border-radius:14px;display:block;object-fit:cover}
   .card .t{flex:1;min-width:220px}
   .price{font-weight:700;font-size:20px}
-  pre{background:#161616;color:#f1efe9;padding:16px;border-radius:14px;overflow:auto;font-size:13px;line-height:1.5}
+  iframe{width:100%;height:420px;border:1px solid var(--line);border-radius:16px;background:#fff}
+  pre{background:#161616;color:#f1efe9;padding:16px;border-radius:14px;overflow:auto;font-size:13px;line-height:1.5;white-space:pre-wrap;word-break:break-all}
 </style>
 </head>
 <body>
@@ -30,32 +31,31 @@
   <p class="lead">Drag to rotate. Pinch or scroll to zoom. On a phone, tap the AR button to place the ring in your room at real size.</p>
 
   <div class="viewer">
-    <model-viewer src="ring.glb" alt="Gold solitaire ring in 3D"
+    <model-viewer src="topaz/ring.gltf" alt="Blue topaz halo ring in 3D"
       camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="1500"
-      shadow-intensity="0.6" exposure="1.1" environment-image="neutral"
+      shadow-intensity="0.5" exposure="1.0" environment-image="neutral"
       min-camera-orbit="auto auto 2%"
       ar ar-modes="webxr scene-viewer quick-look" ar-scale="fixed">
       <button slot="ar-button" class="ar">View in your space (AR)</button>
     </model-viewer>
   </div>
-  <p class="hint">Demo model. A real product is built from photos of the actual piece.</p>
+  <p class="hint">Built from product photos of the ring.</p>
 
-  <h2>On a regular store page</h2>
-  <p class="lead">The store keeps its normal photo. Only this photo gets a "360° View" button. The rest of the site stays the same.</p>
+  <h2>Option A: a 360° button on the store's photo</h2>
+  <p class="lead">The store keeps its normal photo. Only this photo gets a "360° View" button.</p>
   <div class="card">
-    <img src="ring-photo.svg" alt="Gold solitaire ring" data-model="ring.glb">
+    <img src="topaz-photo.jpg" alt="Blue topaz halo ring" data-model="topaz/ring.gltf">
     <div class="t">
-      <div>Solitaire Ring — 14K Gold</div>
-      <div class="price">₪2,490</div>
+      <div>Blue Topaz Halo Ring — White Gold</div>
+      <div class="price">₪3,290</div>
       <p class="hint">Tap the "360° View" button on the photo.</p>
     </div>
   </div>
 
-  <h2>How a store adds it</h2>
-  <p class="lead">Step 1, once per site: paste this line into the site's custom code area.</p>
-<pre>&lt;script src="https://boostmedia2002.github.io/jewelry/3d-demo/ring3d.js" defer&gt;&lt;/script&gt;</pre>
-  <p class="lead">Step 2, per product: add the 3D link to the product photo.</p>
-<pre>&lt;img src="their-photo.jpg" data-model="https://boostmedia2002.github.io/jewelry/3d-demo/ring.glb"&gt;</pre>
+  <h2>Option B: one block, paste and done</h2>
+  <p class="lead">The store adds an "HTML / Embed code" element to the product page and pastes this one line. This is what it looks like:</p>
+  <iframe src="view.html?m=topaz" title="3D ring" allow="xr-spatial-tracking; fullscreen"></iframe>
+<pre>&lt;iframe src="https://boostmedia2002.github.io/jewelry/3d-demo/view.html?m=topaz" style="width:100%;height:420px;border:0" allow="xr-spatial-tracking; fullscreen"&gt;&lt;/iframe&gt;</pre>
 </main>
 <script src="ring3d.js" defer></script>
 </body>
