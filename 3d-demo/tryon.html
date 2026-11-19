@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Try the ring on your hand</title>
+<style>
+  html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+  #stage{position:fixed;inset:0}
+  video,canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .mirror{transform:scaleX(-1)}
+  #hint{position:fixed;left:50%;top:calc(env(safe-area-inset-top) + 16px);transform:translateX(-50%);background:rgba(0,0,0,.55);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;white-space:nowrap}
+  #bar{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 18px);display:flex;gap:10px;justify-content:center}
+  #bar button{border:0;border-radius:999px;padding:12px 16px;background:rgba(255,255,255,.92);color:#111;font:600 14px system-ui,sans-serif}
+  #start{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#111;color:#fff;text-align:center;padding:24px}
+  #start h1{margin:0;font-size:26px}
+  #start p{margin:0;color:#bbb;max-width:32ch}
+  #start button{border:0;border-radius:999px;padding:14px 26px;background:#fff;color:#111;font:700 16px system-ui,sans-serif}
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="stage">
+  <video id="video" playsinline muted autoplay></video>
+  <canvas id="gl"></canvas>
+</div>
+<div id="hint">Loading…</div>
+<div id="bar">
+  <button id="cam">Switch camera</button>
+  <button id="smaller">−</button>
+  <button id="bigger">+</button>
+  <button id="flip">Flip</button>
+</div>
+<div id="start">
+  <h1>Try it on</h1>
+  <p>Point the camera at the back of your hand, fingers spread.</p>
+  <button id="go">Start camera</button>
+</div>
+
+<script type="module">
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { FilesetResolver, HandLandmarker } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs";
+
+const params = new URLSearchParams(location.search);
+const MODEL = params.get("model") || "topaz/ring.glb";
+const video = document.getElementById("video");
+const canvas = document.getElementById("gl");
+const hint = document.getElementById("hint");
+let facing = params.get("cam") || "environment";
+let userScale = 1, flip = 1;
+
+// ---- three.js ----
+const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+const scene = new THREE.Scene();
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+const dl = new THREE.DirectionalLight(0xffffff, 1.2); dl.position.set(0.3, 1, 1); scene.add(dl);
+let W = 1, H = 1;
+const camera = new THREE.OrthographicCamera(0, 1, 0, -1, -5000, 5000);
+
+const ringRoot = new THREE.Group(); ringRoot.visible = false; scene.add(ringRoot);
+const ringHolder = new THREE.Group(); ringRoot.add(ringHolder);
+let ringInner = 0.017; // inner diameter of the model, in model units (meters)
+new GLTFLoader().load(MODEL, (g) => {
+  const m = g.scene;
+  const box = new THREE.Box3().setFromObject(m);
+  const size = box.getSize(new THREE.Vector3());
+  const c = box.getCenter(new THREE.Vector3());
+  // Ring lies in the XY plane, stone at +Y, finger goes along Z.
+  const outerR = size.x / 2;
+  m.position.set(-c.x, -(box.min.y + outerR), -c.z);
+  ringInner = size.x * 0.82;
+  ringHolder.add(m);
+});
+// finger occluder: writes depth only, hides the back of the band
+const occ = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 1, 32), new THREE.MeshBasicMaterial({ colorWrite: false }));
+occ.renderOrder = -1; scene.add(occ); occ.visible = false;
+
+function resize() {
+  W = video.videoWidth || innerWidth; H = video.videoHeight || innerHeight;
+  // canvas covers the screen like the video (object-fit: cover) — render at video resolution
+  renderer.setSize(W, H, false);
+  camera.left = 0; camera.right = W; camera.top = 0; camera.bottom = -H; camera.updateProjectionMatrix();
+}
+
+// ---- hand tracking ----
+let landmarker;
+async function initTracker() {
+  const fs = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm");
+  landmarker = await HandLandmarker.createFromOptions(fs, {
+    baseOptions: { modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task", delegate: "GPU" },
+    runningMode: "VIDEO", numHands: 1
+  });
+}
+
+let stream;
+async function startCamera() {
+  if (stream) stream.getTracks().forEach(t => t.stop());
+  stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false });
+  video.srcObject = stream; await video.play();
+  const mirror = facing === "user";
+  video.classList.toggle("mirror", mirror); canvas.classList.toggle("mirror", mirror);
+  resize();
+}
+
+const P = (l) => new THREE.Vector3(l.x * W, -l.y * H, -l.z * W);
+let smooth = null;
+function lerpLm(prev, cur, a) { return cur.map((p, i) => ({ x: prev[i].x + (cur[i].x - prev[i].x) * a, y: prev[i].y + (cur[i].y - prev[i].y) * a, z: prev[i].z + (cur[i].z - prev[i].z) * a })); }
+
+function place(lm, label) {
+  const p0 = P(lm[0]), p5 = P(lm[5]), p9 = P(lm[9]), p13 = P(lm[13]), p14 = P(lm[14]), p17 = P(lm[17]);
+  const d = p14.clone().sub(p13).normalize();                 // along the finger
+  const center = p13.clone().lerp(p14, 0.42);
+  let n = p5.clone().sub(p0).cross(p17.clone().sub(p0)).normalize(); // palm normal
+  // MediaPipe labels assume a mirrored image; we feed it unmirrored frames.
+  if (label === "Right") n.negate();
+  n.multiplyScalar(flip);
+  const y = n.sub(d.clone().multiplyScalar(n.dot(d))).normalize(); // stone direction = back of hand
+  const x = new THREE.Vector3().crossVectors(y, d);
+  const basis = new THREE.Matrix4().makeBasis(x, y, d);
+  const fingerW = Math.hypot((lm[9].x - lm[13].x) * W, (lm[9].y - lm[13].y) * H) * 0.92 * userScale;
+  const s = fingerW / ringInner;
+  ringRoot.position.copy(center);
+  ringRoot.quaternion.setFromRotationMatrix(basis);
+  ringRoot.scale.setScalar(s);
+  ringRoot.visible = true;
+  // occluder cylinder along the finger
+  const len = p13.distanceTo(p14) * 1.6;
+  occ.position.copy(center);
+  occ.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d);
+  occ.scale.set(fingerW / 2 * 0.98, len, fingerW / 2 * 0.98);
+  occ.visible = true;
+}
+
+let lastT = -1;
+function loop() {
+  requestAnimationFrame(loop);
+  if (!landmarker || video.readyState < 2) { renderer.render(scene, camera); return; }
+  if (video.videoWidth !== W || video.videoHeight !== H) resize();
+  const t = performance.now();
+  if (t !== lastT) {
+    lastT = t;
+    const r = landmarker.detectForVideo(video, t);
+    if (r.landmarks && r.landmarks.length) {
+      const lm = r.landmarks[0];
+      smooth = smooth ? lerpLm(smooth, lm, 0.5) : lm;
+      place(smooth, r.handedness?.[0]?.[0]?.categoryName);
+      hint.textContent = "Move your hand slowly";
+    } else {
+      smooth = null; ringRoot.visible = false; occ.visible = false;
+      hint.textContent = "Show the back of your hand";
+    }
+  }
+  renderer.render(scene, camera);
+}
+
+document.getElementById("go").onclick = async () => {
+  document.getElementById("start").style.display = "none";
+  hint.textContent = "Starting…";
+  try { await Promise.all([startCamera(), initTracker()]); hint.textContent = "Show the back of your hand"; }
+  catch (e) { hint.textContent = "Camera not available"; console.error(e); }
+};
+document.getElementById("cam").onclick = () => { facing = facing === "user" ? "environment" : "user"; smooth = null; startCamera(); };
+document.getElementById("smaller").onclick = () => { userScale *= 0.92; };
+document.getElementById("bigger").onclick = () => { userScale *= 1.08; };
+document.getElementById("flip").onclick = () => { flip *= -1; };
+if (params.get("autostart")) document.getElementById("go").click();
+loop();
+</script>
+</body>
+</html>
