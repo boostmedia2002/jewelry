@@ -1226,7 +1226,8 @@ dialog .undo{bottom:24px}
   document.getElementById('stillBtn').addEventListener('click',function(){setStill(!still);});
   try{if(localStorage.getItem('bm-still'))setStill(true);}catch(e){}
   ['touchend','click','scroll'].forEach(function(ev){addEventListener(ev,function(){if(!hold&&!still)refill();},{passive:true});});
-  function holdPreviews(on){hold=on;if(on){playing.forEach(function(v){v.pause();});playing.clear();}else refill();}
+  function holdPreviews(on){hold=on;if(on){playing.forEach(function(v){v.pause();});playing.clear();document.querySelectorAll('video[data-src][src]').forEach(function(v){if(v.readyState<4){v.removeAttribute('src');v.load();v.classList.remove('on');v._held=1;}});}
+    else{document.querySelectorAll('video[data-src]').forEach(function(v){if(v._held){v._held=0;if(v.closest('.card'))near.observe(v);}});refill();}}
   document.querySelectorAll('video[data-auto]').forEach(function(v){io.observe(v);});
 
   /* gallery */
