@@ -832,6 +832,7 @@ dialog .undo{bottom:24px}
 .cb-form{display:flex;flex-direction:column;gap:12px}.cb-form[hidden]{display:none}.cb-form .btn{width:100%;align-self:stretch}.cb-form .agree{font-size:.8125rem;color:var(--muted)}
 .cb-one .cb-done{display:flex;flex-direction:column;gap:4px}.cb-one .cb-done[hidden]{display:none}
 .cb-wa{appearance:none;border:0;border-top:1px solid var(--line);background:none;color:var(--ink);font:inherit;cursor:pointer;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px 0 0;width:100%;text-align:start}.cb-wa .helpnum{min-height:48px;background:var(--wa,#0a7c3e);color:#fff}
+#gallery .scan-band{margin:14px 0 0}#extras{padding:0;min-height:0}
 </style>
 </head>
 <body>
@@ -945,6 +946,13 @@ dialog .undo{bottom:24px}
         <button type="button" data-p="b" aria-pressed="false">צמידים</button>
       </div>
       <div class="pwall" id="pwall" role="group" aria-labelledby="h-ph"><div class="jrows"></div></div>
+      <div class="scan-band"><div><b>לא מצאתם מה שחיפשתם?</b><span>שלחו קישור לעסק, ואשלח לכם רעיונות שמתאימים לו.</span></div><form class="hscan bscan" id="bscan" novalidate>
+            <label class="sr" for="bscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
+            <input type="text" id="bscanUrl" data-r="url" inputmode="url" autocomplete="url" dir="ltr" placeholder="לדוגמה: https://www.noa-diamonds.co.il/">
+            <label class="agree hagree"><input type="checkbox" data-r="agree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
+            <p class="hscan-err" data-r="err" role="alert" hidden></p>
+            <button class="btn gold" type="submit">שליחה בוואטסאפ <span class="arr" aria-hidden="true">←</span></button>
+          </form></div>
           <div class="box2 msub gal-models" id="models" hidden style="display:none" role="group" aria-labelledby="h-m">
           <span class="kicker">דוגמנית לסרטונים</span>
           <h3 id="h-m">אותה דוגמנית או דוגמן בכל הסרטונים שלכם</h3>
@@ -969,13 +977,7 @@ dialog .undo{bottom:24px}
           <div class="thumbs"><span><img src="m/ringhand-s.webp" srcset="m/ringhand-s.webp 240w, m/ringhand.webp 480w" sizes="(max-width:820px) 25vw, 180px" alt="טבעת זהב עם אבן מרובעת על יד של דוגמנית" loading="lazy" width="240" height="360"></span><span><img src="m/jacket-s.webp" srcset="m/jacket-s.webp 240w, m/jacket.webp 480w" sizes="(max-width:820px) 25vw, 180px" alt="דוגמן במעיל חום" loading="lazy" width="240" height="360"></span><span><img src="m/laugh-s.webp" srcset="m/laugh-s.webp 240w, m/laugh.webp 480w" sizes="(max-width:820px) 25vw, 180px" alt="דוגמנית צוחקת עם טבעת יהלומים ושרשרת טניס" loading="lazy" width="240" height="360"></span><span><img src="m/smilering-s.webp" srcset="m/smilering-s.webp 240w, m/smilering.webp 480w" sizes="(max-width:820px) 25vw, 180px" alt="דוגמנית מחייכת עם טבעת וצמיד" loading="lazy" width="240" height="360"></span><span><img src="m/coat-s.webp" srcset="m/coat-s.webp 240w, m/coat.webp 480w" sizes="(max-width:820px) 25vw, 180px" alt="דוגמנית הולכת בשדה במעיל פרווה" loading="lazy" width="240" height="360"></span><span><img src="m/pendant-s.webp" srcset="m/pendant-s.webp 240w, m/pendant.webp 480w" sizes="(max-width:820px) 25vw, 180px" alt="תליון יהלום, עגילים וטבעות זהב על דוגמנית" loading="lazy" width="240" height="360"></span><span><img src="m/cream-s.webp" srcset="m/cream-s.webp 240w, m/cream.webp 480w" sizes="(max-width:820px) 25vw, 180px" alt="קרם פנים בידיה של דוגמנית" loading="lazy" width="240" height="360"></span><span><img src="m/ringshands-s.webp" srcset="m/ringshands-s.webp 240w, m/ringshands.webp 480w" sizes="(max-width:820px) 25vw, 180px" alt="שלוש טבעות זהב על ידיים של דוגמנית" loading="lazy" width="240" height="360"></span></div>
         </article>
       </div>
-      <div class="scan-band"><div><b>לא יודעים מה לבחור?</b><span>צרפו קישור לאתר או לאינסטגרם שלכם, ונשלח לכם רעיונות לפרסומות שנבנו במיוחד בשביל העסק שלכם, על סמך מחקר.</span></div><form class="hscan bscan" id="bscan" novalidate>
-            <label class="sr" for="bscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
-            <input type="text" id="bscanUrl" data-r="url" inputmode="url" autocomplete="url" dir="ltr" placeholder="לדוגמה: https://www.noa-diamonds.co.il/">
-            <label class="agree hagree"><input type="checkbox" data-r="agree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
-            <p class="hscan-err" data-r="err" role="alert" hidden></p>
-            <button class="btn gold" type="submit">שליחה בוואטסאפ <span class="arr" aria-hidden="true">←</span></button>
-          </form></div>
+      
       
     </div>
   </section>
