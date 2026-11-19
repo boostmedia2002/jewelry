@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3D Jewelry Demo — Boost Media</title>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+<style>
+  :root{--ink:#161616;--muted:#6b6b6b;--line:#e7e3dc;--bg:#faf8f5}
+  *{box-sizing:border-box}
+  body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+  main{max-width:980px;margin:0 auto;padding:40px 20px 80px}
+  h1{font-size:clamp(28px,5vw,44px);line-height:1.1;margin:0 0 8px;letter-spacing:-.02em}
+  h2{font-size:22px;margin:56px 0 6px}
+  p.lead{color:var(--muted);margin:0 0 28px;max-width:60ch}
+  .viewer{width:100%;height:min(70vh,560px);background:#fff;border:1px solid var(--line);border-radius:20px}
+  model-viewer{width:100%;height:100%;--poster-color:transparent}
+  .ar{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);border:0;border-radius:999px;padding:12px 20px;background:var(--ink);color:#fff;font:600 15px system-ui,sans-serif}
+  .hint{color:var(--muted);font-size:14px;margin-top:10px}
+  .card{display:flex;gap:24px;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px}
+  .card img{width:260px;height:260px;border-radius:14px;display:block}
+  .card .t{flex:1;min-width:220px}
+  .price{font-weight:700;font-size:20px}
+  pre{background:#161616;color:#f1efe9;padding:16px;border-radius:14px;overflow:auto;font-size:13px;line-height:1.5}
+</style>
+</head>
+<body>
+<main>
+  <h1>Living Jewelry</h1>
+  <p class="lead">Drag to rotate. Pinch or scroll to zoom. On a phone, tap the AR button to place the ring in your room at real size.</p>
+
+  <div class="viewer">
+    <model-viewer src="ring.glb" alt="Gold solitaire ring in 3D"
+      camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="1500"
+      shadow-intensity="0.6" exposure="1.1" environment-image="neutral"
+      min-camera-orbit="auto auto 2%"
+      ar ar-modes="webxr scene-viewer quick-look" ar-scale="fixed">
+      <button slot="ar-button" class="ar">View in your space (AR)</button>
+    </model-viewer>
+  </div>
+  <p class="hint">Demo model. A real product is built from photos of the actual piece.</p>
+
+  <h2>On a regular store page</h2>
+  <p class="lead">The store keeps its normal photo. Only this photo gets a "360° View" button. The rest of the site stays the same.</p>
+  <div class="card">
+    <img src="ring-photo.svg" alt="Gold solitaire ring" data-model="ring.glb">
+    <div class="t">
+      <div>Solitaire Ring — 14K Gold</div>
+      <div class="price">₪2,490</div>
+      <p class="hint">Tap the "360° View" button on the photo.</p>
+    </div>
+  </div>
+
+  <h2>How a store adds it</h2>
+  <p class="lead">Step 1, once per site: paste this line into the site's custom code area.</p>
+<pre>&lt;script src="https://boostmedia2002.github.io/jewelry/3d-demo/ring3d.js" defer&gt;&lt;/script&gt;</pre>
+  <p class="lead">Step 2, per product: add the 3D link to the product photo.</p>
+<pre>&lt;img src="their-photo.jpg" data-model="https://boostmedia2002.github.io/jewelry/3d-demo/ring.glb"&gt;</pre>
+</main>
+<script src="ring3d.js" defer></script>
+</body>
+</html>
