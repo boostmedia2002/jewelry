@@ -814,6 +814,13 @@ dialog .undo{bottom:24px}
  .lb-more h3{font-size:.9375rem;font-weight:800;margin:0 0 10px;letter-spacing:0}
  .lb-mrow{display:flex;gap:4px}.lb-mrow button{flex:1;min-width:0;height:150px;border:0;padding:0;background:#000;cursor:pointer;overflow:hidden}.lb-mrow img{width:100%;height:100%;object-fit:cover;display:block}
 }
+
+.navbtn{display:none;color:inherit}
+#cbF{scroll-margin-top:calc(var(--nav) + 16px)}
+@media (max-width:1180px){.navbtn{display:inline-grid;place-items:center}.navbtn[aria-expanded=true]{background:var(--accent);color:var(--ink);border-color:transparent}
+.top nav.open{display:flex;flex-direction:column;gap:0;position:absolute;top:100%;inset-inline:0;z-index:5;background:var(--bg);border-top:1px solid var(--line);border-radius:0 0 16px 16px;box-shadow:0 18px 28px rgba(0,0,0,.28);padding:4px 16px 10px}
+.top nav.open a{min-height:52px;padding:0 4px;font-size:1.0625rem;font-weight:600;color:var(--ink);border-bottom:1px solid var(--line)}.top nav.open a:last-child{border-bottom:0}.top nav.open a::after{display:none}}
+@media (max-width:820px){.tools .sizehdr.navbtn{inset-inline-end:auto;inset-inline-start:var(--gut,16px);width:44px;min-width:44px}}
 </style>
 </head>
 <body>
@@ -824,12 +831,15 @@ dialog .undo{bottom:24px}
 <header class="top">
   <div class="wrap">
     <a class="mark" href="#top" aria-label="BOOST MEDIA, לראש העמוד">BOOST <i>MEDIA</i></a>
-    <nav aria-label="ניווט">
-            <a href="#gallery">קטלוג הפרסומות</a>
+    <nav aria-label="ניווט" id="topNav">
+      <a href="#how">איך הכל עובד?</a>
+      <a href="#gallery">קטלוג הפרסומות</a>
       <a href="#photos">קטלוג התמונות</a>
       <a href="#faq">שאלות</a>
+      <a href="#cbF">להשאיר פרטים</a>
     </nav>
     <div class="tools">
+      <button class="size sizehdr navbtn" type="button" id="navBtn" aria-expanded="false" aria-controls="topNav" aria-label="תפריט"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
       <button class="size sizehdr" type="button" id="sizeBtn" aria-pressed="false" aria-label="הגדלת טקסט">א+</button>
       <button class="size sizehdr likehdr" type="button" id="likedTop" aria-pressed="false" aria-label="הסרטונים שאהבתי"><span class="lh" aria-hidden="true">♥</span><span id="likedTopN">0</span></button>
       <button class="btn cartbtn" type="button" id="cartTop">ההזמנות שלי <span class="n" id="cartN">0</span></button>
@@ -1142,6 +1152,13 @@ dialog .undo{bottom:24px}
 
   /* WhatsApp bubble steps aside while the visitor scrolls down */
   (function(){var f=document.querySelector('.wafab');if(!f)return;var y0=scrollY,tk=0;addEventListener('scroll',function(){if(tk)return;tk=requestAnimationFrame(function(){tk=0;var y=scrollY,d=y-y0;if(Math.abs(d)<8)return;f.classList.toggle('away',d>0&&y>200);y0=y;});},{passive:true});})();
+  /* phone menu: the three lines open the same links the wide header shows */
+  (function(){var nb=document.getElementById('navBtn'),nv=document.getElementById('topNav');if(!nb||!nv)return;
+    function set(o){nv.classList.toggle('open',o);nb.setAttribute('aria-expanded',o);}
+    nb.addEventListener('click',function(e){e.stopPropagation();set(!nv.classList.contains('open'));});
+    nv.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
+    document.addEventListener('click',function(e){if(nv.classList.contains('open')&&!nv.contains(e.target))set(false);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nv.classList.contains('open')){set(false);nb.focus();}});})();
   /* call-back request: name + phone go to the leads form (Google Forms), same list as contact/ */
   (function(){var f=document.getElementById('cbF');if(!f)return;var n=document.getElementById('cbName'),ph=document.getElementById('cbPhone'),ag=document.getElementById('cbAgree'),msg=document.getElementById('cbMsg'),bt=document.getElementById('cbBtn');
     function err(t,el){msg.textContent=t;msg.hidden=false;el.focus();}
