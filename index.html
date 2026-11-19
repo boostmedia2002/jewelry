@@ -842,6 +842,10 @@ dialog .undo{bottom:24px}
 .phonehdr{display:inline-grid;place-items:center;background:var(--wa,#0a7c3e);color:#fff;border-color:transparent}
 @media (max-width:600px){.tools .sizehdr.phonehdr{inset-inline-end:calc(var(--gut,16px) + 104px);width:44px;min-width:44px;padding:0}.top .mark{justify-self:start;margin-right:52px}}
 @media (max-width:360px){.tools .sizehdr.phonehdr{inset-inline-end:calc(var(--gut,16px) + 80px);width:36px;min-width:36px}.top .mark{margin-right:47px;font-size:.9rem}}
+.hw-d{position:relative}
+.hw-dx{position:absolute;top:8px;inset-inline-end:8px;z-index:2;width:46px;height:46px;border-radius:23px;padding:0;background:var(--accent);color:var(--ink);font-size:1.7rem;font-weight:700;line-height:1;text-decoration:none;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.hw-dx2{appearance:none;display:block;width:100%;min-height:48px;margin-top:14px;border-radius:12px;border:1.5px solid rgba(246,243,236,.45);background:transparent;color:var(--inv-ink);font:inherit;font-weight:600;font-size:1rem;cursor:pointer}
+.hw-dx2:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 </style>
 </head>
 <body>
@@ -914,14 +918,14 @@ dialog .undo{bottom:24px}
         <ol class="hw-line stp"><li>בוחרים פרסומת או תמונה מהקטלוג ולוחצים עליה.</li><li>מצרפים בחלון שנפתח תמונות של התכשיט שלכם.</li><li>שולחים לי בוואטסאפ בלחיצה אחת, ותוך 2 ימי עסקים מקבלים פרסומת מוכנה למוצר שלכם.</li></ol>
         <div class="hw-row"><button type="button" class="hw-s" aria-expanded="false" data-big="how/b1.webp?6" data-h="בוחרים פרסומת" data-d="גוללים בקטלוג ומסננים לפי סגנון. לחיצה על + או על הפרסומת עצמה פותחת אותה עם המחיר. בסרטונים, הלב שומר אותם לרשימת &quot;אהבתי&quot; כדי לחזור אליהם אחר כך." data-ill="0"><span class="ph"><img src="how/b1-s.webp?6" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">1</i></span><b>בוחרים</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/b2.webp?6" data-h="מצרפים תמונות של התכשיט" data-d="בחלון שנפתח יש משבצת לכל סוג תכשיט שמופיע בפרסומת, למשל טבעת, צמיד ועגילים. מעלים תמונות מהטלפון, וכמה שיותר זוויות, יותר טוב. לא חייבים את כל הסוגים, ואפשר להוסיף גם לוגו והערות." data-ill="0"><span class="ph"><img src="how/b2-s.webp?6" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">2</i></span><b>מצרפים תכשיט</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/b3.webp?8" data-h="שולחים בוואטסאפ ומקבלים" data-d="לוחצים &quot;שליחה אליי בוואטסאפ&quot;, או מוסיפים לסל כדי להזמין כמה יחד. ההזמנה נפתחת בוואטסאפ כהודעה מוכנה, ואתם רק שולחים. תוך 2 ימי עסקים מקבלים את הפרסומת עם התכשיטים שלכם." data-ill="1"><span class="ph"><img src="how/b3-s.webp?8" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">3</i><em>המחשה</em></span><b>שולחים ומקבלים</b></button></div>
         <p class="hw-hint">לחיצה על תמונה פותחת הסבר מפורט.</p>
-        <div class="hw-d" hidden><div class="hw-dimg"><img alt=""><em hidden>המחשה</em></div><div class="hw-dt"><h3></h3><p></p><button type="button" class="hw-dx">סגירה</button></div></div>
+        <div class="hw-d" hidden><div class="hw-dimg"><img alt=""><em hidden>המחשה</em></div><div class="hw-dt"><h3></h3><p></p><button type="button" class="hw-dx2">סגירה</button><button type="button" class="hw-dx" aria-label="סגירת ההסבר">×</button></div></div>
         <div class="hw-cta"><a class="btn gold" href="#gallery">לקטלוג הפרסומות <span class="arr" aria-hidden="true">←</span></a></div>
       </div>
       <div class="hw-p" id="how-scan" role="tabpanel" aria-labelledby="hwt-scan">
         <ol class="hw-line stp"><li>מדביקים קישור לאתר או לאינסטגרם של העסק.</li><li>אנחנו סורקים את המוצרים, הצבעים והסגנון שלכם.</li><li>שולחים לכם בוואטסאפ 3 תסריטים שנכתבו לעסק, כל אחד עם מחיר.</li></ol>
         <div class="hw-row"><button type="button" class="hw-s" aria-expanded="false" data-big="how/a1.webp?12" data-h="מדביקים קישור לעסק" data-d="מדביקים קישור לאתר או לאינסטגרם. אנחנו &lt;b&gt;סורקים את העסק&lt;/b&gt;, לומדים את המוצרים והסגנון, ו&lt;b&gt;בוחרים רעיונות שמתאימים בדיוק לו&lt;/b&gt;." data-ill="0"><span class="ph"><img src="how/a1-s.webp?12" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">1</i></span><b>מדביקים קישור</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/a2.webp?7" data-h="מקבלים 3 תסריטים ובוחרים" data-d="לומדים את המוצרים, הצבעים והסגנון שלכם, ושולחים לכם בוואטסאפ 3 תסריטים שנכתבו בשביל העסק שלכם. בכל תסריט: המוצר שנבחר מהאתר שלכם, הסיפור בקצרה, הסצנות והמחיר. עונים איזה תסריט אהבתם, למשל &quot;אחד נשמע טוב&quot;." data-ill="1"><span class="ph"><img src="how/a2-s.webp?7" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">2</i><em>המחשה</em></span><b>בוחרים תסריט</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/a3.webp?7" data-h="מקבלים את הסרטון" data-d="תוך 2 ימי עסקים הסרטון מגיע אליכם בוואטסאפ, מוכן לאינסטגרם, לטיקטוק ולאתר. רוצים לשנות משהו קטן? כותבים לנו." data-ill="1"><span class="ph"><img src="how/a3-s.webp?7" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">3</i><em>המחשה</em></span><b>מקבלים סרטון</b></button></div>
         <p class="hw-hint">לחיצה על תמונה פותחת הסבר מפורט.</p>
-        <div class="hw-d" hidden><div class="hw-dimg"><img alt=""><em hidden>המחשה</em></div><div class="hw-dt"><h3></h3><p></p><button type="button" class="hw-dx">סגירה</button></div></div>
+        <div class="hw-d" hidden><div class="hw-dimg"><img alt=""><em hidden>המחשה</em></div><div class="hw-dt"><h3></h3><p></p><button type="button" class="hw-dx2">סגירה</button><button type="button" class="hw-dx" aria-label="סגירת ההסבר">×</button></div></div>
         <div class="hw-cta"><button class="btn gold" type="button" data-scan>שלחו לי רעיונות <span class="arr" aria-hidden="true">←</span></button></div>
       </div>
     </div>
@@ -1289,7 +1293,7 @@ dialog .undo{bottom:24px}
     document.querySelectorAll('.hw-p').forEach(function(p){var d=p.querySelector('.hw-d');
       p.querySelectorAll('.hw-s').forEach(function(b){b.addEventListener('click',function(){var was=b.getAttribute('aria-expanded')==='true';closeD(p);if(was)return;
         b.setAttribute('aria-expanded','true');var im=d.querySelector('img');im.src=b.dataset.big;im.alt=b.dataset.h;d.querySelector('em').hidden=b.dataset.ill!=='1';d.querySelector('h3').textContent=b.dataset.h;d.querySelector('p').innerHTML=b.dataset.d;d.hidden=false;});});
-      d.querySelector('.hw-dx').addEventListener('click',function(){closeD(p);});});
+      d.querySelectorAll('.hw-dx,.hw-dx2').forEach(function(x){x.addEventListener('click',function(){closeD(p);});});});
     document.querySelectorAll('a[href="#how-cat"],a[href="#how-scan"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();pick(a.getAttribute('href').slice(5));document.getElementById('how').scrollIntoView({block:'start'});});});
     pick('cat');})();
   /* headings fill with colour as they move up the screen */
