@@ -477,7 +477,7 @@ body>.wafb{position:fixed;inset-inline:16px;bottom:calc(88px + env(safe-area-ins
 .hscan{display:flex;flex-direction:column;gap:10px;margin-top:22px}
 .hscan input{flex:1;min-width:0;min-height:56px;padding:0 18px;border-radius:12px;border:1.5px solid rgba(246,243,236,.35);background:rgba(246,243,236,.08);color:var(--inv-ink);font-size:1.0625rem}
 .hscan input::placeholder{color:var(--inv-muted)}
-input[inputmode=url]::placeholder{font-size:.875rem}input[inputmode=url]:placeholder-shown{text-overflow:ellipsis}
+input[inputmode=url]::placeholder{font-size:.875rem}input[inputmode=url]:placeholder-shown{text-overflow:ellipsis}#hscanNote:placeholder-shown{text-overflow:ellipsis}@media (max-width:360px){#hscanNote::placeholder{font-size:.8125rem}}
 .hscan input:focus{outline:3px solid var(--accent);outline-offset:1px;border-color:transparent}
 .hscan .btn{flex:none;width:100%}
 .hscan input[type=text]{flex:none}
@@ -849,7 +849,7 @@ dialog .undo{bottom:24px}
             <label class="sr" for="hscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
             <input type="text" id="hscanUrl" data-r="url" inputmode="url" autocomplete="url" dir="ltr" placeholder="לדוגמה: https://www.noa-diamonds.co.il/">
             <label class="sr" for="hscanNote">הערות (לא חובה)</label>
-            <input type="text" id="hscanNote" data-r="note" placeholder="הערות (לא חובה)">
+            <input type="text" id="hscanNote" data-r="note" placeholder="הערות: מוצר ספציפי? רעיון ספציפי? ...">
             <div class="hdest" data-r="dest" role="group" aria-labelledby="hdestL"><span class="hdest-l" id="hdestL">לאן הסרטון מיועד? <small>(לא חובה, אפשר לסמן כמה)</small></span><div class="hdest-b"><button type="button" aria-pressed="false">אתר</button><button type="button" aria-pressed="false">אינסטגרם</button><button type="button" aria-pressed="false">פייסבוק</button></div></div>
             <label class="agree hagree"><input type="checkbox" id="hscanAgree" data-r="agree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
             <p class="hscan-err" id="hscanErr" data-r="err" role="alert" hidden></p>
