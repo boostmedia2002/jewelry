@@ -68,7 +68,7 @@
   var tPhoto = document.getElementById("t-photo"), t360 = document.getElementById("t-360"), mv = null;
   function show360(){
     if (!mv) {
-      mv = document.createElement("model-viewer");
+      mv = document.createElement("model-viewer"); mv.setAttribute("dir","ltr"); mv.setAttribute("camera-orbit","0deg 75deg 115%");
       mv.setAttribute("src","topaz/ring.glb"); mv.setAttribute("ios-src","topaz/ring.usdz");
       ["camera-controls","auto-rotate","ar"].forEach(function(a){ mv.setAttribute(a,""); });
       mv.setAttribute("touch-action","pan-y"); mv.setAttribute("interaction-prompt","none");
@@ -76,7 +76,7 @@
       mv.setAttribute("shadow-intensity","0.5"); mv.setAttribute("min-camera-orbit","auto auto 2%");
       mv.setAttribute("ar-modes","scene-viewer webxr quick-look"); mv.setAttribute("ar-scale","fixed");
       mv.setAttribute("alt","טבעת טופז כחול בתלת מימד");
-      mv.innerHTML = '<button slot="ar-button" class="ar">צפו בטבעת על השולחן</button><div class="hint" id="hint">גררו לסיבוב · צבטו להגדלה</div>';
+      mv.innerHTML = '<button slot="ar-button" class="ar" dir="rtl">צפו בטבעת על השולחן</button><div class="hint" id="hint" dir="rtl">גררו לסיבוב · צבטו להגדלה</div>';
       stage.appendChild(mv);
       var hint = mv.querySelector("#hint"), hide = function(){ hint.classList.add("off"); };
       mv.addEventListener("camera-change", function(e){ if (e.detail && e.detail.source === "user-interaction") hide(); });
