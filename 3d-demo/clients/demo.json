@@ -1,0 +1,11 @@
+{
+  "store": "demo",
+  "products": [
+    {
+      "match": "store-plain",
+      "name": "טבעת טופז כחול עם הילה",
+      "glb": "topaz/ring.glb",
+      "usdz": "topaz/ring.usdz"
+    }
+  ]
+}
