@@ -1000,6 +1000,24 @@ main > section.hero{display:none!important}
 .pc-row.one{grid-template-columns:1fr}
 #lbPrice .lb-min{font-style:normal;font-size:.875rem;font-weight:800;color:#131416;background:#D9FE16;border-radius:999px;padding:4px 12px}
 .oup{margin:0 0 10px;color:#D9FE16;font-size:.9375rem;font-weight:700}
+.ph-head{margin-top:20px!important;margin-bottom:6px!important}
+.ph-head h2{font-size:1.5rem!important}
+.ph-head+.fits-line{font-size:.9375rem;margin-bottom:8px!important}
+.ph-price{margin:0 0 8px!important;padding:0!important;background:none!important}
+.ph-price .pc-t{flex-direction:row;justify-content:center;align-items:baseline;gap:10px;padding:8px 14px;border-radius:999px;width:max-content}
+.ph-price .pc-t .n{font-size:.875rem}.ph-price .pc-t b{font-size:1.0625rem}
+.pfbox{margin:0 0 10px}
+.pfbox summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid #3a3b3d;color:#e6e6e6;font-weight:700;font-size:.9375rem;-webkit-tap-highlight-color:transparent}
+.pfbox summary::-webkit-details-marker{display:none}
+.pfbox summary::after{content:"";width:8px;height:8px;border-left:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg) translateY(-2px);transition:transform 180ms cubic-bezier(.23,1,.32,1)}
+.pfbox[open] summary::after{transform:rotate(135deg) translateY(-2px)}
+.pfbox summary:active{transform:scale(.97)}.pfbox summary:focus-visible{outline:3px solid #D9FE16;outline-offset:2px}
+.pfbox .filters.pf{position:static;padding:8px 0 0!important;margin:0!important}
+.pricecard:not(.ph-price){padding:10px 12px;margin:0 0 10px;border-radius:14px}
+.pricecard:not(.ph-price) .pc-h{margin-bottom:6px}.pricecard:not(.ph-price) .pc-h b{font-size:.9375rem}
+.pricecard:not(.ph-price) .pc-row{gap:6px}
+.pricecard:not(.ph-price) .pc-t{padding:8px 4px;border-radius:10px;gap:0}
+.pricecard:not(.ph-price) .pc-t .n{font-size:.75rem;line-height:1.3}.pricecard:not(.ph-price) .pc-t b{font-size:1.1875rem}
 </style>
 </head>
 <body>
@@ -1098,6 +1116,14 @@ main > section.hero{display:none!important}
       <div class="head"><h2 id="h-g" class="fillh">קטלוג הפרסומות</h2></div>
       <p class="fits-line mo-wh__text" data-moment="word-highlight"><strong>כל פרסומת מתאימה לכל מוצר.</strong> בוחרים סרטון שאהבתם, מצרפים תמונה של התכשיטים שלכם ואני מכין הכל מחדש עם התכשיטים שלכם. המוצר מתחלף, <strong>והרעיון נשאר.</strong></p>
       <div class="a11y-row"><button class="still" type="button" id="stillBtn" aria-pressed="false"><span aria-hidden="true">⏸</span> <span id="stillT">עצירת הסרטונים</span></button></div>
+      <div class="pricecard" aria-label="מחירון">
+        <div class="pc-h"><b>מחירון</b></div>
+        <div class="pc-row">
+          <div class="pc-t"><span class="n">סרטון עד 10 שניות</span><b>50 ₪</b></div>
+          <div class="pc-t"><span class="n">סרטון מעל 10 שניות</span><b>70 ₪</b></div>
+          <div class="pc-t best"><span class="n">5 סרטונים ומעלה</span><b>10% הנחה</b></div>
+        </div>
+      </div>
       <div class="vfbox" role="group" aria-label="סינון הסרטונים, אפשר לבחור כמה">
         <div class="filters vf" role="group" aria-label="סגנון">
           <button type="button" data-f="viral" aria-pressed="false">טרנדי</button>
@@ -1112,28 +1138,20 @@ main > section.hero{display:none!important}
           <button type="button" data-j="r" aria-pressed="false">טבעת</button>
         </div>
       </div>
-      <div class="pricecard" aria-label="מחירון">
-        <div class="pc-h"><b>מחירון</b></div>
-        <div class="pc-row">
-          <div class="pc-t"><span class="n">סרטון עד 10 שניות</span><b>50 ₪</b></div>
-          <div class="pc-t"><span class="n">סרטון מעל 10 שניות</span><b>70 ₪</b></div>
-          <div class="pc-t best"><span class="n">5 סרטונים ומעלה</span><b>10% הנחה</b></div>
-        </div>
-      </div>
       <div class="liked-bar" id="likedBar" hidden><b><span aria-hidden="true">♥</span> הסרטונים שאהבתי</b><div class="lbar-b"><button type="button" class="lbar-go" id="likedCart">הוספת הכל לסל והמשך לקופה</button><button type="button" class="lbar-x" id="likedExit">חזרה לכל הסרטונים</button></div></div>
       <p class="liked-empty" id="likedEmpty" hidden>עוד לא סימנתם סרטונים. לחצו על הלב בסרטון שאהבתם, והוא יישמר כאן.</p>
       <div class="wall" id="wall"></div>
       <div class="head ph-head" id="photos"><h2 id="h-ph" class="fillh">תמונות קמפיינים</h2></div>
       <p class="fits-line">בוחרים תמונה שאהבתם, ואני מכין אותה מחדש עם התכשיטים שלכם.</p>
       <div class="pricecard ph-price"><div class="pc-row one"><div class="pc-t best"><span class="n">10 תמונות</span><b>100 ₪</b></div></div></div>
-      <p class="ftitle"><b>סינון לפי סוג תכשיט</b><span>אפשר לבחור כמה</span></p>
+      <details class="pfbox"><summary>סינון לפי סוג תכשיט</summary>
       <div class="filters pf" id="pfilt" role="group" aria-label="סינון לפי סוג תכשיט, אפשר לבחור כמה">
         <button type="button" data-p="all" aria-pressed="true">הכל</button>
         <button type="button" data-p="e" aria-pressed="false">עגילים</button>
         <button type="button" data-p="n" aria-pressed="false">שרשראות</button>
         <button type="button" data-p="r" aria-pressed="false">טבעות</button>
         <button type="button" data-p="b" aria-pressed="false">צמידים</button>
-      </div>
+      </div></details>
       <div class="pwall" id="pwall" role="group" aria-labelledby="h-ph"><div class="jrows"></div></div>
       <div class="scan-band"><div><b>לא מצאתם מה שחיפשתם?</b><span>שלחו קישור לעסק, ואשלח לכם רעיונות שמתאימים לו.</span></div><form class="hscan bscan" id="bscan" novalidate>
             <label class="sr" for="bscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
