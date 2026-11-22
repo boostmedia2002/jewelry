@@ -1,6 +1,6 @@
 <!doctype html>
 <html data-logo="a" lang="he" dir="rtl" data-type="service" data-radius="soft" data-buttons="solid" data-motion translate="no">
-<script>document.documentElement.classList.add("js")</script>
+<script>document.documentElement.classList.add("js");(function(){var m=/[?&]d=([abc])/.exec(location.search);document.documentElement.setAttribute("data-desk",m?m[1]:"a");})()</script>
 <head>
 <meta charset="utf-8">
 <meta name="google" content="notranslate">
@@ -1032,6 +1032,22 @@ main > section.hero{display:none!important}
 .pv-in:not(.wide)>.pv-st,.pv-in:not(.wide)>.pv-paths,.pv-in:not(.wide)>.pv-link{grid-column:1}
 .pv-in:not(.wide)>.pv-scan{grid-column:2;grid-row:1 / span 3;align-self:center;margin-top:0}
 }
+@media(min-width:1024px){
+/* B: story in the middle, scan block as a wide band under it, catalog full width */
+html[data-desk=b] .pv-in:not(.wide){display:block;max-width:1120px!important}
+html[data-desk=b] .pv-in:not(.wide)>.pv-st,html[data-desk=b] .pv-in:not(.wide)>.pv-paths,html[data-desk=b] .pv-in:not(.wide)>.pv-link{max-width:440px;margin-inline:auto}
+html[data-desk=b] .pv-in:not(.wide)>.pv-scan{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;column-gap:40px;align-items:center;padding:28px 32px}
+html[data-desk=b] .pv-scan>h2,html[data-desk=b] .pv-scan>.pv-idea,html[data-desk=b] .pv-scan>.pv-steps{grid-column:1}
+html[data-desk=b] .pv-scan>form{grid-column:2;grid-row:1 / span 3}
+html[data-desk=b] .pv-scan>.pv-mini{grid-column:2}
+html[data-desk=b] #gallery .wrap>*{max-width:1320px!important}
+/* C: story and scan block stay in a side column while the catalog scrolls */
+html[data-desk=c] main{display:grid;grid-template-columns:400px minmax(0,1fr);align-items:start}
+html[data-desk=c] main>*{grid-column:2;min-width:0}
+html[data-desk=c] main>.pv{grid-column:1;grid-row:1 / span 12;position:sticky;top:var(--nav);max-height:calc(100vh - var(--nav));overflow:auto;padding-inline:20px}
+html[data-desk=c] .pv-in:not(.wide){display:block;max-width:360px!important}
+html[data-desk=c] #gallery .wrap>*{max-width:none!important}
+}
 </style>
 </head>
 <body>
@@ -1492,7 +1508,7 @@ main > section.hero{display:none!important}
   wall.addEventListener('click',function(e){var b=e.target.closest('.vs-l');if(!b)return;e.stopPropagation();var id=b.closest('.card').dataset.id,on=!liked[id];if(on)liked[id]=1;else delete liked[id];
     var d=stat[id]||(stat[id]={});d.l=Math.max(0,(d.l||0)+(on?1:-1));try{localStorage.setItem('bm-liked',JSON.stringify(liked));}catch(e2){}if(!stMe)stInc(id,'l',on?1:-1);stPaint();likedUp();toast(on?'נשמר ברשימת \u201cאהבתי\u201d':'הוסר מרשימת \u201cאהבתי\u201d',null);},true);
   /* rows of 3 that fill the width at the posters' real proportions; a leftover of 4 becomes 2+2, never 4 in a row */
-  function layout(){var W=wall.clientWidth,G=4,PER=W>=900?6:3;if(!W)return;
+  function layout(){var W=wall.clientWidth,G=4,PER=W>=900?6:W>=600?4:3;if(!W)return;
     wall.querySelectorAll('.wsec').forEach(function(sec){if(sec.hidden)return;var cs=[].slice.call(sec.querySelectorAll('.card')).filter(function(c){return !c.hidden;}),n=cs.length,k=0,typ=0;
       while(k<n){var left=n-k,take=left===PER+1?Math.ceil(left/2):Math.min(PER,left),part=cs.slice(k,k+take),sum=0;k+=take;part.forEach(function(c){sum+=+c.dataset.ar;});
         var h=(W-G*(take-1))/sum;if(take===PER&&!typ)typ=h;
@@ -1535,7 +1551,7 @@ main > section.hero{display:none!important}
     document.getElementById('fsumV').textContent=inP?(pset.length?pset.map(function(k){return PT[k];}).join(', '):'הכל'):(likedMode?'אהבתי':(fset.length?fset.map(function(k){return NM[k];}).join(', '):'הכל'));}
   addEventListener('scroll',function(){if(fsT)return;fsT=requestAnimationFrame(function(){fsT=0;fsumUp();});},{passive:true});addEventListener('resize',fsumUp);
   document.getElementById('fsumB').addEventListener('click',function(){var el=fsZone==='p'?document.getElementById('pfilt'):document.querySelector('#gallery .filters:not(.pf)');el.scrollIntoView({block:'center',behavior:'auto'});});
-  function layoutP(){var W=pwall.clientWidth,G=4,PP=W>=900?7:4;if(!W)return;var cs=[].slice.call(pwall.querySelectorAll('.card')).filter(function(c){return !c.hidden;}),n=cs.length,k=0,typ=0;
+  function layoutP(){var W=pwall.clientWidth,G=4,PP=W>=900?7:W>=600?5:4;if(!W)return;var cs=[].slice.call(pwall.querySelectorAll('.card')).filter(function(c){return !c.hidden;}),n=cs.length,k=0,typ=0;
     while(k<n){var left=n-k,take=left===PP+1?Math.ceil(left/2):Math.min(PP,left),part=cs.slice(k,k+take),sum=0;k+=take;part.forEach(function(c){sum+=+c.dataset.ar;});
       var h=(W-G*(take-1))/sum;if(take===PP&&!typ)typ=h;if(take<PP)h=Math.min(h,(typ||h)*1.35);
       part.forEach(function(c){c.style.width=(h*c.dataset.ar-.03).toFixed(2)+'px';c.style.height=h.toFixed(2)+'px';});}}
