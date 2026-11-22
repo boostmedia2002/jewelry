@@ -1035,7 +1035,16 @@ main > section.hero{display:none!important}
 @media(min-width:1024px){
 /* B: story in the middle, scan block as a wide band under it, catalog full width */
 html[data-desk=b] .pv-in:not(.wide){display:block;max-width:1120px!important}
-html[data-desk=b] .pv-in:not(.wide)>.pv-st,html[data-desk=b] .pv-in:not(.wide)>.pv-paths,html[data-desk=b] .pv-in:not(.wide)>.pv-link{max-width:440px;margin-inline:auto}
+html[data-desk=b] .pv-in:not(.wide){max-width:1320px!important}
+html[data-desk=b] .pv-in:not(.wide)>.pv-st{aspect-ratio:auto;height:min(68vh,620px);width:100%}
+html[data-desk=b] .pv-st>img,html[data-desk=b] .pv-st>video{object-fit:contain!important;background:transparent}
+html[data-desk=b] .pv-st::before{content:"";position:absolute;inset:-60px;background:url(p/work-24.webp) center/cover;filter:blur(46px) brightness(.55);z-index:0}
+html[data-desk=b] .pv-st .bf img:first-child{grid-column:auto}
+html[data-desk=b] .pv-st .bf img{object-fit:contain;background:#131416}
+html[data-desk=b] .pv-st .bf{grid-template-columns:repeat(3,1fr);grid-template-rows:1fr;padding:18px 18px 150px;gap:12px}
+html[data-desk=b] .pv-st .bf img{border-radius:12px}
+html[data-desk=b] .pv-lib{width:104%;grid-template-columns:repeat(16,1fr)}
+html[data-desk=b] .pv-in:not(.wide)>.pv-paths,html[data-desk=b] .pv-in:not(.wide)>.pv-link{max-width:520px;margin-inline:auto}
 html[data-desk=b] .pv-in:not(.wide)>.pv-scan{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;column-gap:40px;align-items:center;padding:28px 32px}
 html[data-desk=b] .pv-scan>h2,html[data-desk=b] .pv-scan>.pv-idea,html[data-desk=b] .pv-scan>.pv-steps{grid-column:1}
 html[data-desk=b] .pv-scan>form{grid-column:2;grid-row:1 / span 3}
