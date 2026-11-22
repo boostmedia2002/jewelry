@@ -998,6 +998,7 @@ main > section.hero{display:none!important}
 #oSumV bdi,#oSumV .oldp{display:inline-block;unicode-bidi:isolate}#oSumV .oldp{font-size:.9375rem;font-weight:500;color:#8A8B8D;margin-inline-end:10px}
 .odisc{margin:6px 0 0;color:#D9FE16;font-size:.875rem;font-weight:700}
 .pc-row.one{grid-template-columns:1fr}
+#lbPrice .lb-min{font-style:normal;font-size:.875rem;font-weight:800;color:#131416;background:#D9FE16;border-radius:999px;padding:4px 12px}
 </style>
 </head>
 <body>
@@ -1608,14 +1609,14 @@ main > section.hero{display:none!important}
     document.getElementById('lbT').textContent=i.ph?'תמונת קמפיין · תמונה '+dispNum(id):NM[grp(i)]+' · סרטון '+dispNum(id)+(i.src?' · צילום בסיס: '+i.src:'');
     document.getElementById('lbName').textContent=i.t;
     var ft=document.getElementById('lbFit');ft.textContent='';ft.hidden=!m.f;if(m.f){var fb=document.createElement('b');fb.textContent='מתאים ל: ';ft.appendChild(fb);ft.appendChild(document.createTextNode(m.f));}
-    document.getElementById('lbPrice').innerHTML=i.ph?'<b>100 ₪</b><span>ל-10 תמונות</span>':'<b>'+vp(id)+' ₪</b><span>'+(vp(id)===50?'סרטון עד 10 שניות':'סרטון מעל 10 שניות')+' · 5 סרטונים ומעלה: 10% הנחה</span>';
+    document.getElementById('lbPrice').innerHTML=i.ph?'<b>100 ₪</b><span>ל-10 תמונות</span><em class="lb-min">מינימום 10 תמונות</em>':'<b>'+vp(id)+' ₪</b><span>'+(vp(id)===50?'סרטון עד 10 שניות':'סרטון מעל 10 שניות')+' · 5 סרטונים ומעלה: 10% הנחה</span>';
     document.getElementById('lbBT').textContent=m.b?'הוסיפו כאן את התמונה שלכם':'הוסיפו כאן תמונות של המוצרים שלכם';
     var sb=document.getElementById('lbSub');sb.textContent=m.t.length>1?'לא חייבים את כולם. אפשר להעלות, למשל, רק '+m.t[0][0]+' ולדלג על השאר.':'';sb.hidden=!sb.textContent;
     var tl=document.getElementById('lbTiles');tl.textContent='';m.t.forEach(function(x){tl.appendChild(mkTile(x[0],x[1],x[0]));});
     var tip=document.getElementById('lbTip');tip.textContent=(m.x?m.x+' ':'')+(m.b?'אפשר כמה תמונות.':'אין הגבלה על מספר התמונות: כמה שיותר זוויות, יותר טוב. צלמו באור טוב ועל רקע נקי.');tip.hidden=!tip.textContent;
     var lg=document.getElementById('lbLogo');lg.textContent='';lg.appendChild(mkTile('לוגו','','לוגו'));document.getElementById('lbLogoT').textContent='קובץ PNG או JPG · יופיע '+m.l+' · לא חובה';
     var dn=document.getElementById('lbDone');dn.hidden=!a.length;dn.textContent=a.length?'✓ הועלו '+pdesc(a):'';
-    var pk=document.getElementById('lbPick');pk.textContent=inCart?'✓ בסל · הסרה מהסל':'הוספה לסל';pk.setAttribute('aria-pressed',inCart);var pn=document.getElementById('phNeed');if(!pn){pn=document.createElement('p');pn.id='phNeed';pn.className='ph-need';pk.insertAdjacentElement('afterend',pn);}var ps=phShort();var fi=lbId&&find(lbId);pn.hidden=!(fi&&fi.ph&&(ps||!nPh()));pn.textContent=!nPh()?'תמונות מזמינים לפחות 10. הוסיפו את התמונה לסל והמשיכו לבחור.':'בחרתם '+nPh()+' מתוך 10. צריך להשלים עוד '+(ps===1?'תמונה אחת':ps+' תמונות')+' כדי לשלוח.';}
+    var pk=document.getElementById('lbPick');pk.textContent=inCart?'✓ בסל · הסרה מהסל':'הוספה לסל';pk.setAttribute('aria-pressed',inCart);}
   /* the viewer takes the media's own shape: nothing is cut off and no black bars */
   var stAR=0;
   function fitStage(ar){if(ar)stAR=ar;ar=stAR;var m=stage.querySelector('video,img.lb-ph');if(!m||!ar)return;
@@ -1639,7 +1640,7 @@ main > section.hero{display:none!important}
   lbNote.addEventListener('input',function(){var v=lbNote.value;dnote[lbId]=v;if(sel.indexOf(lbId)>=0){if(v.trim())inotes[lbId]=v;else delete inotes[lbId];save();}});
   document.getElementById('lbPick').addEventListener('click',function(){var id=lbId,b4=snap(),k=sel.indexOf(id),a=lbArr(),nv=lbNote.value.trim();
     if(k<0){sel.push(id);if(a.length)prod[id]=a;if(nv)inotes[id]=nv;}else{sel.splice(k,1);delete prod[id];delete inotes[id];}
-    render();toast(isPh(id)?(k<0?(phShort()?'נוספה · '+nPh()+' מתוך 10, חסרות עוד '+phShort():nPh()+' תמונות בסל · אפשר לשלוח'):'התמונה הוסרה מהסל'):(k<0?'הסרטון נוסף לסל':'הסרטון הוסר מהסל'),b4);});
+    render();toast(isPh(id)?(k<0?'התמונה נוספה לסל':'התמונה הוסרה מהסל'):(k<0?'הסרטון נוסף לסל':'הסרטון הוסר מהסל'),b4);});
   document.getElementById('lbAgree').addEventListener('change',function(){document.getElementById('lbErr').hidden=true;});
   document.getElementById('lbSend').addEventListener('click',function(){var ag=document.getElementById('lbAgree'),er=document.getElementById('lbErr');
     if(!ag.checked){er.textContent='כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.';er.hidden=false;ag.focus();return;}
@@ -1699,7 +1700,7 @@ main > section.hero{display:none!important}
       setTimeout(function(){s1.appendChild(cl);});
     }
     document.getElementById('oSend').disabled=!(sel.length||images);
-    var ot=document.getElementById('oTotal'),nn=sel.length;ot.hidden=!(nn||images);ot.innerHTML='';if(nn||images){var b1=document.createElement('b');b1.textContent='סה"כ: '+priceTxt();ot.appendChild(b1);var vl=vidLine();if(vl){var s2=document.createElement('span');s2.textContent=vl;ot.appendChild(s2);}var pm=phShort();if(pm){var s3=document.createElement('span');s3.className='warn';s3.textContent='תמונות: בחרתם '+nPh()+'. מזמינים לפחות 10, עוד '+(pm===1?'תמונה אחת':pm+' תמונות');ot.appendChild(s3);}}
+    var ot=document.getElementById('oTotal'),nn=sel.length;ot.hidden=!(nn||images);ot.innerHTML='';if(nn||images){var b1=document.createElement('b');b1.textContent='סה"כ: '+priceTxt();ot.appendChild(b1);var vl=vidLine();if(vl){var s2=document.createElement('span');s2.textContent=vl;ot.appendChild(s2);}}
     document.getElementById('oMiss').hidden=true;
     var nIt=sel.length+(images?1:0),os=document.getElementById('oSum');os.hidden=!nIt;var sv=document.getElementById('oSumV'),dc=nVid()>=5?vidsFull()-vidsTotal():0;sv.textContent='';if(dc){var od=document.createElement('s');od.className='oldp';od.textContent=(vidsFull()+phTotal())+' ₪';sv.appendChild(od);}var nw=document.createElement('bdi');nw.textContent=priceTxt();sv.appendChild(nw);var dn=document.getElementById('oDisc');if(!dn){dn=document.createElement('p');dn.id='oDisc';dn.className='odisc';document.getElementById('oSum').insertAdjacentElement('afterend',dn);}dn.hidden=!dc;dn.textContent=dc?'✓ 10% הנחה הופעלה אוטומטית · חסכתם '+dc+' ₪':'';
     document.getElementById('oStepTxt').textContent=nIt===1?'פריט אחד':nIt+' פריטים';
