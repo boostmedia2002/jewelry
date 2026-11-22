@@ -1761,7 +1761,7 @@ main > section.hero{display:none!important}
     if(model)L.push('','דוגמן/ית: '+model);
     if(note.trim())L.push('',SEP,'*הערות כלליות*',note.trim());
     if(sel.length||images){L.push('',SEP,'*סיכום*');
-      if(vids.length){L.push('סרטונים ('+vids.length+'): '+vidsFull()+' ₪');var dc=vidsFull()-vidsTotal();if(dc)L.push('הנחת 10% על הסרטונים (5 ומעלה): פחות '+dc+' ₪');}
+      if(vids.length){vids.forEach(function(id){L.push('סרטון '+dispNum(id)+': '+vp(id)+' ₪');});L.push('סה"כ סרטונים ('+vids.length+'): '+vidsFull()+' ₪');var dc=vidsFull()-vidsTotal();if(dc)L.push('הנחת 10% על הסרטונים (5 ומעלה): פחות '+dc+' ₪');}
       if(phs.length)L.push('תמונות קמפיין ('+phs.length+'): '+phTotal()+' ₪');
       L.push('*סה"כ לתשלום: '+priceTxt()+'*');}
     L.push('');
