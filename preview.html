@@ -2135,8 +2135,8 @@ html[data-h="4"] .hdx img:nth-child(2){left:30px;top:16px}html[data-h="4"] .hdx 
   window.pvSet=function(o){if(o.order)order(o.order);if(o.logo)document.documentElement.setAttribute('data-logo',o.logo);if(o.ad&&ADS[o.ad])setAd(o.ad);};
   if(q.get('logo'))document.documentElement.setAttribute('data-logo',q.get('logo'));if(q.get('order'))order(q.get('order'));
   function halt(){cancelAnimationFrame(rf);clearTimeout(tm);ad.pause();wall(false);}
-  ad.src=ADS[cur].src;go(0,false);halt();bars[0].style.width='0%';
-  var live=false,stk=0;function chk(){stk=0;var r=st.getBoundingClientRect(),c=(r.top+r.height/2)/innerHeight,on=c>.12&&c<.72;if(on&&!live){live=true;go(i,false);}else if(!on&&live){live=false;halt();}}
+  go(0,false);halt();bars[0].style.width='0%';
+  var live=false,stk=0;function chk(){stk=0;var r=st.getBoundingClientRect(),c=(r.top+r.height/2)/innerHeight,on=c>.12&&c<.72;if(on&&!live){live=true;if(!ad.getAttribute('src')){ad.preload='auto';ad.src=ADS[cur].src;}go(i,false);}else if(!on&&live){live=false;halt();}}
   addEventListener('scroll',function(){if(!stk)stk=requestAnimationFrame(chk);},{passive:true});addEventListener('resize',chk);chk();})();
 </script>
 <dialog class="hx" id="hxD" aria-labelledby="hxT"><div class="hx-in">
