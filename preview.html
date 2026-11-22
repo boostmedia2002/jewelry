@@ -1157,7 +1157,9 @@ header.top .lg-a{gap:9px;align-items:center}
 header.top .lg-a .bx{height:44px}
 header.top .lg-a .w.wm{display:flex;flex-direction:column;gap:4px;font:900 1rem/1 Unbounded,"Hanken Grotesk",sans-serif;letter-spacing:-.03em;color:#fff}
 header.top .lg-a .w.wm b{display:flex;justify-content:space-between;font-weight:400;letter-spacing:0;background:linear-gradient(100deg,#F1D670 0%,#DDB32D 28%,#FFF5C7 52%,#DDB32D 76%,#F1D670 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#F1D670}
-@media(max-width:1023px){header.top .mark{margin-right:54px!important}}
+@media(max-width:600px){header.top .mark{margin-right:54px!important}}
+/* between tablet and desktop the menu is folded but the header still has three columns: keep the buttons at the far side */
+@media(min-width:901px) and (max-width:1180px){header.top .tools{grid-column:-2/-1}}
 @media(max-width:374px){header.top .lg-a .bx{height:40px}header.top .lg-a .w.wm{font-size:.875rem}}
 @media(min-width:1024px){
 header.top .lg-a{gap:12px}header.top .lg-a .bx{height:50px}
