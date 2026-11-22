@@ -1769,7 +1769,7 @@ main > section.hero{display:none!important}
     if(miss.length)L.push('עדיין חסרות תמונות מוצר ל: '+miss.join(', ')+'. אפשר להוסיף דרך הקישור של אותו פריט.');
     L.push('אשמח לקבל פרטי תשלום.');
     return L.join('\n');}
-  function doSend(){document.getElementById('oMiss').hidden=true;goWA(wa(orderText()));document.getElementById('oDone').classList.toggle('show',upFailed()>0);}
+  function doSend(){document.getElementById('oMiss').hidden=true;goWA(wa(orderText()));try{localStorage.setItem('bm-sent',ordNo);}catch(e){}document.getElementById('oDone').classList.toggle('show',upFailed()>0);}
   function pcount(k){return pdesc(prod[k])+', שולח/ת בהודעה נפרדת';}
   function missing(){return sel.filter(function(id){return !prod[id];}).concat(images&&!prod.images?['images']:[]);}
   document.getElementById('oAgree').addEventListener('change',function(){document.getElementById('oAgreeErr').hidden=true;});
@@ -1876,7 +1876,7 @@ main > section.hero{display:none!important}
       var L=['*בקשה לרעיונות לסרטון · BOOST MEDIA*','אתר או אינסטגרם: '+v,'מוצר לקדם: '+(pr.value.trim()||'לא צוין'),'מטרה: '+(g||'לא צוינה'),'','אשמח לקבל 3 רעיונות לסרטון לעסק שלי.'];
       d.close();goWA(wa(L.join('\n')));});})();
   setFilter('all');
-  try{var sv=JSON.parse(localStorage.getItem('bm-order')||'null');if(sv&&Date.now()-sv.t<864e5){sel=(sv.s||[]).filter(find);images=false;model=null;note=sv.o||'';inotes=sv.q||{};ordNo=sv.k||'';document.getElementById('oName').value=sv.n||'';
+  try{var sv=JSON.parse(localStorage.getItem('bm-order')||'null');if(sv&&Date.now()-sv.t<864e5){sel=(sv.s||[]).filter(find);images=false;model=null;note=sv.o||'';inotes=sv.q||{};ordNo=sv.k||'';try{if(ordNo&&localStorage.getItem('bm-sent')===ordNo){ordNo='';}}catch(e){}document.getElementById('oName').value=sv.n||'';
     mg.querySelectorAll('.model').forEach(function(x){x.setAttribute('aria-pressed',x.querySelector('.n').textContent===model);});render();}}catch(e){}
   document.getElementById('oName').addEventListener('input',save);
   try{var qv=new URLSearchParams(location.search).get('v');if(qv&&/^\d{1,3}$/.test(qv)){var qi=ITEMS.find(function(x){return numOf(x.id)===parseInt(qv,10);});if(qi)openVideo(qi.id);}}catch(e){}
