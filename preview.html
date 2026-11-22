@@ -956,8 +956,9 @@ main > section.hero{display:none!important}
 .hx-open i{font-style:normal;display:grid;place-items:center;width:24px;height:24px;border-radius:12px;background:#D9FE16;color:#131416;font-size:.75rem}
 .hx-in :focus-visible,.hx-open:focus-visible{outline:3px solid #D9FE16;outline-offset:2px}
 
-.pv-link{appearance:none;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;border:0;background:transparent;color:#F4F4F2;font:700 1rem Heebo,sans-serif;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
-.pv-link i{font-style:normal;display:grid;place-items:center;width:28px;height:28px;border-radius:14px;background:#D9FE16;color:#131416;font-size:.8rem;text-decoration:none}
+.pv-st{border-radius:18px 18px 0 0}
+.pv-link{appearance:none;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:50px;border:0;border-top:1px solid #34363A;border-radius:0 0 18px 18px;background:#1F1F21;color:#F4F4F2;font:700 1rem Heebo,sans-serif;cursor:pointer}
+.pv-link svg{width:24px;height:24px;color:#D9FE16;flex:none}.pv-link span{color:#A6A8AB}
 .pv-scan,.pv-ex{background:#131416;color:#F4F4F2;padding:40px max(16px,env(safe-area-inset-left,0px))}
 .pv-scan{border-top:1px solid #26282B}
 .pv-in.wide{max-width:760px}
@@ -1014,9 +1015,10 @@ main > section.hero{display:none!important}
       <div class="pv-cap" aria-live="polite"><h1 id="pvH">שלחו תמונה של התכשיט.</h1><p id="pvP">כמו שהיא, מהטלפון, על השולחן.</p></div>
       <button class="pv-tap n" type="button" aria-label="הבא"></button><button class="pv-tap p" type="button" aria-label="הקודם"></button>
     </div>
+    <button class="pv-link" type="button" data-hx><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="3" fill="currentColor"/><path d="M16.5 10.500 21.500 7.500v9l-5-3Z" fill="currentColor"/></svg>לסרטון ההסבר<span aria-hidden="true">←</span></button>
     <div class="pv-paths">
       <a class="pv-b a" href="#gallery"><span>בוחרים פרסומת מהקטלוג<small>כל הפרסומות מחכות לכם שם</small></span><span aria-hidden="true">←</span></a>
-<button class="pv-link" type="button" data-hx><i>▶</i>איך מזמינים? סרטון הסבר קצר</button>
+
     </div>
     <div class="pv-me"><div class="hd"><span class="lg" style="display:inline-flex"><span class="t" style="background:#D9FE16;color:#131416">BM</span></span><b>מי עומד מאחורי זה</b></div>
       <p>BOOST MEDIA עוסקת בשיווק דיגיטלי. המטרה שלנו היא להנגיש פרסומות לכל עסק ולהוריד את העלויות לחנויות. אנחנו מאמינים שאדם צריך לראות את המוצר שהוא קונה לפני שהוא קונה אותו, ובשביל זה הקמנו את BOOST MEDIA.</p>
@@ -1800,9 +1802,9 @@ main > section.hero{display:none!important}
   var red=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ADS={mag:{src:'mob/work-24.mp4',end:10.4},sil:{src:'mob/work-29.mp4',end:5.3},pearl:{src:'pv/ad.mp4',end:5}};
   var q=new URLSearchParams(location.search);var cur=ADS[q.get('ad')]?q.get('ad'):'mag';
-  var S=[{c:'התמונות שלכם, מהטלפון',l:0,h:'שלחו תמונות של התכשיטים.',p:'צילמתם בטלפון? זה כל מה שצריך.',ms:3400},
-         {c:'הפרסומת שלכם',l:1,h:'קבלו אותם <em>בפרסומת מוכנה.</em>',p:'אלה התכשיטים שלכם, והפרסומת אצלכם תוך 2 ימי עסקים.',ms:0},
-         {c:'קטלוג שלם של פרסומות',l:1,h:'רואים <em>לפני</em> שקונים.',p:'ויש עוד הרבה כאלה. תבחרו את מה שתפס לכם את העין.',ms:9000}];
+  var S=[{c:'התמונות שלכם, מהטלפון',l:0,h:'שלחו תמונות של התכשיטים.',p:'תצלמו בטלפון את התכשיטים.',ms:3400},
+         {c:'הפרסומת שלכם',l:1,h:'קבלו אותם <em>בפרסומת מוכנה.</em>',p:'הפרסומת המוכנה, עם התכשיטים שלכם.',ms:0},
+         {c:'קטלוג שלם של פרסומות',l:1,h:'רואים <em>לפני</em> שקונים.',p:'תיקייה מלאה בפרסומות מוכנות. בואו לבחור את הרעיון שאהבתם.',ms:9000}];
   var i=0,tm=null,rf=null,t0=0;
   /* step 3: four small players hop between the posters, so the folder feels alive without loading everything */
   var tl=[].slice.call(lib.querySelectorAll('.pv-t')),pool=[],wt=null,wn=0;
