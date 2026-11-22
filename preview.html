@@ -1518,11 +1518,17 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
     var d=stat[id]||(stat[id]={});d.l=Math.max(0,(d.l||0)+(on?1:-1));try{localStorage.setItem('bm-liked',JSON.stringify(liked));}catch(e2){}if(!stMe)stInc(id,'l',on?1:-1);stPaint();likedUp();toast(on?'נשמר ברשימת \u201cאהבתי\u201d':'הוסר מרשימת \u201cאהבתי\u201d',null);},true);
   /* rows of 3 that fill the width at the posters' real proportions; a leftover of 4 becomes 2+2, never 4 in a row */
   function layout(){var W=wall.clientWidth,G=4,PER=W>=900?5:W>=600?4:3;if(!W)return;
-    wall.querySelectorAll('.wsec').forEach(function(sec){if(sec.hidden)return;var cs=[].slice.call(sec.querySelectorAll('.card')).filter(function(c){return !c.hidden;}),n=cs.length,k=0,typ=0;
-      while(k<n){var left=n-k,take=Math.ceil(left/Math.ceil(left/PER)),part=cs.slice(k,k+take),sum=0;k+=take;part.forEach(function(c){sum+=+c.dataset.ar;});
+    /* on wide screens the shorter (larger) row of a category shows its strongest videos, first */
+    var FEAT={viral:['06','67','69'],models:['24','58','16'],cine:['65','72','57','04']};
+    wall.querySelectorAll('.wsec').forEach(function(sec){if(sec.hidden)return;var cs=[].slice.call(sec.querySelectorAll('.card')).filter(function(c){return !c.hidden;}),n=cs.length,k=0,typ=0,sizes=[],l=n;
+      if(PER===3){while(l>0){var t=Math.ceil(l/Math.ceil(l/3));sizes.push(t);l-=t;}cs.forEach(function(c){c.style.order='';});}
+      else{var rows=Math.ceil(n/PER),base=Math.floor(n/rows),rem=n%rows,q;for(q=0;q<rows-rem;q++)sizes.push(base);for(q=0;q<rem;q++)sizes.push(base+1);
+        if(rem){var fe=[],slots=(rows-rem)*base;(FEAT[sec.dataset.g]||[]).forEach(function(x){var c=cs.filter(function(y){return y.dataset.id==='work-'+x;})[0];if(c&&fe.length<slots)fe.push(c);});cs=fe.concat(cs.filter(function(c){return fe.indexOf(c)<0;}));}
+        cs.forEach(function(c,i){c.style.order=i;});}
+      sizes.forEach(function(take){var part=cs.slice(k,k+take),sum=0;k+=take;part.forEach(function(c){sum+=+c.dataset.ar;});
         var h=(W-G*(take-1))/sum;if(take===PER&&!typ)typ=h;
         if(PER===3?take<PER:n<PER-1)h=Math.min(h,(typ||(PER===3?(W-2*G)/1.8:W/PER/.6))*(PER===3?1.5:1.3),innerHeight*.8);
-        part.forEach(function(c){c.style.width=(h*c.dataset.ar-.03).toFixed(2)+'px';c.style.height=h.toFixed(2)+'px';});}});layoutP();}
+        part.forEach(function(c){c.style.width=(h*c.dataset.ar-.03).toFixed(2)+'px';c.style.height=h.toFixed(2)+'px';});});});layoutP();}
   function dispNum(id){return isPh(id)?+phN(id):(SEQ[id]||numOf(id));}
   /* photo catalog: same wall as the videos, four to a row */
   var pwall=document.getElementById('pwall');
