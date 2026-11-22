@@ -959,11 +959,16 @@ main > section.hero{display:none!important}
 .pv-st{border-radius:18px 18px 0 0}
 .pv-link{appearance:none;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:50px;border:0;border-top:1px solid #34363A;border-radius:0 0 18px 18px;background:#1F1F21;color:#F4F4F2;font:700 1rem Heebo,sans-serif;cursor:pointer}
 .pv-link svg{width:24px;height:24px;color:#D9FE16;flex:none}.pv-link span{color:#A6A8AB}
-.pv-scan,.pv-ex{background:#131416;color:#F4F4F2;padding:40px max(16px,env(safe-area-inset-left,0px))}
-.pv-scan{border-top:1px solid #26282B}
+.pv-ex{background:#131416;color:#F4F4F2;padding:40px max(16px,env(safe-area-inset-left,0px))}
+.pv-scan{margin-top:14px;padding:16px;border-radius:18px;background:#1F1F21}
+.pv-scan #hscan [data-r=note],.pv-scan label[for=hscanNote]{display:none}
+.pv-scan #hscan [data-r=url]{min-height:52px;font-size:1rem}
+.pv-scan #hscan .btn[type=submit]{min-height:52px;font-size:1.0625rem}
+.pv-mini{appearance:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:4px;border:0;background:transparent;color:#C9CACB;font:600 .875rem Heebo,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:0}.pv-mini svg{width:20px;height:20px;color:#D9FE16}
 .pv-in.wide{max-width:760px}
 .pv-k{color:#D9FE16;font-weight:700;font-size:.9375rem}
-.pv-scan h2,.pv-ex h2{font:700 1.85rem/1.15 "Frank Ruhl Libre",serif;margin:6px 0 4px;color:#F4F4F2}
+.pv-ex h2{font:700 1.85rem/1.15 "Frank Ruhl Libre",serif;margin:6px 0 4px;color:#F4F4F2}
+.pv-scan h2{font:700 1.3rem/1.2 "Frank Ruhl Libre",serif;margin:4px 0 12px;color:#F4F4F2}
 .pv-scan h2 em{font-style:normal;color:#D9FE16}
 .pv-scan .pv-steps{margin:10px 0 16px;font-size:.875rem}
 .pv-scan .hscan{display:flex;flex-direction:column;gap:10px;margin:0}
@@ -1020,9 +1025,20 @@ main > section.hero{display:none!important}
       <a class="pv-b a" href="#gallery"><span>בוחרים פרסומת מהקטלוג<small>כל הפרסומות מחכות לכם שם</small></span><span aria-hidden="true">←</span></a>
 
     </div>
-    <div class="pv-me"><div class="hd"><span class="lg" style="display:inline-flex"><span class="t" style="background:#D9FE16;color:#131416">BM</span></span><b>מי עומד מאחורי זה</b></div>
-      <p>BOOST MEDIA עוסקת בשיווק דיגיטלי. המטרה שלנו היא להנגיש פרסומות לכל עסק ולהוריד את העלויות לחנויות. אנחנו מאמינים שאדם צריך לראות את המוצר שהוא קונה לפני שהוא קונה אותו, ובשביל זה הקמנו את BOOST MEDIA.</p>
-      <span class="q">רואים <em>לפני</em> שקונים.</span></div>
+    <div class="pv-scan" id="scan-sec">
+      <span class="pv-k">לא יודעים מה לבחור?</span>
+      <h2 id="scanH">שלחו קישור לעסק, וקבלו <em>3 תסריטים בחינם</em></h2>
+      <form class="hscan" id="hscan" novalidate>
+            <label class="sr" for="hscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
+            <input type="text" id="hscanUrl" data-r="url" inputmode="url" autocomplete="url" dir="ltr" placeholder="לדוגמה: https://www.noa-diamonds.co.il/">
+            <label class="sr" for="hscanNote">הערות (לא חובה)</label>
+            <input type="text" id="hscanNote" data-r="note" placeholder="הערות: מוצר ספציפי? רעיון ספציפי? ...">
+            <label class="agree hagree"><input type="checkbox" id="hscanAgree" data-r="agree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
+            <p class="hscan-err" id="hscanErr" data-r="err" role="alert" hidden></p>
+            <button class="btn gold" type="submit">שליחה בוואטסאפ <span class="arr" aria-hidden="true">←</span></button>
+          </form>
+      <button class="pv-mini" type="button" data-hx="business"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="3" fill="currentColor"/><path d="M16.5 10.500 21.500 7.500v9l-5-3Z" fill="currentColor"/></svg>לסרטון ההסבר</button>
+    </div>
   </div></section>
 
   <section class="hero" aria-labelledby="h1" data-enter>
@@ -1120,22 +1136,6 @@ main > section.hero{display:none!important}
   </section>
 
 
-
-  <section class="pv-scan" id="scan-sec" aria-labelledby="scanH"><div class="pv-in">
-    <span class="pv-k">לא יודעים מה לבחור?</span>
-    <h2 id="scanH">שלחו קישור לעסק, וקבלו <em>3 תסריטים בחינם</em></h2>
-    <div class="pv-steps"><span>סורקים את העסק</span><i>←</i><span>חוזקות ומה לחזק</span><i>←</i><span class="g">3 תסריטים בחינם</span></div>
-    <form class="hscan" id="hscan" novalidate>
-            <label class="sr" for="hscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
-            <input type="text" id="hscanUrl" data-r="url" inputmode="url" autocomplete="url" dir="ltr" placeholder="לדוגמה: https://www.noa-diamonds.co.il/">
-            <label class="sr" for="hscanNote">הערות (לא חובה)</label>
-            <input type="text" id="hscanNote" data-r="note" placeholder="הערות: מוצר ספציפי? רעיון ספציפי? ...">
-            <label class="agree hagree"><input type="checkbox" id="hscanAgree" data-r="agree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
-            <p class="hscan-err" id="hscanErr" data-r="err" role="alert" hidden></p>
-            <button class="btn gold" type="submit">שליחה בוואטסאפ <span class="arr" aria-hidden="true">←</span></button>
-          </form>
-    <figure class="pv-vid"><video src="pv/explainer-business-3.mp4" poster="pv/explainer-business.jpg" muted playsinline controls preload="none"></video><figcaption>ככה זה עובד, ב-20 שניות</figcaption></figure>
-  </div></section>
 
   <section class="contact-mid" id="contact" aria-labelledby="h-end">
     <div class="wrap">
@@ -1834,20 +1834,21 @@ main > section.hero{display:none!important}
 </script>
 <dialog class="hx" id="hxD" aria-labelledby="hxT"><div class="hx-in">
   <button type="button" class="hx-x" data-hxclose aria-label="סגירה">×</button>
-  <h2 id="hxT">איך מזמינים?</h2>
+  <h2 id="hxT">סרטון ההסבר</h2>
   <div class="hx-v"><video id="hxV" src="pv/explainer-catalog-4.mp4" poster="pv/explainer-catalog.jpg" muted playsinline controls preload="none"></video></div>
   <button type="button" class="hx-ok" data-hxclose>הבנתי, נמשיך</button>
 </div></dialog>
 <script>
 (function(){var d=document.getElementById('hxD'),v=document.getElementById('hxV'),lb=document.getElementById('lb'),shown=false;
-  function open(){if(d.open)return;d.showModal();try{v.currentTime=0;}catch(e){}var r=v.play();if(r&&r.catch)r.catch(function(){});}
+  var SRC={business:['pv/explainer-business-3.mp4','pv/explainer-business.jpg']},base=null;
+  function open(k){if(d.open)return;if(!base)base=[v.getAttribute('src'),v.getAttribute('poster')];var w=SRC[k]||base;if(v.getAttribute('src')!==w[0]){v.poster=w[1];v.src=w[0];}d.showModal();try{v.currentTime=0;}catch(e){}var r=v.play();if(r&&r.catch)r.catch(function(){});}
   function close(){v.pause();d.close();}
   document.querySelectorAll('[data-hxclose]').forEach(function(b){b.addEventListener('click',close);});
   d.addEventListener('close',function(){v.pause();});
   d.addEventListener('click',function(e){if(e.target===d)close();});
-  document.addEventListener('click',function(e){if(e.target.closest('[data-hx]'))open();});
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-hx]');if(b)open(b.getAttribute('data-hx'));});
   /* the first time a visitor opens a video or photo, the short explanation opens on top */
-  if(lb)new MutationObserver(function(){if(lb.open&&!shown){shown=true;setTimeout(open,500);}}).observe(lb,{attributes:true,attributeFilter:['open']});
+  if(lb)new MutationObserver(function(){if(lb.open&&!shown){shown=true;setTimeout(function(){open('');},500);}}).observe(lb,{attributes:true,attributeFilter:['open']});
 })();
 </script>
 </body>
