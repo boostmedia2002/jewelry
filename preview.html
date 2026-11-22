@@ -936,6 +936,21 @@ main > section.hero{display:none!important}
 .pv-me .q{display:block;margin-top:10px;font:700 1.25rem/1.2 "Frank Ruhl Libre",serif;color:#F4F4F2}
 .pv-me .q em{font-style:normal;color:#D9FE16}
 @media (prefers-reduced-motion:reduce){.pv-st.anim>.bf{transition:none}.pv-st.anim .pv-line{animation:none}}
+
+.hx{border:0;padding:0;background:transparent;max-width:min(420px,calc(100vw - 24px));width:100%;margin:auto;color:#F4F4F2}
+.hx::backdrop{background:rgba(0,0,0,.72)}
+.hx-in{position:relative;background:#1F1F21;border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:12px;max-height:calc(100dvh - 24px);overflow:auto}
+.hx-in h2{font:900 1.5rem/1.15 Heebo,sans-serif;margin:4px 4px 0;color:#F4F4F2}
+.hx-v{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:9/16;max-height:58dvh;margin-inline:auto;width:auto}
+.hx-v video{display:block;width:100%;height:100%;object-fit:contain}
+.hx ol{list-style:none;margin:0;padding:0;display:grid;gap:8px;counter-reset:h}
+.hx li{counter-increment:h;display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:.9375rem;line-height:1.45;color:#D5D6D8}
+.hx li::before{content:counter(h);width:26px;height:26px;border-radius:13px;background:#D9FE16;color:#131416;display:grid;place-items:center;font-weight:800;font-size:.8125rem}
+.hx-ok{appearance:none;border:0;min-height:52px;border-radius:14px;background:#D9FE16;color:#131416;font:800 1.0625rem Heebo,sans-serif;cursor:pointer}
+.hx-x{position:absolute;top:10px;left:10px;z-index:2;width:44px;height:44px;border-radius:22px;border:0;background:#2A2B2D;color:#fff;font-size:1.4rem;cursor:pointer}
+.hx-open{appearance:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid #3A3B3E;background:transparent;color:inherit;font:700 .9375rem Heebo,sans-serif;cursor:pointer}
+.hx-open i{font-style:normal;display:grid;place-items:center;width:24px;height:24px;border-radius:12px;background:#D9FE16;color:#131416;font-size:.75rem}
+.hx-in :focus-visible,.hx-open:focus-visible{outline:3px solid #D9FE16;outline-offset:2px}
 </style>
 </head>
 <body>
@@ -1176,7 +1191,7 @@ main > section.hero{display:none!important}
         <span class="lb-tag" id="lbT"></span>
         <h2 id="lbName"></h2>
         <p class="lb-fit" id="lbFit"></p>
-        <p class="lb-price" id="lbPrice"></p>
+        <p class="lb-price" id="lbPrice"></p><button type="button" class="hx-open" data-hx><i>▶</i>איך מזמינים? סרטון קצר</button>
         <div class="lb-box"><p class="lb-bt" id="lbBT">הוסיפו כאן תמונות של המוצרים שלכם</p><p class="lb-sub" id="lbSub"></p><div class="lb-tiles" id="lbTiles"></div><p class="lb-done" id="lbDone" role="status" hidden></p><p class="lb-tip" id="lbTip"></p></div>
         <div class="lb-box lb-logo"><div class="lb-tiles" id="lbLogo"></div><span><b class="lb-bt">הוסיפו כאן את הלוגו שלכם</b><small id="lbLogoT"></small></span></div>
         <label class="sr" for="lbNote">הערות</label>
@@ -1226,7 +1241,7 @@ main > section.hero{display:none!important}
 </form></dialog>
 <dialog class="order" id="order" aria-labelledby="h-o">
   <header>
-    <h2 id="h-o">הסל שלי</h2>
+    <h2 id="h-o">הסל שלי</h2><button type="button" class="hx-open" data-hx><i>▶</i>איך מזמינים? סרטון קצר</button>
     <p class="hint" id="oStepTxt">שלב 1 מתוך 3</p>
     <div class="progress" aria-hidden="true"><span id="pg1"></span><span id="pg2"></span><span id="pg3"></span></div>
     <button class="x" type="button" data-close aria-label="סגירה">×</button>
@@ -1791,6 +1806,25 @@ main > section.hero{display:none!important}
   ad.src=ADS[cur].src;go(0,false);
   /* in the sketch the link form at the top is hidden, so the link buttons open the link window instead */
   document.addEventListener('click',function(e){var b=e.target.closest('[data-scan]');if(!b)return;var d=document.getElementById('scanD');if(!d)return;e.stopPropagation();e.preventDefault();d.showModal();},true);})();
+</script>
+<dialog class="hx" id="hxD" aria-labelledby="hxT"><div class="hx-in">
+  <button type="button" class="hx-x" data-hxclose aria-label="סגירה">×</button>
+  <h2 id="hxT">איך מזמינים?</h2>
+  <div class="hx-v"><video id="hxV" src="pv/explainer.mp4" poster="pv/explainer.jpg" muted playsinline controls preload="none"></video></div>
+  <ol><li>בוחרים פרסומת או תמונה מהקטלוג ולוחצים עליה.</li><li>מצרפים בחלון שנפתח תמונות של התכשיט שלכם.</li><li>שולחים לי בוואטסאפ בלחיצה אחת, ותוך 2 ימי עסקים מקבלים פרסומת מוכנה למוצר שלכם.</li></ol>
+  <button type="button" class="hx-ok" data-hxclose>הבנתי, נמשיך</button>
+</div></dialog>
+<script>
+(function(){var d=document.getElementById('hxD'),v=document.getElementById('hxV'),lb=document.getElementById('lb'),shown=false;
+  function open(){if(d.open)return;d.showModal();try{v.currentTime=0;}catch(e){}var r=v.play();if(r&&r.catch)r.catch(function(){});}
+  function close(){v.pause();d.close();}
+  document.querySelectorAll('[data-hxclose]').forEach(function(b){b.addEventListener('click',close);});
+  d.addEventListener('close',function(){v.pause();});
+  d.addEventListener('click',function(e){if(e.target===d)close();});
+  document.addEventListener('click',function(e){if(e.target.closest('[data-hx]'))open();});
+  /* the first time a visitor opens a video or photo, the short explanation opens on top */
+  if(lb)new MutationObserver(function(){if(lb.open&&!shown){shown=true;setTimeout(open,500);}}).observe(lb,{attributes:true,attributeFilter:['open']});
+})();
 </script>
 </body>
 </html>
