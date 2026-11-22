@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="he" dir="rtl" data-type="service" data-radius="soft" data-buttons="solid" data-motion translate="no">
+<html data-logo="a" lang="he" dir="rtl" data-type="service" data-radius="soft" data-buttons="solid" data-motion translate="no">
 <script>document.documentElement.classList.add("js")</script>
 <head>
 <meta charset="utf-8">
@@ -863,6 +863,141 @@ dialog .undo{bottom:24px}
 .faq-more{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;max-width:820px;margin-top:24px}.faq-more span{font-weight:600;font-size:1.1rem}.faq-more .btn{min-height:48px}
 @media (max-width:600px){.faq-more .btn{width:100%}}
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&display=swap">
+<style>
+/* ===== sketch only ===== */
+/* dark header, strong logo */
+header.top{background:#131416!important;border-bottom:1px solid #26282B}
+header.top .tools .sizehdr{background:transparent;color:#F4F4F2;border-color:#34363A}
+header.top .tools .sizehdr.phonehdr{background:#0B7A3B;border-color:transparent}
+header.top .top nav.open,header.top nav.open{background:#131416!important}
+header.top nav a{color:#F4F4F2!important}
+.cartbtn{background:#D9FE16!important;color:#131416!important}.cartbtn .n{background:#131416!important;color:#D9FE16!important}
+.lg{display:inline-flex;align-items:center;gap:8px;direction:ltr;white-space:nowrap;text-decoration:none}
+.lg .t{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;font:800 14px/1 "Hanken Grotesk",sans-serif;letter-spacing:-.02em;flex:none}
+.lg .w{font:800 15px/1 "Hanken Grotesk",sans-serif;letter-spacing:.01em;color:#F4F4F2}
+.lg .w b{font-weight:800}
+.lg-a,.lg-b,.lg-c{display:none}
+html[data-logo=a] .lg-a,html[data-logo=b] .lg-b,html[data-logo=c] .lg-c{display:inline-flex}
+.lg-a .t{background:#D9FE16;color:#131416}
+.lg-b .t{background:#F4F4F2;color:#131416;gap:2px;grid-auto-flow:column;width:38px}
+.lg-b .t .ln{display:block;width:3px;height:16px;border-radius:2px;background:#7FA000}
+.lg-c .w{font-size:19px;letter-spacing:-.03em;text-transform:lowercase}.lg-c .w b{color:#D9FE16}
+/* hide the old top; the story replaces it */
+main > section.hero{display:none!important}
+/* story */
+.pv{background:#131416;color:#F4F4F2;padding:12px max(12px,env(safe-area-inset-left,0px)) 18px}
+.pv-in{max-width:520px;margin:0 auto}
+.pv-st{position:relative;aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:#000;user-select:none}
+.pv-st>img,.pv-st>video.ad{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pv-st>.bf{position:absolute;inset:0;z-index:2;clip-path:inset(0 0 0 0);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:56% 1fr;gap:3px;background:#131416;padding-bottom:27%}.pv-st>.bf img{width:100%;height:100%;object-fit:cover;display:block;min-height:0}.pv-st>.bf img:first-child{grid-column:1/3}
+.pv-st.sw>.bf{clip-path:inset(0 0 0 100%)}
+.pv-st.anim>.bf{transition:clip-path 1100ms cubic-bezier(.65,0,.35,1)}
+.pv-line{position:absolute;top:0;bottom:0;right:0;width:3px;background:#D9FE16;z-index:3;opacity:0;box-shadow:0 0 18px rgba(217,254,22,.7)}
+.pv-st.anim .pv-line{animation:pvsw 1100ms cubic-bezier(.65,0,.35,1)}
+@keyframes pvsw{0%{right:0;opacity:1}100%{right:100%;opacity:1}}
+.pv-bars{position:absolute;top:10px;left:10px;right:10px;display:flex;gap:4px;z-index:6}
+.pv-bars span{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.3);overflow:hidden}
+.pv-bars i{display:block;height:100%;width:0;background:#fff}
+.pv-chip{position:absolute;top:24px;right:12px;z-index:6;font-size:.8125rem;font-weight:700;border-radius:999px;padding:4px 11px;background:rgba(255,255,255,.92);color:#131416}
+.pv-chip.l{background:#D9FE16}
+.pv-ill{position:absolute;top:24px;left:12px;z-index:6;background:rgba(0,0,0,.6);color:#fff;font-size:.6875rem;border-radius:999px;padding:3px 9px}
+.pv-cat{position:absolute;inset:0;z-index:4;background:#0A0A0B;opacity:0;transition:opacity 300ms;overflow:hidden}
+.pv-lib{position:absolute;left:50%;top:50%;width:150%;display:grid;grid-template-columns:repeat(8,1fr);gap:4px;transform:translate(-50%,-50%) scale(2.6)}
+.pv-t{position:relative;display:block;aspect-ratio:9/14;border-radius:5px;overflow:hidden;background:#1F1F21}.pv-t img,.pv-t video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}.pv-t video{opacity:0;transition:opacity 400ms}.pv-t video.on{opacity:1}.pv-t.play{outline:2px solid #D9FE16;outline-offset:-2px}
+.pv-st.s3 .pv-cat{opacity:1}
+.pv-st.s3 .pv-lib{transform:translate(-50%,-50%) scale(1);transition:transform 3200ms cubic-bezier(.22,.8,.2,1)}
+.pv-shade{position:absolute;inset:auto 0 0 0;height:55%;z-index:5;background:linear-gradient(transparent,rgba(10,10,11,.92));pointer-events:none}
+.pv-cap{position:absolute;inset:auto 14px 14px 14px;z-index:6;pointer-events:none}
+.pv-cap h1{font:700 1.75rem/1.12 "Frank Ruhl Libre",serif;margin:0;color:#F4F4F2}
+.pv-cap .w{display:inline-block;opacity:0;transform:translateY(16px);filter:blur(4px);transition:opacity 500ms ease,transform 600ms cubic-bezier(.2,.8,.2,1),filter 500ms ease}
+.pv-cap.on .w{opacity:1;transform:none;filter:none}
+.pv-cap p{transition:opacity 600ms ease,transform 600ms ease}.pv-cap:not(.on) p{opacity:0;transform:translateY(8px)}
+.pv-chip{transition:transform 400ms cubic-bezier(.2,.8,.2,1),opacity 300ms}.pv-chip.pop{animation:pvpop 500ms cubic-bezier(.2,.8,.2,1)}@keyframes pvpop{0%{transform:scale(.7);opacity:0}100%{transform:none;opacity:1}}
+.pv-cap h1 em{font-style:normal;color:#D9FE16}
+.pv-cap p{color:#D5D6D8;font-size:.9375rem;margin:4px 0 0}
+.pv-tap{position:absolute;top:0;bottom:0;width:40%;z-index:7;background:transparent;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pv-tap.n{left:0}.pv-tap.p{right:0}
+.pv-paths{display:grid;gap:8px;margin-top:12px}
+.pv-b{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:58px;padding:10px 18px;border-radius:14px;font:800 1.0625rem/1.25 Heebo,sans-serif;text-decoration:none;cursor:pointer;width:100%;text-align:start}
+.pv-b small{display:block;font-weight:500;font-size:.8125rem;opacity:.8;margin-top:2px}
+.pv-b.a{background:#D9FE16;color:#131416;border:0}
+.pv-b.b{border:1.5px solid #34363A;color:#F4F4F2;background:transparent}
+.pv-steps{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;margin-top:7px;font-weight:600;font-size:.8125rem}
+.pv-steps span{padding:3px 9px;border-radius:999px;background:#2A2B2D;color:#D5D6D8}
+.pv-steps span.g{background:#D9FE16;color:#131416}
+.pv-steps i{font-style:normal;color:#6B6D70}
+.pv-facts{display:flex;gap:8px;overflow-x:auto;margin:14px -12px 0;padding:0 12px 4px;scrollbar-width:none}
+.pv-facts::-webkit-scrollbar{display:none}
+.pv-f{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:#1F1F21;font-size:.875rem;font-weight:500;white-space:nowrap}
+.pv-f::before{content:"";width:3px;height:14px;border-radius:2px;background:#D9FE16}
+.pv-me{margin-top:14px;padding:16px;border-radius:14px;background:#1F1F21}
+.pv-me .hd{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.pv-me .hd b{font-size:.9375rem}
+.pv-me p{margin:0;color:#B9BBBE;font-size:.875rem;line-height:1.55}
+.pv-me .q{display:block;margin-top:10px;font:700 1.25rem/1.2 "Frank Ruhl Libre",serif;color:#F4F4F2}
+.pv-me .q em{font-style:normal;color:#D9FE16}
+@media (prefers-reduced-motion:reduce){.pv-st.anim>.bf{transition:none}.pv-st.anim .pv-line{animation:none}}
+
+.hx{border:0;padding:0;background:transparent;max-width:min(420px,calc(100vw - 24px));width:100%;margin:auto;color:#F4F4F2}
+.hx::backdrop{background:rgba(0,0,0,.72)}
+.hx-in{position:relative;background:#1F1F21;border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:12px;max-height:calc(100dvh - 24px);overflow:auto}
+.hx-in h2{font:900 1.5rem/1.15 Heebo,sans-serif;margin:4px 4px 0;color:#F4F4F2}
+.hx-v{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:9/16;max-height:58dvh;margin-inline:auto;width:auto}
+.hx-v video{display:block;width:100%;height:100%;object-fit:contain}
+.hx ol{list-style:none;margin:0;padding:0;display:grid;gap:8px;counter-reset:h}
+.hx li{counter-increment:h;display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:.9375rem;line-height:1.45;color:#D5D6D8}
+.hx li::before{content:counter(h);width:26px;height:26px;border-radius:13px;background:#D9FE16;color:#131416;display:grid;place-items:center;font-weight:800;font-size:.8125rem}
+.hx-ok{appearance:none;border:0;min-height:52px;border-radius:14px;background:#D9FE16;color:#131416;font:800 1.0625rem Heebo,sans-serif;cursor:pointer}
+.hx-x{position:absolute;top:10px;left:10px;z-index:2;width:44px;height:44px;border-radius:22px;border:0;background:#2A2B2D;color:#fff;font-size:1.4rem;cursor:pointer}
+.hx-open{appearance:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid #3A3B3E;background:transparent;color:inherit;font:700 .9375rem Heebo,sans-serif;cursor:pointer}
+.hx-open i{font-style:normal;display:grid;place-items:center;width:24px;height:24px;border-radius:12px;background:#D9FE16;color:#131416;font-size:.75rem}
+.hx-in :focus-visible,.hx-open:focus-visible{outline:3px solid #D9FE16;outline-offset:2px}
+
+.pv-st{border-radius:18px 18px 0 0}
+.pv-in>.pv-paths{margin-top:0;padding:10px 10px 0;background:#1F1F21}
+.pv-link{appearance:none;display:flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:44px;border:0;border-radius:0 0 18px 18px;background:#1F1F21;color:#F4F4F2;font:400 .875rem Heebo,sans-serif;cursor:pointer;padding:0 0 4px}
+.pv-link svg{width:16px;height:16px;color:#F4F4F2;opacity:.8;flex:none}
+.pv-ex{background:#131416;color:#F4F4F2;padding:40px max(16px,env(safe-area-inset-left,0px))}
+.pv-scan{margin-top:14px;padding:16px;border-radius:18px;background:#1F1F21}
+.pv-scan #hscan [data-r=note]{min-height:44px;font-size:.875rem;padding:0 14px}
+.pv-idea{margin:0 0 10px;color:#C9CACB;font-size:.9375rem;line-height:1.5}
+.pv-scan #hscan [data-r=url]{min-height:52px;font-size:1rem}
+.pv-scan #hscan .btn[type=submit]{min-height:52px;font-size:1.0625rem}
+.pv-mini{appearance:none;display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-top:2px;border:0;background:transparent;color:#F4F4F2;font:400 .875rem Heebo,sans-serif;cursor:pointer;padding:0}.pv-mini svg{width:16px;height:16px;color:#F4F4F2;opacity:.8}
+.pv-in.wide{max-width:760px}
+.pv-k{color:#D9FE16;font-weight:700;font-size:.9375rem}
+.pv-ex h2{font:700 1.85rem/1.15 "Frank Ruhl Libre",serif;margin:6px 0 4px;color:#F4F4F2}
+.pv-scan h2{font:700 1.3rem/1.2 "Frank Ruhl Libre",serif;margin:4px 0 12px;color:#F4F4F2}
+.pv-scan h2 em{font-style:normal;color:#D9FE16}
+.pv-scan .pv-steps{margin:0 0 14px;font-size:.8125rem}
+.pv-scan .hscan{display:flex;flex-direction:column;gap:10px;margin:0}
+.pv-scan .hscan .btn.gold{background:#D9FE16;color:#131416}
+.pv-scan #hscan [data-r=url]{border-color:#D9FE16}
+.pv-vid{margin:18px auto 0;max-width:300px}
+.pv-vid video{display:block;width:100%;aspect-ratio:9/16;border-radius:16px;background:#000}
+.pv-vid figcaption{margin-top:8px;text-align:center;color:#A6A8AB;font-size:.875rem}
+.pv-exg{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:8px}
+.pv-ex .pv-vid{margin-top:12px}
+
+.pricecard{margin:6px 0 14px;padding:16px;border-radius:18px;background:#1F1F21;color:#F4F4F2}
+.pc-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;margin-bottom:12px}.pc-h b{font-size:1.125rem}.pc-h span{color:#A6A8AB;font-size:.875rem}
+.pc-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pc-t{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 6px;border-radius:14px;background:#2A2B2D;text-align:center}
+.pc-t .n{font-size:.875rem;color:#C9CACB;font-weight:600}.pc-t b{font-size:1.625rem;font-weight:800;line-height:1.15}
+.pc-t.hot{box-shadow:inset 0 0 0 1.5px #D9FE16}.pc-t.best{background:#D9FE16;color:#131416}.pc-t.best .n{color:#3A3B1A}
+.ototal span{display:block;font-size:.8125rem;color:#D9FE16;margin-top:4px}
+#vjfilt{margin-bottom:6px}
+#lbPrice{color:#F4F4F2;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}#lbPrice b{font-size:1.5rem;font-weight:800;color:#D9FE16}#lbPrice span{font-size:.875rem;color:#A6A8AB}
+.pc-row.two{grid-template-columns:repeat(2,minmax(0,1fr))}.ph-price{margin-top:10px}
+.ototal span.warn{color:#FFB86B}
+.ph-need{margin:8px 0 0;padding:10px 12px;border-radius:12px;background:rgba(255,184,107,.12);color:#FFB86B;font-size:.875rem;font-weight:700;line-height:1.4}
+.vfbox{position:sticky;top:var(--nav);z-index:20;background:#131416;padding:8px 0;margin-bottom:8px;display:grid;gap:6px}
+.vfbox .filters.vf{position:static;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:0!important;margin:0!important;background:none}
+.vfbox .filters.vf button{min-height:40px;padding:0 4px;justify-content:center;font-size:.9375rem;border-radius:999px}
+#oSumV bdi,#oSumV .oldp{display:inline-block;unicode-bidi:isolate}#oSumV .oldp{font-size:.9375rem;font-weight:500;color:#8A8B8D;margin-inline-end:10px}
+.odisc{margin:6px 0 0;color:#D9FE16;font-size:.875rem;font-weight:700}
+</style>
 </head>
 <body>
 <a class="skip" href="#gallery">דילוג לקטלוג הפרסומות</a>
@@ -870,9 +1005,9 @@ dialog .undo{bottom:24px}
 
 <header class="top">
   <div class="wrap">
-    <a class="mark" href="#top" aria-label="BOOST MEDIA, לראש העמוד">BOOST <i>MEDIA</i></a>
+    <a class="mark lg-wrap" href="#top" aria-label="BOOST MEDIA, לראש העמוד" style="background:none;padding:0"><span class="lg lg-a"><span class="t">BM</span><span class="w">BOOST MEDIA</span></span><span class="lg lg-b"><span class="t">B<span class="ln"></span>M</span><span class="w">BOOST MEDIA</span></span><span class="lg lg-c"><span class="w">boost<b>media</b></span></span></a>
     <nav aria-label="ניווט" id="topNav">
-      <a href="#how">איך הכל עובד?</a>
+      <a href="#explain">איך הכל עובד?</a>
       <a href="#gallery">קטלוג הפרסומות</a>
       <a href="#photos">קטלוג התמונות</a>
       <a href="#faq">שאלות</a>
@@ -889,15 +1024,29 @@ dialog .undo{bottom:24px}
 </header>
 
 <main id="top">
-  <section class="hero" aria-labelledby="h1" data-enter>
-    <div class="wrap"><div class="film">
-      <video class="film-bg" data-auto muted loop playsinline preload="none" data-src="v/w16.mp4" poster="v/w16.jpg" aria-hidden="true"></video>
-      <div class="over">
-        <div class="box">
-          <h1 id="h1">שלחו את העסק.<br><em>קבלו 3 רעיונות.</em></h1>
-          <ol class="lead stp"><li>מדביקים כאן קישור לאתר או לאינסטגרם של העסק.</li><li>אנחנו סורקים את המוצרים, הצבעים והסגנון שלכם.</li><li>שולחים לכם בוואטסאפ 3 תסריטים שנכתבו לעסק, כל אחד עם מחיר.</li></ol>
-          <p class="lead stp-more"><a class="howlink" href="#how-scan">איך זה עובד?</a></p>
-          <form class="hscan" id="hscan" novalidate>
+  <section class="pv" aria-label="איך זה עובד בשלושה שלבים"><div class="pv-in">
+    <div class="pv-st" id="pvSt">
+      <img src="p/work-24.webp" alt="" aria-hidden="true">
+      <video class="ad" id="pvAd" muted playsinline preload="auto" aria-hidden="true"></video>
+      <div class="bf"><img src="pv/m1.jpg?2" alt="צילום טלפון של עגילי אמרלד"><img src="pv/m2.jpg?2" alt="צילום טלפון של שרשרת אמרלד"><img src="pv/m3.jpg?2" alt="צילום טלפון של טבעת אמרלד"></div>
+      <div class="pv-cat" aria-hidden="true"><div class="pv-lib" id="pvLib"><span class="pv-t" data-s="videos/preview/work-15.mp4"><img src="p/work-15-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-16.mp4"><img src="p/work-16-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-71.mp4"><img src="p/work-71-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-72.mp4"><img src="p/work-72-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-09.mp4"><img src="p/work-09-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-13.mp4"><img src="p/work-13-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-11.mp4"><img src="p/work-11-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-07.mp4"><img src="p/work-07-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-06.mp4"><img src="p/work-06-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-08.mp4"><img src="p/work-08-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-05.mp4"><img src="p/work-05-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-21.mp4"><img src="p/work-21-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-04.mp4"><img src="p/work-04-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-18.mp4"><img src="p/work-18-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-19.mp4"><img src="p/work-19-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-20.mp4"><img src="p/work-20-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-23.mp4"><img src="p/work-23-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-24.mp4"><img src="p/work-24-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-25.mp4"><img src="p/work-25-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-26.mp4"><img src="p/work-26-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-27.mp4"><img src="p/work-27-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-28.mp4"><img src="p/work-28-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-29.mp4"><img src="p/work-29-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-30.mp4"><img src="p/work-30-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-32.mp4"><img src="p/work-32-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-33.mp4"><img src="p/work-33-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="pv/work-41.mp4"><img src="p/work-41-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="pv/work-44.mp4"><img src="p/work-44-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="pv/work-45.mp4"><img src="p/work-45-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-57.mp4"><img src="p/work-57-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-58.mp4"><img src="p/work-58-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-59.mp4"><img src="p/work-59-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-60.mp4"><img src="p/work-60-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-62.mp4"><img src="p/work-62-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-63.mp4"><img src="p/work-63-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-64.mp4"><img src="p/work-64-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-65.mp4"><img src="p/work-65-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-66.mp4"><img src="p/work-66-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-67.mp4"><img src="p/work-67-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-68.mp4"><img src="p/work-68-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-69.mp4"><img src="p/work-69-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-70.mp4"><img src="p/work-70-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="pv/work-55.mp4"><img src="p/work-55-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-15.mp4"><img src="p/work-15-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-16.mp4"><img src="p/work-16-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-71.mp4"><img src="p/work-71-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-72.mp4"><img src="p/work-72-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-09.mp4"><img src="p/work-09-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-13.mp4"><img src="p/work-13-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-11.mp4"><img src="p/work-11-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-07.mp4"><img src="p/work-07-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-06.mp4"><img src="p/work-06-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-08.mp4"><img src="p/work-08-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-05.mp4"><img src="p/work-05-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-21.mp4"><img src="p/work-21-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-04.mp4"><img src="p/work-04-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-18.mp4"><img src="p/work-18-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-19.mp4"><img src="p/work-19-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-20.mp4"><img src="p/work-20-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-23.mp4"><img src="p/work-23-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-24.mp4"><img src="p/work-24-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-25.mp4"><img src="p/work-25-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-26.mp4"><img src="p/work-26-s.webp" alt="" loading="lazy"></span><span class="pv-t" data-s="videos/preview/work-27.mp4"><img src="p/work-27-s.webp" alt="" loading="lazy"></span></div></div>
+      <span class="pv-line" aria-hidden="true"></span>
+      <div class="pv-bars" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span></div>
+      <span class="pv-chip" id="pvChip">התמונות שלכם, מהטלפון</span>
+      <div class="pv-shade"></div>
+      <div class="pv-cap" aria-live="polite"><h1 id="pvH">שלחו תמונה של התכשיט.</h1><p id="pvP">כמו שהיא, מהטלפון, על השולחן.</p></div>
+      <button class="pv-tap n" type="button" aria-label="הבא"></button><button class="pv-tap p" type="button" aria-label="הקודם"></button>
+    </div>
+    <div class="pv-paths">
+      <a class="pv-b a" href="#gallery"><span>בוחרים פרסומת מהקטלוג<small>כל הפרסומות מחכות לכם שם</small></span><span aria-hidden="true">←</span></a>
+
+    </div>
+    <button class="pv-link" type="button" data-hx><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="3" fill="currentColor"/><path d="M16.5 10.500 21.500 7.500v9l-5-3Z" fill="currentColor"/></svg>לסרטון ההסבר</button>
+    <div class="pv-scan" id="scan-sec">
+      <h2 id="scanH">שלחו קישור לעסק, וקבלו <em>3 תסריטים בחינם</em></h2>
+      <p class="pv-idea">סורקים את האתר או האינסטגרם שלכם, מוצאים מה חזק ומה כדאי לחזק, וכותבים לכם 3 תסריטים לפרסומת שמתאימים לעסק.</p>
+      <div class="pv-steps"><span>סריקת העסק</span><i>←</i><span>חוזקות ומה לחזק</span><i>←</i><span class="g">3 תסריטים בחינם</span></div>
+      <form class="hscan" id="hscan" novalidate>
             <label class="sr" for="hscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
             <input type="text" id="hscanUrl" data-r="url" inputmode="url" autocomplete="url" dir="ltr" placeholder="לדוגמה: https://www.noa-diamonds.co.il/">
             <label class="sr" for="hscanNote">הערות (לא חובה)</label>
@@ -906,6 +1055,19 @@ dialog .undo{bottom:24px}
             <p class="hscan-err" id="hscanErr" data-r="err" role="alert" hidden></p>
             <button class="btn gold" type="submit">שליחה בוואטסאפ <span class="arr" aria-hidden="true">←</span></button>
           </form>
+      <button class="pv-mini" type="button" data-hx="business"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="3" fill="currentColor"/><path d="M16.5 10.500 21.500 7.500v9l-5-3Z" fill="currentColor"/></svg>לסרטון ההסבר</button>
+    </div>
+  </div></section>
+
+  <section class="hero" aria-labelledby="h1" data-enter>
+    <div class="wrap"><div class="film">
+      <video class="film-bg" data-auto muted loop playsinline preload="none" data-src="v/w16.mp4" poster="v/w16.jpg" aria-hidden="true"></video>
+      <div class="over">
+        <div class="box">
+          <h1 id="h1">שלחו את העסק.<br><em>קבלו 3 רעיונות.</em></h1>
+          <ol class="lead stp"><li>מדביקים כאן קישור לאתר או לאינסטגרם של העסק.</li><li>אנחנו סורקים את המוצרים, הצבעים והסגנון שלכם.</li><li>שולחים לכם בוואטסאפ 3 תסריטים שנכתבו לעסק, כל אחד עם מחיר.</li></ol>
+          <p class="lead stp-more"><a class="howlink" href="#how-scan">איך זה עובד?</a></p>
+          
           <p class="hscan-alt"><a href="#gallery">או בחרו סרטון מהקטלוג</a></p>
         </div>
         <button class="play" type="button" data-play="work-16">
@@ -925,27 +1087,7 @@ dialog .undo{bottom:24px}
   </div>
   </section>
 
-  <section class="how" id="how" aria-labelledby="h-how">
-    <div class="wrap">
-      <p class="how-k">איך זה עובד</p>
-      <h2 id="h-how">שתי דרכים. אתם לא עורכים כלום.</h2>
-      <div class="hw-tabs" role="tablist" aria-label="שתי הדרכים"><button type="button" role="tab" id="hwt-cat" data-hw="cat" aria-selected="true" aria-controls="how-cat">בוחרים מהקטלוג</button><button type="button" role="tab" id="hwt-scan" data-hw="scan" aria-selected="false" aria-controls="how-scan">שולחים את העסק</button></div>
-      <div class="hw-p" id="how-cat" role="tabpanel" aria-labelledby="hwt-cat">
-        <ol class="hw-line stp"><li>בוחרים פרסומת או תמונה מהקטלוג ולוחצים עליה.</li><li>מצרפים בחלון שנפתח תמונות של התכשיט שלכם.</li><li>שולחים לי בוואטסאפ בלחיצה אחת, ותוך 2 ימי עסקים מקבלים פרסומת מוכנה למוצר שלכם.</li></ol>
-        <div class="hw-row"><button type="button" class="hw-s" aria-expanded="false" data-big="how/b1.webp?6" data-h="בוחרים פרסומת" data-d="גוללים בקטלוג ומסננים לפי סגנון. לחיצה על + או על הפרסומת עצמה פותחת אותה עם המחיר. בסרטונים, הלב שומר אותם לרשימת &quot;אהבתי&quot; כדי לחזור אליהם אחר כך." data-ill="0"><span class="ph"><img src="how/b1-s.webp?6" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">1</i></span><b>בוחרים</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/b2.webp?6" data-h="מצרפים תמונות של התכשיט" data-d="בחלון שנפתח יש משבצת לכל סוג תכשיט שמופיע בפרסומת, למשל טבעת, צמיד ועגילים. מעלים תמונות מהטלפון, וכמה שיותר זוויות, יותר טוב. לא חייבים את כל הסוגים, ואפשר להוסיף גם לוגו והערות." data-ill="0"><span class="ph"><img src="how/b2-s.webp?6" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">2</i></span><b>מצרפים תכשיט</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/b3.webp?8" data-h="שולחים בוואטסאפ ומקבלים" data-d="לוחצים &quot;שליחה אליי בוואטסאפ&quot;, או מוסיפים לסל כדי להזמין כמה יחד. ההזמנה נפתחת בוואטסאפ כהודעה מוכנה, ואתם רק שולחים. תוך 2 ימי עסקים מקבלים את הפרסומת עם התכשיטים שלכם." data-ill="1"><span class="ph"><img src="how/b3-s.webp?8" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">3</i><em>המחשה</em></span><b>שולחים ומקבלים</b></button></div>
-        <p class="hw-hint">לחיצה על תמונה פותחת הסבר מפורט.</p>
-        <div class="hw-d" hidden><div class="hw-dimg"><img alt=""><em hidden>המחשה</em></div><div class="hw-dt"><h3></h3><p></p><button type="button" class="hw-dx2">סגירה</button><button type="button" class="hw-dx" aria-label="סגירת ההסבר">×</button></div></div>
-        <div class="hw-cta"><a class="btn gold" href="#gallery">לקטלוג הפרסומות <span class="arr" aria-hidden="true">←</span></a></div>
-      </div>
-      <div class="hw-p" id="how-scan" role="tabpanel" aria-labelledby="hwt-scan">
-        <ol class="hw-line stp"><li>מדביקים קישור לאתר או לאינסטגרם של העסק.</li><li>אנחנו סורקים את המוצרים, הצבעים והסגנון שלכם.</li><li>שולחים לכם בוואטסאפ 3 תסריטים שנכתבו לעסק, כל אחד עם מחיר.</li></ol>
-        <div class="hw-row"><button type="button" class="hw-s" aria-expanded="false" data-big="how/a1.webp?12" data-h="מדביקים קישור לעסק" data-d="מדביקים קישור לאתר או לאינסטגרם. אנחנו &lt;b&gt;סורקים את העסק&lt;/b&gt;, לומדים את המוצרים והסגנון, ו&lt;b&gt;בוחרים רעיונות שמתאימים בדיוק לו&lt;/b&gt;." data-ill="0"><span class="ph"><img src="how/a1-s.webp?12" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">1</i></span><b>מדביקים קישור</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/a2.webp?7" data-h="מקבלים 3 תסריטים ובוחרים" data-d="לומדים את המוצרים, הצבעים והסגנון שלכם, ושולחים לכם בוואטסאפ 3 תסריטים שנכתבו בשביל העסק שלכם. בכל תסריט: המוצר שנבחר מהאתר שלכם, הסיפור בקצרה, הסצנות והמחיר. עונים איזה תסריט אהבתם, למשל &quot;אחד נשמע טוב&quot;." data-ill="1"><span class="ph"><img src="how/a2-s.webp?7" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">2</i><em>המחשה</em></span><b>בוחרים תסריט</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/a3.webp?7" data-h="מקבלים את הסרטון" data-d="תוך 2 ימי עסקים הסרטון מגיע אליכם בוואטסאפ, מוכן לאינסטגרם, לטיקטוק ולאתר. רוצים לשנות משהו קטן? כותבים לנו." data-ill="1"><span class="ph"><img src="how/a3-s.webp?7" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">3</i><em>המחשה</em></span><b>מקבלים סרטון</b></button></div>
-        <p class="hw-hint">לחיצה על תמונה פותחת הסבר מפורט.</p>
-        <div class="hw-d" hidden><div class="hw-dimg"><img alt=""><em hidden>המחשה</em></div><div class="hw-dt"><h3></h3><p></p><button type="button" class="hw-dx2">סגירה</button><button type="button" class="hw-dx" aria-label="סגירת ההסבר">×</button></div></div>
-        <div class="hw-cta"><button class="btn gold" type="button" data-scan>שלחו לי רעיונות <span class="arr" aria-hidden="true">←</span></button></div>
-      </div>
-    </div>
-  </section>
+
 
 
   <section class="sec" id="gallery" aria-labelledby="h-g">
@@ -953,19 +1095,34 @@ dialog .undo{bottom:24px}
       <div class="head"><h2 id="h-g" class="fillh">קטלוג הפרסומות</h2></div>
       <p class="fits-line mo-wh__text" data-moment="word-highlight"><strong>כל פרסומת מתאימה לכל מוצר.</strong> בוחרים סרטון שאהבתם, מצרפים תמונה של התכשיטים שלכם ואני מכין הכל מחדש עם התכשיטים שלכם. המוצר מתחלף, <strong>והרעיון נשאר.</strong></p>
       <div class="a11y-row"><button class="still" type="button" id="stillBtn" aria-pressed="false"><span aria-hidden="true">⏸</span> <span id="stillT">עצירת הסרטונים</span></button></div>
-      <p class="ftitle"><b>סינון לפי סגנון</b><span>אפשר לבחור כמה</span></p>
-      <div class="filters" role="group" aria-label="סינון לפי סגנון, אפשר לבחור כמה">
-        <button type="button" data-f="all" aria-pressed="true">הכל</button>
-        <button type="button" data-f="viral" aria-pressed="false">טרנדי</button>
-        <button type="button" data-f="cine" aria-pressed="false">קולנועי</button>
-        <button type="button" data-f="models" aria-pressed="false">דוגמנית</button>
-        <button type="button" data-f="simple" aria-pressed="false">תצוגה</button>
+      <div class="vfbox" role="group" aria-label="סינון הסרטונים, אפשר לבחור כמה">
+        <div class="filters vf" role="group" aria-label="סגנון">
+          <button type="button" data-f="viral" aria-pressed="false">טרנדי</button>
+          <button type="button" data-f="models" aria-pressed="false">דוגמניות</button>
+          <button type="button" data-f="cine" aria-pressed="false">קולנועי</button>
+          <button type="button" data-f="simple" aria-pressed="false">תצוגה</button>
+        </div>
+        <div class="filters vf vj" id="vjfilt" role="group" aria-label="סוג תכשיט בסרטון">
+          <button type="button" data-j="e" aria-pressed="false">עגילים</button>
+          <button type="button" data-j="n" aria-pressed="false">שרשרת</button>
+          <button type="button" data-j="b" aria-pressed="false">צמיד</button>
+          <button type="button" data-j="r" aria-pressed="false">טבעת</button>
+        </div>
+      </div>
+      <div class="pricecard" aria-label="מחירון">
+        <div class="pc-h"><b>מחירון</b></div>
+        <div class="pc-row">
+          <div class="pc-t"><span class="n">סרטון עד 10 שניות</span><b>50 ₪</b></div>
+          <div class="pc-t"><span class="n">סרטון מעל 10 שניות</span><b>70 ₪</b></div>
+          <div class="pc-t best"><span class="n">5 סרטונים ומעלה</span><b>10% הנחה</b></div>
+        </div>
       </div>
       <div class="liked-bar" id="likedBar" hidden><b><span aria-hidden="true">♥</span> הסרטונים שאהבתי</b><div class="lbar-b"><button type="button" class="lbar-go" id="likedCart">הוספת הכל לסל והמשך לקופה</button><button type="button" class="lbar-x" id="likedExit">חזרה לכל הסרטונים</button></div></div>
       <p class="liked-empty" id="likedEmpty" hidden>עוד לא סימנתם סרטונים. לחצו על הלב בסרטון שאהבתם, והוא יישמר כאן.</p>
       <div class="wall" id="wall"></div>
       <div class="head ph-head" id="photos"><h2 id="h-ph" class="fillh">תמונות קמפיינים</h2></div>
       <p class="fits-line">בוחרים תמונה שאהבתם, ואני מכין אותה מחדש עם התכשיטים שלכם.</p>
+      <div class="pricecard ph-price"><div class="pc-row two"><div class="pc-t"><span class="n">תמונה</span><b>10 ₪</b></div><div class="pc-t best"><span class="n">מינימום להזמנה</span><b>10 תמונות</b></div></div></div>
       <p class="ftitle"><b>סינון לפי סוג תכשיט</b><span>אפשר לבחור כמה</span></p>
       <div class="filters pf" id="pfilt" role="group" aria-label="סינון לפי סוג תכשיט, אפשר לבחור כמה">
         <button type="button" data-p="all" aria-pressed="true">הכל</button>
@@ -1011,6 +1168,8 @@ dialog .undo{bottom:24px}
     </div>
   </section>
 
+
+
   <section class="contact-mid" id="contact" aria-labelledby="h-end">
     <div class="wrap">
       <div class="close-type">
@@ -1040,7 +1199,7 @@ dialog .undo{bottom:24px}
         <details name="faq"><summary>אילו תמונות של התכשיט צריך לשלוח?</summary><p>תמונות מהטלפון מספיקות. כמה שיותר זוויות, יותר טוב: מלפנים, מהצד ותקריב. צלמו באור טוב ועל רקע נקי. אין הגבלה על מספר התמונות.</p></details>
         <details name="faq"><summary>אין לי עכשיו תמונה טובה. אפשר להזמין?</summary><p>כן. שלחו את ההזמנה בלי תמונה, ותצרפו אותה אחר כך בשיחה בוואטסאפ.</p></details>
         <details name="faq"><summary>תוך כמה זמן זה מוכן, ואיך מקבלים את זה?</summary><p>תוך 2 ימי עסקים מרגע שקיבלתי את התמונות של התכשיט. הסרטון או התמונה נשלחים אליכם בוואטסאפ, מוכנים לפרסום.</p></details>
-        <details name="faq"><summary>כמה זה עולה, ואיך משלמים?</summary><p>מחיר. אין תשלום באתר: אחרי שתשלחו את ההזמנה נסגור בוואטסאפ את דרך התשלום.</p></details>
+        <details name="faq"><summary>כמה זה עולה, ואיך משלמים?</summary><p>סרטון עד 10 שניות: 50 ₪. סרטון מעל 10 שניות: 70 ₪. מ-5 סרטונים ומעלה יש 10% הנחה על הסרטונים, והיא מחושבת לבד בסל. תמונות: 10 ₪ לתמונה, בהזמנה של 10 תמונות ומעלה. אין תשלום באתר: אחרי שתשלחו את ההזמנה נסגור בוואטסאפ את דרך התשלום.</p></details>
         <details name="faq"><summary>כמה תיקונים אפשר לבקש?</summary><p>עד 2 תיקונים קטנים לכל סרטון, כל עוד הם לא משנים את הרעיון של הסרטון.</p></details>
         <details name="faq"><summary>שלחתי קישור לעסק. מה קורה עכשיו?</summary><p>אני עובר על האתר או על האינסטגרם שלכם, ושולח לכם בוואטסאפ 3 תסריטים שנכתבו לעסק, כל אחד עם מחיר. התסריטים בחינם ובלי התחייבות. אם אהבתם אחד, ממשיכים ממנו.</p></details>
         <details name="faq"><summary>איפה אפשר להשתמש בפרסומת?</summary><p>בכל מקום שתרצו: אינסטגרם, טיקטוק, פייסבוק, האתר שלכם ומודעות ממומנות. הפרסומת שלכם לתמיד, ומותר לכם לעשות בה מה שאתם רוצים.</p></details>
@@ -1048,6 +1207,13 @@ dialog .undo{bottom:24px}
       <div class="faq-more"><span>לא מצאתם תשובה?</span><button class="btn" type="button" data-help aria-haspopup="dialog">דברו איתי בוואטסאפ או בטלפון</button></div>
     </div>
   </section>
+  <section class="pv-ex" id="explain" aria-labelledby="exH"><div class="pv-in wide">
+    <h2 id="exH">סרטוני ההסבר המלאים</h2>
+    <div class="pv-exg">
+      <figure class="pv-vid"><video src="pv/explainer-catalog-4.mp4" poster="pv/explainer-catalog.jpg" muted playsinline controls preload="none"></video><figcaption>בוחרים פרסומת מהקטלוג</figcaption></figure>
+      <figure class="pv-vid"><video src="pv/explainer-business-3.mp4" poster="pv/explainer-business.jpg" muted playsinline controls preload="none"></video><figcaption>שולחים קישור לעסק</figcaption></figure>
+    </div>
+  </div></section>
 </main>
 
 <footer class="closing">
@@ -1077,7 +1243,7 @@ dialog .undo{bottom:24px}
         <span class="lb-tag" id="lbT"></span>
         <h2 id="lbName"></h2>
         <p class="lb-fit" id="lbFit"></p>
-        <p class="lb-price" id="lbPrice"></p>
+        <p class="lb-price" id="lbPrice"></p><button type="button" class="hx-open" data-hx><i>▶</i>איך מזמינים? סרטון קצר</button>
         <div class="lb-box"><p class="lb-bt" id="lbBT">הוסיפו כאן תמונות של המוצרים שלכם</p><p class="lb-sub" id="lbSub"></p><div class="lb-tiles" id="lbTiles"></div><p class="lb-done" id="lbDone" role="status" hidden></p><p class="lb-tip" id="lbTip"></p></div>
         <div class="lb-box lb-logo"><div class="lb-tiles" id="lbLogo"></div><span><b class="lb-bt">הוסיפו כאן את הלוגו שלכם</b><small id="lbLogoT"></small></span></div>
         <label class="sr" for="lbNote">הערות</label>
@@ -1127,7 +1293,7 @@ dialog .undo{bottom:24px}
 </form></dialog>
 <dialog class="order" id="order" aria-labelledby="h-o">
   <header>
-    <h2 id="h-o">הסל שלי</h2>
+    <h2 id="h-o">הסל שלי</h2><button type="button" class="hx-open" data-hx><i>▶</i>איך מזמינים? סרטון קצר</button>
     <p class="hint" id="oStepTxt">שלב 1 מתוך 3</p>
     <div class="progress" aria-hidden="true"><span id="pg1"></span><span id="pg2"></span><span id="pg3"></span></div>
     <button class="x" type="button" data-close aria-label="סגירה">×</button>
@@ -1177,10 +1343,14 @@ dialog .undo{bottom:24px}
   function nVid(){return sel.filter(function(x){return !isPh(x);}).length;}
   function nPh(){return sel.length-nVid();}
   /* campaign photos are sold by the ten: every started ten costs PI */
-  function phTotal(){return Math.ceil(nPh()/10)*PI;}
-  function vp(id){if(isPh(id))return 0;return SHORT.indexOf(numOf(id))>=0?PS:PL;}
-  function up(id){if(isPh(id))return 0;return nVid()>=10?PD:vp(id);}
-  function vidsTotal(){var t=0;sel.forEach(function(id){t+=up(id);});return t;}
+  function phTotal(){return nPh()*10;}
+  function phShort(){var n=nPh();return n>0&&n<10?10-n:0;}
+  function vp(id){if(isPh(id))return 0;return (VDUR[id]||99)<=10?50:70;}
+  function vidsFull(){var t=0;sel.forEach(function(id){t+=vp(id);});return t;}
+  function vidLine(){var n=nVid();if(!n)return '';if(n>=5)return 'כולל 10% הנחה על 5 סרטונים ומעלה (חסכתם '+(vidsFull()-vidsTotal())+' ₪)';return 'עוד '+(5-n===1?'סרטון אחד':(5-n)+' סרטונים')+', ו-10% הנחה על הכל';}
+  function priceTxt(){var t=vidsTotal()+phTotal();return t?t+' ₪':'';}
+  function up(id){return vp(id);}
+  function vidsTotal(){var t=vidsFull();return nVid()>=5?Math.round(t*0.9):t;}
   function total(){return vidsTotal()+phTotal()+(images?PI:0);}
   function vids(n){return n===1?'סרטון אחד':n+' סרטונים';}
   function wa(t){return 'https://wa.me/'+WA+'?text='+encodeURIComponent(t);}
@@ -1256,7 +1426,7 @@ dialog .undo{bottom:24px}
 
   /* gallery */
   var wall=document.getElementById('wall');
-  var GROUPS=[{k:'viral',t:'טרנדי ותופס את העין',d:'מתאים לאינסטגרם, טיקטוק ומודעות ממומנות: למי שרוצה לעצור את הגלילה ולהגיע לקהל חדש.'},{k:'cine',t:'קולנועי',d:'מתאים למותגי יוקרה, להשקת קולקציה ולסרטון ראשי באתר או בקמפיין.'},{k:'models',t:'דוגמנית',d:'מתאים לתכשיטים, כשרוצים להראות איך המוצר נראה על אדם אמיתי.'},{k:'simple',t:'תצוגה ותלת מימד',d:'מתאים לאתר, לחנות אונליין ולדף מוצר, כשרוצים להראות את המוצר עצמו מכל זווית.'}];
+  var GROUPS=[{k:'viral',t:'טרנדי ותופס את העין',d:'מתאים לאינסטגרם, טיקטוק ומודעות ממומנות: למי שרוצה לעצור את הגלילה ולהגיע לקהל חדש.'},{k:'models',t:'דוגמנית',d:'מתאים לתכשיטים, כשרוצים להראות איך המוצר נראה על אדם אמיתי.'},{k:'cine',t:'קולנועי',d:'מתאים למותגי יוקרה, להשקת קולקציה ולסרטון ראשי באתר או בקמפיין.'},{k:'simple',t:'תצוגה ותלת מימד',d:'מתאים לאתר, לחנות אונליין ולדף מוצר, כשרוצים להראות את המוצר עצמו מכל זווית.'}];
   function grp(i){var g=i.c.split(' ')[0];return GROUPS.some(function(x){return x.k===g;})?g:'simple';}
   var SEQ={},seqN=0,NM={viral:'טרנדי',cine:'קולנועי',models:'דוגמנית',simple:'תצוגה'};
   GROUPS.forEach(function(g){var its=ITEMS.filter(function(i){return grp(i)===g.k;});if(!its.length)return;
@@ -1334,15 +1504,21 @@ dialog .undo{bottom:24px}
       part.forEach(function(c){c.style.width=(h*c.dataset.ar-.03).toFixed(2)+'px';c.style.height=h.toFixed(2)+'px';});}}
   wall.addEventListener('click',function(e){var c=e.target.closest('.card');if(!c)return;
     if(e.target.closest('.pick'))toggle(c.dataset.id);else if(e.target.closest('.media'))openVideo(c.dataset.id);});
-  var fset=[],likedMode=false;
+  var VDUR={"work-15": 5.6, "work-16": 11.7, "work-71": 7.8, "work-72": 15.7, "work-09": 7.0, "work-13": 2.9, "work-11": 4.5, "work-07": 12.0, "work-06": 8.5, "work-08": 11.8, "work-05": 5.5, "work-21": 10.6, "work-04": 18.9, "work-18": 13.8, "work-19": 10.6, "work-20": 10.6, "work-23": 6.3, "work-24": 12.0, "work-25": 13.7, "work-26": 10.4, "work-27": 12.7, "work-28": 11.5, "work-29": 7.2, "work-30": 5.9, "work-32": 5.8, "work-33": 6.8, "work-41": 9.5, "work-44": 9.5, "work-45": 9.5, "work-57": 16.4, "work-58": 19.2, "work-59": 10.7, "work-60": 14.7, "work-62": 14.6, "work-63": 14.6, "work-64": 5.6, "work-65": 11.6, "work-66": 14.6, "work-67": 23.7, "work-68": 11.8, "work-69": 12.9, "work-70": 9.7, "work-55": 5.1};
+  var fset=[],likedMode=false,jset=[];
+  /* jewelry types of a video, from the upload tiles it asks for; 'any jewelry' counts as every type */
+  function vTypes(id){var o={};((META[id]||{}).t||[]).forEach(function(x){var l=x[0];if(l.indexOf('עגיל')===0)o.e=1;else if(l.indexOf('שרשר')===0)o.n=1;else if(l.indexOf('טבע')===0)o.r=1;else if(l.indexOf('צמיד')===0)o.b=1;else if(l.indexOf('תכשיט')===0){o.e=o.n=o.r=o.b=1;}});return o;}
+  function toggleJ(k){if(k==='all')jset=[];else{var x=jset.indexOf(k);if(x<0)jset.push(k);else jset.splice(x,1);}likedMode=false;applyF();}
   function likedN(){return wall.querySelectorAll('.card').length?[].filter.call(wall.querySelectorAll('.card'),function(c){return liked[c.dataset.id];}).length:0;}
   function likedUp(){var n=likedN();document.getElementById('likedTopN').textContent=n;document.getElementById('likedTop').setAttribute('aria-label','הסרטונים שאהבתי: '+n);if(likedMode)applyF();}
-  function applyF(){document.querySelectorAll('#gallery .filters:not(.pf) button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f==='liked'?likedMode:(b.dataset.f==='all'?(!fset.length&&!likedMode):fset.indexOf(b.dataset.f)>=0));});
-    curF=likedMode?'liked':(fset.length?fset.join(' '):'all');wall.querySelectorAll('.card').forEach(function(c){c.hidden=likedMode&&!liked[c.dataset.id];});
-    wall.querySelectorAll('.wsec').forEach(function(c){c.hidden=likedMode?!c.querySelector('.card:not([hidden])'):(!!fset.length&&fset.indexOf(c.dataset.g)<0);});
+  function applyF(){document.querySelectorAll('#gallery .filters:not(.pf):not(.vj) button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f==='liked'?likedMode:(b.dataset.f==='all'?(!fset.length&&!likedMode):fset.indexOf(b.dataset.f)>=0));});
+    curF=likedMode?'liked':(fset.length?fset.join(' '):'all');wall.querySelectorAll('.card').forEach(function(c){c.hidden=(likedMode&&!liked[c.dataset.id])||(!!jset.length&&!jset.some(function(k){return vTypes(c.dataset.id)[k];}));});
+    document.querySelectorAll('#vjfilt button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.j==='all'?!jset.length:jset.indexOf(b.dataset.j)>=0);});
+    wall.querySelectorAll('.wsec').forEach(function(c){c.hidden=(likedMode||jset.length)?(!c.querySelector('.card:not([hidden])')||(!!fset.length&&fset.indexOf(c.dataset.g)<0)):(!!fset.length&&fset.indexOf(c.dataset.g)<0);});
     document.getElementById('likedEmpty').hidden=!(likedMode&&!likedN());document.getElementById('likedBar').hidden=!(likedMode&&likedN());document.getElementById('likedTop').setAttribute('aria-pressed',likedMode);layout();var wt=wall.getBoundingClientRect().top;if(wt<0)window.scrollBy(0,wt-160);}
   function setFilter(f){likedMode=false;fset=f==='all'?[]:[f];applyF();}
-  function toggleF(f){if(f==='liked'){likedMode=!likedMode;fset=[];applyF();return;}likedMode=false;if(f==='all')fset=[];else{var k=fset.indexOf(f);if(k<0)fset.push(f);else fset.splice(k,1);if(fset.length===GROUPS.length)fset=[];}applyF();}
+  document.querySelectorAll('#vjfilt button').forEach(function(b){b.addEventListener('click',function(){toggleJ(b.dataset.j);});});
+  function toggleF(f){if(f==='liked'){likedMode=!likedMode;fset=[];applyF();return;}likedMode=false;if(f==='all')fset=[];else{var k=fset.indexOf(f);if(k<0)fset.push(f);else fset.splice(k,1);}applyF();}
   var curF='all',loT=0;
   document.getElementById('likedTop').addEventListener('click',function(){toggleF('liked');if(likedMode)document.querySelector('#gallery .ftitle').scrollIntoView({block:'start'});});
   document.getElementById('likedExit').addEventListener('click',function(){setFilter('all');});
@@ -1351,7 +1527,7 @@ dialog .undo{bottom:24px}
   function clip(){layout();}
   addEventListener('resize',function(){cancelAnimationFrame(loT);loT=requestAnimationFrame(layout);});
   layout();addEventListener('load',layout);
-  document.querySelectorAll('#gallery .filters:not(.pf) button').forEach(function(b){var n=b.dataset.f==='all'?wall.querySelectorAll('.card').length:wall.querySelectorAll('.wsec[data-g="'+b.dataset.f+'"] .card').length;var c=document.createElement('span');c.className='fc';c.textContent=n;b.appendChild(c);b.addEventListener('click',function(){toggleF(b.dataset.f);});});
+  document.querySelectorAll('#gallery .filters:not(.pf):not(.vj) button').forEach(function(b){var n=b.dataset.f==='all'?wall.querySelectorAll('.card').length:wall.querySelectorAll('.wsec[data-g="'+b.dataset.f+'"] .card').length;b.addEventListener('click',function(){toggleF(b.dataset.f);});});
   (function(){var go=document.querySelector('.cc-go');if(go)go.firstChild.textContent='לכל \u200e'+(ITEMS.length-1)+'+\u200e הפרסומות בקטלוג ';})();
   /* hero: the two blocks share one height when it fits under the sound button */
   (function(){var bx=document.querySelector('.film .box'),cc=document.querySelector('.catcard'),pl=document.querySelector('.film .play'),fm=document.querySelector('.film');if(!bx||!cc)return;
@@ -1374,7 +1550,7 @@ dialog .undo{bottom:24px}
     var n=nVid(),np=nPh(),cnt=sel.length+(images?1:0);
     document.getElementById('cartN').textContent=cnt;
     var parts=[];if(n)parts.push(n===1?'סרטון אחד':n+' סרטונים');if(np)parts.push(np===1?'תמונה אחת':np+' תמונות');if(images)parts.push('10 תמונות');
-    document.getElementById('cartTotal').textContent='בחרתם '+parts.join(' ו-')+(cnt?' · מחיר':'');
+    document.getElementById('cartTotal').textContent='בחרתם '+parts.join(' ו-')+(cnt?' · '+priceTxt():'');
     document.getElementById('cartLine').textContent=model?('דוגמנית: '+model):'אפשר להמשיך לבחור';
     document.getElementById('cart').classList.toggle('show',cnt>0);document.documentElement.classList.toggle('has-cart',cnt>0);
     var mp=document.getElementById('modelPicked');mp.hidden=!model;mp.textContent=model?('בחרתם: '+model):'';
@@ -1431,14 +1607,14 @@ dialog .undo{bottom:24px}
     document.getElementById('lbT').textContent=i.ph?'תמונת קמפיין · תמונה '+dispNum(id):NM[grp(i)]+' · סרטון '+dispNum(id)+(i.src?' · צילום בסיס: '+i.src:'');
     document.getElementById('lbName').textContent=i.t;
     var ft=document.getElementById('lbFit');ft.textContent='';ft.hidden=!m.f;if(m.f){var fb=document.createElement('b');fb.textContent='מתאים ל: ';ft.appendChild(fb);ft.appendChild(document.createTextNode(m.f));}
-    document.getElementById('lbPrice').textContent='מחיר';
+    document.getElementById('lbPrice').innerHTML=i.ph?'<b>10 ₪</b><span>לתמונה · מזמינים לפחות 10 תמונות (100 ₪)</span>':'<b>'+vp(id)+' ₪</b><span>'+(vp(id)===50?'סרטון עד 10 שניות':'סרטון מעל 10 שניות')+' · 5 סרטונים ומעלה: 10% הנחה</span>';
     document.getElementById('lbBT').textContent=m.b?'הוסיפו כאן את התמונה שלכם':'הוסיפו כאן תמונות של המוצרים שלכם';
     var sb=document.getElementById('lbSub');sb.textContent=m.t.length>1?'לא חייבים את כולם. אפשר להעלות, למשל, רק '+m.t[0][0]+' ולדלג על השאר.':'';sb.hidden=!sb.textContent;
     var tl=document.getElementById('lbTiles');tl.textContent='';m.t.forEach(function(x){tl.appendChild(mkTile(x[0],x[1],x[0]));});
     var tip=document.getElementById('lbTip');tip.textContent=(m.x?m.x+' ':'')+(m.b?'אפשר כמה תמונות.':'אין הגבלה על מספר התמונות: כמה שיותר זוויות, יותר טוב. צלמו באור טוב ועל רקע נקי.');tip.hidden=!tip.textContent;
     var lg=document.getElementById('lbLogo');lg.textContent='';lg.appendChild(mkTile('לוגו','','לוגו'));document.getElementById('lbLogoT').textContent='קובץ PNG או JPG · יופיע '+m.l+' · לא חובה';
     var dn=document.getElementById('lbDone');dn.hidden=!a.length;dn.textContent=a.length?'✓ הועלו '+pdesc(a):'';
-    var pk=document.getElementById('lbPick');pk.textContent=inCart?'✓ בסל · הסרה מהסל':'הוספה לסל';pk.setAttribute('aria-pressed',inCart);}
+    var pk=document.getElementById('lbPick');pk.textContent=inCart?'✓ בסל · הסרה מהסל':'הוספה לסל';pk.setAttribute('aria-pressed',inCart);var pn=document.getElementById('phNeed');if(!pn){pn=document.createElement('p');pn.id='phNeed';pn.className='ph-need';pk.insertAdjacentElement('afterend',pn);}var ps=phShort();var fi=lbId&&find(lbId);pn.hidden=!(fi&&fi.ph&&(ps||!nPh()));pn.textContent=!nPh()?'תמונות מזמינים לפחות 10. הוסיפו את התמונה לסל והמשיכו לבחור.':'בחרתם '+nPh()+' מתוך 10. צריך להשלים עוד '+(ps===1?'תמונה אחת':ps+' תמונות')+' כדי לשלוח.';}
   /* the viewer takes the media's own shape: nothing is cut off and no black bars */
   var stAR=0;
   function fitStage(ar){if(ar)stAR=ar;ar=stAR;var m=stage.querySelector('video,img.lb-ph');if(!m||!ar)return;
@@ -1462,12 +1638,13 @@ dialog .undo{bottom:24px}
   lbNote.addEventListener('input',function(){var v=lbNote.value;dnote[lbId]=v;if(sel.indexOf(lbId)>=0){if(v.trim())inotes[lbId]=v;else delete inotes[lbId];save();}});
   document.getElementById('lbPick').addEventListener('click',function(){var id=lbId,b4=snap(),k=sel.indexOf(id),a=lbArr(),nv=lbNote.value.trim();
     if(k<0){sel.push(id);if(a.length)prod[id]=a;if(nv)inotes[id]=nv;}else{sel.splice(k,1);delete prod[id];delete inotes[id];}
-    render();toast(isPh(id)?(k<0?'התמונה נוספה לסל':'התמונה הוסרה מהסל'):(k<0?'הסרטון נוסף לסל':'הסרטון הוסר מהסל'),b4);});
+    render();toast(isPh(id)?(k<0?(phShort()?'נוספה · '+nPh()+' מתוך 10, חסרות עוד '+phShort():nPh()+' תמונות בסל · אפשר לשלוח'):'התמונה הוסרה מהסל'):(k<0?'הסרטון נוסף לסל':'הסרטון הוסר מהסל'),b4);});
   document.getElementById('lbAgree').addEventListener('change',function(){document.getElementById('lbErr').hidden=true;});
   document.getElementById('lbSend').addEventListener('click',function(){var ag=document.getElementById('lbAgree'),er=document.getElementById('lbErr');
     if(!ag.checked){er.textContent='כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.';er.hidden=false;ag.focus();return;}
+    if(find(lbId).ph){er.textContent='תמונות מזמינים לפחות 10. לחצו "הוספה לסל", בחרו עוד תמונות ושלחו מהסל.';er.hidden=false;return;}
     er.hidden=true;var id=lbId,i=find(id),a=lbArr(),nv=lbNote.value.trim();
-    var L=['*הזמנה מהאתר · BOOST MEDIA*','',i.ph?'*תמונת קמפיין '+dispNum(id)+'* · '+i.t:'*סרטון '+dispNum(id)+'* · '+i.t,'*מחיר:*','*תמונות:* '+(a.length?pdesc(a)+', נשלחות בהודעה נפרדת':'עדיין לא צירפתי, אשלח בשיחה')];
+    var L=['*הזמנה מהאתר · BOOST MEDIA*','',i.ph?'*תמונת קמפיין '+dispNum(id)+'* · '+i.t:'*סרטון '+dispNum(id)+'* · '+i.t,i.ph?'*מחיר:*':'*מחיר:* '+vp(id)+' ₪','*תמונות:* '+(a.length?pdesc(a)+', נשלחות בהודעה נפרדת':'עדיין לא צירפתי, אשלח בשיחה')];
     if(nv)L.push('*הערות:* '+nv);L.push('*לצפייה:* '+BASE+(i.ph?'ph/'+phN(id)+'.webp':'?v='+numOf(id)),'','אשמח לקבל פרטי תשלום.');
     goWA(wa(L.join('\n')));document.getElementById('lbAfter').hidden=!a.length;});
   document.getElementById('lbShare').addEventListener('click',async function(){var files=lbArr().slice();
@@ -1504,7 +1681,7 @@ dialog .undo{bottom:24px}
       sel.forEach(function(id){var i=find(id),m=META[id]||PMETA[id]||{t:[['תכשיט','']],l:'בסוף הסרטון'},d=document.createElement('div');d.className='oi ci';
         var top=document.createElement('div');top.className='ci-top';
         var th=document.createElement('button');th.type='button';th.className='ci-th';th.setAttribute('aria-label',(i.ph?'הגדלת ':'צפייה ב')+i.t);var ti=document.createElement('img');ti.alt='';ti.src=i.ph?'ph/'+phN(id)+'-s.webp':'p/'+id+'-s.webp';th.appendChild(ti);var tl=document.createElement('i');tl.textContent=i.ph?'הגדלה':'▶ צפייה';th.appendChild(tl);th.addEventListener('click',function(){if(i.ph)zoomPh(id);else zoomVid(id);});
-        var mt=document.createElement('div');mt.className='ci-meta';var tg=document.createElement('span');tg.className='ci-tag';tg.textContent=(i.ph?'תמונה ':'סרטון ')+dispNum(id);var nm=document.createElement('b');nm.textContent=i.t;var pr=document.createElement('span');pr.className='ci-pr';pr.textContent='מחיר';mt.appendChild(tg);mt.appendChild(nm);mt.appendChild(pr);
+        var mt=document.createElement('div');mt.className='ci-meta';var tg=document.createElement('span');tg.className='ci-tag';tg.textContent=(i.ph?'תמונה ':'סרטון ')+dispNum(id);var nm=document.createElement('b');nm.textContent=i.t;var pr=document.createElement('span');pr.className='ci-pr';pr.textContent=i.ph?'10 ₪':vp(id)+' ₪';mt.appendChild(tg);mt.appendChild(nm);mt.appendChild(pr);
         var rm=document.createElement('button');rm.type='button';rm.className='ci-x';rm.textContent='✕';rm.setAttribute('aria-label','הסרה מהסל: '+i.t);rm.addEventListener('click',function(){toggle(id);});
         top.appendChild(th);top.appendChild(mt);top.appendChild(rm);d.appendChild(top);
         var h=document.createElement('p');h.className='ci-h';h.textContent=m.b?'הוסיפו כאן את התמונה שלכם':'הוסיפו כאן תמונות של המוצרים שלכם';d.appendChild(h);
@@ -1521,9 +1698,9 @@ dialog .undo{bottom:24px}
       setTimeout(function(){s1.appendChild(cl);});
     }
     document.getElementById('oSend').disabled=!(sel.length||images);
-    var ot=document.getElementById('oTotal'),nn=sel.length;ot.hidden=!(nn||images);ot.innerHTML='';if(nn||images){var b1=document.createElement('b');b1.textContent='סה"כ: מחיר';ot.appendChild(b1);}
+    var ot=document.getElementById('oTotal'),nn=sel.length;ot.hidden=!(nn||images);ot.innerHTML='';if(nn||images){var b1=document.createElement('b');b1.textContent='סה"כ: '+priceTxt();ot.appendChild(b1);var vl=vidLine();if(vl){var s2=document.createElement('span');s2.textContent=vl;ot.appendChild(s2);}var pm=phShort();if(pm){var s3=document.createElement('span');s3.className='warn';s3.textContent='תמונות: בחרתם '+nPh()+'. מזמינים לפחות 10, עוד '+(pm===1?'תמונה אחת':pm+' תמונות');ot.appendChild(s3);}}
     document.getElementById('oMiss').hidden=true;
-    var nIt=sel.length+(images?1:0),os=document.getElementById('oSum');os.hidden=!nIt;document.getElementById('oSumV').textContent='מחיר';
+    var nIt=sel.length+(images?1:0),os=document.getElementById('oSum');os.hidden=!nIt;var sv=document.getElementById('oSumV'),dc=nVid()>=5?vidsFull()-vidsTotal():0;sv.textContent='';if(dc){var od=document.createElement('s');od.className='oldp';od.textContent=(vidsFull()+phTotal())+' ₪';sv.appendChild(od);}var nw=document.createElement('bdi');nw.textContent=priceTxt();sv.appendChild(nw);var dn=document.getElementById('oDisc');if(!dn){dn=document.createElement('p');dn.id='oDisc';dn.className='odisc';document.getElementById('oSum').insertAdjacentElement('afterend',dn);}dn.hidden=!dc;dn.textContent=dc?'✓ 10% הנחה הופעלה אוטומטית · חסכתם '+dc+' ₪':'';
     document.getElementById('oStepTxt').textContent=nIt===1?'פריט אחד':nIt+' פריטים';
   }
   /* one upload tile in the cart, same as in the pick panel; files go to the item with their jewelry type */
@@ -1546,7 +1723,7 @@ dialog .undo{bottom:24px}
       L.push((k+1)+'. '+(i.ph?'תמונת קמפיין ':'סרטון ')+dispNum(id)+' · '+i.t,'   תמונת מוצר: '+(prod[id]?pcount(id):'עדיין לא צירפתי, אשלח בשיחה'),'   לצפייה: '+BASE+(i.ph?'ph/'+phN(id)+'.webp':'?v='+numOf(id)));if(inotes[id])L.push('   הערות: '+inotes[id].trim());});if(nPh())L.push('','תמונות קמפיין: '+nPh());}
     if(images)L.push('','*תמונות:*','1. 10 תמונות קמפיין','   תמונת מוצר: '+(prod.images?pcount('images'):'עדיין לא צירפתי, אשלח בשיחה'),'   לצפייה: '+BASE+'#extras');if(images&&inotes.images)L.push('   הערות: '+inotes.images.trim());if(model)L.push('','דוגמן/ית: '+model);
     if(note.trim())L.push('','*הערות:*',note.trim());
-    if(n||images)L.push('','*מחיר:*');
+    if(n||images){L.push('','*סה"כ:* '+priceTxt());var vl=vidLine();if(vl)L.push(vl);}
     L.push('אשמח לקבל פרטי תשלום.');
     return L.join('\n');}
   function doSend(){document.getElementById('oMiss').hidden=true;goWA(wa(orderText()));if(Object.keys(prod).length)document.getElementById('oDone').classList.add('show');}
@@ -1555,6 +1732,8 @@ dialog .undo{bottom:24px}
   document.getElementById('oAgree').addEventListener('change',function(){document.getElementById('oAgreeErr').hidden=true;});
   document.getElementById('oSend').addEventListener('click',function(){var ms=missing(),bx=document.getElementById('oMiss');
     var oa=document.getElementById('oAgree');if(!oa.checked){document.getElementById('oAgreeErr').hidden=false;oa.focus();return;}
+    if(phShort()){var pe=document.getElementById('oAgreeErr');pe.textContent='תמונות מזמינים לפחות 10. בחרתם '+nPh()+', הוסיפו עוד '+(phShort()===1?'תמונה אחת':phShort()+' תמונות')+' מקטלוג התמונות.';pe.hidden=false;pe.scrollIntoView({block:'nearest'});return;}
+    document.getElementById('oAgreeErr').textContent='כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.';
     if(ms.length&&bx.hidden){document.getElementById('oMissT').textContent=ms.length===1?(ms[0]==='images'?'לא העליתם תמונה של המוצר לתמונות הקמפיין.':'לא העליתם תמונה של המוצר '+(isPh(ms[0])?'לתמונה ':'לסרטון ')+dispNum(ms[0])+'.'):'לא העליתם תמונה של המוצר ל-'+ms.length+' פריטים בהזמנה.';bx.hidden=false;bx.scrollIntoView({block:'nearest'});return;}
     doSend();});
   document.getElementById('oMissSend').addEventListener('click',doSend);
@@ -1664,5 +1843,57 @@ dialog .undo{bottom:24px}
   (function(){var fb=document.querySelectorAll('.mfilt button');fb.forEach(function(x){x.addEventListener('click',function(){var on=x.getAttribute('aria-pressed')!=='true';fb.forEach(function(y){y.setAttribute('aria-pressed','false')});if(on)x.setAttribute('aria-pressed','true');var f=on?x.dataset.f:null;document.getElementById('modelsMore').hidden=f!=='all';document.getElementById('campGrid').hidden=f!=='c';document.getElementById('modelsGrid').style.display=(f==='all'||f==='c')?'none':'';document.querySelectorAll('#modelsGrid .model').forEach(function(m){m.classList.toggle('mhide',!!f&&f!=='all'&&m.dataset.g!==f)});});});})();
   </script>
 <script type="module">import {mountAll} from "./assets/moments/moments.js";mountAll();</script>
+<script>
+(function(){var st=document.getElementById('pvSt');if(!st)return;var bars=st.querySelectorAll('.pv-bars i'),chip=document.getElementById('pvChip'),h=document.getElementById('pvH'),p=document.getElementById('pvP'),ad=document.getElementById('pvAd'),lib=document.getElementById('pvLib'),lv=[];
+  var red=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ADS={mag:{src:'mob/work-24.mp4',end:10.4},sil:{src:'mob/work-29.mp4',end:5.3},pearl:{src:'pv/ad.mp4',end:5}};
+  var q=new URLSearchParams(location.search);var cur=ADS[q.get('ad')]?q.get('ad'):'mag';
+  var S=[{c:'התמונות שלכם, מהטלפון',l:0,h:'שלחו תמונות של התכשיטים.',p:'תצלמו בטלפון את התכשיטים.',ms:3400},
+         {c:'הפרסומת שלכם',l:1,h:'קבלו אותם <em>בפרסומת מוכנה.</em>',p:'הפרסומת המוכנה, עם התכשיטים שלכם.',ms:0},
+         {c:'קטלוג שלם של פרסומות',l:1,h:'רואים <em>לפני</em> שקונים.',p:'תיקייה מלאה בפרסומות מוכנות. בואו לבחור את הרעיון שאהבתם.',ms:9000}];
+  var i=0,tm=null,rf=null,t0=0;
+  /* step 3: four small players hop between the posters, so the folder feels alive without loading everything */
+  var tl=[].slice.call(lib.querySelectorAll('.pv-t')),pool=[],wt=null,wn=0;
+  function hop(){var v=pool[wn%4];if(!v){v=document.createElement('video');v.muted=true;v.loop=true;v.playsInline=true;v.setAttribute('playsinline','');v.preload='auto';v.addEventListener('playing',function(){v.classList.add('on');});pool[wn%4]=v;}
+    wn++;var c=tl.filter(function(t){var r=t.getBoundingClientRect(),b=st.getBoundingClientRect();return !t.classList.contains('play')&&r.left>=b.left-4&&r.right<=b.right+4&&r.top>=b.top-4&&r.bottom<=b.bottom-60;});if(!c.length)return;
+    var t=c[Math.floor(Math.random()*c.length)];if(v.parentNode)v.parentNode.classList.remove('play');v.classList.remove('on');v.src=t.dataset.s;t.appendChild(v);t.classList.add('play');var r=v.play();if(r&&r.catch)r.catch(function(){});}
+  function wall(on){clearInterval(wt);if(on){setTimeout(function(){if(i===2){hop();hop();}},900);wt=setInterval(hop,1100);}else pool.forEach(function(v){v.pause();});}
+  function setAd(k){cur=k;ad.src=ADS[k].src;ad.load();if(i===1)go(1,false);}
+  ad.addEventListener('timeupdate',function(){var e=ADS[cur].end;if(i===1&&ad.currentTime>=e)go(2,true);});
+  function go(k,fw){i=(k+3)%3;var s=S[i];st.classList.remove('anim');if(i===1&&fw&&!red){void st.offsetWidth;st.classList.add('anim');}
+    st.classList.toggle('sw',i>=1);st.classList.toggle('s2',i===1);if(i===2){st.classList.remove('s3');void st.offsetWidth;}st.classList.toggle('s3',i===2);
+    chip.textContent=s.c;chip.classList.toggle('l',!!s.l);chip.classList.remove('pop');void chip.offsetWidth;chip.classList.add('pop');
+    var cap=h.parentNode;cap.classList.remove('on');var n=0;h.innerHTML=s.h.replace(/[^\s<>]+(?![^<]*>)/g,function(w){return '<span class="w" style="transition-delay:'+(n++*110)+'ms">'+w+'</span>';});
+    p.textContent=s.p;p.style.transitionDelay=(n*110+150)+'ms';void cap.offsetWidth;requestAnimationFrame(function(){cap.classList.add('on');});
+    bars.forEach(function(b,n){b.style.width=n<i?'100%':'0%';});
+    if(i===1){try{ad.currentTime=0;}catch(e){}var pr=ad.play();if(pr&&pr.catch)pr.catch(function(){});}else ad.pause();
+    wall(i===2);
+    cancelAnimationFrame(rf);clearTimeout(tm);t0=performance.now();var b=bars[i],ms=i===1?(ADS[cur].end*1000+600):s.ms;
+    (function f(t){var x=Math.min(1,((t||performance.now())-t0)/ms);b.style.width=(x*100)+'%';if(x<1)rf=requestAnimationFrame(f);})();
+    tm=setTimeout(function(){go(i+1,true);},ms+(i===1?2500:0));}
+  st.querySelector('.pv-tap.n').addEventListener('click',function(){go(i+1,true);});
+  st.querySelector('.pv-tap.p').addEventListener('click',function(){go(i-1,false);});
+  function order(k){var how=document.getElementById('how'),gal=document.getElementById('gallery'),ct=document.getElementById('contact');if(!how||!gal)return;if(k==='how')gal.parentNode.insertBefore(how,gal);else ct.parentNode.insertBefore(how,ct);}
+  window.pvSet=function(o){if(o.order)order(o.order);if(o.logo)document.documentElement.setAttribute('data-logo',o.logo);if(o.ad&&ADS[o.ad])setAd(o.ad);};
+  if(q.get('logo'))document.documentElement.setAttribute('data-logo',q.get('logo'));if(q.get('order'))order(q.get('order'));
+  ad.src=ADS[cur].src;go(0,false);})();
+</script>
+<dialog class="hx" id="hxD" aria-labelledby="hxT"><div class="hx-in">
+  <button type="button" class="hx-x" data-hxclose aria-label="סגירה">×</button>
+  <h2 id="hxT">סרטון ההסבר</h2>
+  <div class="hx-v"><video id="hxV" src="pv/explainer-catalog-4.mp4" poster="pv/explainer-catalog.jpg" muted playsinline controls preload="none"></video></div>
+  <button type="button" class="hx-ok" data-hxclose>הבנתי, נמשיך</button>
+</div></dialog>
+<script>
+(function(){var d=document.getElementById('hxD'),v=document.getElementById('hxV'),lb=document.getElementById('lb'),shown=false;
+  var SRC={business:['pv/explainer-business-3.mp4','pv/explainer-business.jpg']},base=null;
+  function open(k){if(d.open)return;if(!base)base=[v.getAttribute('src'),v.getAttribute('poster')];var w=SRC[k]||base;if(v.getAttribute('src')!==w[0]){v.poster=w[1];v.src=w[0];}d.showModal();try{v.currentTime=0;}catch(e){}var r=v.play();if(r&&r.catch)r.catch(function(){});}
+  function close(){v.pause();d.close();}
+  document.querySelectorAll('[data-hxclose]').forEach(function(b){b.addEventListener('click',close);});
+  d.addEventListener('close',function(){v.pause();});
+  d.addEventListener('click',function(e){if(e.target===d)close();});
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-hx]');if(b)open(b.getAttribute('data-hx'));});
+})();
+</script>
 </body>
 </html>
