@@ -957,20 +957,22 @@ main > section.hero{display:none!important}
 .hx-in :focus-visible,.hx-open:focus-visible{outline:3px solid #D9FE16;outline-offset:2px}
 
 .pv-st{border-radius:18px 18px 0 0}
-.pv-link{appearance:none;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:50px;border:0;border-top:1px solid #34363A;border-radius:0 0 18px 18px;background:#1F1F21;color:#F4F4F2;font:700 1rem Heebo,sans-serif;cursor:pointer}
-.pv-link svg{width:24px;height:24px;color:#D9FE16;flex:none}.pv-link span{color:#A6A8AB}
+.pv-in>.pv-paths{margin-top:0;padding:10px 10px 0;background:#1F1F21}
+.pv-link{appearance:none;display:flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:44px;border:0;border-radius:0 0 18px 18px;background:#1F1F21;color:#F4F4F2;font:400 .875rem Heebo,sans-serif;cursor:pointer;padding:0 0 4px}
+.pv-link svg{width:16px;height:16px;color:#F4F4F2;opacity:.8;flex:none}
 .pv-ex{background:#131416;color:#F4F4F2;padding:40px max(16px,env(safe-area-inset-left,0px))}
 .pv-scan{margin-top:14px;padding:16px;border-radius:18px;background:#1F1F21}
-.pv-scan #hscan [data-r=note],.pv-scan label[for=hscanNote]{display:none}
+.pv-scan #hscan [data-r=note]{min-height:44px;font-size:.875rem;padding:0 14px}
+.pv-idea{margin:0 0 10px;color:#C9CACB;font-size:.9375rem;line-height:1.5}
 .pv-scan #hscan [data-r=url]{min-height:52px;font-size:1rem}
 .pv-scan #hscan .btn[type=submit]{min-height:52px;font-size:1.0625rem}
-.pv-mini{appearance:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:4px;border:0;background:transparent;color:#C9CACB;font:600 .875rem Heebo,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:0}.pv-mini svg{width:20px;height:20px;color:#D9FE16}
+.pv-mini{appearance:none;display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-top:2px;border:0;background:transparent;color:#F4F4F2;font:400 .875rem Heebo,sans-serif;cursor:pointer;padding:0}.pv-mini svg{width:16px;height:16px;color:#F4F4F2;opacity:.8}
 .pv-in.wide{max-width:760px}
 .pv-k{color:#D9FE16;font-weight:700;font-size:.9375rem}
 .pv-ex h2{font:700 1.85rem/1.15 "Frank Ruhl Libre",serif;margin:6px 0 4px;color:#F4F4F2}
 .pv-scan h2{font:700 1.3rem/1.2 "Frank Ruhl Libre",serif;margin:4px 0 12px;color:#F4F4F2}
 .pv-scan h2 em{font-style:normal;color:#D9FE16}
-.pv-scan .pv-steps{margin:10px 0 16px;font-size:.875rem}
+.pv-scan .pv-steps{margin:0 0 14px;font-size:.8125rem}
 .pv-scan .hscan{display:flex;flex-direction:column;gap:10px;margin:0}
 .pv-scan .hscan .btn.gold{background:#D9FE16;color:#131416}
 .pv-scan #hscan [data-r=url]{border-color:#D9FE16}
@@ -1020,14 +1022,15 @@ main > section.hero{display:none!important}
       <div class="pv-cap" aria-live="polite"><h1 id="pvH">שלחו תמונה של התכשיט.</h1><p id="pvP">כמו שהיא, מהטלפון, על השולחן.</p></div>
       <button class="pv-tap n" type="button" aria-label="הבא"></button><button class="pv-tap p" type="button" aria-label="הקודם"></button>
     </div>
-    <button class="pv-link" type="button" data-hx><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="3" fill="currentColor"/><path d="M16.5 10.500 21.500 7.500v9l-5-3Z" fill="currentColor"/></svg>לסרטון ההסבר<span aria-hidden="true">←</span></button>
     <div class="pv-paths">
       <a class="pv-b a" href="#gallery"><span>בוחרים פרסומת מהקטלוג<small>כל הפרסומות מחכות לכם שם</small></span><span aria-hidden="true">←</span></a>
 
     </div>
+    <button class="pv-link" type="button" data-hx><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="3" fill="currentColor"/><path d="M16.5 10.500 21.500 7.500v9l-5-3Z" fill="currentColor"/></svg>לסרטון ההסבר</button>
     <div class="pv-scan" id="scan-sec">
-      <span class="pv-k">לא יודעים מה לבחור?</span>
       <h2 id="scanH">שלחו קישור לעסק, וקבלו <em>3 תסריטים בחינם</em></h2>
+      <p class="pv-idea">סורקים את האתר או האינסטגרם שלכם, מוצאים מה חזק ומה כדאי לחזק, וכותבים לכם 3 תסריטים לפרסומת שמתאימים לעסק.</p>
+      <div class="pv-steps"><span>סריקת העסק</span><i>←</i><span>חוזקות ומה לחזק</span><i>←</i><span class="g">3 תסריטים בחינם</span></div>
       <form class="hscan" id="hscan" novalidate>
             <label class="sr" for="hscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
             <input type="text" id="hscanUrl" data-r="url" inputmode="url" autocomplete="url" dir="ltr" placeholder="לדוגמה: https://www.noa-diamonds.co.il/">
