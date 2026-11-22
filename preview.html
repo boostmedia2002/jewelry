@@ -1069,6 +1069,18 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
 .pv-th i{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:44px;height:44px;border-radius:22px;background:#D9FE16;color:#131416;font-style:normal;font-size:.9375rem;padding-left:3px}
 .pv-cp{display:block;margin-top:8px;text-align:center;font-size:.8125rem;font-weight:700;line-height:1.3}
 @media(min-width:1024px){.pv-exg{grid-template-columns:repeat(2,220px);gap:28px}.pv-cp{font-size:.9375rem}.pv-ex h2{font-size:1.5rem}}
+.pv-hd{padding:10px 4px 16px}
+.pv-hd h1{margin:0;font:900 clamp(2rem,10.4vw,2.75rem)/1.02 Heebo,sans-serif;letter-spacing:-.02em;color:#F4F4F2}
+.pv-hd h1 em{font-style:normal;color:#D9FE16}
+.pv-hd p{margin:10px 0 0;color:#A6A8AB;font-size:.9375rem;line-height:1.45;max-width:32ch}
+@media(prefers-reduced-motion:no-preference){.pv-hd h1,.pv-hd p{animation:hdUp 520ms cubic-bezier(.23,1,.32,1) both}.pv-hd p{animation-delay:120ms}}
+@keyframes hdUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media(min-width:1024px){
+.pv-hd{padding:26px 0 24px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.pv-hd h1{font-size:4.25rem;line-height:.98}
+.pv-hd p{margin:0 0 8px;font-size:1.125rem;max-width:30ch;text-align:left}
+html[data-desk=b] .pv-in:not(.wide)>.pv-st{height:min(56vh,540px)}
+}
 </style>
 </head>
 <body>
@@ -1097,6 +1109,7 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
 
 <main id="top">
   <section class="pv" aria-label="איך זה עובד בשלושה שלבים"><div class="pv-in">
+    <div class="pv-hd"><h1>למה לצלם,<br>כשאפשר <em>לבחור?</em></h1><p>כ-100 תכנים מוכנים לסטורי, לרילס ולאתר, עם התכשיטים שלכם.</p></div>
     <div class="pv-st" id="pvSt">
       <img src="p/work-24.webp" alt="" aria-hidden="true">
       <video class="ad" id="pvAd" muted playsinline preload="auto" aria-hidden="true"></video>
