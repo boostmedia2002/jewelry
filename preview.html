@@ -2007,6 +2007,13 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
 })();
 </script>
 <script>
+/* a file that fails to load (a passing server error) is asked for again, up to two more times */
+document.addEventListener('error',function(e){var el=e.target;if(!el||(el.tagName!=='VIDEO'&&el.tagName!=='IMG'))return;
+  var n=+(el.dataset.rt||0),s=el.currentSrc||el.getAttribute('src');if(n>=2||!s||s.indexOf('data:')===0)return;el.dataset.rt=n+1;
+  setTimeout(function(){if(!el.isConnected)return;var u=s.replace(/[?&]r=\d+$/,'');u+=(u.indexOf('?')<0?'?':'&')+'r='+(n+1);el.src=u;
+    if(el.tagName==='VIDEO'){el.load();var r=el.getBoundingClientRect();if(el.autoplay||(r.bottom>0&&r.top<innerHeight)){var pr=el.play();if(pr&&pr.catch)pr.catch(function(){});}}},600*(n+1));},true);
+</script>
+<script>
 /* the video filter stays pinned only while the videos are on screen */
 (function(){var v=document.querySelector('.vfbox'),ph=document.getElementById('photos');if(!v||!ph)return;var tk=0;
   function f(){tk=0;v.classList.toggle('gone',ph.getBoundingClientRect().top<v.offsetHeight+90);}
