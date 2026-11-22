@@ -992,6 +992,11 @@ main > section.hero{display:none!important}
 .pc-row.two{grid-template-columns:repeat(2,minmax(0,1fr))}.ph-price{margin-top:10px}
 .ototal span.warn{color:#FFB86B}
 .ph-need{margin:8px 0 0;padding:10px 12px;border-radius:12px;background:rgba(255,184,107,.12);color:#FFB86B;font-size:.875rem;font-weight:700;line-height:1.4}
+.vfbox{position:sticky;top:var(--nav);z-index:20;background:#131416;padding:8px 0;margin-bottom:8px;display:grid;gap:6px}
+.vfbox .filters.vf{position:static;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:0!important;margin:0!important;background:none}
+.vfbox .filters.vf button{min-height:40px;padding:0 4px;justify-content:center;font-size:.9375rem;border-radius:999px}
+#oSumV bdi,#oSumV .oldp{display:inline-block;unicode-bidi:isolate}#oSumV .oldp{font-size:.9375rem;font-weight:500;color:#8A8B8D;margin-inline-end:10px}
+.odisc{margin:6px 0 0;color:#D9FE16;font-size:.875rem;font-weight:700}
 </style>
 </head>
 <body>
@@ -1090,6 +1095,20 @@ main > section.hero{display:none!important}
       <div class="head"><h2 id="h-g" class="fillh">קטלוג הפרסומות</h2></div>
       <p class="fits-line mo-wh__text" data-moment="word-highlight"><strong>כל פרסומת מתאימה לכל מוצר.</strong> בוחרים סרטון שאהבתם, מצרפים תמונה של התכשיטים שלכם ואני מכין הכל מחדש עם התכשיטים שלכם. המוצר מתחלף, <strong>והרעיון נשאר.</strong></p>
       <div class="a11y-row"><button class="still" type="button" id="stillBtn" aria-pressed="false"><span aria-hidden="true">⏸</span> <span id="stillT">עצירת הסרטונים</span></button></div>
+      <div class="vfbox" role="group" aria-label="סינון הסרטונים, אפשר לבחור כמה">
+        <div class="filters vf" role="group" aria-label="סגנון">
+          <button type="button" data-f="viral" aria-pressed="false">טרנדי</button>
+          <button type="button" data-f="models" aria-pressed="false">דוגמניות</button>
+          <button type="button" data-f="cine" aria-pressed="false">קולנועי</button>
+          <button type="button" data-f="simple" aria-pressed="false">תצוגה</button>
+        </div>
+        <div class="filters vf vj" id="vjfilt" role="group" aria-label="סוג תכשיט בסרטון">
+          <button type="button" data-j="e" aria-pressed="false">עגילים</button>
+          <button type="button" data-j="n" aria-pressed="false">שרשרת</button>
+          <button type="button" data-j="b" aria-pressed="false">צמיד</button>
+          <button type="button" data-j="r" aria-pressed="false">טבעת</button>
+        </div>
+      </div>
       <div class="pricecard" aria-label="מחירון">
         <div class="pc-h"><b>מחירון</b></div>
         <div class="pc-row">
@@ -1097,22 +1116,6 @@ main > section.hero{display:none!important}
           <div class="pc-t"><span class="n">סרטון מעל 10 שניות</span><b>70 ₪</b></div>
           <div class="pc-t best"><span class="n">5 סרטונים ומעלה</span><b>10% הנחה</b></div>
         </div>
-      </div>
-      <p class="ftitle"><b>סינון לפי סגנון</b><span>אפשר לבחור כמה</span></p>
-      <div class="filters" role="group" aria-label="סינון לפי סגנון, אפשר לבחור כמה">
-        <button type="button" data-f="all" aria-pressed="true">הכל</button>
-        <button type="button" data-f="viral" aria-pressed="false">טרנדי</button>
-        <button type="button" data-f="models" aria-pressed="false">דוגמנית</button>
-        <button type="button" data-f="cine" aria-pressed="false">קולנועי</button>
-        <button type="button" data-f="simple" aria-pressed="false">תצוגה</button>
-      </div>
-      <p class="ftitle"><b>סינון לפי סוג תכשיט</b><span>אפשר לבחור כמה</span></p>
-      <div class="filters vj" id="vjfilt" role="group" aria-label="סינון סרטונים לפי סוג תכשיט, אפשר לבחור כמה">
-        <button type="button" data-j="all" aria-pressed="true">הכל</button>
-        <button type="button" data-j="e" aria-pressed="false">עגילים</button>
-        <button type="button" data-j="n" aria-pressed="false">שרשראות</button>
-        <button type="button" data-j="r" aria-pressed="false">טבעות</button>
-        <button type="button" data-j="b" aria-pressed="false">צמידים</button>
       </div>
       <div class="liked-bar" id="likedBar" hidden><b><span aria-hidden="true">♥</span> הסרטונים שאהבתי</b><div class="lbar-b"><button type="button" class="lbar-go" id="likedCart">הוספת הכל לסל והמשך לקופה</button><button type="button" class="lbar-x" id="likedExit">חזרה לכל הסרטונים</button></div></div>
       <p class="liked-empty" id="likedEmpty" hidden>עוד לא סימנתם סרטונים. לחצו על הלב בסרטון שאהבתם, והוא יישמר כאן.</p>
@@ -1505,7 +1508,7 @@ main > section.hero{display:none!important}
   var fset=[],likedMode=false,jset=[];
   /* jewelry types of a video, from the upload tiles it asks for; 'any jewelry' counts as every type */
   function vTypes(id){var o={};((META[id]||{}).t||[]).forEach(function(x){var l=x[0];if(l.indexOf('עגיל')===0)o.e=1;else if(l.indexOf('שרשר')===0)o.n=1;else if(l.indexOf('טבע')===0)o.r=1;else if(l.indexOf('צמיד')===0)o.b=1;else if(l.indexOf('תכשיט')===0){o.e=o.n=o.r=o.b=1;}});return o;}
-  function toggleJ(k){if(k==='all')jset=[];else{var x=jset.indexOf(k);if(x<0)jset.push(k);else jset.splice(x,1);if(jset.length===4)jset=[];}likedMode=false;applyF();}
+  function toggleJ(k){if(k==='all')jset=[];else{var x=jset.indexOf(k);if(x<0)jset.push(k);else jset.splice(x,1);}likedMode=false;applyF();}
   function likedN(){return wall.querySelectorAll('.card').length?[].filter.call(wall.querySelectorAll('.card'),function(c){return liked[c.dataset.id];}).length:0;}
   function likedUp(){var n=likedN();document.getElementById('likedTopN').textContent=n;document.getElementById('likedTop').setAttribute('aria-label','הסרטונים שאהבתי: '+n);if(likedMode)applyF();}
   function applyF(){document.querySelectorAll('#gallery .filters:not(.pf):not(.vj) button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.f==='liked'?likedMode:(b.dataset.f==='all'?(!fset.length&&!likedMode):fset.indexOf(b.dataset.f)>=0));});
@@ -1515,7 +1518,7 @@ main > section.hero{display:none!important}
     document.getElementById('likedEmpty').hidden=!(likedMode&&!likedN());document.getElementById('likedBar').hidden=!(likedMode&&likedN());document.getElementById('likedTop').setAttribute('aria-pressed',likedMode);layout();var wt=wall.getBoundingClientRect().top;if(wt<0)window.scrollBy(0,wt-160);}
   function setFilter(f){likedMode=false;fset=f==='all'?[]:[f];applyF();}
   document.querySelectorAll('#vjfilt button').forEach(function(b){b.addEventListener('click',function(){toggleJ(b.dataset.j);});});
-  function toggleF(f){if(f==='liked'){likedMode=!likedMode;fset=[];applyF();return;}likedMode=false;if(f==='all')fset=[];else{var k=fset.indexOf(f);if(k<0)fset.push(f);else fset.splice(k,1);if(fset.length===GROUPS.length)fset=[];}applyF();}
+  function toggleF(f){if(f==='liked'){likedMode=!likedMode;fset=[];applyF();return;}likedMode=false;if(f==='all')fset=[];else{var k=fset.indexOf(f);if(k<0)fset.push(f);else fset.splice(k,1);}applyF();}
   var curF='all',loT=0;
   document.getElementById('likedTop').addEventListener('click',function(){toggleF('liked');if(likedMode)document.querySelector('#gallery .ftitle').scrollIntoView({block:'start'});});
   document.getElementById('likedExit').addEventListener('click',function(){setFilter('all');});
@@ -1524,7 +1527,7 @@ main > section.hero{display:none!important}
   function clip(){layout();}
   addEventListener('resize',function(){cancelAnimationFrame(loT);loT=requestAnimationFrame(layout);});
   layout();addEventListener('load',layout);
-  document.querySelectorAll('#gallery .filters:not(.pf):not(.vj) button').forEach(function(b){var n=b.dataset.f==='all'?wall.querySelectorAll('.card').length:wall.querySelectorAll('.wsec[data-g="'+b.dataset.f+'"] .card').length;var c=document.createElement('span');c.className='fc';c.textContent=n;b.appendChild(c);b.addEventListener('click',function(){toggleF(b.dataset.f);});});
+  document.querySelectorAll('#gallery .filters:not(.pf):not(.vj) button').forEach(function(b){var n=b.dataset.f==='all'?wall.querySelectorAll('.card').length:wall.querySelectorAll('.wsec[data-g="'+b.dataset.f+'"] .card').length;b.addEventListener('click',function(){toggleF(b.dataset.f);});});
   (function(){var go=document.querySelector('.cc-go');if(go)go.firstChild.textContent='לכל \u200e'+(ITEMS.length-1)+'+\u200e הפרסומות בקטלוג ';})();
   /* hero: the two blocks share one height when it fits under the sound button */
   (function(){var bx=document.querySelector('.film .box'),cc=document.querySelector('.catcard'),pl=document.querySelector('.film .play'),fm=document.querySelector('.film');if(!bx||!cc)return;
@@ -1697,7 +1700,7 @@ main > section.hero{display:none!important}
     document.getElementById('oSend').disabled=!(sel.length||images);
     var ot=document.getElementById('oTotal'),nn=sel.length;ot.hidden=!(nn||images);ot.innerHTML='';if(nn||images){var b1=document.createElement('b');b1.textContent='סה"כ: '+priceTxt();ot.appendChild(b1);var vl=vidLine();if(vl){var s2=document.createElement('span');s2.textContent=vl;ot.appendChild(s2);}var pm=phShort();if(pm){var s3=document.createElement('span');s3.className='warn';s3.textContent='תמונות: בחרתם '+nPh()+'. מזמינים לפחות 10, עוד '+(pm===1?'תמונה אחת':pm+' תמונות');ot.appendChild(s3);}}
     document.getElementById('oMiss').hidden=true;
-    var nIt=sel.length+(images?1:0),os=document.getElementById('oSum');os.hidden=!nIt;document.getElementById('oSumV').textContent=priceTxt();
+    var nIt=sel.length+(images?1:0),os=document.getElementById('oSum');os.hidden=!nIt;var sv=document.getElementById('oSumV'),dc=nVid()>=5?vidsFull()-vidsTotal():0;sv.textContent='';if(dc){var od=document.createElement('s');od.className='oldp';od.textContent=(vidsFull()+phTotal())+' ₪';sv.appendChild(od);}var nw=document.createElement('bdi');nw.textContent=priceTxt();sv.appendChild(nw);var dn=document.getElementById('oDisc');if(!dn){dn=document.createElement('p');dn.id='oDisc';dn.className='odisc';document.getElementById('oSum').insertAdjacentElement('afterend',dn);}dn.hidden=!dc;dn.textContent=dc?'✓ 10% הנחה הופעלה אוטומטית · חסכתם '+dc+' ₪':'';
     document.getElementById('oStepTxt').textContent=nIt===1?'פריט אחד':nIt+' פריטים';
   }
   /* one upload tile in the cart, same as in the pick panel; files go to the item with their jewelry type */
