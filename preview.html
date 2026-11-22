@@ -1013,7 +1013,11 @@ main > section.hero{display:none!important}
 .pfbox[open] summary::after{transform:rotate(135deg) translateY(-2px)}
 .pfbox summary:active{transform:scale(.97)}.pfbox summary:focus-visible{outline:3px solid #D9FE16;outline-offset:2px}
 .pfbox .filters.pf{position:static;padding:8px 0 0!important;margin:0!important}
-.vfd .vfbox{position:static;padding:8px 0 0;margin:0}
+.pricecard:not(.ph-price){padding:10px 12px;margin:0 0 10px;border-radius:14px}
+.pricecard:not(.ph-price) .pc-h{margin-bottom:6px}.pricecard:not(.ph-price) .pc-h b{font-size:.9375rem}
+.pricecard:not(.ph-price) .pc-row{gap:6px}
+.pricecard:not(.ph-price) .pc-t{padding:8px 4px;border-radius:10px;gap:0}
+.pricecard:not(.ph-price) .pc-t .n{font-size:.75rem;line-height:1.3}.pricecard:not(.ph-price) .pc-t b{font-size:1.1875rem}
 </style>
 </head>
 <body>
@@ -1112,7 +1116,7 @@ main > section.hero{display:none!important}
       <div class="head"><h2 id="h-g" class="fillh">קטלוג הפרסומות</h2></div>
       <p class="fits-line mo-wh__text" data-moment="word-highlight"><strong>כל פרסומת מתאימה לכל מוצר.</strong> בוחרים סרטון שאהבתם, מצרפים תמונה של התכשיטים שלכם ואני מכין הכל מחדש עם התכשיטים שלכם. המוצר מתחלף, <strong>והרעיון נשאר.</strong></p>
       <div class="a11y-row"><button class="still" type="button" id="stillBtn" aria-pressed="false"><span aria-hidden="true">⏸</span> <span id="stillT">עצירת הסרטונים</span></button></div>
-      <details class="pfbox vfd"><summary>סינון לפי סגנון וסוג תכשיט</summary><div class="vfbox" role="group" aria-label="סינון הסרטונים, אפשר לבחור כמה">
+      <div class="vfbox" role="group" aria-label="סינון הסרטונים, אפשר לבחור כמה">
         <div class="filters vf" role="group" aria-label="סגנון">
           <button type="button" data-f="viral" aria-pressed="false">טרנדי</button>
           <button type="button" data-f="models" aria-pressed="false">דוגמניות</button>
@@ -1125,7 +1129,7 @@ main > section.hero{display:none!important}
           <button type="button" data-j="b" aria-pressed="false">צמיד</button>
           <button type="button" data-j="r" aria-pressed="false">טבעת</button>
         </div>
-      </div></details>
+      </div>
       <div class="pricecard" aria-label="מחירון">
         <div class="pc-h"><b>מחירון</b></div>
         <div class="pc-row">
