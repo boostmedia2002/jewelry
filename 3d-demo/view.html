@@ -23,10 +23,11 @@
   <div class="hint" id="hint" dir="rtl">גררו לסיבוב · צבטו להגדלה</div>
 </model-viewer>
 <script>
-  var MODELS = { topaz: ["topaz/ring.glb","topaz/ring.usdz"], gold: ["gold/ring.glb",""], demo: ["ring.glb",""] };
+  var MODELS = { topaz: ["topaz/ring.glb","topaz/ring.usdz"], gold: ["gold/ring2.glb",""], demo: ["ring.glb",""] };
   var key = new URLSearchParams(location.search).get("m") || "topaz";
   var m = MODELS[key] || MODELS.topaz, mv = document.getElementById("mv");
   if (m[1]) mv.setAttribute("ios-src", m[1]);
+  if (key==="gold"){ mv.setAttribute("camera-orbit","0deg 75deg 140%"); mv.setAttribute("max-camera-orbit","Infinity 180deg 300%"); }
   mv.src = m[0];
   var hint = document.getElementById("hint");
   var hide = function(){ hint.classList.add("off"); };
