@@ -1059,6 +1059,16 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
 }
 .vfbox{transition:opacity 150ms ease-out,visibility 150ms}.vfbox.gone{opacity:0;visibility:hidden;pointer-events:none}
 .vs-l::after{content:"";position:absolute;inset:-8px}
+.pv-ex{padding-block:28px}
+.pv-ex h2{font:800 1.25rem/1.2 Heebo,sans-serif;text-align:center;margin:0}
+.pv-exg{grid-template-columns:repeat(2,minmax(0,150px));justify-content:center;align-items:start;gap:14px;margin-top:14px}
+.pv-vid{appearance:none;border:0;background:none;padding:0;margin:0;max-width:none;color:#F4F4F2;font:inherit;cursor:pointer;display:block;-webkit-tap-highlight-color:transparent;transition:transform 160ms cubic-bezier(.23,1,.32,1)}
+.pv-vid:active{transform:scale(.97)}.pv-vid:focus-visible{outline:3px solid #D9FE16;outline-offset:4px;border-radius:14px}
+.pv-th{position:relative;display:block;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:#000}
+.pv-th img{width:100%;height:100%;object-fit:cover;display:block}
+.pv-th i{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:44px;height:44px;border-radius:22px;background:#D9FE16;color:#131416;font-style:normal;font-size:.9375rem;padding-left:3px}
+.pv-cp{display:block;margin-top:8px;text-align:center;font-size:.8125rem;font-weight:700;line-height:1.3}
+@media(min-width:1024px){.pv-exg{grid-template-columns:repeat(2,220px);gap:28px}.pv-cp{font-size:.9375rem}.pv-ex h2{font-size:1.5rem}}
 </style>
 </head>
 <body>
@@ -1272,10 +1282,10 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
     </div>
   </section>
   <section class="pv-ex" id="explain" aria-labelledby="exH"><div class="pv-in wide">
-    <h2 id="exH">סרטוני ההסבר המלאים</h2>
+    <h2 id="exH">סרטוני הסבר</h2>
     <div class="pv-exg">
-      <figure class="pv-vid"><video src="pv/explainer-catalog-4.mp4" poster="pv/explainer-catalog.jpg" muted playsinline controls preload="none"></video><figcaption>בוחרים פרסומת מהקטלוג</figcaption></figure>
-      <figure class="pv-vid"><video src="pv/explainer-business-3.mp4" poster="pv/explainer-business.jpg" muted playsinline controls preload="none"></video><figcaption>שולחים קישור לעסק</figcaption></figure>
+      <button type="button" class="pv-vid" data-hx><span class="pv-th"><img src="pv/explainer-catalog.jpg" alt="" loading="lazy"><i aria-hidden="true">▶</i></span><span class="pv-cp">סרטון הסבר לקטלוג התכשיטים</span></button>
+      <button type="button" class="pv-vid" data-hx="business"><span class="pv-th"><img src="pv/explainer-business.jpg" alt="" loading="lazy"><i aria-hidden="true">▶</i></span><span class="pv-cp">סרטון הסבר לסריקת העסק</span></button>
     </div>
   </div></section>
 </main>
