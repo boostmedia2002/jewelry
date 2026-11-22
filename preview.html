@@ -2016,7 +2016,7 @@ document.addEventListener('error',function(e){var el=e.target;if(!el||(el.tagNam
 <script>
 /* the video filter stays pinned only while the videos are on screen */
 (function(){var v=document.querySelector('.vfbox'),ph=document.getElementById('photos');if(!v||!ph)return;var tk=0;
-  function f(){tk=0;v.classList.toggle('gone',ph.getBoundingClientRect().top<v.offsetHeight+90);}
+  function f(){tk=0;v.classList.toggle('gone',ph.getBoundingClientRect().top<innerHeight*.55);}
   addEventListener('scroll',function(){if(!tk)tk=requestAnimationFrame(f);},{passive:true});f();})();
 </script>
 </body>
