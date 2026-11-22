@@ -1006,6 +1006,13 @@ main > section.hero{display:none!important}
 .ph-price{margin:0 0 8px!important;padding:0!important;background:none!important}
 .ph-price .pc-t{flex-direction:row;justify-content:center;align-items:baseline;gap:10px;padding:8px 14px;border-radius:999px;width:max-content}
 .ph-price .pc-t .n{font-size:.875rem}.ph-price .pc-t b{font-size:1.0625rem}
+.pfbox{margin:0 0 10px}
+.pfbox summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid #3a3b3d;color:#e6e6e6;font-weight:700;font-size:.9375rem;-webkit-tap-highlight-color:transparent}
+.pfbox summary::-webkit-details-marker{display:none}
+.pfbox summary::after{content:"";width:8px;height:8px;border-left:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg) translateY(-2px);transition:transform 180ms cubic-bezier(.23,1,.32,1)}
+.pfbox[open] summary::after{transform:rotate(135deg) translateY(-2px)}
+.pfbox summary:active{transform:scale(.97)}.pfbox summary:focus-visible{outline:3px solid #D9FE16;outline-offset:2px}
+.pfbox .filters.pf{position:static;padding:8px 0 0!important;margin:0!important}
 </style>
 </head>
 <body>
@@ -1132,14 +1139,14 @@ main > section.hero{display:none!important}
       <div class="head ph-head" id="photos"><h2 id="h-ph" class="fillh">תמונות קמפיינים</h2></div>
       <p class="fits-line">בוחרים תמונה שאהבתם, ואני מכין אותה מחדש עם התכשיטים שלכם.</p>
       <div class="pricecard ph-price"><div class="pc-row one"><div class="pc-t best"><span class="n">10 תמונות</span><b>100 ₪</b></div></div></div>
-      <p class="ftitle"><b>סינון לפי סוג תכשיט</b><span>אפשר לבחור כמה</span></p>
+      <details class="pfbox"><summary>סינון לפי סוג תכשיט</summary>
       <div class="filters pf" id="pfilt" role="group" aria-label="סינון לפי סוג תכשיט, אפשר לבחור כמה">
         <button type="button" data-p="all" aria-pressed="true">הכל</button>
         <button type="button" data-p="e" aria-pressed="false">עגילים</button>
         <button type="button" data-p="n" aria-pressed="false">שרשראות</button>
         <button type="button" data-p="r" aria-pressed="false">טבעות</button>
         <button type="button" data-p="b" aria-pressed="false">צמידים</button>
-      </div>
+      </div></details>
       <div class="pwall" id="pwall" role="group" aria-labelledby="h-ph"><div class="jrows"></div></div>
       <div class="scan-band"><div><b>לא מצאתם מה שחיפשתם?</b><span>שלחו קישור לעסק, ואשלח לכם רעיונות שמתאימים לו.</span></div><form class="hscan bscan" id="bscan" novalidate>
             <label class="sr" for="bscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
