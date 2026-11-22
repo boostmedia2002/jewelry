@@ -907,8 +907,6 @@ main > section.hero{display:none!important}
 .pv-t{position:relative;display:block;aspect-ratio:9/14;border-radius:5px;overflow:hidden;background:#1F1F21}.pv-t img,.pv-t video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}.pv-t video{opacity:0;transition:opacity 400ms}.pv-t video.on{opacity:1}.pv-t.play{outline:2px solid #D9FE16;outline-offset:-2px}
 .pv-st.s3 .pv-cat{opacity:1}
 .pv-st.s3 .pv-lib{transform:translate(-50%,-50%) scale(1);transition:transform 3200ms cubic-bezier(.22,.8,.2,1)}
-.pv-adbar{position:absolute;left:0;right:0;bottom:0;height:3px;z-index:6;background:rgba(255,255,255,.2);opacity:0}.pv-adbar i{display:block;height:100%;width:0;background:#fff;margin-inline-start:auto}
-.pv-st.s2 .pv-adbar{opacity:1}
 .pv-shade{position:absolute;inset:auto 0 0 0;height:55%;z-index:5;background:linear-gradient(transparent,rgba(10,10,11,.92));pointer-events:none}
 .pv-cap{position:absolute;inset:auto 14px 14px 14px;z-index:6;pointer-events:none}
 .pv-cap h1{font:700 1.75rem/1.12 "Frank Ruhl Libre",serif;margin:0;color:#F4F4F2}
@@ -1017,7 +1015,6 @@ main > section.hero{display:none!important}
       <span class="pv-line" aria-hidden="true"></span>
       <div class="pv-bars" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span></div>
       <span class="pv-chip" id="pvChip">התמונות שלכם, מהטלפון</span>
-      <span class="pv-adbar" aria-hidden="true"><i id="pvAdBar"></i></span>
       <div class="pv-shade"></div>
       <div class="pv-cap" aria-live="polite"><h1 id="pvH">שלחו תמונה של התכשיט.</h1><p id="pvP">כמו שהיא, מהטלפון, על השולחן.</p></div>
       <button class="pv-tap n" type="button" aria-label="הבא"></button><button class="pv-tap p" type="button" aria-label="הקודם"></button>
@@ -1801,7 +1798,7 @@ main > section.hero{display:none!important}
   </script>
 <script type="module">import {mountAll} from "./assets/moments/moments.js";mountAll();</script>
 <script>
-(function(){var st=document.getElementById('pvSt');if(!st)return;var bars=st.querySelectorAll('.pv-bars i'),chip=document.getElementById('pvChip'),h=document.getElementById('pvH'),p=document.getElementById('pvP'),ad=document.getElementById('pvAd'),adb=document.getElementById('pvAdBar'),lib=document.getElementById('pvLib'),lv=[];
+(function(){var st=document.getElementById('pvSt');if(!st)return;var bars=st.querySelectorAll('.pv-bars i'),chip=document.getElementById('pvChip'),h=document.getElementById('pvH'),p=document.getElementById('pvP'),ad=document.getElementById('pvAd'),lib=document.getElementById('pvLib'),lv=[];
   var red=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ADS={mag:{src:'mob/work-24.mp4',end:10.4},sil:{src:'mob/work-29.mp4',end:5.3},pearl:{src:'pv/ad.mp4',end:5}};
   var q=new URLSearchParams(location.search);var cur=ADS[q.get('ad')]?q.get('ad'):'mag';
@@ -1816,7 +1813,7 @@ main > section.hero{display:none!important}
     var t=c[Math.floor(Math.random()*c.length)];if(v.parentNode)v.parentNode.classList.remove('play');v.classList.remove('on');v.src=t.dataset.s;t.appendChild(v);t.classList.add('play');var r=v.play();if(r&&r.catch)r.catch(function(){});}
   function wall(on){clearInterval(wt);if(on){setTimeout(function(){if(i===2){hop();hop();}},900);wt=setInterval(hop,1100);}else pool.forEach(function(v){v.pause();});}
   function setAd(k){cur=k;ad.src=ADS[k].src;ad.load();if(i===1)go(1,false);}
-  ad.addEventListener('timeupdate',function(){var e=ADS[cur].end;adb.style.width=Math.min(100,ad.currentTime/e*100)+'%';if(i===1&&ad.currentTime>=e)go(2,true);});
+  ad.addEventListener('timeupdate',function(){var e=ADS[cur].end;if(i===1&&ad.currentTime>=e)go(2,true);});
   function go(k,fw){i=(k+3)%3;var s=S[i];st.classList.remove('anim');if(i===1&&fw&&!red){void st.offsetWidth;st.classList.add('anim');}
     st.classList.toggle('sw',i>=1);st.classList.toggle('s2',i===1);if(i===2){st.classList.remove('s3');void st.offsetWidth;}st.classList.toggle('s3',i===2);
     chip.textContent=s.c;chip.classList.toggle('l',!!s.l);chip.classList.remove('pop');void chip.offsetWidth;chip.classList.add('pop');
