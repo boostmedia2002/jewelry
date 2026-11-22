@@ -1081,8 +1081,8 @@ main > section.hero{display:none!important}
       <div class="filters" role="group" aria-label="סינון לפי סגנון, אפשר לבחור כמה">
         <button type="button" data-f="all" aria-pressed="true">הכל</button>
         <button type="button" data-f="viral" aria-pressed="false">טרנדי</button>
-        <button type="button" data-f="cine" aria-pressed="false">קולנועי</button>
         <button type="button" data-f="models" aria-pressed="false">דוגמנית</button>
+        <button type="button" data-f="cine" aria-pressed="false">קולנועי</button>
         <button type="button" data-f="simple" aria-pressed="false">תצוגה</button>
       </div>
       <div class="liked-bar" id="likedBar" hidden><b><span aria-hidden="true">♥</span> הסרטונים שאהבתי</b><div class="lbar-b"><button type="button" class="lbar-go" id="likedCart">הוספת הכל לסל והמשך לקופה</button><button type="button" class="lbar-x" id="likedExit">חזרה לכל הסרטונים</button></div></div>
@@ -1389,7 +1389,7 @@ main > section.hero{display:none!important}
 
   /* gallery */
   var wall=document.getElementById('wall');
-  var GROUPS=[{k:'viral',t:'טרנדי ותופס את העין',d:'מתאים לאינסטגרם, טיקטוק ומודעות ממומנות: למי שרוצה לעצור את הגלילה ולהגיע לקהל חדש.'},{k:'cine',t:'קולנועי',d:'מתאים למותגי יוקרה, להשקת קולקציה ולסרטון ראשי באתר או בקמפיין.'},{k:'models',t:'דוגמנית',d:'מתאים לתכשיטים, כשרוצים להראות איך המוצר נראה על אדם אמיתי.'},{k:'simple',t:'תצוגה ותלת מימד',d:'מתאים לאתר, לחנות אונליין ולדף מוצר, כשרוצים להראות את המוצר עצמו מכל זווית.'}];
+  var GROUPS=[{k:'viral',t:'טרנדי ותופס את העין',d:'מתאים לאינסטגרם, טיקטוק ומודעות ממומנות: למי שרוצה לעצור את הגלילה ולהגיע לקהל חדש.'},{k:'models',t:'דוגמנית',d:'מתאים לתכשיטים, כשרוצים להראות איך המוצר נראה על אדם אמיתי.'},{k:'cine',t:'קולנועי',d:'מתאים למותגי יוקרה, להשקת קולקציה ולסרטון ראשי באתר או בקמפיין.'},{k:'simple',t:'תצוגה ותלת מימד',d:'מתאים לאתר, לחנות אונליין ולדף מוצר, כשרוצים להראות את המוצר עצמו מכל זווית.'}];
   function grp(i){var g=i.c.split(' ')[0];return GROUPS.some(function(x){return x.k===g;})?g:'simple';}
   var SEQ={},seqN=0,NM={viral:'טרנדי',cine:'קולנועי',models:'דוגמנית',simple:'תצוגה'};
   GROUPS.forEach(function(g){var its=ITEMS.filter(function(i){return grp(i)===g.k;});if(!its.length)return;
