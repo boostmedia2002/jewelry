@@ -1,6 +1,6 @@
 <!doctype html>
 <html data-logo="a" lang="he" dir="rtl" data-type="service" data-radius="soft" data-buttons="solid" data-motion translate="no">
-<script>document.documentElement.classList.add("js");(function(){var m=/[?&]d=([abc])/.exec(location.search);document.documentElement.setAttribute("data-desk",m?m[1]:"b");})()</script>
+<script>document.documentElement.classList.add("js");(function(){var m=/[?&]d=([abc])/.exec(location.search);document.documentElement.setAttribute("data-desk",m?m[1]:"b");var h=/[?&]h=([0-4])/.exec(location.search);document.documentElement.setAttribute("data-h",h?h[1]:"0");})()</script>
 <head>
 <meta charset="utf-8">
 <meta name="google" content="notranslate">
@@ -1081,7 +1081,31 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
 .pv-hd p{margin:0 0 8px;font-size:1.125rem;max-width:30ch;text-align:left}
 html[data-desk=b] .pv-in:not(.wide)>.pv-st{height:min(56vh,540px)}
 }
+.pv-hd s{text-decoration:none}
+/* 1: editorial serif, the word is crossed out by hand */
+html[data-h="1"] .pv-hd h1{font-family:"Frank Ruhl Libre",serif;font-weight:900;color:#F3EBDD;letter-spacing:0;font-size:clamp(2.5rem,12.6vw,3.4rem);line-height:1.04}
+html[data-h="1"] .pv-hd s{position:relative;display:inline-block;color:#A39B8D}
+html[data-h="1"] .pv-hd s::after{content:"";position:absolute;left:-8%;right:-8%;top:54%;height:.13em;border-radius:.1em;background:#FF4B33;transform:rotate(-5deg) scaleX(0);transform-origin:right center;animation:hdCut 420ms cubic-bezier(.23,1,.32,1) 650ms both}
+html[data-h="1"] .pv-hd h1 em{color:#F3EBDD;background:linear-gradient(transparent 66%,#FF4B33 66%,#FF4B33 93%,transparent 93%)}
+@keyframes hdCut{to{transform:rotate(-5deg) scaleX(1)}}
+/* 2: two paper labels stuck on at an angle */
+html[data-h="2"] .pv-hd{padding-top:18px;padding-bottom:22px}
+html[data-h="2"] .pv-hd h1{font-family:Heebo,sans-serif;font-weight:900;font-size:clamp(2rem,10.2vw,2.75rem);line-height:1;letter-spacing:-.01em}
+html[data-h="2"] .pv-hd .l1,html[data-h="2"] .pv-hd .l2{display:inline-block;padding:.12em .3em .16em;color:#131416;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+html[data-h="2"] .pv-hd .l1{background:#F4F1E8;transform:rotate(-3deg)}
+html[data-h="2"] .pv-hd .l2{background:#FF5A1F;transform:rotate(1.6deg) translateY(-.08em);margin-inline-start:.5em}
+html[data-h="2"] .pv-hd h1 em{color:#131416}
+html[data-h="2"] .pv-hd p{margin-top:18px}
+/* 3: tall poster type, hollow first line, colour-washed second */
+html[data-h="3"] .pv-hd h1{font-family:Karantina,Heebo,sans-serif;font-weight:700;font-size:clamp(4rem,21vw,5.6rem);line-height:.86;letter-spacing:.005em}
+html[data-h="3"] .pv-hd .l1{color:transparent;-webkit-text-stroke:1.5px #F4F4F2}
+html[data-h="3"] .pv-hd .l2{color:#F4F4F2}
+html[data-h="3"] .pv-hd h1 em{background:linear-gradient(100deg,#FFB020,#FF4D6D 55%,#9B5CFF);-webkit-background-clip:text;background-clip:text;color:transparent}
+@media(min-width:1024px){
+html[data-h="1"] .pv-hd h1{font-size:5rem}html[data-h="2"] .pv-hd h1{font-size:4rem}html[data-h="3"] .pv-hd h1{font-size:9rem}
+}
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&family=Karantina:wght@700&display=swap">
 </head>
 <body>
 <a class="skip" href="#gallery">דילוג לקטלוג הפרסומות</a>
@@ -1109,7 +1133,7 @@ html[data-desk=b] .pv-in:not(.wide)>.pv-st{height:min(56vh,540px)}
 
 <main id="top">
   <section class="pv" aria-label="איך זה עובד בשלושה שלבים"><div class="pv-in">
-    <div class="pv-hd"><h1>למה לצלם,<br>כשאפשר <em>לבחור?</em></h1><p>כ-100 תכנים מוכנים לסטורי, לרילס ולאתר, עם התכשיטים שלכם.</p></div>
+    <div class="pv-hd"><h1><span class="l1">למה <s>לצלם</s>,</span><br><span class="l2">כשאפשר <em>לבחור?</em></span></h1><p>כ-100 תכנים מוכנים לסטורי, לרילס ולאתר, עם התכשיטים שלכם.</p></div>
     <div class="pv-st" id="pvSt">
       <img src="p/work-24.webp" alt="" aria-hidden="true">
       <video class="ad" id="pvAd" muted playsinline preload="auto" aria-hidden="true"></video>
