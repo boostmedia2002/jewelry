@@ -1882,8 +1882,6 @@ main > section.hero{display:none!important}
   d.addEventListener('close',function(){v.pause();});
   d.addEventListener('click',function(e){if(e.target===d)close();});
   document.addEventListener('click',function(e){var b=e.target.closest('[data-hx]');if(b)open(b.getAttribute('data-hx'));});
-  /* the first time a visitor opens a video or photo, the short explanation opens on top */
-  if(lb)new MutationObserver(function(){if(lb.open&&!shown){shown=true;setTimeout(function(){open('');},500);}}).observe(lb,{attributes:true,attributeFilter:['open']});
 })();
 </script>
 </body>
