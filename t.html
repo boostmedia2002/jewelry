@@ -49,7 +49,7 @@ input[type=file]{position:absolute;opacity:0;width:1px;height:1px}
       var im=document.createElement('img');im.loading='lazy';im.alt=f.kind||'תמונת מוצר';im.src='https://drive.google.com/thumbnail?id='+f.id+'&sz=w1000';a.appendChild(im);
       if(f.kind){var s=document.createElement('span');s.textContent=f.kind;a.appendChild(s);}grid.appendChild(a);});
     if(n){st.className='st ok';st.textContent=(n===1?'צורפה תמונה אחת':'צורפו '+n+' תמונות')+(lg?' · לוגו צורף':'');}
-    else{st.className='st no';st.textContent='תמונה לא הוספה עדיין'+(lg?' · לוגו צורף':'');}}
+    else{st.className='st no';st.textContent='ממתין לצירוף התמונות'+(lg?' · לוגו צורף':'');document.querySelector('.add b').textContent='צרפו כאן את התמונות של התכשיט';}}
   function load(){return fetch(GAS+'?order='+o+'&item='+i).then(function(r){return r.json();}).then(function(j){show(j.files||[]);}).catch(function(){st.className='st no';st.textContent='לא הצלחתי לטעון את התמונות. נסו לרענן.';});}
   load();
   [].forEach.call(document.querySelectorAll('input[type=file]'),function(inp){inp.addEventListener('change',function(){var fs=[].slice.call(inp.files),left=fs.length,bad=0;if(!left)return;

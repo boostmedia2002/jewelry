@@ -1749,7 +1749,7 @@ main > section.hero{display:none!important}
     L.push('תמונות מוצר: '+(f.n?(f.n===1?'תמונה אחת':f.n+' תמונות')+' ('+f.t+')'+(bad?', נשלחות בהודעה נפרדת':''):'לא הוספה עדיין'));
     L.push('לוגו: '+(f.lg?'צורף':'לא צורף'));
     if(nt&&nt.trim())L.push('הערות: '+nt.trim());
-    L.push((f.n?'קישור לתמונות המוצר: ':'קישור להוספת תמונות מוצר: ')+plink(id));
+    L.push((f.n?'קישור לתמונות המוצר: ':'לצירוף התמונות: ')+plink(id));
     L.push((i.ph?'התמונה שנבחרה: ':'הסרטון שנבחר: ')+BASE+(i.ph?'ph/'+phN(id)+'.webp':'?v='+numOf(id)));return L;}
   var SEP='──────────';
   function orderText(){ensureOrd();
