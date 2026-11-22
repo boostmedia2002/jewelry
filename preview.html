@@ -951,6 +951,24 @@ main > section.hero{display:none!important}
 .hx-open{appearance:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid #3A3B3E;background:transparent;color:inherit;font:700 .9375rem Heebo,sans-serif;cursor:pointer}
 .hx-open i{font-style:normal;display:grid;place-items:center;width:24px;height:24px;border-radius:12px;background:#D9FE16;color:#131416;font-size:.75rem}
 .hx-in :focus-visible,.hx-open:focus-visible{outline:3px solid #D9FE16;outline-offset:2px}
+
+.pv-link{appearance:none;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;border:0;background:transparent;color:#F4F4F2;font:700 1rem Heebo,sans-serif;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.pv-link i{font-style:normal;display:grid;place-items:center;width:28px;height:28px;border-radius:14px;background:#D9FE16;color:#131416;font-size:.8rem;text-decoration:none}
+.pv-scan,.pv-ex{background:#131416;color:#F4F4F2;padding:40px max(16px,env(safe-area-inset-left,0px))}
+.pv-scan{border-top:1px solid #26282B}
+.pv-in.wide{max-width:760px}
+.pv-k{color:#D9FE16;font-weight:700;font-size:.9375rem}
+.pv-scan h2,.pv-ex h2{font:700 1.85rem/1.15 "Frank Ruhl Libre",serif;margin:6px 0 4px;color:#F4F4F2}
+.pv-scan h2 em{font-style:normal;color:#D9FE16}
+.pv-scan .pv-steps{margin:10px 0 16px;font-size:.875rem}
+.pv-scan .hscan{display:flex;flex-direction:column;gap:10px;margin:0}
+.pv-scan .hscan .btn.gold{background:#D9FE16;color:#131416}
+.pv-scan #hscan [data-r=url]{border-color:#D9FE16}
+.pv-vid{margin:18px auto 0;max-width:300px}
+.pv-vid video{display:block;width:100%;aspect-ratio:9/16;border-radius:16px;background:#000}
+.pv-vid figcaption{margin-top:8px;text-align:center;color:#A6A8AB;font-size:.875rem}
+.pv-exg{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:8px}
+.pv-ex .pv-vid{margin-top:12px}
 </style>
 </head>
 <body>
@@ -961,7 +979,7 @@ main > section.hero{display:none!important}
   <div class="wrap">
     <a class="mark lg-wrap" href="#top" aria-label="BOOST MEDIA, לראש העמוד" style="background:none;padding:0"><span class="lg lg-a"><span class="t">BM</span><span class="w">BOOST MEDIA</span></span><span class="lg lg-b"><span class="t">B<span class="ln"></span>M</span><span class="w">BOOST MEDIA</span></span><span class="lg lg-c"><span class="w">boost<b>media</b></span></span></a>
     <nav aria-label="ניווט" id="topNav">
-      <a href="#how">איך הכל עובד?</a>
+      <a href="#explain">איך הכל עובד?</a>
       <a href="#gallery">קטלוג הפרסומות</a>
       <a href="#photos">קטלוג התמונות</a>
       <a href="#faq">שאלות</a>
@@ -994,7 +1012,7 @@ main > section.hero{display:none!important}
     </div>
     <div class="pv-paths">
       <a class="pv-b a" href="#gallery"><span>בוחרים פרסומת מהקטלוג<small>קטלוג מלא של פרסומות מוכנות</small></span><span aria-hidden="true">←</span></a>
-      <button class="pv-b b" type="button" data-scan><span>שולחים קישור לאתר או לאינסטגרם<span class="pv-steps"><span>סורקים את העסק</span><i>←</i><span>עושים מחקר</span><i>←</i><span class="g">3 תסריטים בחינם</span></span></span><span aria-hidden="true">←</span></button>
+<button class="pv-link" type="button" data-hx><i>▶</i>איך מזמינים? סרטון הסבר קצר</button>
     </div>
     <div class="pv-me"><div class="hd"><span class="lg" style="display:inline-flex"><span class="t" style="background:#D9FE16;color:#131416">BM</span></span><b>מי עומד מאחורי זה</b></div>
       <p>BOOST MEDIA עוסקת בשיווק דיגיטלי. המטרה שלנו היא להנגיש פרסומות לכל עסק ולהוריד את העלויות לחנויות. אנחנו מאמינים שאדם צריך לראות את המוצר שהוא קונה לפני שהוא קונה אותו, ובשביל זה הקמנו את BOOST MEDIA.</p>
@@ -1009,15 +1027,7 @@ main > section.hero{display:none!important}
           <h1 id="h1">שלחו את העסק.<br><em>קבלו 3 רעיונות.</em></h1>
           <ol class="lead stp"><li>מדביקים כאן קישור לאתר או לאינסטגרם של העסק.</li><li>אנחנו סורקים את המוצרים, הצבעים והסגנון שלכם.</li><li>שולחים לכם בוואטסאפ 3 תסריטים שנכתבו לעסק, כל אחד עם מחיר.</li></ol>
           <p class="lead stp-more"><a class="howlink" href="#how-scan">איך זה עובד?</a></p>
-          <form class="hscan" id="hscan" novalidate>
-            <label class="sr" for="hscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
-            <input type="text" id="hscanUrl" data-r="url" inputmode="url" autocomplete="url" dir="ltr" placeholder="לדוגמה: https://www.noa-diamonds.co.il/">
-            <label class="sr" for="hscanNote">הערות (לא חובה)</label>
-            <input type="text" id="hscanNote" data-r="note" placeholder="הערות: מוצר ספציפי? רעיון ספציפי? ...">
-            <label class="agree hagree"><input type="checkbox" id="hscanAgree" data-r="agree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
-            <p class="hscan-err" id="hscanErr" data-r="err" role="alert" hidden></p>
-            <button class="btn gold" type="submit">שליחה בוואטסאפ <span class="arr" aria-hidden="true">←</span></button>
-          </form>
+          
           <p class="hscan-alt"><a href="#gallery">או בחרו סרטון מהקטלוג</a></p>
         </div>
         <button class="play" type="button" data-play="work-16">
@@ -1103,27 +1113,23 @@ main > section.hero{display:none!important}
     </div>
   </section>
 
-  <section class="how" id="how" aria-labelledby="h-how">
-    <div class="wrap">
-      <p class="how-k">איך זה עובד</p>
-      <h2 id="h-how">שתי דרכים. אתם לא עורכים כלום.</h2>
-      <div class="hw-tabs" role="tablist" aria-label="שתי הדרכים"><button type="button" role="tab" id="hwt-cat" data-hw="cat" aria-selected="true" aria-controls="how-cat">בוחרים מהקטלוג</button><button type="button" role="tab" id="hwt-scan" data-hw="scan" aria-selected="false" aria-controls="how-scan">שולחים את העסק</button></div>
-      <div class="hw-p" id="how-cat" role="tabpanel" aria-labelledby="hwt-cat">
-        <ol class="hw-line stp"><li>בוחרים פרסומת או תמונה מהקטלוג ולוחצים עליה.</li><li>מצרפים בחלון שנפתח תמונות של התכשיט שלכם.</li><li>שולחים לי בוואטסאפ בלחיצה אחת, ותוך 2 ימי עסקים מקבלים פרסומת מוכנה למוצר שלכם.</li></ol>
-        <div class="hw-row"><button type="button" class="hw-s" aria-expanded="false" data-big="how/b1.webp?6" data-h="בוחרים פרסומת" data-d="גוללים בקטלוג ומסננים לפי סגנון. לחיצה על + או על הפרסומת עצמה פותחת אותה עם המחיר. בסרטונים, הלב שומר אותם לרשימת &quot;אהבתי&quot; כדי לחזור אליהם אחר כך." data-ill="0"><span class="ph"><img src="how/b1-s.webp?6" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">1</i></span><b>בוחרים</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/b2.webp?6" data-h="מצרפים תמונות של התכשיט" data-d="בחלון שנפתח יש משבצת לכל סוג תכשיט שמופיע בפרסומת, למשל טבעת, צמיד ועגילים. מעלים תמונות מהטלפון, וכמה שיותר זוויות, יותר טוב. לא חייבים את כל הסוגים, ואפשר להוסיף גם לוגו והערות." data-ill="0"><span class="ph"><img src="how/b2-s.webp?6" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">2</i></span><b>מצרפים תכשיט</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/b3.webp?8" data-h="שולחים בוואטסאפ ומקבלים" data-d="לוחצים &quot;שליחה אליי בוואטסאפ&quot;, או מוסיפים לסל כדי להזמין כמה יחד. ההזמנה נפתחת בוואטסאפ כהודעה מוכנה, ואתם רק שולחים. תוך 2 ימי עסקים מקבלים את הפרסומת עם התכשיטים שלכם." data-ill="1"><span class="ph"><img src="how/b3-s.webp?8" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">3</i><em>המחשה</em></span><b>שולחים ומקבלים</b></button></div>
-        <p class="hw-hint">לחיצה על תמונה פותחת הסבר מפורט.</p>
-        <div class="hw-d" hidden><div class="hw-dimg"><img alt=""><em hidden>המחשה</em></div><div class="hw-dt"><h3></h3><p></p><button type="button" class="hw-dx2">סגירה</button><button type="button" class="hw-dx" aria-label="סגירת ההסבר">×</button></div></div>
-        <div class="hw-cta"><a class="btn gold" href="#gallery">לקטלוג הפרסומות <span class="arr" aria-hidden="true">←</span></a></div>
-      </div>
-      <div class="hw-p" id="how-scan" role="tabpanel" aria-labelledby="hwt-scan">
-        <ol class="hw-line stp"><li>מדביקים קישור לאתר או לאינסטגרם של העסק.</li><li>אנחנו סורקים את המוצרים, הצבעים והסגנון שלכם.</li><li>שולחים לכם בוואטסאפ 3 תסריטים שנכתבו לעסק, כל אחד עם מחיר.</li></ol>
-        <div class="hw-row"><button type="button" class="hw-s" aria-expanded="false" data-big="how/a1.webp?12" data-h="מדביקים קישור לעסק" data-d="מדביקים קישור לאתר או לאינסטגרם. אנחנו &lt;b&gt;סורקים את העסק&lt;/b&gt;, לומדים את המוצרים והסגנון, ו&lt;b&gt;בוחרים רעיונות שמתאימים בדיוק לו&lt;/b&gt;." data-ill="0"><span class="ph"><img src="how/a1-s.webp?12" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">1</i></span><b>מדביקים קישור</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/a2.webp?7" data-h="מקבלים 3 תסריטים ובוחרים" data-d="לומדים את המוצרים, הצבעים והסגנון שלכם, ושולחים לכם בוואטסאפ 3 תסריטים שנכתבו בשביל העסק שלכם. בכל תסריט: המוצר שנבחר מהאתר שלכם, הסיפור בקצרה, הסצנות והמחיר. עונים איזה תסריט אהבתם, למשל &quot;אחד נשמע טוב&quot;." data-ill="1"><span class="ph"><img src="how/a2-s.webp?7" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">2</i><em>המחשה</em></span><b>בוחרים תסריט</b></button><button type="button" class="hw-s" aria-expanded="false" data-big="how/a3.webp?7" data-h="מקבלים את הסרטון" data-d="תוך 2 ימי עסקים הסרטון מגיע אליכם בוואטסאפ, מוכן לאינסטגרם, לטיקטוק ולאתר. רוצים לשנות משהו קטן? כותבים לנו." data-ill="1"><span class="ph"><img src="how/a3-s.webp?7" alt="" loading="lazy" width="300" height="300"><i aria-hidden="true">3</i><em>המחשה</em></span><b>מקבלים סרטון</b></button></div>
-        <p class="hw-hint">לחיצה על תמונה פותחת הסבר מפורט.</p>
-        <div class="hw-d" hidden><div class="hw-dimg"><img alt=""><em hidden>המחשה</em></div><div class="hw-dt"><h3></h3><p></p><button type="button" class="hw-dx2">סגירה</button><button type="button" class="hw-dx" aria-label="סגירת ההסבר">×</button></div></div>
-        <div class="hw-cta"><button class="btn gold" type="button" data-scan>שלחו לי רעיונות <span class="arr" aria-hidden="true">←</span></button></div>
-      </div>
-    </div>
-  </section>
+
+
+  <section class="pv-scan" id="scan-sec" aria-labelledby="scanH"><div class="pv-in">
+    <span class="pv-k">לא יודעים מה לבחור?</span>
+    <h2 id="scanH">שלחו קישור לעסק, וקבלו <em>3 תסריטים בחינם</em></h2>
+    <div class="pv-steps"><span>סורקים את העסק</span><i>←</i><span>חוזקות ומה לחזק</span><i>←</i><span class="g">3 תסריטים בחינם</span></div>
+    <form class="hscan" id="hscan" novalidate>
+            <label class="sr" for="hscanUrl">קישור לאתר או לאינסטגרם של העסק</label>
+            <input type="text" id="hscanUrl" data-r="url" inputmode="url" autocomplete="url" dir="ltr" placeholder="לדוגמה: https://www.noa-diamonds.co.il/">
+            <label class="sr" for="hscanNote">הערות (לא חובה)</label>
+            <input type="text" id="hscanNote" data-r="note" placeholder="הערות: מוצר ספציפי? רעיון ספציפי? ...">
+            <label class="agree hagree"><input type="checkbox" id="hscanAgree" data-r="agree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
+            <p class="hscan-err" id="hscanErr" data-r="err" role="alert" hidden></p>
+            <button class="btn gold" type="submit">שליחה בוואטסאפ <span class="arr" aria-hidden="true">←</span></button>
+          </form>
+    <figure class="pv-vid"><video src="pv/explainer-business-3.mp4" poster="pv/explainer-business.jpg" muted playsinline controls preload="none"></video><figcaption>ככה זה עובד, ב-20 שניות</figcaption></figure>
+  </div></section>
 
   <section class="contact-mid" id="contact" aria-labelledby="h-end">
     <div class="wrap">
@@ -1162,6 +1168,13 @@ main > section.hero{display:none!important}
       <div class="faq-more"><span>לא מצאתם תשובה?</span><button class="btn" type="button" data-help aria-haspopup="dialog">דברו איתי בוואטסאפ או בטלפון</button></div>
     </div>
   </section>
+  <section class="pv-ex" id="explain" aria-labelledby="exH"><div class="pv-in wide">
+    <h2 id="exH">סרטוני ההסבר המלאים</h2>
+    <div class="pv-exg">
+      <figure class="pv-vid"><video src="pv/explainer-catalog-4.mp4" poster="pv/explainer-catalog.jpg" muted playsinline controls preload="none"></video><figcaption>בוחרים פרסומת מהקטלוג</figcaption></figure>
+      <figure class="pv-vid"><video src="pv/explainer-business-3.mp4" poster="pv/explainer-business.jpg" muted playsinline controls preload="none"></video><figcaption>שולחים קישור לעסק</figcaption></figure>
+    </div>
+  </div></section>
 </main>
 
 <footer class="closing">
@@ -1803,15 +1816,12 @@ main > section.hero{display:none!important}
   function order(k){var how=document.getElementById('how'),gal=document.getElementById('gallery'),ct=document.getElementById('contact');if(!how||!gal)return;if(k==='how')gal.parentNode.insertBefore(how,gal);else ct.parentNode.insertBefore(how,ct);}
   window.pvSet=function(o){if(o.order)order(o.order);if(o.logo)document.documentElement.setAttribute('data-logo',o.logo);if(o.ad&&ADS[o.ad])setAd(o.ad);};
   if(q.get('logo'))document.documentElement.setAttribute('data-logo',q.get('logo'));if(q.get('order'))order(q.get('order'));
-  ad.src=ADS[cur].src;go(0,false);
-  /* in the sketch the link form at the top is hidden, so the link buttons open the link window instead */
-  document.addEventListener('click',function(e){var b=e.target.closest('[data-scan]');if(!b)return;var d=document.getElementById('scanD');if(!d)return;e.stopPropagation();e.preventDefault();d.showModal();},true);})();
+  ad.src=ADS[cur].src;go(0,false);})();
 </script>
 <dialog class="hx" id="hxD" aria-labelledby="hxT"><div class="hx-in">
   <button type="button" class="hx-x" data-hxclose aria-label="סגירה">×</button>
   <h2 id="hxT">איך מזמינים?</h2>
-  <div class="hx-v"><video id="hxV" src="pv/explainer.mp4" poster="pv/explainer.jpg" muted playsinline controls preload="none"></video></div>
-  <ol><li>בוחרים פרסומת או תמונה מהקטלוג ולוחצים עליה.</li><li>מצרפים בחלון שנפתח תמונות של התכשיט שלכם.</li><li>שולחים לי בוואטסאפ בלחיצה אחת, ותוך 2 ימי עסקים מקבלים פרסומת מוכנה למוצר שלכם.</li></ol>
+  <div class="hx-v"><video id="hxV" src="pv/explainer-catalog-4.mp4" poster="pv/explainer-catalog.jpg" muted playsinline controls preload="none"></video></div>
   <button type="button" class="hx-ok" data-hxclose>הבנתי, נמשיך</button>
 </div></dialog>
 <script>
