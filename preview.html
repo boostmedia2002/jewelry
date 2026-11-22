@@ -1785,8 +1785,9 @@ main > section.hero{display:none!important}
     tm=setTimeout(function(){go(i+1,true);},ms+(i===1?2500:0));}
   st.querySelector('.pv-tap.n').addEventListener('click',function(){go(i+1,true);});
   st.querySelector('.pv-tap.p').addEventListener('click',function(){go(i-1,false);});
-  window.pvSet=function(o){if(o.logo)document.documentElement.setAttribute('data-logo',o.logo);if(o.ad&&ADS[o.ad])setAd(o.ad);};
-  if(q.get('logo'))document.documentElement.setAttribute('data-logo',q.get('logo'));
+  function order(k){var how=document.getElementById('how'),gal=document.getElementById('gallery'),ct=document.getElementById('contact');if(!how||!gal)return;if(k==='how')gal.parentNode.insertBefore(how,gal);else ct.parentNode.insertBefore(how,ct);}
+  window.pvSet=function(o){if(o.order)order(o.order);if(o.logo)document.documentElement.setAttribute('data-logo',o.logo);if(o.ad&&ADS[o.ad])setAd(o.ad);};
+  if(q.get('logo'))document.documentElement.setAttribute('data-logo',q.get('logo'));if(q.get('order'))order(q.get('order'));
   ad.src=ADS[cur].src;go(0,false);
   /* in the sketch the link form at the top is hidden, so the link buttons open the link window instead */
   document.addEventListener('click',function(e){var b=e.target.closest('[data-scan]');if(!b)return;var d=document.getElementById('scanD');if(!d)return;e.stopPropagation();e.preventDefault();d.showModal();},true);})();
