@@ -1,6 +1,6 @@
 <!doctype html>
 <html data-logo="a" lang="he" dir="rtl" data-type="service" data-radius="soft" data-buttons="solid" data-motion translate="no">
-<script>document.documentElement.classList.add("js");(function(){var m=/[?&]d=([abc])/.exec(location.search);document.documentElement.setAttribute("data-desk",m?m[1]:"b");})()</script>
+<script>document.documentElement.classList.add("js");(function(){var m=/[?&]d=([abc])/.exec(location.search);document.documentElement.setAttribute("data-desk",m?m[1]:"b");var h=/[?&]h=([0-4])/.exec(location.search);document.documentElement.setAttribute("data-h",h?h[1]:"4");})()</script>
 <head>
 <meta charset="utf-8">
 <meta name="google" content="notranslate">
@@ -8,7 +8,9 @@
 <title>BOOST MEDIA | סרטוני פרסום ותמונות למוצר של העסק שלכם</title>
 <meta name="description" content="סרטוני פרסום ותמונות למוצרים של עסקים: בוחרים סרטון מהקטלוג, שולחים תמונה של המוצר בוואטסאפ, ותוך 2 ימי עסקים הסרטון מוכן.">
 <meta name="site-kind" content="other"><meta name="page-type" content="service">
-<meta name="theme-color" content="#F6F3EC">
+<meta name="theme-color" content="#131416">
+<link rel="icon" type="image/png" sizes="64x64" href="pv/icon-64.png">
+<link rel="apple-touch-icon" href="pv/icon-180.png">
 <meta name="color-scheme" content="light">
 <meta name="robots" content="noindex">
 <meta property="og:title" content="BOOST MEDIA | סרטוני פרסום ותמונות למוצר שלכם">
@@ -1069,7 +1071,143 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
 .pv-th i{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:44px;height:44px;border-radius:22px;background:#D9FE16;color:#131416;font-style:normal;font-size:.9375rem;padding-left:3px}
 .pv-cp{display:block;margin-top:8px;text-align:center;font-size:.8125rem;font-weight:700;line-height:1.3}
 @media(min-width:1024px){.pv-exg{grid-template-columns:repeat(2,220px);gap:28px}.pv-cp{font-size:.9375rem}.pv-ex h2{font-size:1.5rem}}
+.pv-hd{padding:10px 4px 16px}
+.pv-hd h1{margin:0;font:900 clamp(2rem,10.4vw,2.75rem)/1.02 Heebo,sans-serif;letter-spacing:-.02em;color:#F4F4F2}
+.pv-hd h1 em{font-style:normal;color:#D9FE16}
+.pv-hd p{margin:10px 0 0;color:#A6A8AB;font-size:.9375rem;line-height:1.45;max-width:32ch}
+@media(prefers-reduced-motion:no-preference){.pv-hd h1,.pv-hd p{animation:hdUp 520ms cubic-bezier(.23,1,.32,1) both}.pv-hd p{animation-delay:120ms}}
+@keyframes hdUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media(min-width:1024px){
+.pv-hd{padding:26px 0 24px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.pv-hd h1{font-size:4.25rem;line-height:.98}
+.pv-hd p{margin:0 0 8px;font-size:1.125rem;max-width:30ch;text-align:left}
+html[data-desk=b] .pv-in:not(.wide)>.pv-st{height:min(56vh,540px)}
+}
+.pv-hd s{text-decoration:none}
+/* 1: editorial serif, the word is crossed out by hand */
+html[data-h="1"] .pv-hd h1{font-family:"Frank Ruhl Libre",serif;font-weight:900;color:#F3EBDD;letter-spacing:0;font-size:clamp(2.5rem,12.6vw,3.4rem);line-height:1.04}
+html[data-h="1"] .pv-hd s{position:relative;display:inline-block;color:#A39B8D}
+html[data-h="1"] .pv-hd s::after{content:"";position:absolute;left:-8%;right:-8%;top:54%;height:.13em;border-radius:.1em;background:#FF4B33;transform:rotate(-5deg) scaleX(0);transform-origin:right center;animation:hdCut 420ms cubic-bezier(.23,1,.32,1) 650ms both}
+html[data-h="1"] .pv-hd h1 em{color:#F3EBDD;background:linear-gradient(transparent 66%,#FF4B33 66%,#FF4B33 93%,transparent 93%)}
+@keyframes hdCut{to{transform:rotate(-5deg) scaleX(1)}}
+/* 2: two paper labels stuck on at an angle */
+html[data-h="2"] .pv-hd{padding-top:18px;padding-bottom:22px}
+html[data-h="2"] .pv-hd h1{font-family:Heebo,sans-serif;font-weight:900;font-size:clamp(2rem,10.2vw,2.75rem);line-height:1;letter-spacing:-.01em}
+html[data-h="2"] .pv-hd .l1,html[data-h="2"] .pv-hd .l2{display:inline-block;padding:.12em .3em .16em;color:#131416;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+html[data-h="2"] .pv-hd .l1{background:#F4F1E8;transform:rotate(-3deg)}
+html[data-h="2"] .pv-hd .l2{background:#FF5A1F;transform:rotate(1.6deg) translateY(-.08em);margin-inline-start:.5em}
+html[data-h="2"] .pv-hd h1 em{color:#131416}
+html[data-h="2"] .pv-hd p{margin-top:18px}
+/* 3: tall poster type, hollow first line, colour-washed second */
+html[data-h="3"] .pv-hd h1{font-family:Karantina,Heebo,sans-serif;font-weight:700;font-size:clamp(4rem,21vw,5.6rem);line-height:.86;letter-spacing:.005em}
+html[data-h="3"] .pv-hd .l1{color:transparent;-webkit-text-stroke:1.5px #F4F4F2}
+html[data-h="3"] .pv-hd .l2{color:#F4F4F2}
+html[data-h="3"] .pv-hd h1 em{background:linear-gradient(100deg,#FFB020,#FF4D6D 55%,#9B5CFF);-webkit-background-clip:text;background-clip:text;color:transparent}
+@media(min-width:1024px){
+html[data-h="1"] .pv-hd h1{font-size:5rem}html[data-h="2"] .pv-hd h1{font-size:4rem}html[data-h="3"] .pv-hd h1{font-size:9rem}
+}
 </style>
+<style>
+.hdx,.hdk,.hdb,.hdc{display:none}
+/* 4: promo banner in the Higgsfield manner: colour wash, tilted frames, heavy tight type, glass tag, lime button */
+html[data-h="4"] .pv-hd{position:relative;display:block;overflow:hidden;border-radius:22px;margin:2px 0 12px;padding:20px 14px 18px;text-align:center;background:linear-gradient(to top,#FF8A4A 0%,rgba(255,138,74,0) 24%),radial-gradient(140% 125% at 50% -10%,#7A3BE8 0%,#B5359F 50%,#C93A8E 78%,#D9438A 100%)}
+html[data-h="4"] .hdk{display:block;position:relative;z-index:2;font:800 .8125rem/1.2 Heebo,sans-serif;color:#fff;letter-spacing:.01em;margin-bottom:8px}
+html[data-h="4"] .hdk::before,html[data-h="4"] .hdk::after{content:"✦";margin:0 8px;font-size:.6875rem;opacity:.85}
+html[data-h="4"] .pv-hd h1{position:relative;z-index:2;font:900 clamp(1.9rem,9.5vw,2.6rem)/.98 Heebo,sans-serif;letter-spacing:-.04em;color:#fff;text-shadow:0 2px 14px rgba(70,10,80,.28)}
+html[data-h="4"] .pv-hd .l2,html[data-h="4"] .pv-hd h1 em{color:#FFD6EF}
+html[data-h="4"] .pv-hd p{position:relative;z-index:2;margin:10px auto 0;max-width:31ch;color:rgba(255,255,255,.94);font-size:.875rem;font-weight:500;text-align:center}
+html[data-h="4"] .hdb{display:inline-flex;position:relative;z-index:3;align-items:center;gap:8px;margin-top:12px;padding:6px 12px 6px 7px;border-radius:12px;background:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transform:rotate(-3deg);font:800 .875rem/1 Heebo,sans-serif;color:#3B1050;box-shadow:0 10px 22px rgba(80,10,90,.28)}
+html[data-h="4"] .hdb i{font-style:normal;padding:5px 8px;border-radius:8px;background:linear-gradient(135deg,#7C4DFF,#E9A8FF);color:#fff}
+html[data-h="4"] .hdc{display:flex;position:relative;z-index:3;align-items:center;justify-content:center;min-height:48px;max-width:300px;margin:16px auto 0;padding:0 20px;border-radius:14px;background:#DFFF1F;color:#131416;font:800 1rem Heebo,sans-serif;text-decoration:none;box-shadow:0 4px 0 #9FBF00,0 12px 24px rgba(60,10,70,.3);transition:transform 140ms cubic-bezier(.23,1,.32,1),box-shadow 140ms}
+html[data-h="4"] .hdc:active{transform:translateY(3px);box-shadow:0 1px 0 #9FBF00}
+html[data-h="4"] .hdc:focus-visible{outline:3px solid #fff;outline-offset:3px}
+html[data-h="4"] .hdx{display:block;position:absolute;inset:0;z-index:1}
+html[data-h="4"] .hdx img{position:absolute;width:60px;aspect-ratio:9/16;object-fit:cover;border:3px solid #fff;border-radius:7px;box-shadow:0 10px 22px rgba(50,0,60,.35)}
+html[data-h="4"] .hdx img:nth-child(1){right:-34px;top:-30px;transform:rotate(10deg)}
+html[data-h="4"] .hdx img:nth-child(2){left:-38px;top:-12px;transform:rotate(-9deg)}
+html[data-h="4"] .hdx img:nth-child(3){right:-30px;bottom:26px;transform:rotate(-7deg)}
+html[data-h="4"] .hdx img:nth-child(4){left:-28px;bottom:-26px;transform:rotate(8deg)}
+html[data-h="4"] .hdx img:nth-child(n+5){display:none}
+@media(prefers-reduced-motion:no-preference){html[data-h="4"] .hdx img{animation:hdPop 600ms cubic-bezier(.23,1,.32,1) both}html[data-h="4"] .hdx img:nth-child(2n){animation-delay:90ms}html[data-h="4"] .hdb{animation:hdTag 520ms cubic-bezier(.23,1,.32,1) 320ms both}}
+@keyframes hdPop{from{opacity:0;scale:.9}to{opacity:1;scale:1}}
+@keyframes hdTag{from{opacity:0;transform:rotate(-3deg) translateY(10px) scale(.95)}to{opacity:1;transform:rotate(-3deg)}}
+@media(min-width:1024px){
+html[data-h="4"] .pv-hd{display:block;padding:40px 24px 38px;margin-bottom:18px;border-radius:26px}
+html[data-h="4"] .hdk{font-size:1.125rem;margin-bottom:12px}
+html[data-h="4"] .pv-hd h1{font-size:5.75rem;line-height:.94}
+html[data-h="4"] .pv-hd p{font-size:1.0625rem;max-width:none;margin-top:16px;text-align:center}
+html[data-h="4"] .hdb{position:absolute;right:calc(50% - 470px);top:292px;margin:0;transform:rotate(7deg);font-size:1.0625rem;padding:9px 16px 9px 9px;border-radius:14px}
+html[data-h="4"] .hdc{display:inline-flex;min-height:52px;margin-top:22px;max-width:none;font-size:1.0625rem}
+html[data-h="4"] .hdx img{width:132px;border-width:4px;border-radius:10px}
+html[data-h="4"] .hdx img:nth-child(n+5){display:block}
+html[data-h="4"] .hdx img:nth-child(1){right:34px;top:26px;bottom:auto;transform:rotate(-5deg)}
+html[data-h="4"] .hdx img:nth-child(3){right:172px;top:70px;bottom:auto;transform:rotate(4deg)}
+html[data-h="4"] .hdx img:nth-child(5){right:-28px;top:150px;transform:rotate(7deg)}
+html[data-h="4"] .hdx img:nth-child(2){left:34px;top:26px;transform:rotate(5deg)}
+html[data-h="4"] .hdx img:nth-child(4){left:172px;top:70px;bottom:auto;transform:rotate(-4deg)}
+html[data-h="4"] .hdx img:nth-child(6){left:-28px;top:150px;transform:rotate(-7deg)}
+@keyframes hdTag{from{opacity:0;transform:rotate(7deg) translateY(10px) scale(.95)}to{opacity:1;transform:rotate(7deg)}}
+}
+
+/* ---- brand: gold mark + wordmark in wide letters, heavy first word, light gold second word ---- */
+.bx{display:block;width:auto;flex:none}
+.wm{font:900 1rem/1 Unbounded,"Hanken Grotesk",sans-serif;letter-spacing:-.03em;text-transform:uppercase;direction:ltr;white-space:nowrap;color:#fff}
+.wm b{font-weight:300;letter-spacing:-.01em}
+header.top .lg-a{gap:9px;align-items:center}
+header.top .lg-a .bx{height:44px}
+header.top .lg-a .w.wm{display:flex;flex-direction:column;gap:4px;font:900 1rem/1 Unbounded,"Hanken Grotesk",sans-serif;letter-spacing:-.03em;color:#fff}
+header.top .lg-a .w.wm b{display:flex;justify-content:space-between;font-weight:400;letter-spacing:0;background:linear-gradient(100deg,#F1D670 0%,#DDB32D 28%,#FFF5C7 52%,#DDB32D 76%,#F1D670 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#F1D670}
+@media(max-width:600px){header.top .mark{margin-right:54px!important}}
+/* between tablet and desktop the menu is folded but the header still has three columns: keep the buttons at the far side */
+@media(min-width:901px) and (max-width:1180px){header.top .tools{grid-column:-2/-1}}
+@media(max-width:374px){header.top .lg-a .bx{height:40px}header.top .lg-a .w.wm{font-size:.875rem}}
+@media(min-width:1024px){
+header.top .lg-a{gap:12px}header.top .lg-a .bx{height:50px}
+header.top .lg-a .w.wm{flex-direction:row;align-items:baseline;gap:.26em;font-size:1.5rem}
+header.top .lg-a .w.wm b{display:inline;font-weight:300;letter-spacing:-.01em}
+}
+.closing .flk{display:inline-flex;align-items:center;gap:10px;direction:ltr}
+.closing .flk .bx{height:46px}
+.closing .flk .wm{font-size:1.125rem;color:#fff}
+.closing .flk .wm b{margin-inline-start:.24em;background:linear-gradient(100deg,#F1D670 0%,#DDB32D 28%,#FFF5C7 52%,#DDB32D 76%,#F1D670 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#F1D670}
+/* ---- banner: brand lockup on top, shorter, no side frames on phones ---- */
+.hdl{display:none}
+html[data-h="4"] .hdl{display:flex;position:relative;z-index:2;align-items:center;justify-content:flex-end;gap:8px;direction:ltr;margin:0 2px 8px 0}
+html[data-h="4"] .hdl .bx{height:32px;filter:drop-shadow(0 3px 8px rgba(60,10,70,.35))}
+html[data-h="4"] .hdl .wm{font-size:.9375rem;text-shadow:0 2px 10px rgba(60,10,70,.3)}
+html[data-h="4"] .hdl .wm b{margin-inline-start:.24em}
+html[data-h="4"] .pv-hd{padding:12px 14px 16px}
+html[data-h="4"] .hdk{margin-bottom:6px}
+html[data-h="4"] .pv-hd p{margin-top:8px}
+html[data-h="4"] .hdc{margin-top:12px;min-height:46px}
+html[data-h="4"] .hdb{position:absolute;margin:0;left:10px;top:13px;font-size:.75rem;padding:4px 8px 4px 5px;transform:rotate(-6deg);gap:5px}
+html[data-h="4"] .hdb i{padding:4px 6px;border-radius:6px}
+@keyframes hdTag{from{opacity:0;transform:rotate(-6deg) translateY(10px) scale(.95)}to{opacity:1;transform:rotate(-6deg)}}
+@media(max-width:1023px){html[data-h="4"] .hdx{display:none}}
+@media(min-width:1024px){
+html[data-h="4"] .pv-hd{padding:20px 24px 24px}
+html[data-h="4"] .hdl{justify-content:center;gap:10px;margin:0 0 10px}html[data-h="4"] .hdl .bx{height:40px}html[data-h="4"] .hdl .wm{font-size:1.25rem}
+html[data-h="4"] .hdk{font-size:1rem;margin-bottom:8px}
+html[data-h="4"] .pv-hd h1{font-size:4.25rem}
+html[data-h="4"] .pv-hd p{margin-top:12px}
+html[data-h="4"] .hdc{margin-top:16px;min-height:50px}
+html[data-h="4"] .hdb{left:calc(50% - 470px);right:auto;top:270px;font-size:1rem;padding:8px 14px 8px 8px;gap:8px}
+html[data-h="4"] .hdb i{padding:5px 8px;border-radius:8px}
+html[data-h="4"] .hdx img{width:108px}
+html[data-h="4"] .hdx img:nth-child(1){right:30px;top:16px}html[data-h="4"] .hdx img:nth-child(3){right:146px;top:48px}html[data-h="4"] .hdx img:nth-child(5){right:-22px;top:112px}
+html[data-h="4"] .hdx img:nth-child(2){left:30px;top:16px}html[data-h="4"] .hdx img:nth-child(4){left:146px;top:48px}html[data-h="4"] .hdx img:nth-child(6){left:-22px;top:112px}
+}
+/* ---- the same colour wash on the two catalog headings ---- */
+.hstrip{display:flex!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;padding:12px 16px;border-radius:16px;background:linear-gradient(to left,#7A3BE8 0%,#B5359F 45%,#C93A8E 72%,#FF8A4A 100%);overflow:hidden}
+.hstrip h2{margin:0;max-width:none!important;font:900 1.5rem/1.05 Heebo,sans-serif!important;letter-spacing:-.035em;color:#fff;text-shadow:0 2px 12px rgba(70,10,80,.28)}
+.hst{flex:none;display:inline-flex;align-items:center;gap:6px;padding:5px 10px 5px 6px;border-radius:11px;background:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transform:rotate(-3deg);font:800 .8125rem/1 Heebo,sans-serif;color:#3B1050;box-shadow:0 8px 18px rgba(80,10,90,.25);white-space:nowrap}
+.hst i{font-style:normal;padding:4px 7px;border-radius:7px;background:linear-gradient(135deg,#7C4DFF,#E9A8FF);color:#fff}
+#gallery .head.hstrip{margin-bottom:12px!important}
+.ph-head.hstrip{margin-top:22px!important;margin-bottom:10px!important}
+@media(min-width:1024px){.hstrip{padding:16px 26px;border-radius:20px}.hstrip h2{font-size:2.125rem!important}.hst{font-size:1rem;padding:7px 14px 7px 8px;gap:8px}.hst i{padding:5px 9px;border-radius:8px}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&family=Karantina:wght@700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300..900&text=BOSTMEDIA&display=swap">
 </head>
 <body>
 <a class="skip" href="#gallery">דילוג לקטלוג הפרסומות</a>
@@ -1077,7 +1215,7 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
 
 <header class="top">
   <div class="wrap">
-    <a class="mark lg-wrap" href="#top" aria-label="BOOST MEDIA, לראש העמוד" style="background:none;padding:0"><span class="lg lg-a"><span class="t">BM</span><span class="w">BOOST MEDIA</span></span><span class="lg lg-b"><span class="t">B<span class="ln"></span>M</span><span class="w">BOOST MEDIA</span></span><span class="lg lg-c"><span class="w">boost<b>media</b></span></span></a>
+    <a class="mark lg-wrap" href="#top" aria-label="BOOST MEDIA, לראש העמוד" style="background:none;padding:0"><span class="lg lg-a"><img class="bx" src="pv/logo-b.webp" alt="" width="261" height="288"><span class="w wm"><span>BOOST</span><b><span>M</span><span>E</span><span>D</span><span>I</span><span>A</span></b></span></span><span class="lg lg-b"><span class="t">B<span class="ln"></span>M</span><span class="w">BOOST MEDIA</span></span><span class="lg lg-c"><span class="w">boost<b>media</b></span></span></a>
     <nav aria-label="ניווט" id="topNav">
       <a href="#explain">איך הכל עובד?</a>
       <a href="#gallery">קטלוג הפרסומות</a>
@@ -1097,6 +1235,7 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
 
 <main id="top">
   <section class="pv" aria-label="איך זה עובד בשלושה שלבים"><div class="pv-in">
+    <div class="pv-hd"><div class="hdx" aria-hidden="true"><img src="p/work-06-s.webp" alt=""><img src="p/work-24-s.webp" alt=""><img src="p/work-65-s.webp" alt=""><img src="p/work-58-s.webp" alt=""><img src="p/work-67-s.webp" alt=""><img src="p/work-72-s.webp" alt=""></div><span class="hdl"><img class="bx" src="pv/logo-b.webp" alt="" width="261" height="288"><span class="wm"><span>BOOST</span><b>MEDIA</b></span></span><span class="hdk">תפסיקו לשלם על יום צילום</span><h1><span class="l1">למה <s>לצלם</s>,</span><br><span class="l2">כשאפשר <em>לבחור?</em></span></h1><p>תכנים מוכנים לסטורי, לרילס ולאתר, עם התכשיטים שלכם.</p><span class="hdb"><i>מעל 100</i>תבניות</span><a class="hdc" href="#gallery">בוחרים פרסומת מהקטלוג</a></div>
     <div class="pv-st" id="pvSt">
       <img src="p/work-24.webp" alt="" aria-hidden="true">
       <video class="ad" id="pvAd" muted playsinline preload="auto" aria-hidden="true"></video>
@@ -1164,7 +1303,7 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
 
   <section class="sec" id="gallery" aria-labelledby="h-g">
     <div class="wrap">
-      <div class="head"><h2 id="h-g" class="fillh">קטלוג הפרסומות</h2></div>
+      <div class="head hstrip"><h2 id="h-g">קטלוג הפרסומות</h2></div>
       <p class="fits-line mo-wh__text" data-moment="word-highlight"><strong>כל פרסומת מתאימה לכל מוצר.</strong> בוחרים סרטון שאהבתם, מצרפים תמונה של התכשיטים שלכם ואני מכין הכל מחדש עם התכשיטים שלכם. המוצר מתחלף, <strong>והרעיון נשאר.</strong></p>
       <div class="a11y-row"><button class="still" type="button" id="stillBtn" aria-pressed="false"><span aria-hidden="true">⏸</span> <span id="stillT">עצירת הסרטונים</span></button></div>
       <div class="pricecard" aria-label="מחירון">
@@ -1194,7 +1333,7 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
       <div class="liked-bar" id="likedBar" hidden><b><span aria-hidden="true">♥</span> הסרטונים שאהבתי</b><div class="lbar-b"><button type="button" class="lbar-go" id="likedCart">הוספת הכל לסל והמשך לקופה</button><button type="button" class="lbar-x" id="likedExit">חזרה לכל הסרטונים</button></div></div>
       <p class="liked-empty" id="likedEmpty" hidden>עוד לא סימנתם סרטונים. לחצו על הלב בסרטון שאהבתם, והוא יישמר כאן.</p>
       <div class="wall" id="wall"></div>
-      <div class="head ph-head" id="photos"><h2 id="h-ph" class="fillh">תמונות קמפיינים</h2></div>
+      <div class="head ph-head hstrip" id="photos"><h2 id="h-ph">תמונות קמפיינים</h2></div>
       <p class="fits-line">בוחרים תמונה שאהבתם, ואני מכין אותה מחדש עם התכשיטים שלכם.</p>
       <div class="pricecard ph-price"><div class="pc-row one"><div class="pc-t best"><span class="n">10 תמונות</span><b>100 ₪</b></div></div></div>
       <details class="pfbox"><summary>סינון לפי סוג תכשיט</summary>
@@ -1293,7 +1432,7 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
 <footer class="closing">
   <div class="wrap">
     <div class="cols">
-      <div><span class="mark" aria-hidden="true">BOOST <i>MEDIA</i></span><p>סרטוני פרסום ותמונות למוצרים של עסקים. BOOST MEDIA, עוסק פטור, נתניה. © BOOST MEDIA · חלק מצילומי הבסיס באדיבות <a class="credit" href="https://pixabay.com" rel="noopener" style="display:inline;min-height:0">Pixabay</a></p></div>
+      <div><span class="mark flk" aria-hidden="true"><img class="bx" src="pv/logo-b.webp" alt="" width="261" height="288" loading="lazy"><span class="wm"><span>BOOST</span><b>MEDIA</b></span></span><p>סרטוני פרסום ותמונות למוצרים של עסקים. BOOST MEDIA, עוסק פטור, נתניה. © BOOST MEDIA · חלק מצילומי הבסיס באדיבות <a class="credit" href="https://pixabay.com" rel="noopener" style="display:inline;min-height:0">Pixabay</a></p></div>
       <div><h3>באתר</h3><ul><li><a href="#gallery">קטלוג הפרסומות</a></li><li><a href="#faq">שאלות</a></li><li><a href="privacy.html">מדיניות פרטיות</a></li><li><a href="privacy.html#cookies">עוגיות</a></li><li><a href="terms.html">תנאי שימוש והזמנה</a></li><li><a href="cancellation.html">ביטולים והחזרים</a></li><li><a href="accessibility.html">הצהרת נגישות</a></li></ul></div>
       <div><h3>יצירת קשר</h3><ul><li><a href="https://wa.me/972539507416" target="_blank" rel="noopener">וואטסאפ</a></li><li><a href="tel:+972539507416">053-950-7416</a></li><li><a href="mailto:boostmedia2002@gmail.com">boostmedia2002@gmail.com</a></li></ul></div>
     </div>
@@ -1976,7 +2115,7 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
   var red=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var ADS={mag:{src:'mob/work-24.mp4',end:10.4},sil:{src:'mob/work-29.mp4',end:5.3},pearl:{src:'pv/ad.mp4',end:5}};
   var q=new URLSearchParams(location.search);var cur=ADS[q.get('ad')]?q.get('ad'):'mag';
-  var S=[{c:'התמונות שלכם, מהטלפון',l:0,h:'שלחו תמונות של התכשיטים.',p:'תצלמו בטלפון את התכשיטים.',ms:3400},
+  var S=[{c:'התמונות שלכם, מהטלפון',l:0,h:'שלחו תמונות של התכשיטים.',p:'תצלמו בטלפון את התכשיטים.',ms:5400},
          {c:'הפרסומת שלכם',l:1,h:'קבלו אותם <em>בפרסומת מוכנה.</em>',p:'הפרסומת המוכנה, עם התכשיטים שלכם.',ms:0},
          {c:'קטלוג שלם של פרסומות',l:1,h:'רואים <em>לפני</em> שקונים.',p:'תיקייה מלאה בפרסומות מוכנות. בואו לבחור את הרעיון שאהבתם.',ms:9000}];
   var i=0,tm=null,rf=null,t0=0;
@@ -2004,7 +2143,10 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
   function order(k){var how=document.getElementById('how'),gal=document.getElementById('gallery'),ct=document.getElementById('contact');if(!how||!gal)return;if(k==='how')gal.parentNode.insertBefore(how,gal);else ct.parentNode.insertBefore(how,ct);}
   window.pvSet=function(o){if(o.order)order(o.order);if(o.logo)document.documentElement.setAttribute('data-logo',o.logo);if(o.ad&&ADS[o.ad])setAd(o.ad);};
   if(q.get('logo'))document.documentElement.setAttribute('data-logo',q.get('logo'));if(q.get('order'))order(q.get('order'));
-  ad.src=ADS[cur].src;go(0,false);})();
+  function halt(){cancelAnimationFrame(rf);clearTimeout(tm);ad.pause();wall(false);}
+  go(0,false);halt();bars[0].style.width='0%';
+  var live=false,stk=0;function chk(){stk=0;var r=st.getBoundingClientRect(),c=(r.top+r.height/2)/innerHeight,on=c>.12&&c<.72;if(on&&!live){live=true;if(!ad.getAttribute('src')){ad.preload='auto';ad.src=ADS[cur].src;}go(i,false);}else if(!on&&live){live=false;halt();}}
+  addEventListener('scroll',function(){if(!stk)stk=requestAnimationFrame(chk);},{passive:true});addEventListener('resize',chk);chk();})();
 </script>
 <dialog class="hx" id="hxD" aria-labelledby="hxT"><div class="hx-in">
   <button type="button" class="hx-x" data-hxclose aria-label="סגירה">×</button>
