@@ -1,6 +1,6 @@
 <!doctype html>
 <html data-logo="a" lang="he" dir="rtl" data-type="service" data-radius="soft" data-buttons="solid" data-motion translate="no">
-<script>document.documentElement.classList.add("js");(function(){var m=/[?&]d=([abc])/.exec(location.search);document.documentElement.setAttribute("data-desk",m?m[1]:"a");})()</script>
+<script>document.documentElement.classList.add("js");(function(){var m=/[?&]d=([abc])/.exec(location.search);document.documentElement.setAttribute("data-desk",m?m[1]:"b");})()</script>
 <head>
 <meta charset="utf-8">
 <meta name="google" content="notranslate">
@@ -1057,6 +1057,8 @@ html[data-desk=c] main>.pv{grid-column:1;grid-row:1 / span 12;position:sticky;to
 html[data-desk=c] .pv-in:not(.wide){display:block;max-width:360px!important}
 html[data-desk=c] #gallery .wrap>*{max-width:none!important}
 }
+.vfbox{transition:opacity 150ms ease-out,visibility 150ms}.vfbox.gone{opacity:0;visibility:hidden;pointer-events:none}
+.vs-l::after{content:"";position:absolute;inset:-8px}
 </style>
 </head>
 <body>
@@ -1999,10 +2001,16 @@ html[data-desk=c] #gallery .wrap>*{max-width:none!important}
   function open(k){if(d.open)return;if(!base)base=[v.getAttribute('src'),v.getAttribute('poster')];var w=SRC[k]||base;if(v.getAttribute('src')!==w[0]){v.poster=w[1];v.src=w[0];}d.showModal();try{v.currentTime=0;}catch(e){}var r=v.play();if(r&&r.catch)r.catch(function(){});}
   function close(){v.pause();d.close();}
   document.querySelectorAll('[data-hxclose]').forEach(function(b){b.addEventListener('click',close);});
-  d.addEventListener('close',function(){v.pause();});
+  d.addEventListener('close',function(){if(!d.open)v.pause();});
   d.addEventListener('click',function(e){if(e.target===d)close();});
   document.addEventListener('click',function(e){var b=e.target.closest('[data-hx]');if(b)open(b.getAttribute('data-hx'));});
 })();
+</script>
+<script>
+/* the video filter stays pinned only while the videos are on screen */
+(function(){var v=document.querySelector('.vfbox'),ph=document.getElementById('photos');if(!v||!ph)return;var tk=0;
+  function f(){tk=0;v.classList.toggle('gone',ph.getBoundingClientRect().top<v.offsetHeight+90);}
+  addEventListener('scroll',function(){if(!tk)tk=requestAnimationFrame(f);},{passive:true});f();})();
 </script>
 </body>
 </html>
