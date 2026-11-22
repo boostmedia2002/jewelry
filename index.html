@@ -1310,7 +1310,7 @@ main > section.hero{display:none!important}
   <p class="scan-err" id="oAgreeErr" role="alert" hidden>כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.</p>
   
     <p class="oup" id="oUp" role="status" hidden></p><button class="btn wa" type="button" id="oSend"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>שליחת ההזמנה בוואטסאפ</button>
-    <div class="omiss" id="oMiss" hidden><b id="oMissT"></b><span class="hint">תמונה של המוצר עוזרת לי להתחיל מהר. אפשר גם לשלוח אותה אחר כך בשיחה.</span><button class="btn" type="button" id="oMissAdd">הוספת תמונה עכשיו</button><button class="btn line" type="button" id="oMissSend">שליחה בלי תמונה</button></div>
+    <div class="omiss" id="oMiss" hidden><b id="oMissT"></b><span class="hint">תמונה של המוצר עוזרת לי להתחיל מהר. אפשר גם להוסיף אותה אחר כך, דרך הקישור שיופיע בהודעת ההזמנה.</span><button class="btn" type="button" id="oMissAdd">הוספת תמונה עכשיו</button><button class="btn line" type="button" id="oMissSend">שליחה בלי תמונה</button></div>
     <div class="done" id="oDone" role="status">
       <b>ההזמנה נפתחה בוואטסאפ.</b>
       <span class="hint" id="oDoneHint">עכשיו לחצו כאן כדי לשלוח גם את התמונות של המוצר לאותה שיחה.</span>
@@ -1749,7 +1749,7 @@ main > section.hero{display:none!important}
     L.push('תמונות מוצר: '+(f.n?(f.n===1?'תמונה אחת':f.n+' תמונות')+' ('+f.t+')'+(bad?', נשלחות בהודעה נפרדת':''):'לא הוספה עדיין'));
     L.push('לוגו: '+(f.lg?'צורף':'לא צורף'));
     if(nt&&nt.trim())L.push('הערות: '+nt.trim());
-    L.push('קישור לתמונות המוצר: '+plink(id));
+    L.push((f.n?'קישור לתמונות המוצר: ':'קישור להוספת תמונות מוצר: ')+plink(id));
     L.push((i.ph?'התמונה שנבחרה: ':'הסרטון שנבחר: ')+BASE+(i.ph?'ph/'+phN(id)+'.webp':'?v='+numOf(id)));return L;}
   var SEP='──────────';
   function orderText(){ensureOrd();
