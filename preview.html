@@ -999,6 +999,7 @@ main > section.hero{display:none!important}
 .odisc{margin:6px 0 0;color:#D9FE16;font-size:.875rem;font-weight:700}
 .pc-row.one{grid-template-columns:1fr}
 #lbPrice .lb-min{font-style:normal;font-size:.875rem;font-weight:800;color:#131416;background:#D9FE16;border-radius:999px;padding:4px 12px}
+.oup{margin:0 0 10px;color:#D9FE16;font-size:.9375rem;font-weight:700}
 </style>
 </head>
 <body>
@@ -1308,7 +1309,7 @@ main > section.hero{display:none!important}
     <label class="agree"><input type="checkbox" id="oAgree"><span>קראתי ואני מסכים/ה ל<a href="privacy.html" target="_blank" rel="noopener">מדיניות הפרטיות</a></span></label>
   <p class="scan-err" id="oAgreeErr" role="alert" hidden>כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.</p>
   
-    <button class="btn wa" type="button" id="oSend"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>שליחת ההזמנה בוואטסאפ</button>
+    <p class="oup" id="oUp" role="status" hidden></p><button class="btn wa" type="button" id="oSend"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>שליחת ההזמנה בוואטסאפ</button>
     <div class="omiss" id="oMiss" hidden><b id="oMissT"></b><span class="hint">תמונה של המוצר עוזרת לי להתחיל מהר. אפשר גם לשלוח אותה אחר כך בשיחה.</span><button class="btn" type="button" id="oMissAdd">הוספת תמונה עכשיו</button><button class="btn line" type="button" id="oMissSend">שליחה בלי תמונה</button></div>
     <div class="done" id="oDone" role="status">
       <b>ההזמנה נפתחה בוואטסאפ.</b>
@@ -1646,9 +1647,10 @@ main > section.hero{display:none!important}
     if(!ag.checked){er.textContent='כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.';er.hidden=false;ag.focus();return;}
     if(find(lbId).ph){er.textContent='תמונות מזמינים לפחות 10. לחצו "הוספה לסל", בחרו עוד תמונות ושלחו מהסל.';er.hidden=false;return;}
     er.hidden=true;var id=lbId,i=find(id),a=lbArr(),nv=lbNote.value.trim();
+    if(a.length){syncItem(id,a,true);if(upCount(a,'p')){er.textContent='התמונות עולות (נשארו '+upCount(a,'p')+'). לחצו שוב בעוד רגע.';er.hidden=false;return;}}
     var L=['*הזמנה חדשה מהאתר · BOOST MEDIA*',''].concat(itemBlock(id,0,a,nv));
-    L.push('',SEP,'*סה"כ לתשלום: '+vp(id)+' ₪*','');if(a.length)L.push('התמונות של המוצר נשלחות בהודעה נפרדת, מיד אחרי ההודעה הזאת.');L.push('אשמח לקבל פרטי תשלום.');
-    goWA(wa(L.join('\n')));document.getElementById('lbAfter').hidden=!a.length;});
+    L.push('',SEP,'*סה"כ לתשלום: '+vp(id)+' ₪*','');if(upCount(a,'f'))L.push('חלק מהתמונות לא עלו לקישור ויישלחו בהודעה נפרדת.');L.push('אשמח לקבל פרטי תשלום.');
+    goWA(wa(L.join('\n')));document.getElementById('lbAfter').hidden=!upCount(a,'f');});
   document.getElementById('lbShare').addEventListener('click',async function(){var files=lbArr().slice();
     if(navigator.canShare&&navigator.canShare({files:files})){try{await navigator.share({files:files});}catch(e){}}
     else document.getElementById('lbAfterT').textContent='במכשיר הזה אי אפשר לשלוח מכאן. צרפו את התמונות ישירות בשיחת הוואטסאפ.';});
@@ -1718,15 +1720,39 @@ main > section.hero{display:none!important}
     return t;}
   function pad(n){return (n<10?'0':'')+n;}
   var BASE='https://boostmedia2002.github.io/jewelry/';
+
+  /* product photos go to the owner's Drive: one folder per order and per item */
+  var GAS='https://script.google.com/macros/s/AKfycbzM_0SBGDB1Wn-U22q9M6jiORgG6Bwj_RqwTSDb7QJOU0RZcNjfg6CRo2CZiBV5_SCynw/exec',UP={};
+  function ensureOrd(){var d=new Date();if(!ordNo){ordNo='BM-'+pad(d.getDate())+pad(d.getMonth()+1)+'-'+Math.floor(1000+Math.random()*9000);save();}return ordNo;}
+  function ikey(id){var u=UP[id];return (isPh(id)?'p'+(+phN(id)):'v'+numOf(id))+(u&&u.gen?'-'+u.gen:'');}
+  function plink(id){return BASE+'t.html?o='+ensureOrd()+'&i='+ikey(id);}
+  function upOne(id,f){var u=UP[id],gen=u.gen;f._up='p';
+    var rd=new FileReader();rd.onerror=function(){f._up='f';};
+    rd.onload=function(){var b=String(rd.result);b=b.slice(b.indexOf(',')+1);
+      fetch(GAS,{method:'POST',body:JSON.stringify({order:ensureOrd(),item:ikey(id),kind:f._k||'',name:f.name||'photo',type:f.type||'image/jpeg',data:b})})
+        .then(function(r){return r.json();}).then(function(j){if(u.gen!==gen)return;if(j&&j.ok){f._up='d';u.sent.push(f);}else f._up='f';upTick();})
+        .catch(function(){if(u.gen===gen)f._up='f';upTick();});};
+    rd.readAsDataURL(f);}
+  function syncItem(id,files,retry){var u=UP[id]||(UP[id]={gen:0,sent:[]});files=files||[];
+    if(u.sent.some(function(f){return files.indexOf(f)<0;})){u.gen++;u.sent=[];files.forEach(function(f){delete f._up;});}
+    files.forEach(function(f){if(!f._up||(retry&&f._up==='f'))upOne(id,f);});}
+  function syncAll(retry){sel.forEach(function(id){if(prod[id])syncItem(id,prod[id],retry);});}
+  function upCount(files,st){return (files||[]).filter(function(f){return f._up===st;}).length;}
+  function upPending(){var n=0;sel.forEach(function(id){n+=upCount(prod[id],'p');});return n;}
+  function upFailed(){var n=0;sel.forEach(function(id){n+=upCount(prod[id],'f');});return n;}
+  function upTick(){var e=document.getElementById('oUp');if(!e)return;var n=upPending();if(n){e.hidden=false;e.textContent='מעלה תמונות… נשארו '+n;}else if(!e.hidden){e.textContent='התמונות עלו. אפשר לשלוח.';}}
+  setInterval(function(){syncAll(false);upTick();},1500);
   function fdesc(a){var m={},o=[],lg=0;(a||[]).forEach(function(f){if(f._k==='לוגו')lg++;else{var k=f._k||'תכשיט';m[k]=(m[k]||0)+1;}});Object.keys(m).forEach(function(k){o.push(k+': '+m[k]);});return {n:(a||[]).length-lg,t:o.join(', '),lg:lg};}
   function itemBlock(id,num,files,nt){var i=find(id),f=fdesc(files),L=['*'+(num?num+'. ':'')+(i.ph?'תמונת קמפיין ':'סרטון ')+dispNum(id)+' · '+i.t+'*'];
     if(!i.ph)L.push('מחיר: '+vp(id)+' ₪ ('+(vp(id)===50?'סרטון עד 10 שניות':'סרטון מעל 10 שניות')+')');
-    L.push('תמונות מוצר: '+(f.n?(f.n===1?'תמונה אחת':f.n+' תמונות')+' ('+f.t+')':'לא צורפו, אשלח בשיחה'));
+    var bad=upCount(files,'f')+upCount(files,'p');
+    L.push('תמונות מוצר: '+(f.n?(f.n===1?'תמונה אחת':f.n+' תמונות')+' ('+f.t+')'+(bad?', נשלחות בהודעה נפרדת':''):'לא הוספה עדיין'));
     L.push('לוגו: '+(f.lg?'צורף':'לא צורף'));
     if(nt&&nt.trim())L.push('הערות: '+nt.trim());
-    L.push('לצפייה: '+BASE+(i.ph?'ph/'+phN(id)+'.webp':'?v='+numOf(id)));return L;}
+    L.push('קישור לתמונות המוצר: '+plink(id));
+    L.push((i.ph?'התמונה שנבחרה: ':'הסרטון שנבחר: ')+BASE+(i.ph?'ph/'+phN(id)+'.webp':'?v='+numOf(id)));return L;}
   var SEP='──────────';
-  function orderText(){var d=new Date();if(!ordNo){ordNo='BM-'+pad(d.getDate())+pad(d.getMonth()+1)+'-'+Math.floor(1000+Math.random()*9000);save();}
+  function orderText(){ensureOrd();
     var nm=document.getElementById('oName').value.trim(),vids=sel.filter(function(id){return !isPh(id);}),phs=sel.filter(isPh),any=false,miss=[];
     var L=['*הזמנה חדשה מהאתר · BOOST MEDIA*','','מספר הזמנה: '+ordNo,'עסק: '+(nm||'לא צוין')];
     function sec(title,arr){if(!arr.length)return;L.push('',SEP,'*'+title+' ('+arr.length+')*');arr.forEach(function(id,k){var f=fdesc(prod[id]);if(f.n||f.lg)any=true;if(!f.n)miss.push((isPh(id)?'תמונה ':'סרטון ')+dispNum(id));L.push('');[].push.apply(L,itemBlock(id,k+1,prod[id],inotes[id]));});}
@@ -1739,11 +1765,11 @@ main > section.hero{display:none!important}
       if(phs.length)L.push('תמונות קמפיין ('+phs.length+'): '+phTotal()+' ₪');
       L.push('*סה"כ לתשלום: '+priceTxt()+'*');}
     L.push('');
-    if(any)L.push('התמונות של המוצרים נשלחות בהודעה נפרדת, מיד אחרי ההודעה הזאת.');
-    if(miss.length)L.push('עדיין חסרות תמונות מוצר ל: '+miss.join(', ')+'.');
+    if(upFailed()||upPending())L.push('חלק מהתמונות לא עלו לקישור ויישלחו בהודעה נפרדת.');
+    if(miss.length)L.push('עדיין חסרות תמונות מוצר ל: '+miss.join(', ')+'. אפשר להוסיף דרך הקישור של אותו פריט.');
     L.push('אשמח לקבל פרטי תשלום.');
     return L.join('\n');}
-  function doSend(){document.getElementById('oMiss').hidden=true;goWA(wa(orderText()));if(Object.keys(prod).length)document.getElementById('oDone').classList.add('show');}
+  function doSend(){document.getElementById('oMiss').hidden=true;goWA(wa(orderText()));document.getElementById('oDone').classList.toggle('show',upFailed()>0);}
   function pcount(k){return pdesc(prod[k])+', שולח/ת בהודעה נפרדת';}
   function missing(){return sel.filter(function(id){return !prod[id];}).concat(images&&!prod.images?['images']:[]);}
   document.getElementById('oAgree').addEventListener('change',function(){document.getElementById('oAgreeErr').hidden=true;});
@@ -1751,6 +1777,7 @@ main > section.hero{display:none!important}
     var oa=document.getElementById('oAgree');if(!oa.checked){document.getElementById('oAgreeErr').hidden=false;oa.focus();return;}
     if(phShort()){var pe=document.getElementById('oAgreeErr');pe.textContent='תמונות מזמינים לפחות 10. בחרתם '+nPh()+', הוסיפו עוד '+(phShort()===1?'תמונה אחת':phShort()+' תמונות')+' מקטלוג התמונות.';pe.hidden=false;pe.scrollIntoView({block:'nearest'});return;}
     document.getElementById('oAgreeErr').textContent='כדי לשלוח צריך לסמן את ההסכמה למדיניות הפרטיות.';
+    syncAll(true);if(upPending()){var ue=document.getElementById('oUp');ue.hidden=false;ue.textContent='התמונות עדיין עולות (נשארו '+upPending()+'). לחצו שוב בעוד רגע.';ue.scrollIntoView({block:'nearest'});return;}
     if(ms.length&&bx.hidden){document.getElementById('oMissT').textContent=ms.length===1?(ms[0]==='images'?'לא העליתם תמונה של המוצר לתמונות הקמפיין.':'לא העליתם תמונה של המוצר '+(isPh(ms[0])?'לתמונה ':'לסרטון ')+dispNum(ms[0])+'.'):'לא העליתם תמונה של המוצר ל-'+ms.length+' פריטים בהזמנה.';bx.hidden=false;bx.scrollIntoView({block:'nearest'});return;}
     doSend();});
   document.getElementById('oMissSend').addEventListener('click',doSend);
