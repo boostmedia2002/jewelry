@@ -1,6 +1,6 @@
 <!doctype html>
 <html data-logo="a" lang="he" dir="rtl" data-type="service" data-radius="soft" data-buttons="solid" data-motion translate="no">
-<script>document.documentElement.classList.add("js");(function(){var m=/[?&]d=([abc])/.exec(location.search);document.documentElement.setAttribute("data-desk",m?m[1]:"b");var h=/[?&]h=([0-4])/.exec(location.search);document.documentElement.setAttribute("data-h",h?h[1]:"0");})()</script>
+<script>document.documentElement.classList.add("js");(function(){var m=/[?&]d=([abc])/.exec(location.search);document.documentElement.setAttribute("data-desk",m?m[1]:"b");var h=/[?&]h=([0-4])/.exec(location.search);document.documentElement.setAttribute("data-h",h?h[1]:"4");})()</script>
 <head>
 <meta charset="utf-8">
 <meta name="google" content="notranslate">
@@ -1105,6 +1105,48 @@ html[data-h="3"] .pv-hd h1 em{background:linear-gradient(100deg,#FFB020,#FF4D6D 
 html[data-h="1"] .pv-hd h1{font-size:5rem}html[data-h="2"] .pv-hd h1{font-size:4rem}html[data-h="3"] .pv-hd h1{font-size:9rem}
 }
 </style>
+<style>
+.hdx,.hdk,.hdb,.hdc{display:none}
+/* 4: promo banner in the Higgsfield manner: colour wash, tilted frames, heavy tight type, glass tag, lime button */
+html[data-h="4"] .pv-hd{position:relative;display:block;overflow:hidden;border-radius:22px;margin:2px 0 12px;padding:20px 14px 18px;text-align:center;background:radial-gradient(130% 100% at 50% -10%,#8A46F2 0%,#D53FA8 46%,#FF8A4A 100%)}
+html[data-h="4"] .hdk{display:block;position:relative;z-index:2;font:800 .8125rem/1.2 Heebo,sans-serif;color:#fff;letter-spacing:.01em;margin-bottom:8px}
+html[data-h="4"] .hdk::before,html[data-h="4"] .hdk::after{content:"✦";margin:0 8px;font-size:.6875rem;opacity:.85}
+html[data-h="4"] .pv-hd h1{position:relative;z-index:2;font:900 clamp(1.9rem,9.5vw,2.6rem)/.98 Heebo,sans-serif;letter-spacing:-.04em;color:#fff;text-shadow:0 2px 14px rgba(70,10,80,.28)}
+html[data-h="4"] .pv-hd .l2,html[data-h="4"] .pv-hd h1 em{color:#FFD6EF}
+html[data-h="4"] .pv-hd p{position:relative;z-index:2;margin:10px auto 0;max-width:31ch;color:rgba(255,255,255,.94);font-size:.875rem;font-weight:500;text-align:center}
+html[data-h="4"] .hdb{display:inline-flex;position:relative;z-index:3;align-items:center;gap:8px;margin-top:12px;padding:6px 12px 6px 7px;border-radius:12px;background:rgba(255,255,255,.3);border:1px solid rgba(255,255,255,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transform:rotate(-3deg);font:800 .875rem/1 Heebo,sans-serif;color:#3B1050;box-shadow:0 10px 22px rgba(80,10,90,.28)}
+html[data-h="4"] .hdb i{font-style:normal;padding:5px 8px;border-radius:8px;background:linear-gradient(135deg,#7C4DFF,#E9A8FF);color:#fff}
+html[data-h="4"] .hdc{display:flex;position:relative;z-index:3;align-items:center;justify-content:center;min-height:48px;max-width:300px;margin:16px auto 0;padding:0 20px;border-radius:14px;background:#DFFF1F;color:#131416;font:800 1rem Heebo,sans-serif;text-decoration:none;box-shadow:0 4px 0 #9FBF00,0 12px 24px rgba(60,10,70,.3);transition:transform 140ms cubic-bezier(.23,1,.32,1),box-shadow 140ms}
+html[data-h="4"] .hdc:active{transform:translateY(3px);box-shadow:0 1px 0 #9FBF00}
+html[data-h="4"] .hdc:focus-visible{outline:3px solid #fff;outline-offset:3px}
+html[data-h="4"] .hdx{display:block;position:absolute;inset:0;z-index:1}
+html[data-h="4"] .hdx img{position:absolute;width:60px;aspect-ratio:9/16;object-fit:cover;border:3px solid #fff;border-radius:7px;box-shadow:0 10px 22px rgba(50,0,60,.35)}
+html[data-h="4"] .hdx img:nth-child(1){right:-34px;top:-30px;transform:rotate(10deg)}
+html[data-h="4"] .hdx img:nth-child(2){left:-38px;top:-12px;transform:rotate(-9deg)}
+html[data-h="4"] .hdx img:nth-child(3){right:-30px;bottom:26px;transform:rotate(-7deg)}
+html[data-h="4"] .hdx img:nth-child(4){left:-28px;bottom:-26px;transform:rotate(8deg)}
+html[data-h="4"] .hdx img:nth-child(n+5){display:none}
+@media(prefers-reduced-motion:no-preference){html[data-h="4"] .hdx img{animation:hdPop 600ms cubic-bezier(.23,1,.32,1) both}html[data-h="4"] .hdx img:nth-child(2n){animation-delay:90ms}html[data-h="4"] .hdb{animation:hdTag 520ms cubic-bezier(.23,1,.32,1) 320ms both}}
+@keyframes hdPop{from{opacity:0;scale:.9}to{opacity:1;scale:1}}
+@keyframes hdTag{from{opacity:0;transform:rotate(-3deg) translateY(10px) scale(.95)}to{opacity:1;transform:rotate(-3deg)}}
+@media(min-width:1024px){
+html[data-h="4"] .pv-hd{display:block;padding:40px 24px 38px;margin-bottom:18px;border-radius:26px}
+html[data-h="4"] .hdk{font-size:1.125rem;margin-bottom:12px}
+html[data-h="4"] .pv-hd h1{font-size:5.75rem;line-height:.94}
+html[data-h="4"] .pv-hd p{font-size:1.0625rem;max-width:none;margin-top:16px;text-align:center}
+html[data-h="4"] .hdb{position:absolute;right:calc(50% - 470px);top:292px;margin:0;transform:rotate(7deg);font-size:1.0625rem;padding:9px 16px 9px 9px;border-radius:14px}
+html[data-h="4"] .hdc{display:inline-flex;min-height:52px;margin-top:22px;max-width:none;font-size:1.0625rem}
+html[data-h="4"] .hdx img{width:132px;border-width:4px;border-radius:10px}
+html[data-h="4"] .hdx img:nth-child(n+5){display:block}
+html[data-h="4"] .hdx img:nth-child(1){right:34px;top:26px;bottom:auto;transform:rotate(-5deg)}
+html[data-h="4"] .hdx img:nth-child(3){right:172px;top:70px;bottom:auto;transform:rotate(4deg)}
+html[data-h="4"] .hdx img:nth-child(5){right:-28px;top:150px;transform:rotate(7deg)}
+html[data-h="4"] .hdx img:nth-child(2){left:34px;top:26px;transform:rotate(5deg)}
+html[data-h="4"] .hdx img:nth-child(4){left:172px;top:70px;bottom:auto;transform:rotate(-4deg)}
+html[data-h="4"] .hdx img:nth-child(6){left:-28px;top:150px;transform:rotate(-7deg)}
+@keyframes hdTag{from{opacity:0;transform:rotate(7deg) translateY(10px) scale(.95)}to{opacity:1;transform:rotate(7deg)}}
+}
+</style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&family=Karantina:wght@700&display=swap">
 </head>
 <body>
@@ -1133,7 +1175,7 @@ html[data-h="1"] .pv-hd h1{font-size:5rem}html[data-h="2"] .pv-hd h1{font-size:4
 
 <main id="top">
   <section class="pv" aria-label="איך זה עובד בשלושה שלבים"><div class="pv-in">
-    <div class="pv-hd"><h1><span class="l1">למה <s>לצלם</s>,</span><br><span class="l2">כשאפשר <em>לבחור?</em></span></h1><p>כ-100 תכנים מוכנים לסטורי, לרילס ולאתר, עם התכשיטים שלכם.</p></div>
+    <div class="pv-hd"><div class="hdx" aria-hidden="true"><img src="p/work-06-s.webp" alt=""><img src="p/work-24-s.webp" alt=""><img src="p/work-65-s.webp" alt=""><img src="p/work-58-s.webp" alt=""><img src="p/work-67-s.webp" alt=""><img src="p/work-72-s.webp" alt=""></div><span class="hdk">תפסיקו לשלם על יום צילום</span><h1><span class="l1">למה <s>לצלם</s>,</span><br><span class="l2">כשאפשר <em>לבחור?</em></span></h1><p>כ-100 תכנים מוכנים לסטורי, לרילס ולאתר, עם התכשיטים שלכם.</p><span class="hdb"><i>43</i>סרטונים<i>56</i>תמונות</span><a class="hdc" href="#gallery">בוחרים פרסומת מהקטלוג</a></div>
     <div class="pv-st" id="pvSt">
       <img src="p/work-24.webp" alt="" aria-hidden="true">
       <video class="ad" id="pvAd" muted playsinline preload="auto" aria-hidden="true"></video>
