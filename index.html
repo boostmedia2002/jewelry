@@ -997,6 +997,7 @@ main > section.hero{display:none!important}
 .vfbox .filters.vf button{min-height:40px;padding:0 4px;justify-content:center;font-size:.9375rem;border-radius:999px}
 #oSumV bdi,#oSumV .oldp{display:inline-block;unicode-bidi:isolate}#oSumV .oldp{font-size:.9375rem;font-weight:500;color:#8A8B8D;margin-inline-end:10px}
 .odisc{margin:6px 0 0;color:#D9FE16;font-size:.875rem;font-weight:700}
+.pc-row.one{grid-template-columns:1fr}
 </style>
 </head>
 <body>
@@ -1122,7 +1123,7 @@ main > section.hero{display:none!important}
       <div class="wall" id="wall"></div>
       <div class="head ph-head" id="photos"><h2 id="h-ph" class="fillh">תמונות קמפיינים</h2></div>
       <p class="fits-line">בוחרים תמונה שאהבתם, ואני מכין אותה מחדש עם התכשיטים שלכם.</p>
-      <div class="pricecard ph-price"><div class="pc-row two"><div class="pc-t"><span class="n">תמונה</span><b>10 ₪</b></div><div class="pc-t best"><span class="n">מינימום להזמנה</span><b>10 תמונות</b></div></div></div>
+      <div class="pricecard ph-price"><div class="pc-row one"><div class="pc-t best"><span class="n">10 תמונות</span><b>100 ₪</b></div></div></div>
       <p class="ftitle"><b>סינון לפי סוג תכשיט</b><span>אפשר לבחור כמה</span></p>
       <div class="filters pf" id="pfilt" role="group" aria-label="סינון לפי סוג תכשיט, אפשר לבחור כמה">
         <button type="button" data-p="all" aria-pressed="true">הכל</button>
@@ -1199,7 +1200,7 @@ main > section.hero{display:none!important}
         <details name="faq"><summary>אילו תמונות של התכשיט צריך לשלוח?</summary><p>תמונות מהטלפון מספיקות. כמה שיותר זוויות, יותר טוב: מלפנים, מהצד ותקריב. צלמו באור טוב ועל רקע נקי. אין הגבלה על מספר התמונות.</p></details>
         <details name="faq"><summary>אין לי עכשיו תמונה טובה. אפשר להזמין?</summary><p>כן. שלחו את ההזמנה בלי תמונה, ותצרפו אותה אחר כך בשיחה בוואטסאפ.</p></details>
         <details name="faq"><summary>תוך כמה זמן זה מוכן, ואיך מקבלים את זה?</summary><p>תוך 2 ימי עסקים מרגע שקיבלתי את התמונות של התכשיט. הסרטון או התמונה נשלחים אליכם בוואטסאפ, מוכנים לפרסום.</p></details>
-        <details name="faq"><summary>כמה זה עולה, ואיך משלמים?</summary><p>סרטון עד 10 שניות: 50 ₪. סרטון מעל 10 שניות: 70 ₪. מ-5 סרטונים ומעלה יש 10% הנחה על הסרטונים, והיא מחושבת לבד בסל. תמונות: 10 ₪ לתמונה, בהזמנה של 10 תמונות ומעלה. אין תשלום באתר: אחרי שתשלחו את ההזמנה נסגור בוואטסאפ את דרך התשלום.</p></details>
+        <details name="faq"><summary>כמה זה עולה, ואיך משלמים?</summary><p>סרטון עד 10 שניות: 50 ₪. סרטון מעל 10 שניות: 70 ₪. מ-5 סרטונים ומעלה יש 10% הנחה על הסרטונים, והיא מחושבת לבד בסל. תמונות: 10 תמונות ב-100 ₪. אין תשלום באתר: אחרי שתשלחו את ההזמנה נסגור בוואטסאפ את דרך התשלום.</p></details>
         <details name="faq"><summary>כמה תיקונים אפשר לבקש?</summary><p>עד 2 תיקונים קטנים לכל סרטון, כל עוד הם לא משנים את הרעיון של הסרטון.</p></details>
         <details name="faq"><summary>שלחתי קישור לעסק. מה קורה עכשיו?</summary><p>אני עובר על האתר או על האינסטגרם שלכם, ושולח לכם בוואטסאפ 3 תסריטים שנכתבו לעסק, כל אחד עם מחיר. התסריטים בחינם ובלי התחייבות. אם אהבתם אחד, ממשיכים ממנו.</p></details>
         <details name="faq"><summary>איפה אפשר להשתמש בפרסומת?</summary><p>בכל מקום שתרצו: אינסטגרם, טיקטוק, פייסבוק, האתר שלכם ומודעות ממומנות. הפרסומת שלכם לתמיד, ומותר לכם לעשות בה מה שאתם רוצים.</p></details>
@@ -1607,7 +1608,7 @@ main > section.hero{display:none!important}
     document.getElementById('lbT').textContent=i.ph?'תמונת קמפיין · תמונה '+dispNum(id):NM[grp(i)]+' · סרטון '+dispNum(id)+(i.src?' · צילום בסיס: '+i.src:'');
     document.getElementById('lbName').textContent=i.t;
     var ft=document.getElementById('lbFit');ft.textContent='';ft.hidden=!m.f;if(m.f){var fb=document.createElement('b');fb.textContent='מתאים ל: ';ft.appendChild(fb);ft.appendChild(document.createTextNode(m.f));}
-    document.getElementById('lbPrice').innerHTML=i.ph?'<b>10 ₪</b><span>לתמונה · מזמינים לפחות 10 תמונות (100 ₪)</span>':'<b>'+vp(id)+' ₪</b><span>'+(vp(id)===50?'סרטון עד 10 שניות':'סרטון מעל 10 שניות')+' · 5 סרטונים ומעלה: 10% הנחה</span>';
+    document.getElementById('lbPrice').innerHTML=i.ph?'<b>100 ₪</b><span>ל-10 תמונות</span>':'<b>'+vp(id)+' ₪</b><span>'+(vp(id)===50?'סרטון עד 10 שניות':'סרטון מעל 10 שניות')+' · 5 סרטונים ומעלה: 10% הנחה</span>';
     document.getElementById('lbBT').textContent=m.b?'הוסיפו כאן את התמונה שלכם':'הוסיפו כאן תמונות של המוצרים שלכם';
     var sb=document.getElementById('lbSub');sb.textContent=m.t.length>1?'לא חייבים את כולם. אפשר להעלות, למשל, רק '+m.t[0][0]+' ולדלג על השאר.':'';sb.hidden=!sb.textContent;
     var tl=document.getElementById('lbTiles');tl.textContent='';m.t.forEach(function(x){tl.appendChild(mkTile(x[0],x[1],x[0]));});
