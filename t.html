@@ -61,4 +61,5 @@ input[type=file]{position:absolute;opacity:0;width:1px;height:1px}
       fetch(GAS,{method:'POST',body:JSON.stringify({order:o,item:i,kind:inp.dataset.k,name:f.name||'photo',type:f.type||'image/jpeg',data:b})}).then(function(r){return r.json();}).then(function(j){if(!j.ok)bad++;}).catch(function(){bad++;})
         .then(function(){left--;msg.textContent=left?'מעלה… נשארו '+left:(bad?'חלק מהתמונות לא עלו. נסו שוב.':'התמונות נוספו.');if(!left){inp.value='';load();}});};rd.readAsDataURL(f);});});});
 })();
-</script></body></html>
+</script><script data-goatcounter="https://boostmedia.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body></html>
