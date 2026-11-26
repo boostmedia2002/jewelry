@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>צמיד כסף פתוח בעבודת פטיש | AURELLE</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1d1912;--muted:#6f675a;--line:#e8e1d4;--bg:#faf8f4}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Assistant","Segoe UI",Arial,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+.top{background:#1d1912;color:#e9dcc0;text-align:center;font-size:13px;padding:7px 12px}
+header{border-bottom:1px solid var(--line);background:#fff}
+.hd{max-width:1240px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:24px;letter-spacing:.28em;direction:ltr}
+nav{display:flex;gap:22px;font-size:15px;color:#3b352b}
+.icons{display:flex;gap:14px;font-size:20px}
+.crumb{max-width:1240px;margin:0 auto;padding:14px 16px 4px;font-size:13px;color:var(--muted)}
+.crumb span{margin:0 6px}
+main{max-width:1240px;margin:0 auto;padding:8px 16px 40px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:start}
+.media{position:sticky;top:12px;min-width:0;display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px}
+.info{min-width:0}
+.rail{display:flex;flex-direction:column;gap:10px}
+.th{width:92px;aspect-ratio:1;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;padding:0;cursor:pointer}
+.th img{width:100%;height:100%;object-fit:contain;display:block}
+.th.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.t3d{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:#fff}
+.t3d img{position:absolute;inset:0;opacity:.28}
+.t3d b{position:relative;font:700 20px "Assistant",sans-serif;letter-spacing:.02em;direction:ltr}
+.t3d small{position:relative;font:600 12px "Assistant",sans-serif;letter-spacing:.12em;direction:ltr}
+.stage{position:relative;width:100%;aspect-ratio:1;border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.stage>img{width:100%;height:100%;object-fit:contain;display:block}
+.stage model-viewer{position:absolute;inset:0;width:100%;height:100%;background:#fff;display:none}
+.stage.v3d>img{visibility:hidden}.stage.v3d model-viewer{display:block}
+.open3d{position:absolute;bottom:14px;left:14px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:700 14px "Assistant",sans-serif;cursor:pointer;direction:ltr;min-height:44px}
+.stage.v3d .open3d{display:none}
+.hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(29,25,18,.78);color:#fff;padding:6px 14px;border-radius:999px;font-size:13px;white-space:nowrap;pointer-events:none;display:none;transition:opacity .5s}
+.stage.v3d .hint{display:block}
+.close3d{position:absolute;top:12px;left:12px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:20px;line-height:1;cursor:pointer;display:none}
+.stage.v3d .close3d{display:block}
+.ld3d{position:absolute;top:14px;right:14px;font-size:12px;color:var(--muted);display:none}
+.stage.v3d .ld3d.show{display:block}
+.info h1{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:clamp(26px,3.2vw,36px);line-height:1.15;margin:4px 0 6px}
+.sku{font-size:13px;color:var(--muted)}
+.price{display:flex;align-items:baseline;gap:12px;margin:18px 0 4px}
+.price b{font-size:32px;font-weight:700}
+.pay{font-size:14px;color:var(--muted);margin:0 0 18px}
+.lead{color:#3b352b;margin:0 0 20px}
+.opt{margin:0 0 18px}.opt h3{font-size:14px;margin:0 0 8px;font-weight:600}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:44px;min-width:52px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer}
+.chip.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.buy{display:grid;gap:10px;margin:22px 0}
+.btn{min-height:52px;border-radius:14px;border:0;font:700 17px "Assistant",sans-serif;cursor:pointer}
+.btn.main{background:var(--ink);color:#fff}
+.btn.wa{background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:8px}
+.perks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 24px}
+.perk{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;font-size:13px;text-align:center;color:#3b352b}
+.perk i{display:block;font-style:normal;font-size:20px;margin-bottom:2px}
+details{border-top:1px solid var(--line);padding:14px 0}details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--muted)}details[open] summary::after{content:"–"}
+dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:12px 0 0;font-size:15px}
+dt{color:var(--muted)}dd{margin:0}
+details p{margin:10px 0 0;color:#3b352b;font-size:15px}
+footer{border-top:1px solid var(--line);background:#fff;text-align:center;color:var(--muted);font-size:13px;padding:22px 16px}
+@media (max-width:900px){
+ main{grid-template-columns:1fr;gap:22px}nav{display:none}
+ .media{position:static;grid-template-columns:1fr}
+ .rail{order:2;flex-direction:row;overflow-x:auto}
+ .th{width:76px;flex:0 0 auto}
+}
+.spin{position:absolute;inset:0;background:#fff;display:none;overflow:hidden;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.spin:active{cursor:grabbing}
+.spin img{width:100%;height:100%;object-fit:contain;display:block;pointer-events:none;transform-origin:0 0;will-change:transform}
+.stage.v3d .spin{display:block}
+</style>
+</head>
+<body>
+<div class="top">משלוח חינם עד הבית · החזרה עד 30 יום · אריזת מתנה לכל הזמנה</div>
+<header><div class="hd">
+  <div class="icons" aria-hidden="true">♡ 🛍</div>
+  <nav><a href="#">טבעות</a><a href="#">שרשראות</a><a href="#">צמידים</a><a href="#">עגילים</a><a href="#">קולקציות</a></nav>
+  <div class="logo">AURELLE</div>
+</div></header>
+<div class="crumb">ראשי<span>›</span>צמידים<span>›</span>צמיד כסף פתוח</div>
+<main>
+  <section class="media">
+    <div class="rail">
+      <button class="th on" data-i="0"><img src="p1.jpg" alt=""></button><button class="th" data-i="1"><img src="p2.jpg" alt=""></button><button class="th" data-i="2"><img src="p3.jpg" alt=""></button>
+      <button class="th t3d" id="t3d" aria-label="360 view"><img src="spin/f001.jpg" alt=""><b>360°</b><small>VIEW</small></button>
+    </div>
+    <div class="stage" id="stage">
+      <img id="main" src="p1.jpg" alt="צמיד כסף">
+      <div class="spin" id="sp"><img id="si" src="spin/f001.jpg" alt="צמיד כסף, סיבוב" draggable="false"></div>
+      <button class="open3d" id="open3d" dir="ltr">↻ 360°</button>
+      <button class="close3d" id="close3d" aria-label="סגירה">×</button>
+      <div class="ld3d" id="ld3d">טוען…</div>
+      <div class="hint" id="hint">גררו ימינה ושמאלה לסיבוב · צבטו להגדלה</div>
+    </div>
+  </section>
+  <section class="info">
+    <div class="sku">קולקציית ARGENT · מק"ט AU-SV-1150</div>
+    <h1>צמיד כסף פתוח בעבודת פטיש</h1>
+    <div class="price"><b>₪1,000</b></div>
+    <p class="pay">או 3 תשלומים של ₪333 ללא ריבית</p>
+    <p class="lead">צמיד פתוח מכסף, עם מרקם פטיש עמוק שנעשה ביד לאורך כל הצמיד, וצד פנימי חלק עם חקיקה עדינה. נקי ופשוט, נלבש בקלות ומתאים לכל יד, לבד או בשכבות עם צמידים נוספים.</p>
+    <div class="opt"><h3>גודל</h3><div class="chips" id="opts"><button class="chip">S</button><button class="chip on">M</button><button class="chip">L</button></div></div>
+    <div class="buy">
+      <button class="btn main">הוספה לסל</button>
+      <button class="btn wa"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>שאלה לנציג בוואטסאפ</button>
+    </div>
+    <div class="perks">
+      <div class="perk"><i>✋</i>עבודת יד</div>
+      <div class="perk"><i>🚚</i>משלוח מבוטח חינם</div>
+      <div class="perk"><i>🎁</i>אריזת מתנה</div>
+    </div>
+    <details open><summary>פרטי התכשיט</summary><dl><dt>מתכת</dt><dd>כסף</dd><dt>גימור</dt><dd>עבודת פטיש ידנית מבחוץ, חלק מבפנים</dd><dt>סוג</dt><dd>צמיד פתוח, מתאים את עצמו ליד</dd><dt>חקיקה</dt><dd>בצד הפנימי</dd></dl></details>
+    <details><summary>משלוחים והחזרות</summary><p>משלוח מבוטח חינם תוך 3–5 ימי עסקים. ניתן להחזיר או להחליף תוך 30 יום מקבלת התכשיט.</p></details>
+    <details><summary>אחריות ותחזוקה</summary><p>אחריות לשנה על הייצור. מומלץ להסיר לפני מקלחת, ים ובריכה, ולנגב במטלית רכה.</p></details>
+  </section>
+</main>
+<footer>AURELLE · דף הדגמה של עיצוב חנות</footer>
+<script>
+const IM=['p1.jpg','p2.jpg','p3.jpg'],N=47,st=document.getElementById("stage"),sp=document.getElementById("sp"),si=document.getElementById("si"),main=document.getElementById("main"),ths=[...document.querySelectorAll(".th")],t3d=document.getElementById("t3d"),ld=document.getElementById("ld3d"),hint=document.getElementById("hint");
+const src=i=>"spin/f"+String(i+1).padStart(3,"0")+".jpg";
+let frames=null,idx=0,z=1,tx=0,ty=0,anim=null;
+function load(){if(frames)return;frames=[];let n=0;ld.classList.add("show");for(let i=0;i<N;i++){const im=new Image();im.onload=im.onerror=()=>{n++;ld.textContent="טוען "+Math.round(n/N*100)+"%";if(n===N){ld.classList.remove("show");intro()}};im.src=src(i);frames.push(im)}}
+function draw(){si.src=src(idx);si.style.transform="translate("+tx+"px,"+ty+"px) scale("+z+")"}
+function clampPan(){const w=sp.clientWidth,h=sp.clientHeight;tx=Math.min(0,Math.max(w-w*z,tx));ty=Math.min(0,Math.max(h-h*z,ty))}
+function zoomAt(nz,cx,cy){nz=Math.max(1,Math.min(4,nz));tx=cx-(cx-tx)*nz/z;ty=cy-(cy-ty)*nz/z;z=nz;clampPan();draw()}
+function stopAnim(){if(anim){cancelAnimationFrame(anim);anim=null}}
+function intro(){stopAnim();const t0=performance.now(),D=4200;const step=t=>{const k=Math.min(1,(t-t0)/D),s=(1-Math.cos(k*2*Math.PI))/2;idx=Math.round(s*(N-1));draw();if(k<1)anim=requestAnimationFrame(step);else anim=null};anim=requestAnimationFrame(step)}
+function mark(b){ths.forEach(x=>x.classList.toggle("on",x===b))}
+function showSpin(){st.classList.add("v3d");mark(t3d);hint.style.opacity=1;z=1;tx=ty=0;idx=0;draw();if(frames)intro();else load()}
+function showImg(i){stopAnim();st.classList.remove("v3d");main.src=IM[i];mark(ths[i])}
+ths.forEach(b=>b.onclick=()=>b===t3d?showSpin():showImg(+b.dataset.i));
+document.getElementById("open3d").onclick=showSpin;
+document.getElementById("close3d").onclick=()=>showImg(0);
+const pts=new Map();let sx=0,i0=0,px=0,py=0,pd=0,pz=1,lastTap=0;
+const rel=e=>{const r=sp.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]};
+sp.addEventListener("pointerdown",e=>{stopAnim();hint.style.opacity=0;sp.setPointerCapture(e.pointerId);pts.set(e.pointerId,rel(e));
+ if(pts.size===1){const[x,y]=rel(e);sx=x;i0=idx;px=x;py=y;const now=Date.now();if(now-lastTap<300){z>1?(z=1,tx=ty=0,draw()):zoomAt(2.5,x,y)}lastTap=now}
+ if(pts.size===2){const[a,b]=[...pts.values()];pd=Math.hypot(a[0]-b[0],a[1]-b[1]);pz=z}});
+sp.addEventListener("pointermove",e=>{if(!pts.has(e.pointerId))return;pts.set(e.pointerId,rel(e));
+ if(pts.size===2){const[a,b]=[...pts.values()];const d=Math.hypot(a[0]-b[0],a[1]-b[1]);zoomAt(pz*d/pd,(a[0]+b[0])/2,(a[1]+b[1])/2);return}
+ const[x,y]=rel(e);
+ if(z>1){tx+=x-px;ty+=y-py;px=x;py=y;clampPan();draw();return}
+ const per=sp.clientWidth/(N*0.9);idx=Math.max(0,Math.min(N-1,i0+Math.round((sx-x)/per)));draw()});
+["pointerup","pointercancel"].forEach(t=>sp.addEventListener(t,e=>{pts.delete(e.pointerId);if(pts.size===1){const[x,y]=[...pts.values()][0];sx=x;i0=idx;px=x;py=y}}));
+sp.addEventListener("wheel",e=>{e.preventDefault();const[x,y]=rel(e);zoomAt(z*(e.deltaY<0?1.15:1/1.15),x,y)},{passive:false});
+document.querySelectorAll("#opts .chip").forEach(b=>b.onclick=()=>document.querySelectorAll("#opts .chip").forEach(x=>x.classList.toggle("on",x===b)));
+</script>
+</body>
+</html>
