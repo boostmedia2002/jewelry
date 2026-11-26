@@ -27,7 +27,7 @@
   var key = new URLSearchParams(location.search).get("m") || "topaz";
   var m = MODELS[key] || MODELS.topaz, mv = document.getElementById("mv");
   if (m[1]) mv.setAttribute("ios-src", m[1]);
-  if (key==="bracelet"){ mv.setAttribute("camera-orbit","0deg 60deg 105%"); mv.setAttribute("min-camera-orbit","-Infinity 0deg auto"); mv.setAttribute("max-camera-orbit","Infinity 180deg 300%"); mv.setAttribute("exposure","1.15"); }
+  if (key==="bracelet"){ mv.setAttribute("camera-orbit","0deg 60deg 105%"); mv.setAttribute("min-camera-orbit","-Infinity 0deg auto"); mv.setAttribute("max-camera-orbit","Infinity 180deg 300%"); mv.setAttribute("exposure","1.15"); document.documentElement.style.background="#2e2d2b"; document.body.style.background="radial-gradient(ellipse at 50% 42%,#6a6865 0%,#4a4846 45%,#2e2d2b 100%)"; mv.style.background="transparent"; }
   if (key==="gold"){ mv.setAttribute("camera-orbit","0deg 75deg 140%"); mv.setAttribute("max-camera-orbit","Infinity 180deg 300%"); }
   mv.src = m[0];
   var hint = document.getElementById("hint");
