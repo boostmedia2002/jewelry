@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>צמיד הילה בזהב צהוב</title>
+<meta name="robots" content="noindex">
+<style>
+  html{background:#1c1b1a}html,body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 40%,#4a4846 0%,#2c2b29 60%,#1c1b1a 100%);color:#f3eee5;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+  .w{max-width:1100px;margin:0 auto;padding:14px 16px 26px}
+  .st{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
+  .st img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s ease;pointer-events:none}
+  .st img.on{opacity:1}
+  .zoom{transform-origin:center;transition:transform .2s ease}
+  .nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:22px;cursor:pointer;display:grid;place-items:center}
+  .prev{right:10px}.next{left:10px}
+  .lab{position:absolute;bottom:12px;right:50%;transform:translateX(50%);background:rgba(0,0,0,.5);padding:6px 14px;border-radius:999px;font-size:14px;white-space:nowrap}
+  .th{display:flex;gap:8px;margin-top:12px;overflow-x:auto;padding-bottom:4px}
+  .th button{flex:0 0 auto;width:96px;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:2px solid transparent;padding:0;cursor:pointer;background:#222}
+  .th button.on{border-color:#d7b468}
+  .th img{width:100%;height:100%;object-fit:cover;display:block}
+  .hint{text-align:center;color:#b9b1a3;font-size:14px;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="w">
+  <div class="st" id="st"></div>
+  <div class="th" id="th"></div>
+  <div class="hint">החליקו או לחצו על החצים כדי לראות את הצמיד מכל הזוויות · לחיצה כפולה להגדלה</div>
+</div>
+<script>
+var V=[["a-front.jpg","מקדימה"],["b-top.jpg","מלמעלה"],["c-side.jpg","מהצד"],["d-standing.jpg","עומד"],["e-under.jpg","מתחת"],["f-macro.jpg","תקריב היהלומים"]];
+var st=document.getElementById("st"),th=document.getElementById("th"),cur=0,imgs=[],btns=[];
+V.forEach(function(v,i){var im=document.createElement("img");im.src=v[0];im.alt="צמיד, "+v[1];im.className="zoom";st.appendChild(im);imgs.push(im);
+ var b=document.createElement("button");b.innerHTML='<img src="'+v[0]+'" alt="">';b.setAttribute("aria-label",v[1]);b.onclick=function(){go(i)};th.appendChild(b);btns.push(b);});
+var lab=document.createElement("div");lab.className="lab";st.appendChild(lab);
+var p=document.createElement("button");p.className="nav prev";p.innerHTML="›";p.setAttribute("aria-label","הקודם");p.onclick=function(){go(cur-1)};st.appendChild(p);
+var n=document.createElement("button");n.className="nav next";n.innerHTML="‹";n.setAttribute("aria-label","הבא");n.onclick=function(){go(cur+1)};st.appendChild(n);
+var z=false;function go(i){cur=(i+V.length)%V.length;z=false;imgs.forEach(function(im,k){im.classList.toggle("on",k===cur);im.style.transform=""});btns.forEach(function(b,k){b.classList.toggle("on",k===cur)});lab.textContent=V[cur][1]}
+go(0);
+var sx=null;st.addEventListener("pointerdown",function(e){sx=e.clientX});st.addEventListener("pointerup",function(e){if(sx===null)return;var d=e.clientX-sx;if(Math.abs(d)>40)go(cur+(d>0?1:-1));sx=null});
+st.addEventListener("dblclick",function(e){var im=imgs[cur];z=!z;if(z){var r=st.getBoundingClientRect();im.style.transformOrigin=((e.clientX-r.left)/r.width*100)+"% "+((e.clientY-r.top)/r.height*100)+"%";im.style.transform="scale(2.5)"}else im.style.transform=""});
+</script>
+</body>
+</html>
