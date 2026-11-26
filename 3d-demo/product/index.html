@@ -64,7 +64,11 @@ footer{border-top:1px solid var(--line);background:#fff;text-align:center;color:
 .st .ld{position:absolute;top:10px;right:12px;color:#ddd;font-size:12px}
 .bar{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
 .bar button{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:14px;cursor:pointer}
+.mvw{position:relative;width:100%;aspect-ratio:1/0.82;border-radius:18px;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#6a6865 0%,#4a4846 45%,#2e2d2b 100%)}
+.mvw model-viewer{width:100%;height:100%;background:transparent;--poster-color:transparent}
+.b360{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.55);color:#fff;font:600 12px "Assistant",sans-serif;padding:5px 10px;border-radius:999px;pointer-events:none}
 </style>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 </head>
 <body>
 <div class="top">משלוח חינם עד הבית · החזרה עד 30 יום · תעודת יהלומים לכל תכשיט</div>
@@ -76,9 +80,8 @@ footer{border-top:1px solid var(--line);background:#fff;text-align:center;color:
 <div class="crumb">ראשי<span>›</span>צמידים<span>›</span>צמידי טניס<span>›</span>צמיד טניס הילה</div>
 <main>
   <section class="media">
-    <div class="st" id="st"><img id="im" alt="צמיד זהב עם עיגולי יהלומים"><div class="ld" id="ld">טוען…</div><div class="hint" id="hint">↔ גררו לסיבוב · ↕ למעלה/למטה לשינוי זווית</div></div>
-    <div class="bar"><button id="play">▶ סיבוב אוטומטי</button><button id="top">מבט מלמעלה</button><button id="low">מבט מהצד</button><button id="home">חזרה</button></div>
-    <div class="badge360">↻ גררו את הצמיד לסיבוב 360° · למעלה ולמטה לשינוי זווית</div>
+    <div class="mvw"><model-viewer id="mv" dir="ltr" src="../bracelet3d/bracelet.glb" camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="2500" interaction-prompt="none" camera-orbit="0deg 60deg auto" camera-target="auto auto auto" min-camera-orbit="-Infinity 0deg auto" max-camera-orbit="Infinity 180deg 300%" environment-image="neutral" exposure="1.15" shadow-intensity="0.4" alt="צמיד טניס הילה בתלת־ממד"></model-viewer><div class="b360">360°</div></div>
+    <div class="badge360">↻ גררו לכל כיוון כדי לסובב את הצמיד · צבטו להגדלה</div>
     <div class="thumbs">
       <a href="../bracelet/"><img src="../bracelet/a-front.jpg" alt="מקדימה"></a>
       <a href="../bracelet/"><img src="../bracelet/b-top.jpg" alt="מלמעלה"></a>
@@ -129,40 +132,6 @@ footer{border-top:1px solid var(--line);background:#fff;text-align:center;color:
 <script>
 document.querySelectorAll(".sw").forEach(b=>b.onclick=()=>{document.querySelectorAll(".sw").forEach(x=>x.classList.toggle("on",x===b));document.getElementById("metal").textContent=b.dataset.m});
 document.querySelectorAll("#len .chip").forEach(b=>b.onclick=()=>document.querySelectorAll("#len .chip").forEach(x=>x.classList.toggle("on",x===b)));
-</script>
-<script>
-const NS=89,NU=22,ND=15,st=document.getElementById("st"),im=document.getElementById("im");
-const pad=i=>String(i).padStart(3,"0");
-const S=i=>"../spin/frames/f"+pad(i+1)+".jpg", U=i=>"../spin/tilt/u"+pad(i+1)+".jpg", D=i=>"../spin/tilt/d"+pad(i+1)+".jpg";
-const all=[];for(let i=0;i<NS;i++)all.push(S(i));for(let i=0;i<NU;i++)all.push(U(i));for(let i=0;i<ND;i++)all.push(D(i));
-let loaded=0;const cache=all.map(s=>{const x=new Image();x.onload=x.onerror=()=>{if(++loaded>=all.length)document.getElementById("ld").remove();else document.getElementById("ld").textContent="טוען "+Math.round(loaded/all.length*100)+"%"};x.src=s;return x});
-let yaw=0,tilt=0,rot=0; // tilt: 0..NU-1 up (positive), -(ND-1)..0 down
-function draw(){let src;if(tilt>0)src=U(Math.min(tilt,NU-1));else if(tilt<0)src=D(Math.min(-tilt,ND-1));else src=S(yaw);
- if(im.getAttribute("src")!==src)im.src=src;im.style.transform=(tilt>=NU-1&&rot)?"rotate("+rot+"deg)":"";}
-const mod=(a,n)=>((a%n)+n)%n;
-let anim=null;function stopAnim(){if(anim){clearInterval(anim);anim=null}}
-function animate(steps,done){stopAnim();anim=setInterval(()=>{if(!steps()){stopAnim();done&&done()}draw()},16)}
-function toYaw0(done){if(yaw===0)return done&&done();const dir=yaw<NS/2?-1:1;animate(()=>{if(yaw===0)return false;yaw=mod(yaw+dir,NS);return true},done)}
-function toTilt(t,done){animate(()=>{if(tilt===t)return false;tilt+=tilt<t?1:-1;return true},done)}
-let down=false,sx=0,sy=0,axis=null,y0=0,t0=0,r0=0,auto=null,busy=false,lastX=0,lastY=0;
-st.addEventListener("pointerdown",e=>{down=true;axis=null;busy=false;sx=e.clientX;sy=e.clientY;stopAuto();stopAnim();st.setPointerCapture(e.pointerId);document.getElementById("hint").style.opacity=0});
-st.addEventListener("pointermove",e=>{if(!down)return;const dx=e.clientX-sx,dy=e.clientY-sy,w=st.clientWidth;
- if(!axis){if(Math.abs(dx)<8&&Math.abs(dy)<8)return;axis=Math.abs(dx)>Math.abs(dy)?"x":"y";
-   if(axis==="y"&&tilt===0&&yaw!==0){busy=true;toYaw0(()=>{busy=false;sy=lastY;t0=tilt})}
-   if(axis==="x"&&tilt!==0&&tilt<NU-1){busy=true;rot=0;toTilt(0,()=>{busy=false;sx=lastX;y0=yaw})}
-   y0=yaw;t0=tilt;r0=rot}
- lastX=e.clientX;lastY=e.clientY;if(busy)return;
- if(axis==="x"){if(tilt>=NU-1){rot=r0+dx*0.6}else{yaw=mod(y0+Math.round(-dx/(w/NS*1.6)),NS)}}
- else{tilt=Math.max(-(ND-1),Math.min(NU-1,t0+Math.round(-dy/(w/(NU*2.2)))));if(tilt<NU-1)rot=0}
- draw()});
-["pointerup","pointercancel"].forEach(t=>st.addEventListener(t,()=>down=false));
-function stopAuto(){if(auto){clearInterval(auto);auto=null;document.getElementById("play").textContent="▶ סיבוב אוטומטי"}}
-document.getElementById("play").onclick=()=>{if(auto)return stopAuto();const go=()=>{auto=setInterval(()=>{if(tilt>=NU-1)rot+=2;else yaw=mod(yaw+1,NS);draw()},9000/NS);document.getElementById("play").textContent="⏸ עצור"};
- if(tilt!==0&&tilt<NU-1)toTilt(0,go);else go()};
-document.getElementById("top").onclick=()=>{stopAuto();toYaw0(()=>toTilt(NU-1))};
-document.getElementById("low").onclick=()=>{stopAuto();rot=0;toYaw0(()=>toTilt(-(ND-1)))};
-document.getElementById("home").onclick=()=>{stopAuto();rot=0;toTilt(0)};
-draw();
 </script>
 </body>
 </html>
