@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>צמיד HALL פתוח, זהב בעבודת פטיש | AURELLE</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1d1912;--muted:#6f675a;--line:#e8e1d4;--bg:#faf8f4}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Assistant","Segoe UI",Arial,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+.top{background:#1d1912;color:#e9dcc0;text-align:center;font-size:13px;padding:7px 12px}
+header{border-bottom:1px solid var(--line);background:#fff}
+.hd{max-width:1240px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:24px;letter-spacing:.28em;direction:ltr}
+nav{display:flex;gap:22px;font-size:15px;color:#3b352b}
+.icons{display:flex;gap:14px;font-size:20px}
+.crumb{max-width:1240px;margin:0 auto;padding:14px 16px 4px;font-size:13px;color:var(--muted)}
+.crumb span{margin:0 6px}
+main{max-width:1240px;margin:0 auto;padding:8px 16px 40px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:start}
+.media{position:sticky;top:12px;min-width:0;display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px}
+.info{min-width:0}
+.rail{display:flex;flex-direction:column;gap:10px}
+.th{width:92px;aspect-ratio:1;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#fff;padding:0;cursor:pointer}
+.th img{width:100%;height:100%;object-fit:contain;display:block}
+.th.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.t3d{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:#fff}
+.t3d img{position:absolute;inset:0;opacity:.28}
+.t3d b{position:relative;font:700 20px "Assistant",sans-serif;letter-spacing:.02em;direction:ltr}
+.t3d small{position:relative;font:600 12px "Assistant",sans-serif;letter-spacing:.12em;direction:ltr}
+.stage{position:relative;width:100%;aspect-ratio:1;border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.stage>img{width:100%;height:100%;object-fit:contain;display:block}
+.stage model-viewer{position:absolute;inset:0;width:100%;height:100%;background:#fff;display:none}
+.stage.v3d>img{visibility:hidden}.stage.v3d model-viewer{display:block}
+.open3d{position:absolute;bottom:14px;left:14px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:700 14px "Assistant",sans-serif;cursor:pointer;direction:ltr;min-height:44px}
+.stage.v3d .open3d{display:none}
+.hint{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(29,25,18,.78);color:#fff;padding:6px 14px;border-radius:999px;font-size:13px;white-space:nowrap;pointer-events:none;display:none;transition:opacity .5s}
+.stage.v3d .hint{display:block}
+.close3d{position:absolute;top:12px;left:12px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:20px;line-height:1;cursor:pointer;display:none}
+.stage.v3d .close3d{display:block}
+.ld3d{position:absolute;top:14px;right:14px;font-size:12px;color:var(--muted);display:none}
+.stage.v3d .ld3d.show{display:block}
+.info h1{font-family:"Frank Ruhl Libre",serif;font-weight:700;font-size:clamp(26px,3.2vw,36px);line-height:1.15;margin:4px 0 6px}
+.sku{font-size:13px;color:var(--muted)}
+.price{display:flex;align-items:baseline;gap:12px;margin:18px 0 4px}
+.price b{font-size:32px;font-weight:700}
+.pay{font-size:14px;color:var(--muted);margin:0 0 18px}
+.lead{color:#3b352b;margin:0 0 20px}
+.opt{margin:0 0 18px}.opt h3{font-size:14px;margin:0 0 8px;font-weight:600}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:44px;min-width:52px;padding:0 16px;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer}
+.chip.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.buy{display:grid;gap:10px;margin:22px 0}
+.btn{min-height:52px;border-radius:14px;border:0;font:700 17px "Assistant",sans-serif;cursor:pointer}
+.btn.main{background:var(--ink);color:#fff}
+.btn.wa{background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:8px}
+.perks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 24px}
+.perk{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;font-size:13px;text-align:center;color:#3b352b}
+.perk i{display:block;font-style:normal;font-size:20px;margin-bottom:2px}
+details{border-top:1px solid var(--line);padding:14px 0}details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--muted)}details[open] summary::after{content:"–"}
+dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:12px 0 0;font-size:15px}
+dt{color:var(--muted)}dd{margin:0}
+details p{margin:10px 0 0;color:#3b352b;font-size:15px}
+footer{border-top:1px solid var(--line);background:#fff;text-align:center;color:var(--muted);font-size:13px;padding:22px 16px}
+@media (max-width:900px){
+ main{grid-template-columns:1fr;gap:22px}nav{display:none}
+ .media{position:static;grid-template-columns:1fr}
+ .rail{order:2;flex-direction:row;overflow-x:auto}
+ .th{width:76px;flex:0 0 auto}
+}
+</style>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+</head>
+<body>
+<div class="top">משלוח חינם עד הבית · החזרה עד 30 יום · אריזת מתנה לכל הזמנה</div>
+<header><div class="hd">
+  <div class="icons" aria-hidden="true">♡ 🛍</div>
+  <nav><a href="#">טבעות</a><a href="#">שרשראות</a><a href="#">צמידים</a><a href="#">עגילים</a><a href="#">קולקציות</a></nav>
+  <div class="logo">AURELLE</div>
+</div></header>
+<div class="crumb">ראשי<span>›</span>צמידים<span>›</span>צמיד HALL פתוח</div>
+<main>
+  <section class="media">
+    <div class="rail">
+      <button class="th on" data-i="0"><img src="p1.jpg" alt=""></button><button class="th" data-i="1"><img src="p2.jpg" alt=""></button>
+      <button class="th t3d" id="t3d" aria-label="360 3D view"><img src="p1.jpg" alt=""><b>360°</b><small>3D</small></button>
+    </div>
+    <div class="stage" id="stage">
+      <img id="main" src="p1.jpg" alt="צמיד HALL">
+      <model-viewer id="mv" dir="ltr" loading="lazy" reveal="auto" camera-controls touch-action="none" interaction-prompt="none" auto-rotate auto-rotate-delay="1500" rotation-per-second="20deg" camera-orbit="0deg 75deg auto" min-camera-orbit="-Infinity 0deg auto" max-camera-orbit="Infinity 180deg auto" min-field-of-view="8deg" environment-image="neutral" exposure="1.05" shadow-intensity="0.5" shadow-softness="1" alt="צמיד HALL בתלת־ממד"></model-viewer>
+      <button class="open3d" id="open3d" dir="ltr">↻ 360° 3D</button>
+      <button class="close3d" id="close3d" aria-label="סגירה">×</button>
+      <div class="ld3d" id="ld3d">טוען…</div>
+      <div class="hint" id="hint">גררו לכל כיוון · צבטו להגדלה</div>
+    </div>
+  </section>
+  <section class="info">
+    <div class="sku">קולקציית HALL · מק"ט AU-CF-2026</div>
+    <h1>צמיד HALL פתוח, זהב בעבודת פטיש</h1>
+    <div class="price"><b>₪1,000</b></div>
+    <p class="pay">או 3 תשלומים של ₪333 ללא ריבית</p>
+    <p class="lead">צמיד פתוח בעבודת פטיש עדינה, שכל מכה בו נעשתה ביד. במרכזו אבן מלבנית כהה במסגרת זהב. בצד הפנימי חקוק HALL 2026. נלבש בקלות, מתאים לכל יד, ונראה טוב גם לבד וגם בשכבות.</p>
+    <div class="opt"><h3>גודל</h3><div class="chips" id="opts"><button class="chip">S</button><button class="chip on">M</button><button class="chip">L</button></div></div>
+    <div class="buy">
+      <button class="btn main">הוספה לסל</button>
+      <button class="btn wa"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>שאלה לנציג בוואטסאפ</button>
+    </div>
+    <div class="perks">
+      <div class="perk"><i>✋</i>עבודת יד</div>
+      <div class="perk"><i>🚚</i>משלוח מבוטח חינם</div>
+      <div class="perk"><i>🎁</i>אריזת מתנה</div>
+    </div>
+    <details open><summary>פרטי התכשיט</summary><dl><dt>מתכת</dt><dd>זהב</dd><dt>גימור</dt><dd>עבודת פטיש ידנית</dd><dt>אבן</dt><dd>אבן מלבנית כהה</dd><dt>סוג</dt><dd>צמיד פתוח, מתאים את עצמו ליד</dd><dt>חקיקה</dt><dd>HALL 2026 בצד הפנימי</dd></dl></details>
+    <details><summary>משלוחים והחזרות</summary><p>משלוח מבוטח חינם תוך 3–5 ימי עסקים. ניתן להחזיר או להחליף תוך 30 יום מקבלת התכשיט.</p></details>
+    <details><summary>אחריות ותחזוקה</summary><p>אחריות לשנה על הייצור. מומלץ להסיר לפני מקלחת, ים ובריכה, ולנגב במטלית רכה.</p></details>
+  </section>
+</main>
+<footer>AURELLE · דף הדגמה של עיצוב חנות</footer>
+<script>
+const IM=['p1.jpg', 'p2.jpg'],st=document.getElementById("stage"),mv=document.getElementById("mv"),main=document.getElementById("main"),ths=[...document.querySelectorAll(".th")],t3d=document.getElementById("t3d"),ld=document.getElementById("ld3d"),hint=document.getElementById("hint");
+function mark(b){ths.forEach(x=>x.classList.toggle("on",x===b))}
+function show3d(){if(!mv.getAttribute("src")){ld.classList.add("show");mv.setAttribute("src","model.glb")}st.classList.add("v3d");mark(t3d);hint.style.opacity=1}
+function showImg(i){st.classList.remove("v3d");main.src=IM[i];mark(ths[i])}
+ths.forEach(b=>b.onclick=()=>b===t3d?show3d():showImg(+b.dataset.i));
+document.getElementById("open3d").onclick=show3d;
+document.getElementById("close3d").onclick=()=>showImg(0);
+mv.addEventListener("load",()=>ld.classList.remove("show"));
+mv.addEventListener("progress",e=>{ld.textContent="טוען "+Math.round(e.detail.totalProgress*100)+"%"});
+mv.addEventListener("pointerdown",()=>{hint.style.opacity=0});
+document.querySelectorAll("#opts .chip").forEach(b=>b.onclick=()=>document.querySelectorAll("#opts .chip").forEach(x=>x.classList.toggle("on",x===b)));
+</script>
+</body>
+</html>
