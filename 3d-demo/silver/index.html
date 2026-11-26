@@ -97,7 +97,7 @@ footer{border-top:1px solid var(--line);background:#fff;text-align:center;color:
     </div>
     <div class="stage" id="stage">
       <img id="main" src="p1.jpg" alt="צמיד כסף">
-      <div class="spin" id="sp"><img id="si" src="spin/f001.jpg" alt="צמיד כסף, סיבוב" draggable="false"></div>
+      <div class="spin" id="sp"><img id="si" src="spin/f001.jpg" alt="צמיד כסף, סיבוב" draggable="false"><img id="si2" src="spin/f002.jpg" alt="" draggable="false" style="position:absolute;inset:0;opacity:0"></div>
       <button class="open3d" id="open3d" dir="ltr">↻ 360°</button>
       <button class="close3d" id="close3d" aria-label="סגירה">×</button>
       <div class="ld3d" id="ld3d">טוען…</div>
@@ -127,15 +127,15 @@ footer{border-top:1px solid var(--line);background:#fff;text-align:center;color:
 </main>
 <footer>AURELLE · דף הדגמה של עיצוב חנות</footer>
 <script>
-const IM=['p1.jpg','p2.jpg','p3.jpg'],N=47,st=document.getElementById("stage"),sp=document.getElementById("sp"),si=document.getElementById("si"),main=document.getElementById("main"),ths=[...document.querySelectorAll(".th")],t3d=document.getElementById("t3d"),ld=document.getElementById("ld3d"),hint=document.getElementById("hint");
+const IM=['p1.jpg','p2.jpg','p3.jpg'],N=18,st=document.getElementById("stage"),sp=document.getElementById("sp"),si=document.getElementById("si"),main=document.getElementById("main"),ths=[...document.querySelectorAll(".th")],t3d=document.getElementById("t3d"),ld=document.getElementById("ld3d"),hint=document.getElementById("hint");
 const src=i=>"spin/f"+String(i+1).padStart(3,"0")+".jpg";
 let frames=null,idx=0,z=1,tx=0,ty=0,anim=null;
 function load(){if(frames)return;frames=[];let n=0;ld.classList.add("show");for(let i=0;i<N;i++){const im=new Image();im.onload=im.onerror=()=>{n++;ld.textContent="טוען "+Math.round(n/N*100)+"%";if(n===N){ld.classList.remove("show");intro()}};im.src=src(i);frames.push(im)}}
-function draw(){si.src=src(idx);si.style.transform="translate("+tx+"px,"+ty+"px) scale("+z+")"}
+const si2=document.getElementById("si2");function draw(){const a=Math.floor(idx),b=Math.min(N-1,a+1),f=idx-a;if(si.dataset.i!=a){si.src=src(a);si.dataset.i=a}if(si2.dataset.i!=b){si2.src=src(b);si2.dataset.i=b}si2.style.opacity=f;const t="translate("+tx+"px,"+ty+"px) scale("+z+")";si.style.transform=t;si2.style.transform=t}
 function clampPan(){const w=sp.clientWidth,h=sp.clientHeight;tx=Math.min(0,Math.max(w-w*z,tx));ty=Math.min(0,Math.max(h-h*z,ty))}
-function zoomAt(nz,cx,cy){nz=Math.max(1,Math.min(4,nz));tx=cx-(cx-tx)*nz/z;ty=cy-(cy-ty)*nz/z;z=nz;clampPan();draw()}
+function zoomAt(nz,cx,cy){nz=Math.max(1,Math.min(2.5,nz));tx=cx-(cx-tx)*nz/z;ty=cy-(cy-ty)*nz/z;z=nz;clampPan();draw()}
 function stopAnim(){if(anim){cancelAnimationFrame(anim);anim=null}}
-function intro(){stopAnim();const t0=performance.now(),D=4200;const step=t=>{const k=Math.min(1,(t-t0)/D),s=(1-Math.cos(k*2*Math.PI))/2;idx=Math.round(s*(N-1));draw();if(k<1)anim=requestAnimationFrame(step);else anim=null};anim=requestAnimationFrame(step)}
+function intro(){stopAnim();const t0=performance.now(),D=4200;const step=t=>{const k=Math.min(1,(t-t0)/D),s=(1-Math.cos(k*2*Math.PI))/2;idx=s*(N-1);draw();if(k<1)anim=requestAnimationFrame(step);else anim=null};anim=requestAnimationFrame(step)}
 function mark(b){ths.forEach(x=>x.classList.toggle("on",x===b))}
 function showSpin(){st.classList.add("v3d");mark(t3d);hint.style.opacity=1;z=1;tx=ty=0;idx=0;draw();if(frames)intro();else load()}
 function showImg(i){stopAnim();st.classList.remove("v3d");main.src=IM[i];mark(ths[i])}
@@ -151,7 +151,7 @@ sp.addEventListener("pointermove",e=>{if(!pts.has(e.pointerId))return;pts.set(e.
  if(pts.size===2){const[a,b]=[...pts.values()];const d=Math.hypot(a[0]-b[0],a[1]-b[1]);zoomAt(pz*d/pd,(a[0]+b[0])/2,(a[1]+b[1])/2);return}
  const[x,y]=rel(e);
  if(z>1){tx+=x-px;ty+=y-py;px=x;py=y;clampPan();draw();return}
- const per=sp.clientWidth/(N*0.9);idx=Math.max(0,Math.min(N-1,i0+Math.round((sx-x)/per)));draw()});
+ const per=sp.clientWidth/(N*0.7);idx=Math.max(0,Math.min(N-1,i0+(sx-x)/per));draw()});
 ["pointerup","pointercancel"].forEach(t=>sp.addEventListener(t,e=>{pts.delete(e.pointerId);if(pts.size===1){const[x,y]=[...pts.values()][0];sx=x;i0=idx;px=x;py=y}}));
 sp.addEventListener("wheel",e=>{e.preventDefault();const[x,y]=rel(e);zoomAt(z*(e.deltaY<0?1.15:1/1.15),x,y)},{passive:false});
 document.querySelectorAll("#opts .chip").forEach(b=>b.onclick=()=>document.querySelectorAll("#opts .chip").forEach(x=>x.classList.toggle("on",x===b)));
