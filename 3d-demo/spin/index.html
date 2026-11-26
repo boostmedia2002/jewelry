@@ -1,0 +1,29 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>צמיד 360</title><meta name="robots" content="noindex">
+<style>
+:root{color-scheme:dark;--bg:#2b2a29;--ink:#f3eee5;--muted:#b9b1a3}@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#2b2a29}}:root[data-theme=dark]{--bg:#2b2a29}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,Arial,sans-serif;overflow-x:hidden}
+.w{max-width:1100px;margin:0 auto;padding:14px 16px 28px}
+.st{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#3a3836;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.st:active{cursor:grabbing}.st img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.55);padding:6px 14px;border-radius:999px;font-size:14px;transition:opacity .4s}
+.ld{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted)}
+.bar{display:flex;gap:8px;margin-top:12px;justify-content:center}
+button{font:inherit;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid #555;background:#3a3836;color:var(--ink);cursor:pointer}
+</style></head><body><div class="w">
+<div class="st" id="st"><img id="im" alt="צמיד זהב עם עיגולי יהלומים, מסתובב"><div class="ld" id="ld">טוען…</div><div class="hint" id="hint">↔ גרור כדי לסובב</div></div>
+<div class="bar"><button id="play">▶ סיבוב אוטומטי</button></div>
+</div><script>
+const N=89,P="frames/",st=document.getElementById("st"),im=document.getElementById("im");
+const src=i=>P+"f"+String(i+1).padStart(3,"0")+".jpg";
+const imgs=[];let loaded=0,cur=0;
+for(let i=0;i<N;i++){const x=new Image();x.onload=()=>{if(++loaded===N)document.getElementById("ld").remove()};x.src=src(i);imgs.push(x)}
+const show=i=>{cur=((i%N)+N)%N;im.src=imgs[cur].src};show(0);
+let down=false,sx=0,s0=0,auto=null;
+const px=()=>st.clientWidth/N*1.6;
+st.addEventListener("pointerdown",e=>{down=true;sx=e.clientX;s0=cur;stop();st.setPointerCapture(e.pointerId);document.getElementById("hint").style.opacity=0});
+st.addEventListener("pointermove",e=>{if(!down)return;show(s0+Math.round((e.clientX-sx)/px()))});
+["pointerup","pointercancel"].forEach(t=>st.addEventListener(t,()=>down=false));
+const stop=()=>{if(auto){clearInterval(auto);auto=null;document.getElementById("play").textContent="▶ סיבוב אוטומטי"}};
+document.getElementById("play").onclick=()=>{if(auto)return stop();auto=setInterval(()=>show(cur+1),9000/N);document.getElementById("play").textContent="⏸ עצור"};
+</script></body></html>
